@@ -1,8 +1,11 @@
-import './App.scss';
+import { RouterProvider } from 'react-router-dom';
+
+import route from './route';
+
 const App = () => {
   return (
     <>
-      <h1>Online store</h1>
+      <RouterProvider router={route} />
     </>
   );
 };
