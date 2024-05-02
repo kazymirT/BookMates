@@ -1,8 +1,15 @@
-import './App.scss';
+import { Provider } from 'react-redux';
+import { RouterProvider } from 'react-router-dom';
+
+import store from './redux/store';
+import route from './route';
+
 const App = () => {
   return (
     <>
-      <h1>Online store</h1>
+      <Provider store={store}>
+        <RouterProvider router={route} />
+      </Provider>
     </>
   );
 };
