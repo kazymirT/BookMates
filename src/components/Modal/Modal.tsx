@@ -1,6 +1,6 @@
-import { useAppSelector } from '../../redux/hooks';
-import { modalType } from '../../redux/slices/modalSlice';
 import Portal from '../Portal/Portal';
+import { useAppSelector } from '@/redux/hooks';
+import { modalType } from '@/redux/slices/modalSlice';
 
 const Modal = () => {
   const openedModalType = useAppSelector(modalType);

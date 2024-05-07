@@ -8,7 +8,7 @@ type ModalState = {
 };
 
 const initialState: ModalState = {
-  openedModalType: 'login',
+  openedModalType: null,
 };
 
 export const modalSlice = createSlice({

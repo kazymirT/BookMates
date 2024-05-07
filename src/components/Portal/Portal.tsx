@@ -2,8 +2,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 
 import styles from './Portal.module.scss';
-import { useAppDispatch } from '../../redux/hooks';
-import { toggleModal } from '../../redux/slices/modalSlice';
+import { useAppDispatch } from '@/redux/hooks';
+import { toggleModal } from '@/redux/slices/modalSlice';
 
 const Portal = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {
