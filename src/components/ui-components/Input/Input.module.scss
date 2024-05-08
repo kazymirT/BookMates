@@ -1,0 +1,84 @@
+@use '../../../styles/colors.scss';
+
+.input-group {
+  position: relative;
+
+  .input {
+    width: 100%;
+    padding: 0.688rem 1rem;
+
+    font-size: 1rem;
+    line-height: 1.188rem;
+    color: #a9a9a9;
+    letter-spacing: 0.01em;
+
+    border: 1px solid #d5d3d3;
+    border-radius: 0.25rem;
+
+    &:hover {
+      border-color: blue;
+
+      &::placeholder {
+        color: #00f;
+      }
+    }
+
+    &:focus {
+      color: #008000;
+      border-color: #008000;
+
+      &::placeholder {
+        color: green;
+      }
+    }
+
+    &.input-error {
+      color: colors.$error;
+      border-color: colors.$error;
+
+      &::placeholder {
+        color: colors.$error;
+      }
+    }
+  }
+
+  .button {
+    position: absolute;
+    z-index: 99;
+    top: 0.55rem;
+    right: 1rem;
+
+    width: 24px;
+    height: 24px;
+
+    background: url("../../../assets/icons/HidePassword.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &.password-error {
+      filter: invert(76%) sepia(80%) saturate(7102%) hue-rotate(337deg)
+        brightness(91%) contrast(96%);
+    }
+
+    &.password-show {
+      background: url("../../../assets/icons/ShowPassword.svg");
+      background-size: cover;
+    }
+  }
+
+  .error {
+    font-size: 0.75rem;
+    color: colors.$error;
+    letter-spacing: 0.01em;
+  }
+}
+
+.input:hover .button {
+  filter: invert(9%) sepia(99%) saturate(6292%) hue-rotate(248deg)
+    brightness(100%) contrast(148%);
+}
+
+.input:focus .button {
+  filter: invert(24%) sepia(91%) saturate(2110%) hue-rotate(93deg)
+    brightness(96%) contrast(103%);
+}

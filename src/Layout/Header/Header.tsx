@@ -2,8 +2,17 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 import { PAGES, ROUTE_PATH } from '../../utils/constants';
+import { useAppDispatch } from '@/redux/hooks';
+import { toggleModal } from '@/redux/slices/modalSlice';
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+
+  const handleLogin = () => dispatch(toggleModal('login'));
+
+  const handleRegister = () => dispatch(toggleModal('create-account'));
+
+  const handleFeedback = () => dispatch(toggleModal('feedback'));
   return (
     <header className={styles.header}>
       <nav>
@@ -13,7 +22,15 @@ const Header = () => {
               <NavLink to={ROUTE_PATH[page]}>{page}</NavLink>
             </li>
           ))}
-          <li></li>
+          <li>
+            <button onClick={handleLogin}>login</button>
+          </li>
+          <li>
+            <button onClick={handleRegister}>register</button>
+          </li>
+          <li>
+            <button onClick={handleFeedback}>feedback</button>
+          </li>
         </ul>
       </nav>
     </header>
