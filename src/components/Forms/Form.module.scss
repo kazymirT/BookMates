@@ -1,0 +1,114 @@
+@use '../../styles/colors.scss';
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+
+  box-sizing: border-box;
+  width: 622px;
+  padding: 2em;
+
+  background-color: #fff;
+  box-shadow: 2px 3px 37px 0 rgb(0 0 0 / 25%);
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      font-size: 2em;
+      line-height: 1.19em;
+      color: #3e3e3e;
+      letter-spacing: 0.01em;
+    }
+
+    .close {
+      width: 24px;
+      height: 24px;
+      background: url("../../assets/icons/Close.svg");
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75em;
+
+      .email-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+      }
+
+      .error {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          font-size: 0.75em;
+          color: colors.$error;
+          letter-spacing: 0.01em;
+        }
+
+        a {
+          font-size: 0.75em;
+          color: #111;
+          letter-spacing: 0.01em;
+        }
+      }
+    }
+
+    .submit {
+      padding: 1em 2em;
+
+      font-size: 1em;
+      font-weight: 500;
+      line-height: 1.188;
+      color: #eaeaea;
+      letter-spacing: 0.01em;
+
+      background: #1e1e1e;
+      border-radius: 4px;
+
+      &:disabled {
+        background: rgb(30 30 30 / 70%);
+      }
+    }
+  }
+
+  .register {
+    font-size: 1em;
+    line-height: 1.188;
+    color: #000;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+
+  .terms {
+    font-size: 0.75em;
+    color: #000;
+    letter-spacing: 0.01em;
+
+    a {
+      margin: 0 2px;
+      border-bottom: 1px solid #000;
+    }
+  }
+}
+
+.remember {
+  width: fit-content;
+
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1.188;
+  color: #000;
+  letter-spacing: 0.01em;
+}

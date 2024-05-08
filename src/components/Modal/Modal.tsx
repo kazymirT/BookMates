@@ -1,3 +1,5 @@
+import LoginForm from '../Forms/LoginForm/LoginForm';
+import RegisterForm from '../Forms/RegisterForm/RegisterForm';
 import Portal from '../Portal/Portal';
 import { useAppSelector } from '@/redux/hooks';
 import { modalType } from '@/redux/slices/modalSlice';
@@ -9,9 +11,9 @@ const Modal = () => {
       {openedModalType && (
         <Portal>
           {openedModalType === 'login' ? (
-            <div>Login</div>
+            <LoginForm />
           ) : openedModalType === 'create-account' ? (
-            <div>Create Account</div>
+            <RegisterForm />
           ) : openedModalType === 'feedback' ? (
             <div>Feedback</div>
           ) : null}
