@@ -12,7 +12,13 @@ const Checkbox = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={styles['checkbox-container']}>
-        <input {...rest} id={id} ref={ref} className={styles.input} />
+        <input
+          {...rest}
+          id={id}
+          type="checkbox"
+          ref={ref}
+          className={styles.input}
+        />
         <label htmlFor={id} className={styles.label}>
           {label}
         </label>

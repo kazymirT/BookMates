@@ -5,30 +5,25 @@ import styles from './Input.module.scss';
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
   errorMessage?: string;
-  error?: boolean;
-  onFocus?: () => void;
+  serverError?: boolean;
+  handleFocus?: () => void;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMessage, error, onFocus, ...rest }, ref) => {
+  ({ errorMessage, serverError, handleFocus, ...rest }, ref) => {
     const [type, setType] = useState<boolean>(rest.type === 'password');
 
     const inputClassName = classNames(styles.input, {
-      [styles['input-error']]: errorMessage || error,
+      [styles['input-error']]: errorMessage || serverError,
     });
 
     const inputPasswordClass = classNames(styles.button, {
       [styles['password-show']]: !type,
       [styles['password-hide']]: type,
-      [styles['password-error']]: errorMessage || error,
+      [styles['password-error']]: errorMessage || serverError,
     });
 
-    const handleFocusInput = () => (error && onFocus ? onFocus() : '');
-
-    const handleShowPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-      setType(!type);
-    };
+    const handleShowPassword = () => setType(!type);
 
     const inputType = rest.type === 'password' && type ? 'password' : 'text';
 
@@ -39,10 +34,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           type={inputType}
           ref={ref}
           className={inputClassName}
-          onFocus={handleFocusInput}
+          onFocus={handleFocus}
         />
         {rest.type === 'password' && (
           <button
+            type="button"
             className={inputPasswordClass}
             onClick={handleShowPassword}
           ></button>

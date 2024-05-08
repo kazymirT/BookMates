@@ -12,7 +12,7 @@ import { LoginValues, loginSchema } from '@/utils/validateSchema';
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
-  const [isLoginError, setIsLoginError] = useState<boolean>(false);
+  const [isServerError, setIsServerError] = useState<boolean>(false);
 
   const {
     register,
@@ -36,12 +36,12 @@ const LoginForm = () => {
     if (response.ok) {
       console.log('ok');
     } else if (response.status === 401) {
-      setIsLoginError(true);
+      setIsServerError(true);
     }
   };
   const handleRegister = () => dispatch(toggleModal('create-account'));
   const handleClose = () => dispatch(toggleModal(null));
-  const handleFocus = () => setIsLoginError(false);
+  const hideServerError = () => isServerError && setIsServerError(false);
 
   return (
     <section className={styles['form-container']}>
@@ -55,19 +55,19 @@ const LoginForm = () => {
             {...register('email')}
             placeholder="Електронна Пошта"
             type="email"
-            error={isLoginError}
-            onFocus={handleFocus}
+            serverError={isServerError}
+            handleFocus={hideServerError}
             errorMessage={errors.email?.message}
           />
           <Input
             {...register('password')}
             placeholder="Пароль"
             type="password"
-            error={isLoginError}
-            onFocus={handleFocus}
+            serverError={isServerError}
+            handleFocus={hideServerError}
             errorMessage={errors.password?.message}
           />
-          {isLoginError && (
+          {isServerError && (
             <div className={styles.error}>
               <p>
                 Ваша Електронна пошта або пароль невірні. Будь ласка, спробуйте
@@ -79,7 +79,7 @@ const LoginForm = () => {
             </div>
           )}
         </div>
-        {!isLoginError && (
+        {!isServerError && (
           <a className={styles.remember} href="#">
             Забув пароль
           </a>
@@ -88,13 +88,13 @@ const LoginForm = () => {
         <button type="submit" className={styles.submit} disabled={!isValid}>
           Увійти
         </button>
-        <Checkbox
-          {...register('rememberMe')}
-          type="checkbox"
-          label="Залишатися в акаунті"
-        />
+        <Checkbox {...register('rememberMe')} label="Залишатися в акаунті" />
       </form>
-      <button className={styles.register} onClick={handleRegister}>
+      <button
+        className={styles.register}
+        type="button"
+        onClick={handleRegister}
+      >
         В мене нема облікового запису
       </button>
       <p className={styles.terms}>

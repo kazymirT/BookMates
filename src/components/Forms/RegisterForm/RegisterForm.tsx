@@ -11,7 +11,7 @@ import { registerApi } from '@/redux/services/api';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const RegisterForm = () => {
-  const [isEmailError, setIsEmailError] = useState<boolean>(false);
+  const [isServerError, setIsServerError] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const {
@@ -41,13 +41,13 @@ const RegisterForm = () => {
     if (response.ok) {
       console.log('ok');
     } else if (response.status === 400) {
-      setIsEmailError(true);
+      setIsServerError(true);
     }
   };
 
   const handleLogin = () => dispatch(toggleModal('login'));
   const handleClose = () => dispatch(toggleModal(null));
-  const handleFocus = () => setIsEmailError(false);
+  const hideServerError = () => isServerError && setIsServerError(false);
 
   return (
     <section className={styles['form-container']}>
@@ -74,11 +74,11 @@ const RegisterForm = () => {
               {...register('email')}
               placeholder="Електрона пошта"
               type="email"
-              error={isEmailError}
-              onFocus={handleFocus}
+              serverError={isServerError}
+              handleFocus={hideServerError}
               errorMessage={errors.email?.message}
             />
-            {isEmailError && (
+            {isServerError && (
               <div className={styles.error}>
                 <p>Обліковий запис з такою електроною поштою вже існує.</p>{' '}
                 <a href="#">Забув пароль</a>
@@ -101,13 +101,9 @@ const RegisterForm = () => {
         <button type="submit" className={styles.submit} disabled={!isValid}>
           Створити акаунт
         </button>
-        <Checkbox
-          {...register('rememberMe')}
-          type="checkbox"
-          label="Залишатися в акаунті"
-        />
+        <Checkbox {...register('rememberMe')} label="Залишатися в акаунті" />
       </form>
-      <button className={styles.register} onClick={handleLogin}>
+      <button className={styles.register} type="button" onClick={handleLogin}>
         В мене вже є обліковий запис
       </button>
       <p className={styles.terms}>
