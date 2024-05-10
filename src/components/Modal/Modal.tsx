@@ -1,3 +1,4 @@
+import FeedBackForm from '../Forms/FeedbackForm/FeedBackForm';
 import LoginForm from '../Forms/LoginForm/LoginForm';
 import RegisterForm from '../Forms/RegisterForm/RegisterForm';
 import Portal from '../Portal/Portal';
@@ -15,7 +16,7 @@ const Modal = () => {
           ) : openedModalType === 'create-account' ? (
             <RegisterForm />
           ) : openedModalType === 'feedback' ? (
-            <div>Feedback</div>
+            <FeedBackForm />
           ) : null}
         </Portal>
       )}

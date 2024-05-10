@@ -1,0 +1,98 @@
+@use '@/styles/colors.scss';
+
+%option {
+  cursor: pointer;
+  padding: 0.75em;
+  border-radius: 4px;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.container {
+  padding: 0.78rem 1rem 0 0.78rem;
+
+  font-size: 1rem;
+  line-height: 1.188rem;
+  color: colors.$quartz;
+  letter-spacing: 0.01em;
+
+  border: 1px solid colors.$light-grey;
+  border-radius: 0.25rem;
+
+  &-error {
+    border-color: colors.$error;
+
+    & + .message {
+      color: colors.$error;
+    }
+  }
+
+  .control {
+    cursor: pointer;
+    align-items: center;
+    min-height: auto;
+    padding-bottom: 0.75em;
+  }
+
+  .menu {
+    position: inherit;
+    padding-bottom: 0.25em;
+  }
+
+  .menu-list {
+    @for $i from 1 through 10 {
+      & :nth-child(#{$i}n) {
+        animation-delay: #{(($i)-1) * 0.075}s;
+      }
+    }
+  }
+
+  .option {
+    @extend %option;
+
+    animation: appear 0.35s;
+    animation-fill-mode: backwards;
+
+    &_focused {
+      @extend %option;
+
+      background-color: colors.$cultured;
+    }
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .indicator {
+    display: inline-flex;
+
+    & > img {
+      transform: rotate(0);
+      transition: transform 0.35s;
+    }
+
+    &_opened {
+      & > img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.message {
+  font-size: 0.75em;
+  letter-spacing: 0.01em;
+}
+
+@keyframes appear {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
