@@ -27,7 +27,7 @@
     .close {
       width: 24px;
       height: 24px;
-      background: url("../../assets/icons/Close.svg");
+      background: url('../../assets/icons/Close.svg');
     }
   }
 
@@ -111,4 +111,45 @@
   line-height: 1.188;
   color: #000;
   letter-spacing: 0.01em;
+}
+
+.textarea-container {
+  width: 100%;
+}
+
+.textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 124px;
+  padding: 0.688rem 1rem;
+
+  font-size: 1rem;
+  line-height: 1.188rem;
+  color: colors.$quartz;
+  letter-spacing: 0.01em;
+
+  background-color: transparent;
+  border: 1px solid colors.$light-grey;
+  border-radius: 0.25rem;
+}
+
+.textarea-error {
+  color: colors.$error;
+  border-color: colors.$error;
+
+  &::placeholder {
+    color: colors.$error;
+  }
+
+  & + p {
+    font-size: 0.75em;
+    color: colors.$error;
+    letter-spacing: 0.01em;
+  }
+}
+
+.paragraph {
+  font-size: 1rem;
+  line-height: 1.188rem;
+  color: #000;
 }

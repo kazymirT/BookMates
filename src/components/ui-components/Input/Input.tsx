@@ -13,6 +13,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ errorMessage, serverError, handleFocus, ...rest }, ref) => {
     const [type, setType] = useState<boolean>(rest.type === 'password');
 
+    //console.log({ errorMessage, serverError, handleFocus, ...rest });
+
     const inputClassName = classNames(styles.input, {
       [styles['input-error']]: errorMessage || serverError,
     });

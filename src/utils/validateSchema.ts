@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { TOPICS } from '@/utils/constants';
+
 const email = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
@@ -46,3 +48,15 @@ export const registerSchema = z
   });
 
 export type RegisterValues = z.infer<typeof registerSchema>;
+
+const TopicsEnum = z.nativeEnum(TOPICS, {
+  required_error: 'Це поле є обов`язковим.',
+});
+
+export const feedbackSchema = z.object({
+  email: email,
+  topic: TopicsEnum,
+  question: z.string().min(5, { message: 'мінімум 5 символів' }),
+});
+
+export type FeedbackValues = z.infer<typeof feedbackSchema>;
