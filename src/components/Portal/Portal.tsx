@@ -13,14 +13,24 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  const idRef = React.useRef<string | null>(null);
+
   const dispatch = useAppDispatch();
+
+  const setIdOnMouseDown = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLElement;
+    const id = target.id;
+    idRef.current = id;
+  };
 
   const handleCloseModal = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     const target = e.target as HTMLElement;
     const id = target.id;
-    id === 'portal' && dispatch(toggleModal(null));
+    id === 'portal' && id === idRef.current && dispatch(toggleModal(null));
   };
 
   return (
@@ -29,7 +39,8 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
         <div
           id="portal"
           className={styles.wrapper}
-          onClick={(e) => handleCloseModal(e)}
+          onMouseDown={setIdOnMouseDown}
+          onClick={handleCloseModal}
         >
           <div className={styles.container}>{children}</div>
         </div>,
