@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 100%;
+}
+
+.control {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}

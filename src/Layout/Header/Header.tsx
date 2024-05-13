@@ -8,11 +8,14 @@ import { toggleModal } from '@/redux/slices/modalSlice';
 const Header = () => {
   const dispatch = useAppDispatch();
 
-  const handleLogin = () => dispatch(toggleModal('login'));
+  const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));
 
-  const handleRegister = () => dispatch(toggleModal('create-account'));
+  const handleRegister = () =>
+    dispatch(toggleModal({ openedModalType: 'create-account' }));
 
-  const handleFeedback = () => dispatch(toggleModal('feedback'));
+  const handleFeedback = () =>
+    dispatch(toggleModal({ openedModalType: 'feedback' }));
+
   return (
     <header className={styles.header}>
       <nav>

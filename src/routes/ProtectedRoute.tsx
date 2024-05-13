@@ -1,8 +1,9 @@
 import React from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { useAppSelector } from '@/redux/hooks';
 import { userData } from '@/redux/slices/userSlice';
+import { ROUTE_PATH } from '@/utils/constants';
 
 type Props = {
   children: React.ReactNode;
@@ -10,20 +11,19 @@ type Props = {
 };
 
 const ProtectedRoute = ({ children, adminAccess = false }: Props) => {
-  const location = useLocation();
   const user = useAppSelector(userData);
   const isAdmin = user?.role === 'admin';
 
   return (
     <>
       {!user ? (
-        <Navigate to={'/404'} replace state={{ from: location }} />
+        <Navigate to={ROUTE_PATH.NOTAUTHENTICATED} replace />
       ) : !adminAccess ? (
         children
       ) : isAdmin ? (
         children
       ) : (
-        <Navigate to={'/404'} replace state={{ from: location }} />
+        <Navigate to={ROUTE_PATH.NOTAUTHORIZED} replace />
       )}
     </>
   );

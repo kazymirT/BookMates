@@ -45,8 +45,8 @@ const RegisterForm = () => {
     }
   };
 
-  const handleLogin = () => dispatch(toggleModal('login'));
-  const handleClose = () => dispatch(toggleModal(null));
+  const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));
+  const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const hideServerError = () => isServerError && setIsServerError(false);
 
   return (

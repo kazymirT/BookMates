@@ -30,7 +30,9 @@ const Portal = ({ children }: { children: React.ReactNode }) => {
   ) => {
     const target = e.target as HTMLElement;
     const id = target.id;
-    id === 'portal' && id === idRef.current && dispatch(toggleModal(null));
+    id === 'portal' &&
+      id === idRef.current &&
+      dispatch(toggleModal({ openedModalType: null }));
   };
 
   return (
