@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
+import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Modal from '@/components/Modal/Modal';
@@ -8,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
       <Footer />

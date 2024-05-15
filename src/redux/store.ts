@@ -4,12 +4,16 @@ import { UnknownAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 
 import { novaApi } from './services/novaApi';
+import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
+import userSlice from './slices/userSlice';
 
 const store = configureStore({
   reducer: {
     [novaApi.reducerPath]: novaApi.reducer,
     modal: modalSlice,
+    user: userSlice,
+    locationHistory: locationHistorySlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(novaApi.middleware),

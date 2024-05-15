@@ -5,6 +5,7 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import styles from '../Form.module.scss';
 import Input from '@/components/ui-components/Input/Input';
 import Select from '@/components/ui-components/Select/Select';
+import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { TOPICS } from '@/utils/constants';
@@ -27,13 +28,14 @@ const FeedBackForm = () => {
   });
 
   const dispatch = useAppDispatch();
+  const { sendFeedback } = useFormActions();
 
   const onSubmit: SubmitHandler<FeedbackValues> = (data) => {
     // eslint-disable-next-line no-console
-    console.log(data);
+    sendFeedback(data);
   };
 
-  const handleClose = () => dispatch(toggleModal(null));
+  const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
 
   const textareaClName = classNames(styles.textarea, {
     [styles['textarea-error']]: errors.question?.message,
