@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 import { PAGES, ROUTE_PATH } from '../../utils/constants';
+import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -38,6 +39,7 @@ const Header = () => {
           <li>
             <button onClick={handleFeedback}>feedback</button>
           </li>
+          <DropDown />
         </ul>
       </nav>
       {user && <p>{user.firstName}</p>}
