@@ -12,7 +12,7 @@ type Props = {
 
 const ProtectedRoute = ({ children, adminAccess = false }: Props) => {
   const user = useAppSelector(userData);
-  const isAdmin = user?.role === 'admin';
+  const isAdmin = user?.user?.role === 'ROLE_ADMIN';
 
   return (
     <>
