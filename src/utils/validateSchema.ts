@@ -25,13 +25,13 @@ export type LoginValues = z.infer<typeof loginSchema>;
 
 export const registerSchema = z
   .object({
-    name: z
+    firstName: z
       .string()
       .min(1, 'поле є обов`язковим')
       .regex(/^[A-ZА-Я]/, 'Ім`я має починатись з великої літери')
       .min(4, 'мінімум 4 символи')
       .max(20, 'максимум 20 символів'),
-    surName: z
+    lastName: z
       .string()
       .min(1, 'поле є обов`язковим')
       .regex(/^[A-ZА-Я]/, 'Прізвище має починатись з великої літери')
