@@ -6,22 +6,23 @@ import { RegisterValues, registerSchema } from '../../../utils/validateSchema';
 import Checkbox from '../../ui-components/Checkbox/Checkbox';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
+import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
-import { registerApi } from '@/redux/services/api';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const RegisterForm = () => {
   const [isServerError, setIsServerError] = useState<boolean>(false);
+  const { registerUser } = useFormActions();
   const dispatch = useAppDispatch();
 
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors },
+    formState: { isValid, errors, isSubmitting },
   } = useForm<RegisterValues>({
     defaultValues: {
-      name: '',
-      surName: '',
+      firstName: '',
+      lastName: '',
       email: '',
       confirmEmail: '',
       password: '',
@@ -32,15 +33,8 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (formData: RegisterValues) => {
-    const response = await registerApi({
-      firstName: formData.name,
-      lastName: formData.surName,
-      email: formData.email,
-      password: formData.password,
-    });
-    if (response.ok) {
-      console.log('ok');
-    } else if (response.status === 400) {
+    const error = await registerUser(formData);
+    if (error) {
       setIsServerError(true);
     }
   };
@@ -58,16 +52,16 @@ const RegisterForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles['input-container']}>
           <Input
-            {...register('name')}
+            {...register('firstName')}
             placeholder="Ім`я"
             type="text"
-            errorMessage={errors.name?.message}
+            errorMessage={errors.firstName?.message}
           />
           <Input
-            {...register('surName')}
+            {...register('lastName')}
             placeholder="Прізвище"
             type="text"
-            errorMessage={errors.surName?.message}
+            errorMessage={errors.lastName?.message}
           />
           <div className={styles['email-container']}>
             <Input
@@ -98,7 +92,11 @@ const RegisterForm = () => {
             errorMessage={errors.password?.message}
           />
         </div>
-        <button type="submit" className={styles.submit} disabled={!isValid}>
+        <button
+          type="submit"
+          className={styles.submit}
+          disabled={!isValid || isServerError || isSubmitting}
+        >
           Створити акаунт
         </button>
         <Checkbox {...register('rememberMe')} label="Залишатися в акаунті" />

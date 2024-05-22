@@ -6,25 +6,30 @@ import {
   type FeedbackValues,
 } from '../utils/validateSchema';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { toggleModal, redirectPath } from '@/redux/slices/modalSlice';
-import { login, type User } from '@/redux/slices/userSlice';
+import { useLoginMutation, useRegisterMutation } from '@/redux/services/auth';
+import { Error } from '@/redux/services/services.types';
+import { redirectPath, toggleModal } from '@/redux/slices/modalSlice';
+import { User } from '@/redux/slices/userSlice';
 
 export const useFormActions = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const path = useAppSelector(redirectPath);
 
+  const [login] = useLoginMutation();
+  const [register] = useRegisterMutation();
+
   const doRequest = async (
     data: LoginValues | RegisterValues | FeedbackValues
   ) => {
     const p = await new Promise<User | string>((resolve) => {
       let resData: User | string;
-      if ((data as RegisterValues).name) {
-        resData = { id: '999', role: 'user' };
+      if ((data as RegisterValues).firstName) {
+        resData = { id: '999', role: 'ROLE_PERSONAL' };
       } else if ((data as FeedbackValues).question) {
         resData = 'succes';
       } else {
-        resData = { id: '666', role: 'user' };
+        resData = { id: '666', role: 'ROLE_PERSONAL' };
       }
       setTimeout(() => resolve(resData), 2000);
     });
@@ -33,22 +38,34 @@ export const useFormActions = () => {
 
   const loginUser = async (data: LoginValues) => {
     try {
-      const response = (await doRequest(data)) as User;
-      dispatch(login(response));
-      dispatch(toggleModal({ openedModalType: null }));
+      await login(data).unwrap();
       path && navigate(path);
     } catch (error) {
-      return 'Error';
+      const { originalStatus } = error as Error;
+      if (originalStatus === 401) {
+        return true;
+      }
     }
   };
-  const registerUser = async (data: RegisterValues) => {
+  const registerUser = async ({
+    email,
+    firstName,
+    lastName,
+    password,
+  }: RegisterValues) => {
     try {
-      const response = (await doRequest(data)) as User;
-      dispatch(login(response));
-      dispatch(toggleModal({ openedModalType: null }));
+      await register({
+        email,
+        firstName,
+        lastName,
+        password,
+      }).unwrap();
       path && navigate(path);
     } catch (error) {
-      return 'Error';
+      const { status } = error as Error;
+      if (status === 400) {
+        return true;
+      }
     }
   };
   const sendFeedback = async (data: FeedbackValues) => {

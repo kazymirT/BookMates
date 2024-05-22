@@ -5,19 +5,20 @@ import { useForm } from 'react-hook-form';
 import Checkbox from '../../ui-components/Checkbox/Checkbox';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
+import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
-import { loginApi } from '@/redux/services/api';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { LoginValues, loginSchema } from '@/utils/validateSchema';
 
 const LoginForm = () => {
-  const dispatch = useAppDispatch();
   const [isServerError, setIsServerError] = useState<boolean>(false);
+  const { loginUser } = useFormActions();
+  const dispatch = useAppDispatch();
 
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors },
+    formState: { isValid, errors, isSubmitting },
   } = useForm<LoginValues>({
     defaultValues: {
       email: '',
@@ -29,13 +30,8 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginValues) => {
-    const response = await loginApi({
-      email: data.email,
-      password: data.password,
-    });
-    if (response.ok) {
-      console.log('ok');
-    } else if (response.status === 401) {
+    const error = await loginUser(data);
+    if (error) {
       setIsServerError(true);
     }
   };
@@ -86,7 +82,11 @@ const LoginForm = () => {
           </a>
         )}
 
-        <button type="submit" className={styles.submit} disabled={!isValid}>
+        <button
+          type="submit"
+          className={styles.submit}
+          disabled={!isValid || isSubmitting || isServerError}
+        >
           Увійти
         </button>
         <Checkbox {...register('rememberMe')} label="Залишатися в акаунті" />
