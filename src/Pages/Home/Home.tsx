@@ -1,9 +1,9 @@
-import styles from './Home.module.scss';
+import HitProducts from './HitProducts/HitProducts';
 
 const Home = () => {
   return (
     <>
-      <h2 className={styles.home}>Home page</h2>
+      <HitProducts />
     </>
   );
 };

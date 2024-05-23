@@ -51,7 +51,7 @@
     width: 24px;
     height: 24px;
 
-    background: url("../../../assets/icons/HidePassword.svg");
+    background: url('../../../assets/icons/HidePassword.svg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -61,7 +61,7 @@
     }
 
     &.password-show {
-      background: url("../../../assets/icons/ShowPassword.svg");
+      background: url('../../../assets/icons/ShowPassword.svg');
       background-size: cover;
     }
   }

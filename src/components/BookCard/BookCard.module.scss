@@ -1,0 +1,90 @@
+@use '../../styles/colors.scss';
+@use '../../styles/fonts.scss';
+
+.card {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+
+  .img-box {
+    overflow: hidden;
+    font-size: 0;
+    transition: all 0.3s;
+
+    img {
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      box-shadow: 4px 6px 10px 0 rgb(65 65 65 / 29%);
+
+      img {
+        transform: scale(1.2) translateY(-5%);
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .headers {
+      display: flex;
+      justify-content: space-between;
+
+      h3 {
+        font-family: fonts.$font-family;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.2;
+        color: colors.$grey-500;
+        letter-spacing: 0.01em;
+      }
+
+      p {
+        font-family: fonts.$second-family;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.1;
+        color: colors.$button-default;
+        letter-spacing: 0.01em;
+
+        &::before {
+          content: '\0024';
+        }
+      }
+    }
+
+    p {
+      font-family: fonts.$font-family;
+      font-size: 0.88rem;
+      line-height: 1.18;
+      color: colors.$grey-300;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  button {
+    align-self: self-start;
+
+    padding: 0.75rem 2rem;
+
+    font-family: fonts.$font-family;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: colors.$accent-white;
+    text-transform: capitalize;
+    letter-spacing: 0.01em;
+
+    background: colors.$button-default;
+    border-radius: 0.25rem;
+
+    transition: all 0.3s;
+
+    &:hover {
+      background: colors.$button-hover;
+    }
+  }
+}

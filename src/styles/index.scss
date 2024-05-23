@@ -10,11 +10,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
-  color: rgb(255 255 255 / 87%);
+  // color: rgb(255 255 255 / 87%);
   text-rendering: optimizelegibility;
 
   //color-scheme: light dark;
-  background-color: #242424;
+  // background-color: #242424;
 
   font-synthesis: none;
 }
@@ -29,4 +29,10 @@
 input {
   box-sizing: border-box;
   color: #242424;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
 }
