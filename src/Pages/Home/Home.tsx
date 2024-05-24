@@ -1,9 +1,15 @@
-import styles from './Home.module.scss';
+import Collage from './Collage/Collage';
+import HitProducts from './HitProducts/HitProducts';
+import SaleProducts from './SaleProducts/SaleProducts';
+import Search from './Search/Search';
 
 const Home = () => {
   return (
     <>
-      <h2 className={styles.home}>Home page</h2>
+      <Search />
+      <HitProducts />
+      <Collage />
+      <SaleProducts />
     </>
   );
 };
