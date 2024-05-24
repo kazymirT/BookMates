@@ -42,6 +42,46 @@
     }
   }
 
+  .span {
+    cursor: pointer;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.865rem 1rem;
+
+    font-size: 1rem;
+    line-height: 1.188rem;
+    color: #a9a9a9;
+    letter-spacing: 0.01em;
+
+    background-color: transparent;
+
+    transition:
+      background-color 5s ease-in-out,
+      all 0.3s ease-in-out;
+
+    &.span-active {
+      top: -5px;
+      left: 30px;
+
+      width: fit-content;
+      padding: 1px 10px;
+
+      font-size: 8px;
+      line-height: 9.55px;
+
+      background-color: #fff;
+
+      transition:
+        background-color 0.1s ease-in-out,
+        all 0.3s ease-in-out;
+    }
+  }
+
   .button {
     position: absolute;
     z-index: 99;
