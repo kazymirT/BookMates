@@ -1,0 +1,69 @@
+@use '@/styles/colors.scss';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+
+  width: fit-content;
+  min-width: 352px;
+  height: 100%;
+
+  color: colors.$raisin-black;
+
+  background-color: #fff;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+
+  padding: 1em 1em 0.75em;
+
+  border-bottom: 2px solid colors.$isabelline;
+
+  &-info {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px;
+
+    h2 {
+      font-weight: 500;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.user {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  padding: 10px;
+}
+
+.nav {
+  padding: 1.5em 1em;
+
+  ul {
+    li {
+      cursor: pointer;
+
+      display: flex;
+      gap: 0.5em;
+      align-items: center;
+
+      padding: 0.75em;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}

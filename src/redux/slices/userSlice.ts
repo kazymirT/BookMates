@@ -6,6 +6,8 @@ import { RootState } from '../store';
 export type User = {
   id: string;
   role: 'ROLE_ADMIN' | 'ROLE_PERSONAL';
+  firstName: string;
+  lastName: string;
 };
 
 type UserState = {

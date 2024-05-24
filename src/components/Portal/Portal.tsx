@@ -1,51 +1,69 @@
+import classNames from 'classnames/dedupe';
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { CSSTransition } from 'react-transition-group';
 
 import styles from './Portal.module.scss';
-import { useAppDispatch } from '@/redux/hooks';
-import { toggleModal } from '@/redux/slices/modalSlice';
 
-const Portal = ({ children }: { children: React.ReactNode }) => {
+type PortalProps = {
+  isOpen: boolean;
+  placeContent: 'center' | 'right';
+  onClickOutside?: () => void;
+};
+
+const Portal = ({
+  isOpen,
+  placeContent,
+  onClickOutside,
+  children,
+}: React.PropsWithChildren<PortalProps>) => {
+  const nodeRef = React.useRef<HTMLDivElement | null>(null);
+
   React.useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
     return () => {
       document.body.style.overflow = 'scroll';
     };
-  }, []);
-
-  const idRef = React.useRef<string | null>(null);
-
-  const dispatch = useAppDispatch();
-
-  const setIdOnMouseDown = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    const target = e.target as HTMLElement;
-    const id = target.id;
-    idRef.current = id;
-  };
+  }, [isOpen]);
 
   const handleCloseModal = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     const target = e.target as HTMLElement;
-    const id = target.id;
-    id === 'portal' &&
-      id === idRef.current &&
-      dispatch(toggleModal({ openedModalType: null }));
+    if (target === nodeRef.current && onClickOutside) onClickOutside();
+    else return;
   };
+
+  const wrapperClName = classNames(styles.wrapper, {
+    [styles['content-center']]: placeContent === 'center',
+    [styles['content-right']]: placeContent === 'right',
+  });
 
   return (
     <>
       {createPortal(
-        <div
-          id="portal"
-          className={styles.wrapper}
-          onMouseDown={setIdOnMouseDown}
-          onClick={handleCloseModal}
+        <CSSTransition
+          in={isOpen}
+          nodeRef={nodeRef}
+          timeout={300}
+          classNames={{
+            enter: styles['portal-enter'],
+            enterActive: styles['portal-enter-active'],
+            exit: styles['portal-exit'],
+            exitActive: styles['portal-exit-active'],
+          }}
+          unmountOnExit
         >
-          <div className={styles.container}>{children}</div>
-        </div>,
+          <div
+            ref={nodeRef}
+            className={wrapperClName}
+            onClick={handleCloseModal}
+          >
+            {children}
+          </div>
+        </CSSTransition>,
         document.body
       )}
     </>
