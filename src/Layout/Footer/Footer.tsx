@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import styles from './Footer.module.scss';
+import appstore from '@/assets/icons/AppStore.svg';
+import googleplay from '@/assets/icons/GooglePlay.svg';
 
 const Footer = () => {
   return (
@@ -18,18 +20,8 @@ const Footer = () => {
           </Link>
         </ul>
         <div className={styles.btns}>
-          <img
-            src="/src/assets/icons/AppStore.svg"
-            alt="app store"
-            width={160}
-            height={48}
-          />
-          <img
-            src="/src/assets/icons/GooglePlay.svg"
-            alt="google play"
-            width={160}
-            height={48}
-          />
+          <img src={appstore} alt="app store" width={160} height={48} />
+          <img src={googleplay} alt="google play" width={160} height={48} />
         </div>
       </nav>
       <div>
