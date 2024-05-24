@@ -3,16 +3,17 @@ import React from 'react';
 
 import styles from './DropDown.module.scss';
 
-// type DropdownProps = {
-//   options: React.ReactNode;
-//   toggler: React.ReactNode;
-// };
+type DropdownProps = {
+  options: React.ReactNode;
+  control: React.ReactNode;
+};
 
-const DropDown = () => {
+const DropDown = ({ control, options }: DropdownProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const dropDownRef = React.useRef<HTMLDivElement | null>(null);
   const listRef = React.useRef<HTMLDivElement | null>(null);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
     let positionLeft: boolean;
@@ -37,46 +38,40 @@ const DropDown = () => {
     }
   }, []);
 
-  React.useEffect(() => {
-    const handleClose: EventListener = (e: Event) => {
-      if (
-        dropDownRef.current &&
-        !dropDownRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    isOpen && document.body.addEventListener('click', handleClose, true);
-    return () => {
-      isOpen && document.body.removeEventListener('click', handleClose, true);
-    };
-  }, [isOpen]);
-
   const containerClName = classNames(styles.container, {
     [styles['open']]: isOpen,
     [styles['closed']]: !isOpen,
   });
 
-  const toggle = () => {
-    setIsOpen((prev) => !prev);
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    const closeTimer = setTimeout(() => setIsOpen(false), 200);
+    timerRef.current = closeTimer;
+  };
+
+  const handleCancelTimer = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
   };
 
   return (
     <div ref={dropDownRef} className={styles.dropdown}>
-      <button id="close-dropdown" onClick={toggle}>
-        <img
-          src="/src/assets/icons/Account.svg"
-          alt="profile"
-          width={32}
-          height={32}
-        />
-      </button>
-      <div ref={listRef} className={containerClName}>
-        <ul className={styles.list}>
-          <li>Логін</li>
-          <li>Створити акаунт</li>
-          <li>Підтримка</li>
-        </ul>
+      <div
+        className={styles.icon}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleClose}
+      >
+        {control}
+      </div>
+      <div
+        ref={listRef}
+        className={containerClName}
+        onMouseEnter={handleCancelTimer}
+        onMouseLeave={handleClose}
+      >
+        {options}
       </div>
     </div>
   );

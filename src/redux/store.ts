@@ -5,6 +5,8 @@ import { baseApi } from './services/baseApi';
 import { novaApi } from './services/novaApi';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
+import profileSlice from './slices/profileSlice';
+import statusSlice from './slices/statusSlice';
 import userSlice from './slices/userSlice';
 
 const store = configureStore({
@@ -14,6 +16,8 @@ const store = configureStore({
     modal: modalSlice,
     user: userSlice,
     locationHistory: locationHistorySlice,
+    profile: profileSlice,
+    status: statusSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(novaApi.middleware, baseApi.middleware),
