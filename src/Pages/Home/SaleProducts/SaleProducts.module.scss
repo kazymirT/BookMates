@@ -1,7 +1,7 @@
 @use '../../../styles/colors.scss';
 @use '../../../styles/fonts.scss';
 
-.hit {
+.sale {
   padding: 5rem;
   background-color: colors.$brown-100;
 
@@ -17,8 +17,9 @@
       font-family: fonts.$third-family;
       font-size: 2rem;
       font-weight: 700;
+      line-height: 0.9;
       color: colors.$grey-500;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.05em;
     }
 
     button {
@@ -43,9 +44,8 @@
     }
   }
 
-  .books {
+  .sales {
     display: flex;
-    flex-flow: row nowrap;
-    gap: 1.5rem;
+    gap: 3.18rem;
   }
 }

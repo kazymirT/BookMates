@@ -1,4 +1,5 @@
 import styles from './BookCard.module.scss';
+import cart from '@/assets/icons/cart.svg';
 
 export type BookCardType = {
   id: number;
@@ -17,6 +18,9 @@ const BookCard = ({ data: { img, title, description, price } }: Props) => {
     <div className={styles.card}>
       <div className={styles['img-box']}>
         <img src={img} alt={title} />
+        <button type="button" className={styles.cart}>
+          <img src={cart} width={24} height={24} />
+        </button>
       </div>
       <div className={styles.content}>
         <div className={styles.headers}>
@@ -25,7 +29,7 @@ const BookCard = ({ data: { img, title, description, price } }: Props) => {
         </div>
         <p className={styles.description}>{description}</p>
       </div>
-      <button>купити</button>
+      <button className={styles.buy}>купити</button>
     </div>
   );
 };
