@@ -17,14 +17,16 @@ const Portal = ({
   onClickOutside,
   children,
 }: React.PropsWithChildren<PortalProps>) => {
+  const nodeRef = React.useRef<HTMLDivElement | null>(null);
+
   React.useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
     return () => {
       document.body.style.overflow = 'scroll';
     };
-  }, []);
-
-  const nodeRef = React.useRef<HTMLDivElement | null>(null);
+  }, [isOpen]);
 
   const handleCloseModal = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>

@@ -6,6 +6,9 @@ import Menu from './Menu/Menu';
 import UserButton from './UserButton/UserButton';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useGetUserQuery } from '@/redux/services/user';
+import { toggleOpenProfile } from '@/redux/slices/profileSlice';
+import { userId } from '@/redux/slices/userSlice';
 
 const Header = () => {
   const dispatch = useAppDispatch();

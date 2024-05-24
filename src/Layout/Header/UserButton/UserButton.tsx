@@ -1,10 +1,14 @@
 import styles from './UserButton.module.scss';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleOpenProfile } from '@/redux/slices/profileSlice';
-import { type User } from '@/redux/slices/userSlice';
 
-const UserButton = (props: User) => {
-  const initials = `${props.firstName[0]}${props.lastName[0]}`;
+type Props = {
+  firstName: string;
+  lastName: string;
+};
+
+const UserButton = ({ firstName, lastName }: Props) => {
+  const initials = `${firstName[0]}${lastName[0]}`;
 
   const dispatch = useAppDispatch();
 
