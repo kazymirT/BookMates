@@ -1,4 +1,4 @@
-@use '../../../styles/colors.scss';
+@use '@/styles/colors.scss';
 
 .input-group {
   position: relative;
@@ -85,7 +85,7 @@
   .button {
     position: absolute;
     z-index: 99;
-    top: 0.55rem;
+    top: 0.75rem;
     right: 1rem;
 
     width: 24px;

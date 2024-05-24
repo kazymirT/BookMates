@@ -24,7 +24,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const [isFocus, setIsFocus] = useState<boolean>(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    useImperativeHandle(ref, () => inputRef.current);
+    useImperativeHandle(
+      ref,
+      () => inputRef.current || ({} as HTMLInputElement),
+      [inputRef]
+    );
 
     const inputClassName = classNames(styles.input, {
       [styles['input-error']]: errorMessage || serverError,
