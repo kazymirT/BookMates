@@ -25,11 +25,21 @@ export const useFormActions = () => {
     const p = await new Promise<User | string>((resolve) => {
       let resData: User | string;
       if ((data as RegisterValues).firstName) {
-        resData = { id: '999', role: 'ROLE_PERSONAL' };
+        resData = {
+          id: '999',
+          role: 'ROLE_PERSONAL',
+          firstName: 'John',
+          lastName: 'Doe',
+        };
       } else if ((data as FeedbackValues).question) {
         resData = 'succes';
       } else {
-        resData = { id: '666', role: 'ROLE_PERSONAL' };
+        resData = {
+          id: '666',
+          role: 'ROLE_PERSONAL',
+          firstName: 'John',
+          lastName: 'Doe',
+        };
       }
       setTimeout(() => resolve(resData), 2000);
     });
