@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import Menu from './Menu/Menu';
 import UserButton from './UserButton/UserButton';
+import account from '@/assets/icons/Account.svg';
+import cart from '@/assets/icons/Cart.svg';
+import logo from '@/assets/icons/Logo.svg';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
@@ -23,12 +26,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link to={'/'}>
-        <img
-          src="/src/assets/icons/Logo.svg"
-          alt="logo"
-          width={102}
-          height={84}
-        />
+        <img src={logo} alt="logo" width={102} height={84} />
       </Link>
       <nav>
         <ul>
@@ -49,18 +47,11 @@ const Header = () => {
         ) : (
           <DropDown
             options={<Menu />}
-            control={
-              <img
-                src="/src/assets/icons/Account.svg"
-                alt=""
-                width={24}
-                height={24}
-              />
-            }
+            control={<img src={account} alt="" width={24} height={24} />}
           />
         )}
         <img
-          src="/src/assets/icons/Cart.svg"
+          src={cart}
           alt="cart"
           width={24}
           height={24}

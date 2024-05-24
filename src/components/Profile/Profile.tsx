@@ -1,23 +1,27 @@
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
+import cart from '@/assets/icons/Cart.svg';
+import gear from '@/assets/icons/Gear.svg';
+import quit from '@/assets/icons/Quit.svg';
+import support from '@/assets/icons/Support.svg';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { isOpen, toggleOpenProfile } from '@/redux/slices/profileSlice';
 
 const profileOptions = [
   {
-    src: '/src/assets/icons/Cart.svg',
+    src: cart,
     title: 'Мої замовлення',
   },
   {
-    src: '/src/assets/icons/Gear.svg',
+    src: gear,
     title: 'Налаштування',
   },
   {
-    src: '/src/assets/icons/Support.svg',
+    src: support,
     title: 'Підтримка',
   },
   {
-    src: '/src/assets/icons/Quit.svg',
+    src: quit,
     title: 'Вийти',
   },
 ];
