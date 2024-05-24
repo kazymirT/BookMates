@@ -35,6 +35,7 @@ const LoginForm = () => {
       setIsServerError(true);
     }
   };
+
   const handleRegister = () =>
     dispatch(toggleModal({ openedModalType: 'create-account' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));

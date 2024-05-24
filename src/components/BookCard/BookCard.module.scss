@@ -76,7 +76,7 @@
         font-weight: 500;
         line-height: 1.2;
         color: colors.$grey-500;
-        letter-spacing: 0.01em;
+        letter-spacing: 0.05em;
       }
 
       p {
@@ -85,7 +85,6 @@
         font-weight: 700;
         line-height: 1.1;
         color: colors.$button-default;
-        letter-spacing: 0.01em;
 
         &::before {
           content: '\0024';
@@ -98,7 +97,7 @@
       font-size: 0.88rem;
       line-height: 1.18;
       color: colors.$grey-300;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.03em;
     }
   }
 
@@ -113,7 +112,7 @@
     line-height: 1.2;
     color: colors.$accent-white;
     text-transform: capitalize;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.06em;
 
     background: colors.$button-default;
     border-radius: 0.25rem;

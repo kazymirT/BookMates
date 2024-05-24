@@ -60,3 +60,13 @@ export const feedbackSchema = z.object({
 });
 
 export type FeedbackValues = z.infer<typeof feedbackSchema>;
+
+export const searchSchema = z.object({
+  search: z
+    .string()
+    .min(1, 'поле є обов`язковим')
+    .min(3, 'мінімум 3 символи')
+    .max(20, 'максимум 20 символів'),
+});
+
+export type SearchValues = z.infer<typeof searchSchema>;
