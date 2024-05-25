@@ -1,5 +1,5 @@
 import styles from './BookCard.module.scss';
-import cart from '@/assets/icons/cart.svg';
+import cart from '@/assets/icons/Cart.svg';
 
 export type BookCardType = {
   id: number;

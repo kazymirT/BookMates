@@ -53,7 +53,7 @@ const handleAuthSuccess = (data: AuthResponse, dispatch: AppDispatch) => {
   dispatch(
     login({
       token: data.token,
-      user: { id, role: roles[0] },
+      user: { id, role: roles[0], firstName: 'John', lastName: 'Doe' },
     })
   );
   dispatch(toggleModal({ openedModalType: null }));

@@ -1,0 +1,33 @@
+@use '@/styles/colors.scss';
+
+.dropdown {
+  position: relative;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: absolute;
+  z-index: 10;
+  top: 110%;
+
+  overflow: hidden;
+
+  box-shadow: 2px 3px 37px 0 #00000040;
+
+  transition: opacity 0.35s ease-out;
+}
+
+.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.closed {
+  visibility: hidden;
+  opacity: 0;
+}

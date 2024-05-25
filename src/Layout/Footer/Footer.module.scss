@@ -1,0 +1,38 @@
+@use '@/styles/colors.scss';
+
+.footer {
+  color: colors.$raisin-black;
+  background-color: #fff;
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5em 5em;
+  }
+
+  & > div {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 10px;
+
+    span:first-of-type {
+      font-size: 1.5em;
+    }
+  }
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  gap: 3.5625em;
+  align-items: center;
+}
