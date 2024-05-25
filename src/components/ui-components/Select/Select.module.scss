@@ -22,10 +22,10 @@
   border-radius: 0.25rem;
 
   &-error {
-    border-color: colors.$error;
+    border-color: colors.$accent-red;
 
     & + .message {
-      color: colors.$error;
+      color: colors.$accent-red;
     }
   }
 
@@ -58,7 +58,7 @@
     &_focused {
       @extend %option;
 
-      background-color: colors.$cultured;
+      background-color: colors.$brown-100;
     }
   }
 

@@ -1,4 +1,5 @@
 @use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
 
 .input-group {
   position: relative;
@@ -7,38 +8,55 @@
     width: 100%;
     padding: 0.865rem 1rem;
 
+    font-family: fonts.$font-family;
     font-size: 1rem;
     line-height: 1.188rem;
-    color: #a9a9a9;
+    color: colors.$grey-300;
     letter-spacing: 0.01em;
 
-    border: 1px solid #d5d3d3;
+    border: 1px solid colors.$grey-100;
     border-radius: 0.25rem;
 
-    &:hover {
-      border-color: blue;
+    transition: all 0.3s;
 
-      &::placeholder {
-        color: #00f;
-      }
+    &:hover {
+      border-color: colors.$grey-200;
     }
 
     &:focus {
-      color: #008000;
-      border-color: #008000;
+      border: 2px solid colors.$grey-300;
+    }
 
-      &::placeholder {
-        color: green;
+    &.input-valid {
+      color: colors.$accent-success;
+      border: 1px solid colors.$accent-success;
+
+      & + .span {
+        color: colors.$accent-success;
+      }
+
+      & ~ .button {
+        filter: invert(73%) sepia(14%) saturate(641%) hue-rotate(63deg)
+          brightness(88%) contrast(87%);
       }
     }
 
     &.input-error {
-      color: colors.$error;
-      border-color: colors.$error;
+      color: colors.$accent-red;
+      border-color: colors.$accent-red;
 
-      &::placeholder {
-        color: colors.$error;
+      & + .span {
+        color: colors.$accent-red;
       }
+
+      & ~ button.button {
+        filter: invert(25%) sepia(75%) saturate(1682%) hue-rotate(337deg)
+          brightness(110%) contrast(100%);
+      }
+    }
+
+    & + .span {
+      color: colors.$grey-300;
     }
   }
 
@@ -55,14 +73,13 @@
 
     font-size: 1rem;
     line-height: 1.188rem;
-    color: #a9a9a9;
+    color: colors.$grey-300;
     letter-spacing: 0.01em;
 
     background-color: transparent;
 
-    transition:
-      background-color 5s ease-in-out,
-      all 0.3s ease-in-out;
+    transition: all 0.3s;
+    animation: appear 0.3s;
 
     &.span-active {
       top: -5px;
@@ -74,11 +91,14 @@
       font-size: 8px;
       line-height: 9.55px;
 
-      background-color: #fff;
+      background-color: colors.$accent-white;
 
-      transition:
-        background-color 0.1s ease-in-out,
-        all 0.3s ease-in-out;
+      transition: all 0.3s;
+      animation: appear2 0.3s;
+    }
+
+    &:hover + .input {
+      border-color: colors.$grey-200;
     }
   }
 
@@ -95,11 +115,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 
-    &.password-error {
-      filter: invert(76%) sepia(80%) saturate(7102%) hue-rotate(337deg)
-        brightness(91%) contrast(96%);
-    }
-
     &.password-show {
       background: url('../../../assets/icons/ShowPassword.svg');
       background-size: cover;
@@ -108,17 +123,41 @@
 
   .error {
     font-size: 0.75rem;
-    color: colors.$error;
+    color: colors.$accent-red;
     letter-spacing: 0.01em;
+  }
+
+  &:hover > input {
+    border-color: colors.$grey-200;
   }
 }
 
-.input:hover .button {
-  filter: invert(9%) sepia(99%) saturate(6292%) hue-rotate(248deg)
-    brightness(100%) contrast(148%);
+@keyframes appear {
+  0% {
+    width: fit-content;
+    background-color: colors.$accent-white;
+  }
+
+  1% {
+    background-color: transparent;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
-.input:focus .button {
-  filter: invert(24%) sepia(91%) saturate(2110%) hue-rotate(93deg)
-    brightness(96%) contrast(103%);
+@keyframes appear2 {
+  0% {
+    width: 100%;
+  }
+
+  1% {
+    width: fit-content;
+    background-color: colors.$accent-white;
+  }
+
+  100% {
+    background-color: transparent;
+  }
 }

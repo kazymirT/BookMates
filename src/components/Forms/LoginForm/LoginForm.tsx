@@ -54,7 +54,7 @@ const LoginForm = () => {
         <div className={styles['input-container']}>
           <Input
             {...register('email')}
-            placeholder="Електронна Пошта"
+            placeholder="Електронна пошта"
             type="email"
             serverError={isServerError}
             handleFocus={hideServerError}
@@ -81,7 +81,7 @@ const LoginForm = () => {
           )}
         </div>
         {!isServerError && (
-          <a className={styles.remember} href="#">
+          <a className={styles['reset-password']} href="#">
             Забув пароль
           </a>
         )}

@@ -1,11 +1,36 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+
 .checkbox-container {
   display: flex;
   gap: 1em;
   align-items: center;
 
   .input {
-    width: 14px;
-    height: 14px;
+    cursor: pointer;
+
+    width: 1.042em;
+    height: 1.042em;
+    appearance: none;
+    border: 0.1em solid colors.$grey-500;
+    border-radius: 0.15em;
+    outline: none;
+
+    &:checked {
+      position: relative;
+      background-color: colors.$accent-white;
+
+      &::before {
+        content: '\2714';
+
+        position: absolute;
+        top: -2px;
+        right: 1.5px;
+
+        font-size: 0.8em;
+        color: colors.$grey-500;
+      }
+    }
   }
 
   .label {
@@ -16,8 +41,10 @@
 
     width: fit-content;
 
-    font-size: 0.75rem;
-    color: #000;
-    letter-spacing: 0.01em;
+    font-family: fonts.$font-family;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    color: colors.$grey-500;
+    letter-spacing: 0.05em;
   }
 }

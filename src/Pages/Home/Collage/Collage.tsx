@@ -1,7 +1,13 @@
 import styles from './Collage.module.scss';
 import collageBook from '@/assets/images/collage.png';
+import { useAppDispatch } from '@/redux/hooks';
+import { toggleModal } from '@/redux/slices/modalSlice';
 
 const Collage = () => {
+  const dispatch = useAppDispatch();
+  const handleOnClick = () =>
+    dispatch(toggleModal({ openedModalType: 'create-account' }));
+
   return (
     <section className={styles.collage}>
       <div className={styles['img-box']}>
@@ -13,7 +19,9 @@ const Collage = () => {
           Приєднуйтесь до нашої спільноти книголюбів: Створіть свій обліковий
           запис і пориньте в нескінченну насолоду від читання!
         </p>
-        <button>Створити акаунт</button>
+        <button type="button" onClick={handleOnClick}>
+          Створити акаунт
+        </button>
       </div>
     </section>
   );
