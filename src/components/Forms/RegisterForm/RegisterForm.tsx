@@ -46,7 +46,7 @@ const RegisterForm = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Створити Акаунт</h2>
+        <h2>Реєстрація</h2>
         <button className={styles.close} onClick={handleClose}></button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -91,6 +91,9 @@ const RegisterForm = () => {
             type="password"
             errorMessage={errors.password?.message}
           />
+          <p className={styles['password-hint']}>
+            Мінімум 8 символів, без відступів і спеціальних знаків
+          </p>
         </div>
         <button
           type="submit"

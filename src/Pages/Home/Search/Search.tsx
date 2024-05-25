@@ -10,7 +10,6 @@ import { SearchValues, searchSchema } from '@/utils/validateSchema';
 const Search = () => {
   const {
     register,
-    reset,
     handleSubmit,
     formState: { isValid, errors, isSubmitting },
   } = useForm<SearchValues>({
@@ -24,7 +23,6 @@ const Search = () => {
   const onSubmit = async (data: SearchValues) => {
     // eslint-disable-next-line no-console
     console.log(data);
-    reset();
   };
 
   return (

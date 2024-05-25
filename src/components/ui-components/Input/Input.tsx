@@ -22,6 +22,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [type, setType] = useState<boolean>(rest.type === 'password');
     const [isFocus, setIsFocus] = useState<boolean>(false);
+    const [isValid, setIsValid] = useState<boolean>(false);
+
+    const inputClassName = classNames(styles.input, {
+      [styles['input-error']]: errorMessage || serverError,
+      [styles['input-valid']]: isValid,
+    });
+
+    const spanClassName = classNames(styles.span, {
+      [styles['span-active']]: isFocus,
+    });
+    const inputPasswordClass = classNames(styles.button, {
+      [styles['password-show']]: !type,
+    });
+    const handleShowPassword = () => setType(!type);
+    const inputType = rest.type === 'password' && type ? 'password' : 'text';
+
     const inputRef = useRef<HTMLInputElement>(null);
 
     useImperativeHandle(
@@ -30,21 +46,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       [inputRef]
     );
 
-    const inputClassName = classNames(styles.input, {
-      [styles['input-error']]: errorMessage || serverError,
-    });
-    const spanClassName = classNames(styles.span, {
-      [styles['span-active']]: isFocus,
-    });
-    const inputPasswordClass = classNames(styles.button, {
-      [styles['password-show']]: !type,
-      [styles['password-hide']]: type,
-      [styles['password-error']]: errorMessage || serverError,
-    });
-
-    const handleShowPassword = () => setType(!type);
-
-    const inputType = rest.type === 'password' && type ? 'password' : 'text';
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       if (onBlur) {
         onBlur(event);
@@ -52,9 +53,18 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       if (inputRef.current && inputRef.current.value.length === 0) {
         setIsFocus(false);
       }
+      if (!errorMessage) {
+        setIsValid(true);
+      }
     };
 
-    const spanClick = () => {
+    const handleOnInput = () => {
+      if (inputRef.current?.value.length !== 0) {
+        setIsFocus(true);
+      }
+    };
+
+    const handleClickSpan = () => {
       if (inputRef.current) {
         setIsFocus(true);
         inputRef.current.focus();
@@ -70,8 +80,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           className={inputClassName}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          onInput={handleOnInput}
         />
-        <span className={spanClassName} onClick={spanClick}>
+        <span className={spanClassName} onClick={handleClickSpan}>
           {placeholder}
         </span>
         {rest.type === 'password' && (

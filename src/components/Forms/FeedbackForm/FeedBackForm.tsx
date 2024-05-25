@@ -31,7 +31,6 @@ const FeedBackForm = () => {
   const { sendFeedback } = useFormActions();
 
   const onSubmit: SubmitHandler<FeedbackValues> = (data) => {
-    // eslint-disable-next-line no-console
     sendFeedback(data);
   };
 
@@ -44,7 +43,7 @@ const FeedBackForm = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Зворотній Зв’язок</h2>
+        <h2>Підтримка</h2>
         <button
           type="button"
           className={styles.close}

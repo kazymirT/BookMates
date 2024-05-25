@@ -1,4 +1,5 @@
-@use '../../styles/colors.scss';
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
 
 .form-container {
   display: flex;
@@ -9,7 +10,7 @@
   width: 622px;
   padding: 2em;
 
-  background-color: #fff;
+  background-color: colors.$accent-white;
   box-shadow: 2px 3px 37px 0 rgb(0 0 0 / 25%);
 
   .title-container {
@@ -18,10 +19,12 @@
     justify-content: space-between;
 
     h2 {
-      font-size: 2em;
-      line-height: 1.19em;
-      color: #3e3e3e;
-      letter-spacing: 0.01em;
+      font-family: fonts.$third-family;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 0.91;
+      color: colors.$grey-500;
+      letter-spacing: 0.03em;
     }
 
     .close {
@@ -53,8 +56,8 @@
 
         p {
           font-size: 0.75em;
-          color: colors.$error;
-          letter-spacing: 0.01em;
+          color: colors.$accent-red;
+          letter-spacing: 0.03em;
         }
 
         a {
@@ -63,6 +66,23 @@
           letter-spacing: 0.01em;
         }
       }
+
+      .password-hint {
+        font-size: 0.75em;
+        font-weight: 700;
+        line-height: 1.167;
+        color: colors.$grey-500;
+      }
+    }
+
+    .reset-password {
+      align-self: self-start;
+
+      font-family: fonts.$font-family;
+      font-size: 1rem;
+      line-height: 1.21;
+      color: colors.$grey-500;
+      letter-spacing: 0.06em;
     }
 
     .submit {
@@ -71,11 +91,19 @@
       font-size: 1em;
       font-weight: 500;
       line-height: 1.188;
-      color: #eaeaea;
+      color: colors.$accent-white;
       letter-spacing: 0.01em;
 
-      background: #1e1e1e;
+      background: colors.$button-default;
       border-radius: 4px;
+
+      &:hover {
+        background: colors.$button-hover;
+      }
+
+      &:active {
+        background: colors.$button-active;
+      }
 
       &:disabled {
         background: rgb(30 30 30 / 70%);
@@ -86,31 +114,25 @@
   .register {
     font-size: 1em;
     line-height: 1.188;
-    color: #000;
+    color: colors.$grey-500;
     text-align: center;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.03em;
   }
 
   .terms {
-    font-size: 0.75em;
-    color: #000;
+    font-family: fonts.$second-family;
+    font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: colors.$grey-500;
     letter-spacing: 0.01em;
+    letter-spacing: 0;
 
     a {
       margin: 0 2px;
       border-bottom: 1px solid #000;
     }
   }
-}
-
-.remember {
-  width: fit-content;
-
-  font-size: 0.75em;
-  font-weight: 700;
-  line-height: 1.188;
-  color: #000;
-  letter-spacing: 0.01em;
 }
 
 .textarea-container {
@@ -125,26 +147,39 @@
 
   font-size: 1rem;
   line-height: 1.188rem;
-  color: colors.$quartz;
+  color: colors.$grey-300;
   letter-spacing: 0.01em;
 
   background-color: transparent;
-  border: 1px solid colors.$light-grey;
+  border: 1px solid colors.$grey-100;
   border-radius: 0.25rem;
-}
 
-.textarea-error {
-  color: colors.$error;
-  border-color: colors.$error;
-
-  &::placeholder {
-    color: colors.$error;
+  &:hover {
+    border-color: colors.$grey-200;
   }
 
-  & + p {
-    font-size: 0.75em;
-    color: colors.$error;
-    letter-spacing: 0.01em;
+  &:active {
+    border-color: colors.$brown-300;
+  }
+
+  &:valid {
+    color: colors.$accent-success;
+    border-color: colors.$accent-success;
+  }
+
+  &.textarea-error {
+    color: colors.$accent-red;
+    border-color: colors.$accent-red;
+
+    &::placeholder {
+      color: colors.$accent-red;
+    }
+
+    & + p {
+      font-size: 0.75em;
+      color: colors.$accent-red;
+      letter-spacing: 0.01em;
+    }
   }
 }
 
