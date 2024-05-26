@@ -9,7 +9,7 @@ const email = z
 
 const password = z
   .string()
-  .min(1, 'поле є обов`язковим')
+  .min(1, 'Це поле є обов`язковим.')
   .regex(/^(?=.*[a-zа-я])/, 'мінімум одна мала літера')
   .regex(/^(?=.*[A-ZА-Я])/, 'мінімум одна велика літера')
   .regex(/^(?=.*[0-9])/, 'мінімум одна цифра')
@@ -27,13 +27,13 @@ export const registerSchema = z
   .object({
     firstName: z
       .string()
-      .min(1, 'поле є обов`язковим')
+      .min(1, 'Це поле є обов`язковим.')
       .regex(/^[A-ZА-Я]/, 'Ім`я має починатись з великої літери')
       .min(4, 'мінімум 4 символи')
       .max(20, 'максимум 20 символів'),
     lastName: z
       .string()
-      .min(1, 'поле є обов`язковим')
+      .min(1, 'Це поле є обов`язковим.')
       .regex(/^[A-ZА-Я]/, 'Прізвище має починатись з великої літери')
       .min(4, 'мінімум 4 символи')
       .max(20, 'максимум 20 символів'),
@@ -64,9 +64,8 @@ export type FeedbackValues = z.infer<typeof feedbackSchema>;
 export const searchSchema = z.object({
   search: z
     .string()
-    .min(1, 'поле є обов`язковим')
     .min(3, 'мінімум 3 символи')
-    .max(20, 'максимум 20 символів'),
+    .max(25, 'максимум 25 символів'),
 });
 
 export type SearchValues = z.infer<typeof searchSchema>;

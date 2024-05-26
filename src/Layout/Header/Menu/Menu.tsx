@@ -15,9 +15,9 @@ const Menu = () => {
 
   return (
     <ul className={styles.list}>
-      <li onClick={handleLogin}>Log In</li>
-      <li onClick={handleRegister}>Create Account</li>
-      <li onClick={handleFeedback}>Help & Support</li>
+      <li onClick={handleLogin}>Логін</li>
+      <li onClick={handleRegister}>Реєстрація</li>
+      <li onClick={handleFeedback}>Підтримка</li>
     </ul>
   );
 };

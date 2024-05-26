@@ -3,6 +3,7 @@ import { default as ReactSelect, DropdownIndicatorProps } from 'react-select';
 
 import styles from './Select.module.scss';
 import { type SelectProps, Option } from './Select.types';
+import arrowDown from '@/assets/icons/ArrowDown.svg';
 
 const DropdownIndicator = (props: DropdownIndicatorProps<Option>) => {
   const clName = classNames(styles.indicator, {
@@ -10,12 +11,7 @@ const DropdownIndicator = (props: DropdownIndicatorProps<Option>) => {
   });
   return (
     <div className={clName}>
-      <img
-        src="/src/assets/icons/ArrowDown.svg"
-        alt=""
-        width={24}
-        height={24}
-      />
+      <img src={arrowDown} alt="" width={24} height={24} />
     </div>
   );
 };

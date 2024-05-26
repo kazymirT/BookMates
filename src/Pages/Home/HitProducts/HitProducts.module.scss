@@ -45,8 +45,11 @@
   }
 
   .books {
-    display: flex;
-    flex-flow: row nowrap;
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
     gap: 1.5rem;
+
+    width: 100%;
   }
 }

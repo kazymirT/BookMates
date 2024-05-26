@@ -5,7 +5,7 @@ import styles from './Header.module.scss';
 import Menu from './Menu/Menu';
 import UserButton from './UserButton/UserButton';
 import account from '@/assets/icons/Account.svg';
-import cart from '@/assets/icons/Cart.svg';
+import cart from '@/assets/icons/cart.svg';
 import logo from '@/assets/icons/Logo.svg';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';

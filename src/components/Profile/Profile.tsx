@@ -1,7 +1,9 @@
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
-import cart from '@/assets/icons/Cart.svg';
+import cart from '@/assets/icons/cart.svg';
+import close from '@/assets/icons/Close.svg';
 import gear from '@/assets/icons/Gear.svg';
+import profile from '@/assets/icons/Profile.svg';
 import quit from '@/assets/icons/Quit.svg';
 import support from '@/assets/icons/Support.svg';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
@@ -46,21 +48,11 @@ const Profile = () => {
             <div className={styles['head-info']}>
               <h2>Профіль</h2>
               <button onClick={handleClose}>
-                <img
-                  src="/src/assets/icons/Close.svg"
-                  alt="close"
-                  width={24}
-                  height={24}
-                />
+                <img src={close} alt="close" width={24} height={24} />
               </button>
             </div>
             <div className={styles.user}>
-              <img
-                src="/src/assets/icons/Profile.svg"
-                alt=""
-                width={40}
-                height={40}
-              />
+              <img src={profile} alt="" width={40} height={40} />
               <div className={styles['user-info']}>
                 <p>Петро Шевченко</p>
                 <p>example@gmail.com</p>

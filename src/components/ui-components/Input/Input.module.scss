@@ -16,6 +16,7 @@
 
     border: 1px solid colors.$grey-100;
     border-radius: 0.25rem;
+    outline: 1px solid transparent;
 
     transition: all 0.3s;
 
@@ -24,7 +25,15 @@
     }
 
     &:focus {
-      border: 2px solid colors.$grey-300;
+      outline: 1px solid colors.$grey-300;
+
+      &.input-valid {
+        outline: 1px solid colors.$accent-success;
+      }
+
+      &.input-error {
+        outline: 1px solid colors.$accent-red;
+      }
     }
 
     &.input-valid {
@@ -125,10 +134,23 @@
     font-size: 0.75rem;
     color: colors.$accent-red;
     letter-spacing: 0.01em;
+    animation: errorShow 0.3s;
   }
 
   &:hover > input {
     border-color: colors.$grey-200;
+  }
+}
+
+@keyframes errorShow {
+  from {
+    font-size: 0;
+    opacity: 0;
+  }
+
+  to {
+    font-size: 0.75rem;
+    opacity: 1;
   }
 }
 
@@ -154,10 +176,9 @@
 
   1% {
     width: fit-content;
-    background-color: colors.$accent-white;
   }
 
   100% {
-    background-color: transparent;
+    background-color: colors.$accent-white;
   }
 }
