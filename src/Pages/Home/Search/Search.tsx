@@ -11,13 +11,13 @@ const Search = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors, isSubmitting },
+    formState: { errors },
   } = useForm<SearchValues>({
     defaultValues: {
       search: '',
     },
     resolver: zodResolver(searchSchema),
-    mode: 'onTouched',
+    mode: 'onSubmit',
   });
 
   const onSubmit = async (data: SearchValues) => {
@@ -41,7 +41,7 @@ const Search = () => {
               type="text"
               errorMessage={errors.search?.message}
             />
-            <button type="submit" disabled={!isValid || isSubmitting}>
+            <button type="submit">
               <img src={search} width={24} height={24} alt="search icon" />
             </button>
           </form>

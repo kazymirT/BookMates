@@ -38,7 +38,7 @@
 
       button {
         position: absolute;
-        top: 0.65px;
+        top: 0.5px;
         right: 0.5px;
 
         display: flex;
@@ -50,12 +50,18 @@
         background-color: colors.$button-default;
         border-radius: 0.19rem;
 
+        transition: all 0.3s;
+
         &:hover {
           background-color: colors.$button-hover;
         }
 
         &:active {
           background-color: colors.$button-active;
+        }
+
+        &:disabled {
+          background-color: colors.$button-disabled;
         }
       }
     }
