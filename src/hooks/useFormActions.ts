@@ -32,7 +32,7 @@ export const useFormActions = () => {
           lastName: 'Doe',
         };
       } else if ((data as FeedbackValues).question) {
-        resData = 'succes';
+        resData = 'success';
       } else {
         resData = {
           id: '666',
@@ -83,8 +83,9 @@ export const useFormActions = () => {
       const response = (await doRequest(data)) as string;
       dispatch(toggleModal({ openedModalType: null }));
       response && navigate(path);
+      return await response;
     } catch (error) {
-      return 'Error';
+      // return 'Error';
     }
   };
 

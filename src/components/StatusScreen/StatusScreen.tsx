@@ -12,7 +12,7 @@ const StatusScreen = () => {
       {appStatus === 'loading' ? (
         <Loading />
       ) : appStatus == 'succes' ? (
-        <Succes />
+        <Succes loop={false} />
       ) : null}
     </Portal>
   );

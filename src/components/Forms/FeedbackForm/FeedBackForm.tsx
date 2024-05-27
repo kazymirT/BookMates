@@ -8,6 +8,7 @@ import Select from '@/components/ui-components/Select/Select';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
+import { toggleStatus } from '@/redux/slices/statusSlice';
 import { TOPICS } from '@/utils/constants';
 import { FeedbackValues, feedbackSchema } from '@/utils/validateSchema';
 
@@ -30,8 +31,13 @@ const FeedBackForm = () => {
   const dispatch = useAppDispatch();
   const { sendFeedback } = useFormActions();
 
-  const onSubmit: SubmitHandler<FeedbackValues> = (data) => {
-    sendFeedback(data);
+  const onSubmit: SubmitHandler<FeedbackValues> = async (data) => {
+    dispatch(toggleStatus('loading'));
+    const response = await sendFeedback(data);
+    if (response) {
+      dispatch(toggleStatus('idle'));
+      dispatch(toggleModal({ openedModalType: 'feedback-success' }));
+    }
   };
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));

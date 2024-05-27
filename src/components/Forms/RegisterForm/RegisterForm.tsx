@@ -9,7 +9,6 @@ import styles from '../Form.module.scss';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { toggleStatus } from '@/redux/slices/statusSlice';
 
 const RegisterForm = () => {
   const [isServerError, setIsServerError] = useState<boolean>(false);
@@ -34,12 +33,10 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (formData: RegisterValues) => {
-    dispatch(toggleStatus('loading'));
     const error = await registerUser(formData);
     if (error) {
-      dispatch(toggleStatus('idle'));
       setIsServerError(true);
-    } else dispatch(toggleStatus('succes'));
+    }
   };
 
   const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));

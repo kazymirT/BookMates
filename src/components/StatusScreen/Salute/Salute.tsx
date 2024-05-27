@@ -1,21 +1,18 @@
 import Lottie, { Options, EventListener } from 'react-lottie';
 
-import animationData from '@/assets/animations/Done.json';
+import animationData from '@/assets/animations/file.json';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 
-type SuccesProps = {
-  loop: boolean;
+const defaultOptions: Options = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
 };
 
-const Succes = ({ loop }: SuccesProps) => {
+const Salute = () => {
   const dispatch = useAppDispatch();
 
-  const defaultOptions: Options = {
-    loop,
-    autoplay: true,
-    animationData: animationData,
-  };
   const eventsHandler: EventListener = {
     eventName: 'complete',
     callback: () => dispatch(toggleStatus('idle')),
@@ -25,12 +22,12 @@ const Succes = ({ loop }: SuccesProps) => {
     <div>
       <Lottie
         options={defaultOptions}
-        height={150}
-        width={150}
+        height={246}
+        width={246}
         eventListeners={[eventsHandler]}
       />
     </div>
   );
 };
 
-export default Succes;
+export default Salute;
