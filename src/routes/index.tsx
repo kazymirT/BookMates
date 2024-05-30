@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 
 import HistoryWrapper from './HistoryWrapper';
-import ProtectedRoute from './ProtectedRoute';
+// import ProtectedRoute from './ProtectedRoute';
 import Layout from '@/Layout/Layout/Layout';
 import {
   Catalog,
@@ -28,14 +28,7 @@ const route = createBrowserRouter(
       errorElement={<ErrorPage />}
     >
       <Route path={ROUTE_PATH.HOME} element={<Home />} />
-      <Route
-        path={ROUTE_PATH.CATALOG}
-        element={
-          <ProtectedRoute>
-            <Catalog />
-          </ProtectedRoute>
-        }
-      />
+      <Route path={ROUTE_PATH.CATALOG} element={<Catalog />} />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route
         path={ROUTE_PATH.NOTAUTHENTICATED}

@@ -87,8 +87,9 @@
         line-height: 1.1;
         color: colors.$button-default;
 
-        &::before {
-          content: '\0024';
+        &::after {
+          content: 'грн';
+          margin-left: 1px;
         }
       }
     }

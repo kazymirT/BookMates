@@ -34,7 +34,7 @@ const Header = () => {
             <Link to={'#'}>Хіти продажів</Link>
           </li>
           <li>
-            <Link to={'#'}>Каталог</Link>
+            <Link to={'catalog'}>Каталог</Link>
           </li>
           <li>
             <Link to={'#'}>Вигідні пропозиції</Link>

@@ -70,3 +70,69 @@ export const saleBooks: SaleBooksType[] = [
     id: 3,
   },
 ];
+
+export const catalogBooks: BookCardType[] = [
+  {
+    id: 1,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 2,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 3,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 4,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 5,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 6,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 7,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 8,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+  {
+    id: 9,
+    img: book1,
+    title: 'Lorem ipsum dolor sit',
+    description: 'Lorem ipsum dolor sit',
+    price: '200',
+  },
+];
