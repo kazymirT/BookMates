@@ -21,6 +21,40 @@
   border: 1px solid colors.$light-grey;
   border-radius: 0.25rem;
 
+  &.secondary {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    padding-right: 0;
+    padding-left: 0;
+
+    background-color: colors.$brown-100;
+    border: none;
+
+    .control {
+      display: flex;
+      gap: 0.5rem;
+      align-self: flex-end;
+
+      max-width: 170px;
+      padding-left: 0.78rem;
+    }
+
+    .menu {
+      width: 100%;
+      width: 190px;
+      padding: 12px;
+
+      background-color: colors.$accent-white;
+      box-shadow: 2px 3px 37px 0 #00000040;
+
+      .menu-list {
+        text-align: center;
+      }
+    }
+  }
+
   &-error {
     border-color: colors.$accent-red;
 

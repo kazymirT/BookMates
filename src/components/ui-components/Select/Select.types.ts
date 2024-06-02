@@ -12,4 +12,5 @@ export interface SelectProps
   onChange: (value: Option['value']) => void;
   error?: boolean;
   helperText?: string;
+  style?: 'secondary';
 }

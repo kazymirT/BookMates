@@ -26,12 +26,9 @@
 
     .select {
       position: absolute;
-      z-index: 100;
+      z-index: 5;
       top: 0;
       right: 0;
-
-      width: 100%;
-      max-width: 12rem;
 
       background-color: colors.$accent-white;
       border-radius: 0.75rem;
