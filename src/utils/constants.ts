@@ -13,6 +13,19 @@ export const notStorePages = [
   ROUTE_PATH.NOTAUTHORIZED,
 ];
 
+export const BASE_CRUMBS: Record<
+  string,
+  {
+    label: string;
+    to: string;
+  }
+> = {
+  catalog: {
+    label: 'Каталог',
+    to: '/catalog',
+  },
+};
+
 export enum TOPICS {
   Payment = 'Оплата і доставка',
   Assortment = 'Асортимент товарів',
@@ -81,4 +94,12 @@ export const categories = [
     name: 'Художня література',
     path: 'fiction-literature',
   },
+];
+
+export const selectOptions = [
+  'За популярністю',
+  'Спочатку дешеві',
+  'Спочатку дорогі',
+  'Спочатку нові',
+  'За назвою',
 ];

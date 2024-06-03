@@ -15,6 +15,7 @@ import {
   NotAuthenticated,
   NotAuthorized,
 } from '@/Pages';
+import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';
 
 const route = createBrowserRouter(
@@ -28,7 +29,11 @@ const route = createBrowserRouter(
       errorElement={<ErrorPage />}
     >
       <Route path={ROUTE_PATH.HOME} element={<Home />} />
-      <Route path={ROUTE_PATH.CATALOG} element={<Catalog />} />
+      <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
+      <Route
+        path={'/catalog/:categoryId?/product/:productId?'}
+        element={<Product />}
+      />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route
         path={ROUTE_PATH.NOTAUTHENTICATED}
