@@ -8,11 +8,7 @@ import Input from '@/components/ui-components/Input/Input';
 import { SearchValues, searchSchema } from '@/utils/validateSchema';
 
 const Search = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SearchValues>({
+  const { register, handleSubmit } = useForm<SearchValues>({
     defaultValues: {
       search: '',
     },
@@ -35,12 +31,7 @@ const Search = () => {
             інтернет-крамниці!
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              {...register('search')}
-              placeholder="Пошук"
-              type="text"
-              errorMessage={errors.search?.message}
-            />
+            <Input {...register('search')} placeholder="Пошук" type="text" />
             <button type="submit">
               <img src={search} width={24} height={24} alt="search icon" />
             </button>

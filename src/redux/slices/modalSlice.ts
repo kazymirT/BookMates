@@ -4,7 +4,13 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 type ModalState = {
-  openedModalType: 'login' | 'create-account' | 'feedback' | null;
+  openedModalType:
+    | 'login'
+    | 'create-account'
+    | 'feedback'
+    | 'feedback-success'
+    | 'register-success'
+    | null;
   redirect: string;
 };
 

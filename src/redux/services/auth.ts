@@ -9,6 +9,7 @@ import {
   Register,
 } from './services.types';
 import { toggleModal } from '../slices/modalSlice';
+import { toggleStatus } from '../slices/statusSlice';
 import { login } from '../slices/userSlice';
 import { AppDispatch } from '../store';
 
@@ -21,10 +22,13 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
         try {
           const { data } = (await queryFulfilled) as { data: AuthResponse };
           handleAuthSuccess(data, dispatch);
+          dispatch(toggleStatus('succes'));
         } catch (error) {
+          dispatch(toggleStatus('idle'));
           handleAuthError(error as Error);
         }
       },
@@ -36,11 +40,16 @@ export const authApi = baseApi.injectEndpoints({
         body,
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
         try {
           const { data } = (await queryFulfilled) as { data: AuthResponse };
           handleAuthSuccess(data, dispatch);
+          dispatch(toggleModal({ openedModalType: 'register-success' }));
         } catch (error) {
           handleAuthError(error as Error);
+          dispatch(toggleStatus('idle'));
+        } finally {
+          dispatch(toggleStatus('idle'));
         }
       },
     }),

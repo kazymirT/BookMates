@@ -8,7 +8,6 @@ import styles from '../Form.module.scss';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { toggleStatus } from '@/redux/slices/statusSlice';
 import { LoginValues, loginSchema } from '@/utils/validateSchema';
 
 const LoginForm = () => {
@@ -31,12 +30,10 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginValues) => {
-    dispatch(toggleStatus('loading'));
     const error = await loginUser(data);
     if (error) {
-      dispatch(toggleStatus('idle'));
       setIsServerError(true);
-    } else dispatch(toggleStatus('succes'));
+    }
   };
 
   const handleRegister = () =>

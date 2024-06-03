@@ -84,32 +84,6 @@
       color: colors.$grey-500;
       letter-spacing: 0.06em;
     }
-
-    .submit {
-      padding: 1em 2em;
-
-      font-size: 1em;
-      font-weight: 500;
-      line-height: 1.188;
-      color: colors.$accent-white;
-      letter-spacing: 0.01em;
-
-      background: colors.$button-default;
-      border-radius: 4px;
-
-      &:hover {
-        background: colors.$button-hover;
-      }
-
-      &:active {
-        background: colors.$button-active;
-      }
-
-      &:disabled {
-        color: colors.$grey-200;
-        background: colors.$button-disabled;
-      }
-    }
   }
 
   .register {
@@ -142,6 +116,42 @@
     line-height: 1.21;
     color: colors.$grey-500;
     letter-spacing: 0.03em;
+  }
+
+  .submit {
+    padding: 1em 2em;
+
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 1.188;
+    color: colors.$accent-white;
+    letter-spacing: 0.01em;
+
+    background: colors.$button-default;
+    border-radius: 4px;
+
+    &:hover {
+      background: colors.$button-hover;
+    }
+
+    &:active {
+      background: colors.$button-active;
+    }
+
+    &:disabled {
+      color: colors.$grey-200;
+      background: colors.$button-disabled;
+    }
+  }
+
+  .success-register {
+    position: relative;
+
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 
