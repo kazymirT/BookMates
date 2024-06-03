@@ -47,11 +47,17 @@
       border-radius: 0.75rem;
     }
 
-    .books {
-      display: grid;
-      grid-auto-flow: dense;
-      grid-gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
+    .box {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .books {
+        display: grid;
+        grid-auto-flow: dense;
+        grid-gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
+      }
     }
   }
 }
