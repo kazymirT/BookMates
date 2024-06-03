@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import styles from './BookCard.module.scss';
 import cart from '@/assets/icons/cart.svg';
 
@@ -11,9 +13,13 @@ export type BookCardType = {
 
 interface Props {
   data: BookCardType;
+  slag?: string;
 }
 
-const BookCard = ({ data: { img, title, description, price } }: Props) => {
+const BookCard = ({
+  data: { img, title, description, price },
+  slag,
+}: Props) => {
   return (
     <div className={styles.card}>
       <div className={styles['img-box']}>
@@ -29,7 +35,14 @@ const BookCard = ({ data: { img, title, description, price } }: Props) => {
         </div>
         <p className={styles.description}>{description}</p>
       </div>
-      <button className={styles.buy}>купити</button>
+      <NavLink
+        to={{
+          pathname: `${slag ? `/catalog/${slag}` : '/catalog'}/product/${title.replace(/ /g, '-')}`,
+        }}
+        className={styles.buy}
+      >
+        купити
+      </NavLink>
     </div>
   );
 };

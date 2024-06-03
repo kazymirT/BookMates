@@ -21,30 +21,36 @@
     gap: 1rem;
 
     li {
-      padding: 0.9rem 0 0.9rem 1.75rem;
+      width: 100%;
 
-      font-family: fonts.$second-family;
-      line-height: 1.201;
-      color: colors.$grey-300;
-      letter-spacing: 0;
+      a {
+        display: block;
 
-      border-radius: 0.25rem;
+        padding: 0.9rem 0 0.9rem 1.75rem;
 
-      transition: all 0.3s;
+        font-family: fonts.$second-family;
+        line-height: 1.201;
+        color: colors.$grey-300;
+        letter-spacing: 0;
 
-      &:hover {
-        cursor: pointer;
-        background-color: colors.$brown-100;
-      }
+        border-radius: 0.25rem;
 
-      &:active {
-        color: colors.$accent-white;
-        background-color: colors.$brown-200;
-      }
+        transition: all 0.3s;
 
-      &.active {
-        color: colors.$accent-white;
-        background-color: colors.$brown-200;
+        &:hover {
+          cursor: pointer;
+          background-color: colors.$brown-100;
+        }
+
+        &:active {
+          color: colors.$accent-white;
+          background-color: colors.$brown-200;
+        }
+
+        &.active {
+          color: colors.$accent-white;
+          background-color: colors.$brown-200;
+        }
       }
     }
   }
