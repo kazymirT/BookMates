@@ -1,0 +1,18 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+
+.breadcrumbs {
+  display: flex;
+  gap: 5px;
+
+  li {
+    display: flex;
+    gap: 5px;
+
+    font-family: fonts.$font-family;
+    font-size: 1rem;
+    font-weight: 400;
+    color: colors.$icon-default;
+    letter-spacing: 0.01em;
+  }
+}

@@ -31,13 +31,13 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link to={'#'}>Хіти продажів</Link>
+            <Link to={'/catalog/bestseller'}>Хіти продажів</Link>
           </li>
           <li>
-            <Link to={'#'}>Каталог</Link>
+            <Link to={'/catalog'}>Каталог</Link>
           </li>
           <li>
-            <Link to={'#'}>Вигідні пропозиції</Link>
+            <Link to={'/catalog/best-deals'}>Вигідні пропозиції</Link>
           </li>
         </ul>
       </nav>

@@ -28,6 +28,7 @@ const Select = ({
   onChange,
   error,
   helperText,
+  style,
   ...props
 }: SelectProps) => {
   const selectValue = value ? { value, label: value } : undefined;
@@ -39,6 +40,7 @@ const Select = ({
 
   const containerClName = classNames(styles.container, {
     [styles['container-error']]: error,
+    [styles.secondary]: style,
   });
   return (
     <div className={styles.wrapper}>
