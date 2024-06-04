@@ -4,22 +4,33 @@ import { useParams } from 'react-router-dom';
 import styles from './Catalog.module.scss';
 import Filter from './Filter/Filter';
 import BookCard from '@/components/BookCard/BookCard';
+import Pagination from '@/components/Pagination/Pagination';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import Select from '@/components/ui-components/Select/Select';
 import { categories, selectOptions } from '@/utils/constants';
 import { catalogBooks } from '@/utils/fake';
 import { createBreadcrumbs } from '@/utils/getCrumbs';
 
+const totalElements = 35;
+const elementsPerPage = 9;
+
 const Catalog = () => {
   const { categoryId } = useParams();
-  const [sortValue, setSortValue] = useState<string>('За популярністю');
+  const [selectValue, setSelectValue] = useState<string>('За популярністю');
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const crumbs = createBreadcrumbs('catalog', categoryId);
 
-  const handleChangeSort = (value: string) => {
+  const handleChangePage = (nextPage: number) => {
+    if (currentPage !== nextPage) {
+      setCurrentPage(nextPage);
+    }
+  };
+    
+   const handleChangeSort = (value: string) => {
     if (sortValue !== value) {
       setSortValue(value);
     }
   };
-  const crumbs = createBreadcrumbs('catalog', categoryId);
 
   return (
     <>
@@ -40,11 +51,19 @@ const Catalog = () => {
           <aside className={styles.filters}>
             <Filter title="Категорії" filters={categories} />
           </aside>
-          <section className={styles.books}>
-            {catalogBooks &&
-              catalogBooks.map((book) => (
-                <BookCard key={book.id} slag={categoryId} data={book} />
-              ))}
+          <section className={styles.box}>
+            <div className={styles.books}>
+              {catalogBooks &&
+                catalogBooks.map((book) => (
+                  <BookCard key={book.id} slag={categoryId} data={book} />
+                ))}
+            </div>
+            <Pagination
+              elementsPerPage={elementsPerPage}
+              totalElements={totalElements}
+              currentPage={currentPage}
+              onChange={handleChangePage}
+            />
           </section>
         </div>
       </section>
