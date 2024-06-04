@@ -1,47 +1,49 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import styles from './Catalog.module.scss';
 import Filter from './Filter/Filter';
 import BookCard from '@/components/BookCard/BookCard';
 import Pagination from '@/components/Pagination/Pagination';
+import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import Select from '@/components/ui-components/Select/Select';
-import { categories } from '@/utils/constants';
+import { categories, selectOptions } from '@/utils/constants';
 import { catalogBooks } from '@/utils/fake';
+import { createBreadcrumbs } from '@/utils/getCrumbs';
 
-const selectOptions = [
-  'За популярністю',
-  'Спочатку дешеві',
-  'Спочатку дорогі',
-  'Спочатку нові',
-  'За назвою',
-];
 const totalElements = 35;
 const elementsPerPage = 9;
 
 const Catalog = () => {
+  const { categoryId } = useParams();
   const [selectValue, setSelectValue] = useState<string>('За популярністю');
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const handleChangeSelect = (value: string) => {
-    if (selectValue !== value) {
-      setSelectValue(value);
-    }
-  };
+  const crumbs = createBreadcrumbs('catalog', categoryId);
+
   const handleChangePage = (nextPage: number) => {
     if (currentPage !== nextPage) {
       setCurrentPage(nextPage);
     }
   };
+    
+   const handleChangeSort = (value: string) => {
+    if (sortValue !== value) {
+      setSortValue(value);
+    }
+  };
+
   return (
     <>
       <section className={styles.catalog}>
+        <Breadcrumbs options={crumbs} />
         <div className={styles.title}>
           <h2>Каталог</h2>
           <div className={styles.select}>
             <Select
               style="secondary"
-              onChange={handleChangeSelect}
+              onChange={handleChangeSort}
               options={selectOptions}
-              value={selectValue}
+              value={sortValue}
             />
           </div>
         </div>
@@ -53,7 +55,7 @@ const Catalog = () => {
             <div className={styles.books}>
               {catalogBooks &&
                 catalogBooks.map((book) => (
-                  <BookCard key={book.id} data={book} />
+                  <BookCard key={book.id} slag={categoryId} data={book} />
                 ))}
             </div>
             <Pagination

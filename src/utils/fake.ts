@@ -20,7 +20,7 @@ export const hitBooks: BookCardType[] = [
   {
     id: 1,
     img: book1,
-    title: 'Lorem ipsum dolor sit',
+    title: 'Містер Пінгвін',
     description: 'Lorem ipsum dolor sit',
     price: '21.00',
   },
