@@ -2,61 +2,66 @@
 @use '@/styles/fonts.scss';
 
 .catalog {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-
-  padding: 2.5rem;
-
   background-color: colors.$brown-100;
 
-  .title {
-    position: relative;
+  .catalog-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 2.5rem;
 
-    h2 {
-      font-family: fonts.$third-family;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 0.9;
-      color: colors.$grey-300;
-      letter-spacing: 0.08em;
-    }
+    width: 100%;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 2.5rem;
 
-    .select {
-      position: absolute;
-      z-index: 5;
-      top: 0;
-      right: 0;
-
-      background-color: colors.$accent-white;
-      border-radius: 0.75rem;
-    }
-  }
-
-  .main {
-    display: grid;
-    grid-template-columns: 282px 1fr;
-    gap: 5.25rem;
-
-    .filters {
-      height: fit-content;
-      padding: 1.25rem 1rem 1.25rem 1.5rem;
-      background-color: colors.$accent-white;
-      border-radius: 0.75rem;
-    }
-
-    .box {
+    .title {
+      position: relative;
       display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      justify-content: space-between;
 
-      .books {
-        display: grid;
-        grid-auto-flow: dense;
-        grid-gap: 1.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
+      h2 {
+        font-family: fonts.$third-family;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 0.9;
+        color: colors.$grey-300;
+        letter-spacing: 0.08em;
+      }
+
+      .select {
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        right: 0;
+
+        background-color: colors.$accent-white;
+        border-radius: 0.75rem;
+      }
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 282px 1fr;
+      gap: 5.25rem;
+
+      .filters {
+        height: fit-content;
+        padding: 1.25rem 1rem 1.25rem 1.5rem;
+        background-color: colors.$accent-white;
+        border-radius: 0.75rem;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .books {
+          display: grid;
+          grid-auto-flow: dense;
+          grid-gap: 1.5rem;
+          grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
+        }
       }
     }
   }
