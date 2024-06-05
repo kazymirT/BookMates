@@ -4,10 +4,11 @@ import styles from './Checkbox.module.scss';
 
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
   label?: string;
+  children?: JSX.Element;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, ...rest }, ref) => {
+  ({ label, children, ...rest }, ref) => {
     const id = useId();
 
     return (
@@ -21,6 +22,7 @@ const Checkbox = forwardRef<HTMLInputElement, InputProps>(
         />
         <label htmlFor={id} className={styles.label}>
           {label}
+          {children && children}
         </label>
       </div>
     );

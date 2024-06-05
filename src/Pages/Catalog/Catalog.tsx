@@ -35,37 +35,39 @@ const Catalog = () => {
   return (
     <>
       <section className={styles.catalog}>
-        <div className={styles['catalog-container']}>
-          <Breadcrumbs options={crumbs} />
-          <div className={styles.title}>
-            <h2>Каталог</h2>
-            <div className={styles.select}>
-              <Select
-                style="secondary"
-                onChange={handleChangeSort}
-                options={selectOptions}
-                value={sortValue}
-              />
-            </div>
-          </div>
-          <div className={styles.main}>
-            <aside className={styles.filters}>
-              <Filter title="Категорії" filters={categories} />
-            </aside>
-            <section className={styles.box}>
-              <div className={styles.books}>
-                {catalogBooks &&
-                  catalogBooks.map((book) => (
-                    <BookCard key={book.id} slag={categoryId} data={book} />
-                  ))}
+        <div className="container1200">
+          <div className={styles['catalog-container']}>
+            <Breadcrumbs options={crumbs} />
+            <div className={styles.title}>
+              <h2>Каталог</h2>
+              <div className={styles.select}>
+                <Select
+                  style="secondary"
+                  onChange={handleChangeSort}
+                  options={selectOptions}
+                  value={sortValue}
+                />
               </div>
-              <Pagination
-                elementsPerPage={elementsPerPage}
-                totalElements={totalElements}
-                currentPage={currentPage}
-                onChange={handleChangePage}
-              />
-            </section>
+            </div>
+            <div className={styles.main}>
+              <aside className={styles.filters}>
+                <Filter title="Категорії" filters={categories} />
+              </aside>
+              <section className={styles.box}>
+                <div className={styles.books}>
+                  {catalogBooks &&
+                    catalogBooks.map((book) => (
+                      <BookCard key={book.id} slag={categoryId} data={book} />
+                    ))}
+                </div>
+                <Pagination
+                  elementsPerPage={elementsPerPage}
+                  totalElements={totalElements}
+                  currentPage={currentPage}
+                  onChange={handleChangePage}
+                />
+              </section>
+            </div>
           </div>
         </div>
       </section>

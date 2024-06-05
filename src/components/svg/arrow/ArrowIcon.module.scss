@@ -5,20 +5,4 @@
   height: 100%;
   font-size: 0;
   transition: color 0.3s;
-
-  &:hover {
-    svg {
-      path[stroke] {
-        stroke: colors.$icon-hover;
-      }
-    }
-  }
-
-  &:active {
-    svg {
-      path[stroke] {
-        stroke: colors.$icon-active;
-      }
-    }
-  }
 }

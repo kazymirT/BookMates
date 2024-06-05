@@ -23,7 +23,7 @@ const LoginForm = () => {
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: true,
+      accept: false,
     },
     resolver: zodResolver(loginSchema),
     mode: 'onTouched',
@@ -72,7 +72,7 @@ const LoginForm = () => {
                 ще раз або
               </p>
               <a href="#" className={styles.remember}>
-                змініть пароль
+                змініть пароль.
               </a>
             </div>
           )}
@@ -90,7 +90,17 @@ const LoginForm = () => {
         >
           Увійти
         </button>
-        <Checkbox {...register('rememberMe')} label="Залишатися в акаунті" />
+        <Checkbox {...register('accept')}>
+          <p className={styles.terms}>
+            Bookstore використовує вашу особисту інформацію для створення вашого
+            облікового запису, зв&apos;язку з вами, обробки ваших транзакцій з
+            нами, а також для надання вам наших продуктів і послуг. Продовжуючи,
+            ви погоджуєтеся з нашими
+            <a>Умовами використання</a>
+            та
+            <a>Політикою конфіденційності.</a>
+          </p>
+        </Checkbox>
       </form>
       <button
         className={styles.register}
@@ -99,15 +109,6 @@ const LoginForm = () => {
       >
         В мене нема облікового запису
       </button>
-      <p className={styles.terms}>
-        Bookstore використовує вашу особисту інформацію для створення вашого
-        облікового запису, зв&apos;язку з вами, обробки ваших транзакцій з нами,
-        а також для надання вам наших продуктів і послуг. Продовжуючи, ви
-        погоджуєтеся з нашими
-        <a>Умовами використання</a>
-        та
-        <a>Політикою конфіденційності.</a>
-      </p>
     </section>
   );
 };

@@ -1,15 +1,17 @@
 import { z } from 'zod';
 
 import { TOPICS } from '@/utils/constants';
+const accept = z.boolean().refine((data) => data === true);
 
 const email = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
+  .max(25, 'максимальна кількість символів 25')
   .email('Неправильний формат електронної пошти');
-
 const password = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
+  .regex(/^(?!.*\s).+$/, 'пробіли на початку, всередині і в кінці заборонені')
   .regex(/^(?=.*[a-zа-я])/, 'мінімум одна мала літера')
   .regex(/^(?=.*[A-ZА-Я])/, 'мінімум одна велика літера')
   .regex(/^(?=.*[0-9])/, 'мінімум одна цифра')
@@ -19,7 +21,7 @@ const password = z
 export const loginSchema = z.object({
   email: email,
   password: password,
-  rememberMe: z.boolean(),
+  accept: accept,
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
@@ -28,19 +30,19 @@ export const registerSchema = z
     firstName: z
       .string()
       .min(1, 'Це поле є обов`язковим.')
-      .regex(/^[A-ZА-Я]/, 'Ім`я має починатись з великої літери')
+      .regex(/^[A-ZА-ЯІЇЄ]/, 'Ім`я має починатись з великої літери')
       .min(4, 'мінімум 4 символи')
       .max(20, 'максимум 20 символів'),
     lastName: z
       .string()
       .min(1, 'Це поле є обов`язковим.')
-      .regex(/^[A-ZА-Я]/, 'Прізвище має починатись з великої літери')
+      .regex(/^[A-ZА-ЯІЇЄ]/, 'Прізвище має починатись з великої літери')
       .min(4, 'мінімум 4 символи')
       .max(20, 'максимум 20 символів'),
     email: email,
     confirmEmail: email,
     password: password,
-    rememberMe: z.boolean(),
+    accept: accept,
   })
   .refine((data) => data.confirmEmail === data.email, {
     path: ['confirmEmail'],
