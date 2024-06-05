@@ -10,15 +10,27 @@
 
   padding: 0.625rem;
 
-  border: 1px solid colors.$grey-300;
+  border: 1px solid colors.$button-default;
   border-radius: 50%;
 
   &:hover {
-    border-color: colors.$grey-400;
+    border-color: colors.$button-hover;
+
+    & > div svg {
+      path[stroke] {
+        stroke: colors.$icon-hover;
+      }
+    }
   }
 
   &:active {
-    border-color: colors.$grey-500;
+    border-color: colors.$button-active;
+
+    & > div svg {
+      path[stroke] {
+        stroke: colors.$icon-active;
+      }
+    }
   }
 }
 
@@ -51,6 +63,14 @@
 
     &.active {
       border-color: colors.$button-default;
+
+      &:hover {
+        border-color: colors.$button-hover;
+      }
+
+      &:active {
+        border-color: colors.$button-active;
+      }
     }
   }
 
@@ -75,6 +95,12 @@
 
     &:hover {
       border-color: colors.$button-disabled;
+
+      & > div svg {
+        path[stroke] {
+          stroke: colors.$button-disabled;
+        }
+      }
     }
   }
 }
