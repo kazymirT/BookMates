@@ -136,3 +136,48 @@ export const catalogBooks: BookCardType[] = [
     price: '200',
   },
 ];
+
+export interface Book {
+  id: number;
+  title: string;
+  description: string;
+  year: number;
+  price: number;
+  totalQuantity: number;
+  authors: string[];
+  categories: { label: string; slag: string }[];
+  image: {
+    src: string;
+    id: number;
+    name: string;
+    contentType: string;
+    bytes: string[];
+  };
+  expected: boolean;
+  language: string;
+}
+
+export const book: Book = {
+  id: 1,
+  title: 'Містер Пінґвін. Втрачений скарб',
+  description:
+    'Містер Пінґвін — авантюрист і пінгвін у стильному капелюсі — завжди сповнений бажання знайти пригоду. І тому коли директорка Музею незвичайних предметів Будіка Бонз кличе його на допомогу, містер Пінґвін починає діяти. Чи зможе він разом зі своїм партнером і другом павуком Коліном знайти зниклий скарб? І що чекає на героїв, коли пригоди стануть небезпечними?',
+  authors: ['Алекс Т. Сміт'],
+  categories: [
+    { label: 'Дитяча література', slag: 'childrens-literature' },
+    { label: 'Хоббі і дозвілля', slag: 'hobbies-leisure' },
+    { label: 'Художня література', slag: 'fiction-literature' },
+  ],
+  price: 240,
+  year: 2021,
+  expected: true,
+  image: {
+    bytes: [''],
+    contentType: '',
+    id: 0,
+    name: 'Містер Пінґвін. Втрачений скарб',
+    src: book1,
+  },
+  totalQuantity: 5,
+  language: 'українська',
+};
