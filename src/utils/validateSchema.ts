@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
 import { TOPICS } from '@/utils/constants';
+const accept = z.boolean().refine((data) => data === true);
 
 const email = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
   .max(25, 'максимальна кількість символів 25')
   .email('Неправильний формат електронної пошти');
-
 const password = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
@@ -21,7 +21,7 @@ const password = z
 export const loginSchema = z.object({
   email: email,
   password: password,
-  rememberMe: z.boolean(),
+  accept: accept,
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
@@ -42,7 +42,7 @@ export const registerSchema = z
     email: email,
     confirmEmail: email,
     password: password,
-    rememberMe: z.boolean(),
+    accept: accept,
   })
   .refine((data) => data.confirmEmail === data.email, {
     path: ['confirmEmail'],

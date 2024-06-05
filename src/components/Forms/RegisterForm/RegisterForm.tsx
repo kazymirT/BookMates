@@ -26,7 +26,7 @@ const RegisterForm = () => {
       email: '',
       confirmEmail: '',
       password: '',
-      rememberMe: true,
+      accept: false,
     },
     resolver: zodResolver(registerSchema),
     mode: 'onTouched',
@@ -102,20 +102,21 @@ const RegisterForm = () => {
         >
           Створити акаунт
         </button>
-        <Checkbox {...register('rememberMe')} label="Залишатися в акаунті" />
+        <Checkbox {...register('accept')}>
+          <p className={styles.terms}>
+            Bookstore використовує вашу особисту інформацію для створення вашого
+            облікового запису, зв&apos;язку з вами, обробки ваших транзакцій з
+            нами, а також для надання вам наших продуктів і послуг. Продовжуючи,
+            ви погоджуєтеся з нашими
+            <a>Умовами використання</a>
+            та
+            <a>Політикою конфіденційності.</a>
+          </p>
+        </Checkbox>
       </form>
       <button className={styles.register} type="button" onClick={handleLogin}>
         В мене вже є обліковий запис
       </button>
-      <p className={styles.terms}>
-        Bookstore використовує вашу особисту інформацію для створення вашого
-        облікового запису, зв&apos;язку з вами, обробки ваших транзакцій з нами,
-        а також для надання вам наших продуктів і послуг. Продовжуючи, ви
-        погоджуєтеся з нашими
-        <a>Умовами використання</a>
-        та
-        <a>Політикою конфіденційності.</a>
-      </p>
     </section>
   );
 };
