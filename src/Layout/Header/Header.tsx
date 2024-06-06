@@ -8,19 +8,19 @@ import account from '@/assets/icons/Account.svg';
 import cart from '@/assets/icons/cart.svg';
 import logo from '@/assets/icons/Logo.svg';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
-import { toggleOpenProfile } from '@/redux/slices/profileSlice';
+import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
 import { userId } from '@/redux/slices/userSlice';
 
 const Header = () => {
-  const dispatch = useAppDispatch();
   const id = useAppSelector(userId);
 
   const { data: user } = useGetUserQuery(id ?? skipToken);
+  const dispatch = useAppDispatch();
 
-  const toggleProfile = () => {
-    dispatch(toggleOpenProfile(true));
+  const showNotification = () => {
+    dispatch(toggleShowCartNotification(true));
   };
 
   return (
@@ -55,7 +55,7 @@ const Header = () => {
           alt="cart"
           width={24}
           height={24}
-          onClick={toggleProfile}
+          onClick={showNotification}
         />
       </div>
     </header>

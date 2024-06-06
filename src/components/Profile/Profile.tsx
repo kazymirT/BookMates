@@ -8,6 +8,7 @@ import quit from '@/assets/icons/Quit.svg';
 import support from '@/assets/icons/Support.svg';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { isOpen, toggleOpenProfile } from '@/redux/slices/profileSlice';
+import { userData } from '@/redux/slices/userSlice';
 
 const profileOptions = [
   {
@@ -30,6 +31,7 @@ const profileOptions = [
 
 const Profile = () => {
   const isProfileOpen = useAppSelector(isOpen);
+  const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
 
   const handleClose = () => {
@@ -38,39 +40,41 @@ const Profile = () => {
 
   return (
     <>
-      <Portal
-        isOpen={isProfileOpen}
-        placeContent="right"
-        onClickOutside={handleClose}
-      >
-        <aside className={styles.profile}>
-          <div className={styles.head}>
-            <div className={styles['head-info']}>
-              <h2>Профіль</h2>
-              <button onClick={handleClose}>
-                <img src={close} alt="close" width={24} height={24} />
-              </button>
-            </div>
-            <div className={styles.user}>
-              <img src={profile} alt="" width={40} height={40} />
-              <div className={styles['user-info']}>
-                <p>Петро Шевченко</p>
-                <p>example@gmail.com</p>
+      {user && (
+        <Portal
+          isOpen={isProfileOpen}
+          placeContent="right"
+          onClickOutside={handleClose}
+        >
+          <aside className={styles.profile}>
+            <div className={styles.head}>
+              <div className={styles['head-info']}>
+                <h2>Профіль користувача</h2>
+                <button onClick={handleClose}>
+                  <img src={close} alt="close" width={24} height={24} />
+                </button>
+              </div>
+              <div className={styles.user}>
+                <img src={profile} alt="" width={40} height={40} />
+                <div className={styles['user-info']}>
+                  <p>{`${user.firstName} ${user.lastName}`}</p>
+                  <p>example@gmail.com</p>
+                </div>
               </div>
             </div>
-          </div>
-          <nav className={styles.nav}>
-            <ul>
-              {profileOptions.map((option) => (
-                <li key={option.title}>
-                  <img src={option.src} alt="" width={24} height={24} />
-                  <span>{option.title}</span>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-      </Portal>
+            <nav className={styles.nav}>
+              <ul>
+                {profileOptions.map((option) => (
+                  <li key={option.title}>
+                    <img src={option.src} alt="" width={24} height={24} />
+                    <span>{option.title}</span>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+        </Portal>
+      )}
     </>
   );
 };

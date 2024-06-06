@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { baseApi } from './services/baseApi';
 import { novaApi } from './services/novaApi';
+import cartNotificationSlice from './slices/cartNotificationSlice';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
 import profileSlice from './slices/profileSlice';
@@ -18,6 +19,7 @@ const store = configureStore({
     locationHistory: locationHistorySlice,
     profile: profileSlice,
     status: statusSlice,
+    cartNotification: cartNotificationSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(novaApi.middleware, baseApi.middleware),
