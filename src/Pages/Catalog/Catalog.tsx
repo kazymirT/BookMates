@@ -8,8 +8,8 @@ import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import Pagination from '@/components/Pagination/Pagination';
 import Select from '@/components/ui-components/Select/Select';
 import { categories, selectOptions } from '@/utils/constants';
+import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 import { catalogBooks } from '@/utils/fake';
-import { createBreadcrumbs } from '@/utils/getCrumbs';
 
 const totalElements = 35;
 const elementsPerPage = 9;

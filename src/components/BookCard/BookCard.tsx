@@ -17,7 +17,7 @@ interface Props {
 }
 
 const BookCard = ({
-  data: { img, title, description, price },
+  data: { id, img, title, description, price },
   slag,
 }: Props) => {
   return (
@@ -37,7 +37,7 @@ const BookCard = ({
       </div>
       <NavLink
         to={{
-          pathname: `${slag ? `/catalog/${slag}` : '/catalog'}/product/${title.replace(/ /g, '-')}`,
+          pathname: `${slag ? `/catalog/${slag}` : '/catalog'}/product/${id}`,
         }}
         className={styles.buy}
       >
