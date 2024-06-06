@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import styles from './CartNotification.module.scss';
@@ -15,8 +15,13 @@ const CartNotification = () => {
   const showNotification = useAppSelector(isOpen);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    showNotification && closeNotificationWithDelay(1500);
+  }, [showNotification]);
+
   const [show, setShow] = React.useState(true);
   const nodeRef = React.useRef<HTMLDivElement | null>(null);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const toggleNotificationState = () => {
     dispatch(toggleShowCartNotification(false));
@@ -28,6 +33,20 @@ const CartNotification = () => {
 
   const openNotification = () => {
     setShow(true);
+  };
+
+  const closeNotificationWithDelay = (delay: number) => {
+    const closeTimer = setTimeout(() => {
+      setShow(false);
+    }, delay);
+    timerRef.current = closeTimer;
+  };
+
+  const handleStopTimer = () => {
+    timerRef.current && clearTimeout(timerRef.current);
+  };
+  const handleClose = () => {
+    closeNotificationWithDelay(300);
   };
 
   return (
@@ -50,7 +69,12 @@ const CartNotification = () => {
         onExiting={toggleNotificationState}
         onExited={openNotification}
       >
-        <div className={styles.container} ref={nodeRef}>
+        <div
+          className={styles.container}
+          ref={nodeRef}
+          onMouseEnter={handleStopTimer}
+          onMouseLeave={handleClose}
+        >
           <div className={styles.head}>
             <p>Товар додано до кошика</p>
             <button type="button" onClick={closeNotification}>
