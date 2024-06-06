@@ -131,7 +131,7 @@ export const catalogBooks: BookCardType[] = [
   {
     id: 9,
     img: book1,
-    title: 'Lorem ipsum dolor sit',
+    title: 'Last book',
     description: 'Lorem ipsum dolor sit',
     price: '200',
   },

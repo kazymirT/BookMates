@@ -1,0 +1,55 @@
+@use '@/styles/colors.scss';
+
+@mixin button-state($border-color, $icon-color) {
+  border-color: $border-color;
+
+  & > div svg {
+    path[stroke] {
+      stroke: $icon-color;
+    }
+  }
+}
+
+.swiper {
+  position: relative;
+
+  overflow-y: visible;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.125rem;
+
+  width: 100%;
+  height: 100%;
+
+  .swiper-slide {
+    max-width: 262px;
+  }
+}
+
+.btn {
+  transform: rotate(-90deg);
+
+  align-self: flex-end;
+
+  height: fit-content;
+  padding: 0.625rem;
+
+  border: 1px solid colors.$button-default;
+  border-radius: 50%;
+
+  transition:
+    transform 2s,
+    border-color 0.3s;
+
+  &:hover {
+    @include button-state(colors.$button-hover, colors.$icon-hover);
+  }
+
+  &:active {
+    @include button-state(colors.$button-active, colors.$icon-active);
+  }
+
+  &.prev {
+    transform: rotate(90deg);
+  }
+}

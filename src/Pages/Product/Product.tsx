@@ -1,6 +1,7 @@
 import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
+import Slider from './Slider/Slider';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 import { book } from '@/utils/fake';
@@ -23,6 +24,10 @@ const Product = () => {
           </div>
           <ProductDetails book={book} />
           <ProductControl price={book.price} />
+        </section>
+        <section className={styles.likes}>
+          <h3>Вам може сподобатись</h3>
+          <Slider />
         </section>
       </div>
     </div>
