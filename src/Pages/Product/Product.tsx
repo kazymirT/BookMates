@@ -11,7 +11,7 @@ const Product = () => {
 
   return (
     <div className={styles.product}>
-      <div className="container1200">
+      <div className="container">
         <Breadcrumbs options={crumbs} />
         <section className={styles['details-product']}>
           <div className={styles['img-box']}>

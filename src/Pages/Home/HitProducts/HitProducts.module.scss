@@ -1,8 +1,10 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
+@use '@/styles/mixin.scss';
 
 .hit {
-  padding: 5rem;
+  width: 100%;
+  padding: 5rem 0;
   background-color: colors.$brown-100;
 
   .headers {
@@ -14,24 +16,15 @@
     margin-bottom: 2.5rem;
 
     h2 {
-      font-family: fonts.$third-family;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 0.9;
-      color: colors.$grey-500;
-      letter-spacing: 0.01em;
+      @include mixin.font-styles(fonts.$third-family, 2rem, 700, 0.9, colors.$grey-500, 0.01em);
     }
 
     a {
+      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.1);
+
       padding: 0.75rem 2rem;
 
-      font-family: fonts.$font-family;
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.1;
-      color: colors.$grey-500;
       text-transform: capitalize;
-      letter-spacing: 0.01em;
 
       border: 1px solid colors.$button-default;
       border-radius: 0.25rem;
@@ -39,7 +32,13 @@
       transition: all 0.3s;
 
       &:hover {
-        border: 1px solid colors.$button-hover;
+        background-color: colors.$button-hover-seccondary;
+        border-color: transparent;
+      }
+
+      &:active {
+        background-color: colors.$button-active-secondary;
+        border-color: transparent;
       }
     }
   }
@@ -47,8 +46,8 @@
   .books {
     display: grid;
     grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
+    gap: 50.5px;
 
     width: 100%;
   }

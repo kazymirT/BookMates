@@ -21,14 +21,7 @@
     justify-content: space-between;
 
     h2 {
-      @include mixin.font-styles(
-        fonts.$font-family,
-        1.5rem,
-        700,
-        1.21,
-        colors.$grey-500,
-        0.07em
-      );
+      @include mixin.font-styles(fonts.$font-family, 1.5rem, 700, 1.21, colors.$grey-500, 0.07em);
     }
 
     .close {
@@ -67,10 +60,7 @@
         }
 
         button {
-          @include mixin.hover-active_color(
-            colors.$brown-300,
-            colors.$brown-400
-          );
+          @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
 
           padding: 0;
 
@@ -82,10 +72,7 @@
         }
 
         .remember {
-          @include mixin.hover-active_color(
-            colors.$brown-300,
-            colors.$brown-400
-          );
+          @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
 
           font-weight: 600;
           color: colors.$grey-500;
@@ -98,14 +85,7 @@
     }
 
     .reset-password {
-      @include mixin.font-styles(
-        fonts.$font-family,
-        1rem,
-        500,
-        1.21,
-        colors.$grey-500,
-        0.06em
-      );
+      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.21, colors.$grey-500, 0.06em);
 
       @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
 
@@ -125,14 +105,7 @@
   }
 
   .terms {
-    @include mixin.font-styles(
-      fonts.$font-family,
-      0.75rem,
-      400,
-      1.2,
-      colors.$grey-500,
-      0
-    );
+    @include mixin.font-styles(fonts.$font-family, 0.75rem, 400, 1.2, colors.$grey-500, 0);
 
     max-width: 32.875rem;
 
@@ -149,14 +122,7 @@
   }
 
   .submit {
-    @include mixin.font-styles(
-      fonts.$font-family,
-      1em,
-      500,
-      1.188,
-      colors.$accent-white,
-      0.01em
-    );
+    @include mixin.font-styles(fonts.$font-family, 1em, 500, 1.188, colors.$accent-white, 0.01em);
 
     padding: 1em 2em;
     background: colors.$button-default;

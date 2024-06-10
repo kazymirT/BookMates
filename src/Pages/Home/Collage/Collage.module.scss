@@ -1,5 +1,6 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
+@use '@/styles/mixin.scss';
 
 .collage {
   display: flex;
@@ -8,60 +9,46 @@
 
   .img-box {
     position: relative;
+
     overflow: hidden;
+
     width: 50%;
-    min-height: 598px;
+    height: 37.375rem;
+    max-height: 670px;
 
     img {
       position: absolute;
-      top: -75%;
-      left: 3%;
+      bottom: -2rem;
+      left: -1.21rem;
       transform: rotate(13deg);
+
+      height: 120%;
     }
   }
 
   .content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 
     width: 50%;
-    max-width: 34.25rem;
-    padding: 9.75rem 5rem 10.5625rem 0.75rem;
+    max-width: 30.375rem;
+    padding: 9.75rem 5rem 9.5625rem 0.75rem;
 
     h2 {
-      max-width: 29rem;
-
-      font-family: fonts.$third-family;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 0.9;
-      color: colors.$grey-500;
-      letter-spacing: 0.01em;
+      @include mixin.font-styles(fonts.$third-family, 2rem, 700, 0.9, colors.$grey-500, 0.01em);
     }
 
     p {
-      max-width: 33rem;
-
-      font-family: fonts.$font-family;
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.21;
-      color: colors.$grey-400;
-      letter-spacing: 0.04em;
+      @include mixin.font-styles(fonts.$font-family, 1.5rem, 500, 1.21, colors.$grey-400, 0.04em);
     }
 
     button {
+      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.19, colors.$accent-white, 0.055em);
+
       align-self: start;
 
       padding: 1rem 4.53rem;
-
-      font-family: fonts.$font-family;
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.19;
-      color: colors.$accent-white;
-      letter-spacing: 0.055em;
 
       background: colors.$button-default;
       border-radius: 0.25rem;

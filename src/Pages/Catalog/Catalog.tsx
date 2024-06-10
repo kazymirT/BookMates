@@ -35,7 +35,7 @@ const Catalog = () => {
   return (
     <>
       <section className={styles.catalog}>
-        <div className="container1200">
+        <div className="container">
           <div className={styles['catalog-container']}>
             <Breadcrumbs options={crumbs} />
             <div className={styles.title}>

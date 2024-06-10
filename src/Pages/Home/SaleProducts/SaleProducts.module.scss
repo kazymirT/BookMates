@@ -2,7 +2,8 @@
 @use '@/styles/fonts.scss';
 
 .sale {
-  padding: 5rem;
+  width: 100%;
+  padding: 5rem 0;
   background-color: colors.$brown-100;
 
   .headers {
@@ -47,8 +48,8 @@
   .sales {
     display: grid;
     grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, minmax(338px, 1fr));
-    gap: 3.18rem;
+    grid-template-columns: repeat(auto-fit, minmax(21.125rem, 1fr));
+    gap: 5.8125rem;
 
     width: 100%;
   }

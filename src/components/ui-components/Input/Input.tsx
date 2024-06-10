@@ -12,12 +12,21 @@ import styles from './Input.module.scss';
 interface InputProps extends ComponentPropsWithoutRef<'input'> {
   errorMessage?: string;
   serverError?: boolean;
+  noValidate?: boolean;
   handleFocus?: () => void;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    { errorMessage, placeholder, serverError, handleFocus, onBlur, ...rest },
+    {
+      errorMessage,
+      placeholder,
+      serverError,
+      noValidate,
+      handleFocus,
+      onBlur,
+      ...rest
+    },
     ref
   ) => {
     const [type, setType] = useState<boolean>(rest.type === 'password');
@@ -26,12 +35,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const inputClassName = classNames(styles.input, {
       [styles['input-error']]: errorMessage || serverError,
-      [styles['input-valid']]: isValid,
+      [styles['input-valid']]: isValid && !noValidate,
     });
 
     const spanClassName = classNames(styles.span, {
       [styles['span-active']]: isFocus,
     });
+
     const inputPasswordClass = classNames(styles.button, {
       [styles['password-show']]: !type,
     });
