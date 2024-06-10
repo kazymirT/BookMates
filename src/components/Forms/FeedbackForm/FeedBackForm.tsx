@@ -65,7 +65,7 @@ const FeedBackForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <Input
           {...register('email')}
-          placeholder="Електрона пошта"
+          placeholder="Електронна пошта"
           type="email"
           errorMessage={errors.email?.message}
         />

@@ -67,7 +67,7 @@ const RegisterForm = () => {
           <div className={styles['email-container']}>
             <Input
               {...register('email')}
-              placeholder="Електрона пошта"
+              placeholder="Електронна пошта"
               type="email"
               serverError={isServerError}
               handleFocus={hideServerError}

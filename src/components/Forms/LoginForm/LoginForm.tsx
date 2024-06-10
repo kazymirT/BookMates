@@ -104,7 +104,7 @@ const LoginForm = () => {
         type="button"
         onClick={handleRegister}
       >
-        В мене нема облікового запису
+        В мене немає облікового запису
       </button>
     </section>
   );
