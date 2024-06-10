@@ -1,0 +1,28 @@
+@use './fonts.scss';
+@use './colors.scss';
+
+@mixin hover-active_color($hover, $active) {
+  &:hover {
+    color: $hover;
+  }
+
+  &:active {
+    color: $active;
+  }
+}
+
+@mixin font-styles(
+  $font-family: fonts.$font-family,
+  $font-size: 1rem,
+  $font-weight: 400,
+  $line-height: 1.21,
+  $color: colors.$grey-500,
+  $letter-spacing: 0.03em
+) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  color: $color;
+  letter-spacing: $letter-spacing;
+}

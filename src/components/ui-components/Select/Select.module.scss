@@ -36,14 +36,14 @@
       gap: 0.5rem;
       align-self: flex-end;
 
-      max-width: 170px;
+      max-width: 10.625rem;
       padding-left: 0.78rem;
     }
 
     .menu {
       width: 100%;
-      width: 190px;
-      padding: 16px 12px;
+      max-width: 11.875rem;
+      padding: 1rem 0.75rem;
 
       background-color: colors.$accent-white;
       box-shadow: 2px 3px 37px 0 #00000040;

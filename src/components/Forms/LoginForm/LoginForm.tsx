@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import Checkbox from '../../ui-components/Checkbox/Checkbox';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
 import { useFormActions } from '@/hooks/useFormActions';
@@ -23,7 +22,6 @@ const LoginForm = () => {
     defaultValues: {
       email: '',
       password: '',
-      accept: false,
     },
     resolver: zodResolver(loginSchema),
     mode: 'onTouched',
@@ -90,17 +88,6 @@ const LoginForm = () => {
         >
           Увійти
         </button>
-        <Checkbox {...register('accept')}>
-          <p className={styles.terms}>
-            Bookstore використовує вашу особисту інформацію для створення вашого
-            облікового запису, зв&apos;язку з вами, обробки ваших транзакцій з
-            нами, а також для надання вам наших продуктів і послуг. Продовжуючи,
-            ви погоджуєтеся з нашими
-            <a>Умовами використання</a>
-            та
-            <a>Політикою конфіденційності.</a>
-          </p>
-        </Checkbox>
       </form>
       <button
         className={styles.register}
