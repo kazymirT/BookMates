@@ -6,7 +6,7 @@ const accept = z.boolean().refine((data) => data === true);
 const email = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
-  .max(25, 'максимальна кількість символів 25')
+  .max(30, 'максимальна кількість символів 30')
   .email('Неправильний формат електронної пошти');
 const password = z
   .string()
@@ -21,7 +21,6 @@ const password = z
 export const loginSchema = z.object({
   email: email,
   password: password,
-  accept: accept,
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
