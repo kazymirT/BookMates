@@ -1,15 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-import {
-  type LoginValues,
-  type RegisterValues,
-  type FeedbackValues,
-} from '../utils/validateSchema';
+import { type LoginValues, type RegisterValues } from '../utils/validateSchema';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useLoginMutation, useRegisterMutation } from '@/redux/services/auth';
 import { Error } from '@/redux/services/services.types';
 import { redirectPath, toggleModal } from '@/redux/slices/modalSlice';
-import { User } from '@/redux/slices/userSlice';
 
 export const useFormActions = () => {
   const navigate = useNavigate();
@@ -19,28 +14,9 @@ export const useFormActions = () => {
   const [login] = useLoginMutation();
   const [register] = useRegisterMutation();
 
-  const doRequest = async (
-    data: LoginValues | RegisterValues | FeedbackValues
-  ) => {
-    const p = await new Promise<User | string>((resolve) => {
-      let resData: User | string;
-      if ((data as RegisterValues).firstName) {
-        resData = {
-          id: '999',
-          role: 'ROLE_PERSONAL',
-          firstName: 'John',
-          lastName: 'Doe',
-        };
-      } else if ((data as FeedbackValues).question) {
-        resData = 'success';
-      } else {
-        resData = {
-          id: '666',
-          role: 'ROLE_PERSONAL',
-          firstName: 'John',
-          lastName: 'Doe',
-        };
-      }
+  const doRequest = async () => {
+    const p = await new Promise<string>((resolve) => {
+      const resData = 'success';
       setTimeout(() => resolve(resData), 2000);
     });
     return p;
@@ -78,9 +54,19 @@ export const useFormActions = () => {
       }
     }
   };
-  const sendFeedback = async (data: FeedbackValues) => {
+  const sendFeedback = async () => {
     try {
-      const response = (await doRequest(data)) as string;
+      const response = await doRequest();
+      dispatch(toggleModal({ openedModalType: null }));
+      response && navigate(path);
+      return await response;
+    } catch (error) {
+      // return 'Error';
+    }
+  };
+  const sendResetPassword = async () => {
+    try {
+      const response = await doRequest();
       dispatch(toggleModal({ openedModalType: null }));
       response && navigate(path);
       return await response;
@@ -89,5 +75,5 @@ export const useFormActions = () => {
     }
   };
 
-  return { loginUser, registerUser, sendFeedback };
+  return { loginUser, registerUser, sendFeedback, sendResetPassword };
 };

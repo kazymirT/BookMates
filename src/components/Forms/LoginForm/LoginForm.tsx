@@ -36,6 +36,8 @@ const LoginForm = () => {
 
   const handleRegister = () =>
     dispatch(toggleModal({ openedModalType: 'create-account' }));
+  const handleResetPassword = () =>
+    dispatch(toggleModal({ openedModalType: 'reset-password' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const hideServerError = () => isServerError && setIsServerError(false);
 
@@ -69,16 +71,24 @@ const LoginForm = () => {
                 Ваша Електронна пошта або пароль невірні. Будь ласка, спробуйте
                 ще раз або
               </p>
-              <a href="#" className={styles.remember}>
+              <button
+                type="button"
+                onClick={handleResetPassword}
+                className={styles.remember}
+              >
                 змініть пароль.
-              </a>
+              </button>
             </div>
           )}
         </div>
         {!isServerError && (
-          <a className={styles['reset-password']} href="#">
+          <button
+            type="button"
+            onClick={handleResetPassword}
+            className={styles['reset-password']}
+          >
             Забув пароль
-          </a>
+          </button>
         )}
 
         <button

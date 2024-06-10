@@ -66,20 +66,22 @@
           letter-spacing: 0.03em;
         }
 
-        a {
+        button {
           @include mixin.hover-active_color(
             colors.$brown-300,
             colors.$brown-400
           );
 
+          padding: 0;
+
           font-size: 0.75em;
+          font-weight: 600;
           line-height: 1.25;
           color: colors.$grey-500;
           letter-spacing: 0.02em;
         }
 
         .remember {
-
           @include mixin.hover-active_color(
             colors.$brown-300,
             colors.$brown-400
@@ -124,7 +126,7 @@
 
   .terms {
     @include mixin.font-styles(
-      fonts.$second-family,
+      fonts.$font-family,
       0.75rem,
       400,
       1.2,

@@ -32,8 +32,10 @@ const FeedBackForm = () => {
   const { sendFeedback } = useFormActions();
 
   const onSubmit: SubmitHandler<FeedbackValues> = async (data) => {
+    // eslint-disable-next-line no-console
+    console.log(data);
     dispatch(toggleStatus('loading'));
-    const response = await sendFeedback(data);
+    const response = await sendFeedback();
     if (response) {
       dispatch(toggleStatus('idle'));
       dispatch(toggleModal({ openedModalType: 'feedback-success' }));

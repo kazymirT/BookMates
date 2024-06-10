@@ -24,6 +24,11 @@ export const loginSchema = z.object({
 });
 export type LoginValues = z.infer<typeof loginSchema>;
 
+export const resetPasswordSchema = z.object({
+  email: email,
+});
+export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
+
 export const registerSchema = z
   .object({
     firstName: z

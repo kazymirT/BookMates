@@ -42,7 +42,8 @@ const RegisterForm = () => {
   const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const hideServerError = () => isServerError && setIsServerError(false);
-
+  const handleResetPassword = () =>
+    dispatch(toggleModal({ openedModalType: 'reset-password' }));
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
@@ -75,7 +76,9 @@ const RegisterForm = () => {
             {isServerError && (
               <div className={styles.error}>
                 <p>Обліковий запис з такою електроною поштою вже існує.</p>{' '}
-                <a href="#">Забув пароль</a>
+                <button type="button" onClick={handleResetPassword}>
+                  Забув пароль
+                </button>
               </div>
             )}
           </div>

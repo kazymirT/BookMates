@@ -10,6 +10,7 @@ type ModalState = {
     | 'feedback'
     | 'feedback-success'
     | 'register-success'
+    | 'reset-password'
     | null;
   redirect: string;
 };
