@@ -63,36 +63,38 @@ const FeedBackForm = () => {
         вами якнайшвидше.
       </p>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Input
-          {...register('email')}
-          placeholder="Електронна пошта"
-          type="email"
-          errorMessage={errors.email?.message}
-        />
-        <Controller
-          control={control}
-          name="topic"
-          render={({ field, fieldState }) => (
-            <Select
-              placeholder="Тема"
-              value={field.value}
-              options={Object.values(TOPICS)}
-              onChange={(newValue) => field.onChange(newValue)}
-              onBlur={field.onBlur}
-              error={!!fieldState.error}
-              helperText={fieldState.error?.message}
-            />
-          )}
-        />
-        <div className={styles['textarea-container']}>
-          <textarea
-            {...register('question')}
-            className={textareaClName}
-            placeholder="Ваше запитання"
+        <div className={styles['input-container']}>
+          <Input
+            {...register('email')}
+            placeholder="Електронна пошта"
+            type="email"
+            errorMessage={errors.email?.message}
           />
-          {errors.question && (
-            <p className={styles.error}>{errors.question?.message}</p>
-          )}
+          <Controller
+            control={control}
+            name="topic"
+            render={({ field, fieldState }) => (
+              <Select
+                placeholder="Тема"
+                value={field.value}
+                options={Object.values(TOPICS)}
+                onChange={(newValue) => field.onChange(newValue)}
+                onBlur={field.onBlur}
+                error={!!fieldState.error}
+                helperText={fieldState.error?.message}
+              />
+            )}
+          />
+          <div className={styles['textarea-container']}>
+            <textarea
+              {...register('question')}
+              className={textareaClName}
+              placeholder="Ваше запитання"
+            />
+            {errors.question && (
+              <p className={styles.error}>{errors.question?.message}</p>
+            )}
+          </div>
         </div>
         <button type="submit" className={styles.submit} disabled={!isValid}>
           Відправити

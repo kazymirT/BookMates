@@ -203,7 +203,10 @@
 
 .paragraph {
   max-width: 34.875rem;
+
   font-size: 1rem;
+  font-weight: 500;
   line-height: 1.188rem;
-  color: #000;
+  color: colors.$grey-500;
+  letter-spacing: 0.03em;
 }

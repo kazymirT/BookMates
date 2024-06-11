@@ -38,12 +38,18 @@
     }
 
     .menu {
+      position: inherit;
+      top: 0;
+
       width: 100%;
       padding: 1rem 0.75rem;
+
       background-color: colors.$accent-white;
+      border: none;
       box-shadow: 2px 3px 37px 0 #00000040;
 
       .menu-list {
+        gap: 0;
         text-align: left;
       }
     }
@@ -55,6 +61,14 @@
     & + .message {
       color: colors.$accent-red;
     }
+
+    & div.menu {
+      border-color: colors.$accent-red;
+    }
+  }
+
+  &:not(.container-error):hover {
+    border-color: colors.$grey-200;
   }
 
   .control {
@@ -65,8 +79,17 @@
   }
 
   .menu {
-    position: inherit;
-    padding-bottom: 0.25em;
+    position: absolute;
+    top: 43px;
+    left: -0.5px;
+
+    width: 558px;
+    padding: 0.625rem;
+
+    background-color: colors.$accent-white;
+    border: 1px solid colors.$grey-200;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
   }
 
   .menu-list {
@@ -75,6 +98,10 @@
         animation-delay: #{(($i)-1) * 0.075}s;
       }
     }
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
   }
 
   .option {
