@@ -8,6 +8,7 @@ import {
   Login,
   Register,
 } from './services.types';
+import { userApi } from './user';
 import { toggleModal } from '../slices/modalSlice';
 import { toggleStatus } from '../slices/statusSlice';
 import { login } from '../slices/userSlice';
@@ -57,14 +58,22 @@ export const authApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-const handleAuthSuccess = (data: AuthResponse, dispatch: AppDispatch) => {
+const handleAuthSuccess = async (data: AuthResponse, dispatch: AppDispatch) => {
   const { id, roles } = jwtDecode(data.token) as TokenDecode;
-  dispatch(
-    login({
-      token: data.token,
-      user: { id, role: roles[0], firstName: 'John', lastName: 'Doe' },
-    })
-  );
+  const user = (await dispatch(userApi.endpoints.getUser.initiate(id))).data;
+  user &&
+    dispatch(
+      login({
+        token: data.token,
+        user: {
+          id,
+          role: roles[0],
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        },
+      })
+    );
   dispatch(toggleModal({ openedModalType: null }));
 };
 

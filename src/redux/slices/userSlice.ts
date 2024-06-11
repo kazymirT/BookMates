@@ -8,6 +8,7 @@ export type User = {
   role: 'ROLE_ADMIN' | 'ROLE_PERSONAL';
   firstName: string;
   lastName: string;
+  email: string;
 };
 
 type UserState = {
