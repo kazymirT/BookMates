@@ -10,13 +10,13 @@ const Footer = () => {
       <nav>
         <ul className={styles.links}>
           <Link to={'/'}>
-            <li>Головна</li>
+            <li>Головна сторінка</li>
           </Link>
           <Link to={'/'}>
-            <li>FAQ</li>
+            <li>Доставка та оплата</li>
           </Link>
           <Link to={'/'}>
-            <li>Підтримка</li>
+            <li>Зворотній зв’язок</li>
           </Link>
         </ul>
         <div className={styles.btns}>
