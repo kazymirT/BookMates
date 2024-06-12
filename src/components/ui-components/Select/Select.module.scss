@@ -7,10 +7,13 @@
 }
 
 .wrapper {
+  position: relative;
   width: 100%;
 }
 
-.container {
+div.container {
+  position: static;
+
   padding: 0.78rem 1rem 0 0.78rem;
 
   font-size: 1rem;
@@ -35,20 +38,21 @@
       display: flex;
       gap: 0.5rem;
       align-self: flex-end;
-
-      max-width: 170px;
-      padding-left: 0.78rem;
     }
 
     .menu {
+      position: inherit;
+      top: 0;
+
       width: 100%;
-      width: 190px;
-      padding: 16px 12px;
+      padding: 1rem 0.75rem;
 
       background-color: colors.$accent-white;
+      border: none;
       box-shadow: 2px 3px 37px 0 #00000040;
 
       .menu-list {
+        gap: 0;
         text-align: left;
       }
     }
@@ -60,6 +64,10 @@
     & + .message {
       color: colors.$accent-red;
     }
+
+    & div.menu {
+      border-color: colors.$accent-red;
+    }
   }
 
   .control {
@@ -70,8 +78,16 @@
   }
 
   .menu {
-    position: inherit;
-    padding-bottom: 0.25em;
+    position: absolute;
+    top: 43px;
+    left: 0;
+
+    padding: 0.625rem;
+
+    background-color: colors.$accent-white;
+    border: 1px solid colors.$grey-100;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
   }
 
   .menu-list {
@@ -80,6 +96,10 @@
         animation-delay: #{(($i)-1) * 0.075}s;
       }
     }
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
   }
 
   .option {

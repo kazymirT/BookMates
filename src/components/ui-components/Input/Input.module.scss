@@ -45,8 +45,7 @@
       }
 
       & ~ .button {
-        filter: invert(73%) sepia(14%) saturate(641%) hue-rotate(63deg)
-          brightness(88%) contrast(87%);
+        filter: invert(73%) sepia(14%) saturate(641%) hue-rotate(63deg) brightness(88%) contrast(87%);
       }
     }
 
@@ -59,8 +58,7 @@
       }
 
       & ~ button.button {
-        filter: invert(25%) sepia(75%) saturate(1682%) hue-rotate(337deg)
-          brightness(110%) contrast(100%);
+        filter: invert(25%) sepia(75%) saturate(1682%) hue-rotate(337deg) brightness(110%) contrast(100%);
       }
     }
 

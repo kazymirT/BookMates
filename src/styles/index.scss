@@ -2,6 +2,7 @@
 @use './reset.scss';
 @use './colors.scss';
 @use './fonts.scss';
+@use './mixin.scss';
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -10,11 +11,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.5;
-  // color: rgb(255 255 255 / 87%);
   text-rendering: optimizelegibility;
-
-  //color-scheme: light dark;
-  // background-color: #242424;
 
   font-synthesis: none;
 }
@@ -32,13 +29,9 @@ input {
 }
 
 .container {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1280px;
   margin: 0 auto;
-}
-
-.container1200 {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0 40px;
 }

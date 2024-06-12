@@ -58,7 +58,7 @@ const Profile = () => {
                 <img src={profile} alt="" width={40} height={40} />
                 <div className={styles['user-info']}>
                   <p>{`${user.firstName} ${user.lastName}`}</p>
-                  <p>example@gmail.com</p>
+                  <p>{user.email}</p>
                 </div>
               </div>
             </div>

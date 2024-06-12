@@ -42,7 +42,8 @@ const RegisterForm = () => {
   const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const hideServerError = () => isServerError && setIsServerError(false);
-
+  const handleResetPassword = () =>
+    dispatch(toggleModal({ openedModalType: 'reset-password' }));
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
@@ -66,7 +67,7 @@ const RegisterForm = () => {
           <div className={styles['email-container']}>
             <Input
               {...register('email')}
-              placeholder="Електрона пошта"
+              placeholder="Електронна пошта"
               type="email"
               serverError={isServerError}
               handleFocus={hideServerError}
@@ -75,7 +76,9 @@ const RegisterForm = () => {
             {isServerError && (
               <div className={styles.error}>
                 <p>Обліковий запис з такою електроною поштою вже існує.</p>{' '}
-                <a href="#">Забув пароль</a>
+                <button type="button" onClick={handleResetPassword}>
+                  Забув пароль
+                </button>
               </div>
             )}
           </div>
@@ -104,13 +107,8 @@ const RegisterForm = () => {
         </button>
         <Checkbox {...register('accept')}>
           <p className={styles.terms}>
-            Bookstore використовує вашу особисту інформацію для створення вашого
-            облікового запису, зв&apos;язку з вами, обробки ваших транзакцій з
-            нами, а також для надання вам наших продуктів і послуг. Продовжуючи,
-            ви погоджуєтеся з нашими
-            <a>Умовами використання</a>
-            та
-            <a>Політикою конфіденційності.</a>
+            Створюючи кабінет на Bookmate, я погоджуюся з правилами повернення
+            та договором оферти.
           </p>
         </Checkbox>
       </form>

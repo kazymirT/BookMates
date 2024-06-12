@@ -1,5 +1,6 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
+@use '@/styles/mixin.scss';
 
 .form-container {
   display: flex;
@@ -7,7 +8,8 @@
   gap: 1.5em;
 
   box-sizing: border-box;
-  width: 622px;
+  width: 100%;
+  min-width: 38.875rem;
   padding: 2em;
 
   background-color: colors.$accent-white;
@@ -19,12 +21,7 @@
     justify-content: space-between;
 
     h2 {
-      font-family: fonts.$font-family;
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.21;
-      color: colors.$grey-500;
-      letter-spacing: 0.07em;
+      @include mixin.font-styles(fonts.$font-family, 1.5rem, 700, 1.21, colors.$grey-500, 0.07em);
     }
 
     .close {
@@ -52,66 +49,65 @@
 
       .error {
         display: flex;
+        gap: 0.5rem;
         justify-content: space-between;
 
         p {
-          font-size: 0.75em;
+          font-size: 0.75rem;
           line-height: 1.25;
           color: colors.$accent-red;
           letter-spacing: 0.03em;
         }
 
-        a {
+        button {
+          @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+
+          padding: 0;
+
           font-size: 0.75em;
+          font-weight: 600;
           line-height: 1.25;
-          color: colors.$brown-400;
+          color: colors.$grey-500;
           letter-spacing: 0.02em;
         }
 
         .remember {
+          @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+
           font-weight: 600;
           color: colors.$grey-500;
         }
       }
 
       .password-hint {
-        font-family: fonts.$font-family;
-        font-size: 0.75em;
-        font-weight: 400;
-        line-height: 1.167;
-        color: colors.$grey-500;
+        @include mixin.font-styles(fonts.$font-family, 0.75rem, 400, 1.167);
       }
     }
 
     .reset-password {
-      align-self: self-start;
+      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.21, colors.$grey-500, 0.06em);
 
-      font-family: fonts.$font-family;
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.21;
-      color: colors.$grey-500;
-      letter-spacing: 0.06em;
+      @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+
+      align-self: self-start;
+      transition: all 0.3s;
     }
   }
 
   .register {
-    font-family: fonts.$font-family;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.188;
-    color: colors.$grey-500;
+    @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.06);
+
+    @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+
+    align-self: center;
     text-align: center;
-    letter-spacing: 0.03em;
+    transition: all 0.3s;
   }
 
   .terms {
-    font-family: fonts.$second-family;
-    font-size: 0.75rem;
-    font-weight: 400;
-    line-height: 1.2;
-    color: colors.$grey-500;
-    letter-spacing: 0;
+    @include mixin.font-styles(fonts.$font-family, 0.75rem, 400, 1.2, colors.$grey-500, 0);
+
+    max-width: 32.875rem;
 
     a {
       margin: 0 2px;
@@ -120,23 +116,15 @@
   }
 
   .success {
-    font-family: fonts.$font-family;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.21;
-    color: colors.$grey-500;
-    letter-spacing: 0.03em;
+    @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.21);
+
+    max-width: 34.875rem;
   }
 
   .submit {
+    @include mixin.font-styles(fonts.$font-family, 1em, 500, 1.188, colors.$accent-white, 0.01em);
+
     padding: 1em 2em;
-
-    font-size: 1em;
-    font-weight: 500;
-    line-height: 1.188;
-    color: colors.$accent-white;
-    letter-spacing: 0.01em;
-
     background: colors.$button-default;
     border-radius: 4px;
 
@@ -214,7 +202,11 @@
 }
 
 .paragraph {
+  max-width: 34.875rem;
+
   font-size: 1rem;
+  font-weight: 500;
   line-height: 1.188rem;
-  color: #000;
+  color: colors.$grey-500;
+  letter-spacing: 0.03em;
 }

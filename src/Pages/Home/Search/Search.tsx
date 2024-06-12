@@ -31,7 +31,12 @@ const Search = () => {
             інтернет-крамниці!
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input {...register('search')} placeholder="Пошук" type="text" />
+            <Input
+              {...register('search')}
+              noValidate
+              placeholder="Пошук"
+              type="text"
+            />
             <button type="submit">
               <img src={search} width={24} height={24} alt="search icon" />
             </button>
@@ -39,7 +44,7 @@ const Search = () => {
           <img
             className={styles.images}
             src={bookshelf}
-            width={530}
+            width={568}
             height={487}
             alt="Bookshelf"
           />

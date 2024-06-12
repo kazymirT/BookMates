@@ -35,4 +35,14 @@
   display: flex;
   gap: 3.5625em;
   align-items: center;
+
+  a {
+    &:hover {
+      color: colors.$brown-300;
+    }
+
+    &:active {
+      color: colors.$brown-400;
+    }
+  }
 }
