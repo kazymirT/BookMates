@@ -32,6 +32,7 @@ const CartNotification = () => {
   };
 
   const openNotification = () => {
+    handleStopTimer();
     setShow(true);
   };
 
