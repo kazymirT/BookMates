@@ -12,8 +12,7 @@ interface Category {
 
 export const createBreadcrumbs = (
   page: string,
-  categoryId?: string | Category[],
-  productId?: string
+  categoryId?: string | Category
 ): Breadcrumb[] => {
   const breadcrumbs: Breadcrumb[] = [BASE_CRUMBS[page]];
 
@@ -31,17 +30,8 @@ export const createBreadcrumbs = (
     if (category) {
       addCategoryBreadcrumb(category.name, category.path);
     }
-  } else if (Array.isArray(categoryId)) {
-    categoryId.forEach((category) =>
-      addCategoryBreadcrumb(category.label, category.slag)
-    );
-  }
-
-  if (productId) {
-    breadcrumbs.push({
-      label: productId.replace(/-/g, ' '),
-      to: '',
-    });
+  } else {
+    categoryId && addCategoryBreadcrumb(categoryId.label, categoryId.slag);
   }
 
   return breadcrumbs;
