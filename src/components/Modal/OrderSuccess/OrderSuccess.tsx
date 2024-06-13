@@ -26,7 +26,7 @@ const OrderSuccess = () => {
           Дякуємо за замовлення. Реквізити для оплати відправлені на пошту.
         </p>
       </div>
-      <Link to={'/catalog'} className={styles.submit}>
+      <Link to={'/catalog'} className={styles.submit} onClick={handleClose}>
         Продовжити покупки
       </Link>
     </section>
