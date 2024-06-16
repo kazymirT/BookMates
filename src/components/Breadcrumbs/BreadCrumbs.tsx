@@ -15,11 +15,7 @@ const Breadcrumbs = ({ options }: Props) => {
       {options.map((option, index) => (
         <li key={index}>
           <span>/</span>
-          {index !== options.length - 1 ? (
-            <Link to={option.to}>{option.label}</Link>
-          ) : (
-            <span>{option.label}</span>
-          )}
+          {<Link to={option.to}>{option.label}</Link>}
         </li>
       ))}
     </ul>

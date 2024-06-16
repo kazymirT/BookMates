@@ -7,12 +7,12 @@ import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 import { book } from '@/utils/fake';
 
 const Product = () => {
-  const crumbs = createBreadcrumbs('catalog', book.categories, book.title);
+  const breadcrumbs = createBreadcrumbs('catalog', book.categories[0]);
 
   return (
     <div className={styles.product}>
       <div className="container">
-        <Breadcrumbs options={crumbs} />
+        <Breadcrumbs options={breadcrumbs} />
         <section className={styles['details-product']}>
           <div className={styles['img-box']}>
             <img

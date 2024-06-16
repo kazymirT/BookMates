@@ -1,5 +1,5 @@
 import FeedbackSuccess from './FeedbackSuccess/FeedbackSuccess';
-import RegisterSuccess from './RegisterSuccess/RegisterSuccess';
+import OrderSuccess from './OrderSuccess/OrderSuccess';
 import ResetPassword from './ResetPassword/ResetPassword';
 import FeedBackForm from '../Forms/FeedbackForm/FeedBackForm';
 import LoginForm from '../Forms/LoginForm/LoginForm';
@@ -29,8 +29,8 @@ const Modal = () => {
         <FeedBackForm />
       ) : openedModalType === 'feedback-success' ? (
         <FeedbackSuccess />
-      ) : openedModalType === 'register-success' ? (
-        <RegisterSuccess />
+      ) : openedModalType === 'order-success' ? (
+        <OrderSuccess />
       ) : openedModalType === 'reset-password' ? (
         <ResetPassword />
       ) : null}

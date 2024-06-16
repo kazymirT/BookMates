@@ -125,6 +125,7 @@
     @include mixin.font-styles(fonts.$font-family, 1em, 500, 1.188, colors.$accent-white, 0.01em);
 
     padding: 1em 2em;
+    text-align: center;
     background: colors.$button-default;
     border-radius: 4px;
 
@@ -142,13 +143,20 @@
     }
   }
 
-  .success-register {
+  .success {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 
     img {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+    }
+
+    p {
+      @include mixin.font-styles(fonts.$font-family, 1rem, 400, 1.188, colors.$grey-500, 0.04em);
     }
   }
 }
