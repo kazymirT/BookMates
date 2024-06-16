@@ -7,7 +7,7 @@ import 'swiper/css';
 import styles from './Slider.module.scss';
 import BookCard from '@/components/BookCard/BookCard';
 import ArrowIcon from '@/components/svg/arrow/Arrow';
-import { catalogBooks } from '@/utils/fake';
+import { useGetBooksQuery } from '@/redux/services/books';
 
 const SlideNextButton = () => {
   const [isNextSlide, setIsNextSlide] = useState<boolean>(true);
@@ -50,6 +50,7 @@ const SlideNextButton = () => {
 };
 
 const Slider = () => {
+  const { data: books } = useGetBooksQuery({ size: '8' });
   return (
     <div className={styles.slider}>
       <Swiper
@@ -59,11 +60,12 @@ const Slider = () => {
         modules={[Pagination]}
         speed={2000}
       >
-        {catalogBooks.map((book) => (
-          <SwiperSlide key={book.id} className={styles['swiper-slide']}>
-            <BookCard data={book} />
-          </SwiperSlide>
-        ))}
+        {books &&
+          books.content.map((book) => (
+            <SwiperSlide key={book.id} className={styles['swiper-slide']}>
+              <BookCard data={book} />
+            </SwiperSlide>
+          ))}
         <SlideNextButton />
       </Swiper>
     </div>

@@ -2,17 +2,13 @@ import { Link } from 'react-router-dom';
 
 import ProductDetailItem from './ProductDetailItem';
 import styles from '../Product.module.scss';
-import { Book } from '@/utils/fake';
+import { BookById } from '@/redux/services/services.types';
 
-const ProductDetails = ({ book }: { book: Book }) => (
+const ProductDetails = ({ book }: { book: BookById }) => (
   <div className={styles.book}>
     <div className={styles.info}>
       <h2>{book.title}</h2>
-      <div className={styles.authors}>
-        {book.authors.map((author, index) => (
-          <h2 key={`${author + index}`}>{author}</h2>
-        ))}
-      </div>
+      <div className={styles.authors}>{book.authors.join(', ')}</div>
     </div>
     <div className={styles.details}>
       <div className={styles.row}>
@@ -22,13 +18,13 @@ const ProductDetails = ({ book }: { book: Book }) => (
       <div className={styles.row}>
         <ProductDetailItem title="Категорія">
           <div className={styles.categories}>
-            {book.categories.map((category, index) => (
+            {book.categories.map((category) => (
               <Link
-                key={`${category.label + index}`}
+                key={category.id}
                 className={styles.item}
-                to={`/catalog/${category.slag}`}
+                to={`/catalog/${category.id}`}
               >
-                {category.label}
+                {category.name}
               </Link>
             ))}
           </div>

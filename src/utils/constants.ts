@@ -16,12 +16,12 @@ export const notStorePages = [
 export const BASE_CRUMBS: Record<
   string,
   {
-    label: string;
+    name: string;
     to: string;
   }
 > = {
   catalog: {
-    label: 'Каталог',
+    name: 'Каталог',
     to: '/catalog',
   },
 };
@@ -33,73 +33,18 @@ export enum TOPICS {
   Other = 'Інше',
 }
 
-export const categories = [
-  {
-    id: 1,
-    name: 'Хіти продажів',
-    path: 'bestseller',
-  },
-  {
-    id: 2,
-    name: 'Вигідні пропозиції',
-    path: 'best-deals',
-  },
-  {
-    id: 3,
-    name: 'Книги іноземними мовами',
-    path: 'foreign-language-books',
-  },
-  {
-    id: 4,
-    name: 'Вивчення мов',
-    path: 'language-learning',
-  },
-  {
-    id: 5,
-    name: 'Фантастика, фентезі',
-    path: 'science-fiction-fantasy',
-  },
-  {
-    id: 6,
-    name: 'Психологія і взаємини',
-    path: 'psychology-relationships',
-  },
-  {
-    id: 7,
-    name: 'Саморозвиток',
-    path: 'self-development',
-  },
-  {
-    id: 8,
-    name: 'Бізнес, гроші, економіка',
-    path: 'business-money-economy',
-  },
-  {
-    id: 9,
-    name: 'Дитяча література',
-    path: 'childrens-literature',
-  },
-  {
-    id: 10,
-    name: 'Біографія і мемуари',
-    path: 'biography-memoirs',
-  },
-  {
-    id: 11,
-    name: 'Хоббі і дозвілля',
-    path: 'hobbies-leisure',
-  },
-  {
-    id: 12,
-    name: 'Художня література',
-    path: 'fiction-literature',
-  },
-];
-
-export const selectOptions = [
+export const selectSortOptions = [
   'За популярністю',
   'Спочатку дешеві',
   'Спочатку дорогі',
   'Спочатку нові',
   'За назвою',
 ];
+
+export const SORT_OPTIONS: Record<string, string> = {
+  'За популярністю': '',
+  'Спочатку дешеві': 'price,asc',
+  'Спочатку дорогі': 'price,desc',
+  'Спочатку нові': 'createdAt,desc',
+  'За назвою': 'title,desc',
+};

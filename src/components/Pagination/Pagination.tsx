@@ -4,22 +4,15 @@ import './Pagination.scss';
 import ArrowIcon from '../svg/arrow/Arrow';
 
 type Props = {
-  elementsPerPage: number;
-  totalElements: number;
+  totalPages: number;
   currentPage: number;
   onChange: (nextPage: number) => void;
 };
 
-const Pagination = ({
-  elementsPerPage,
-  totalElements,
-  currentPage,
-  onChange,
-}: Props) => {
-  const totalPages = Math.ceil(totalElements / elementsPerPage);
-
+const Pagination = ({ totalPages, currentPage, onChange }: Props) => {
   const handlePageClick = (selectedItem: { selected: number }) => {
     onChange(selectedItem.selected);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

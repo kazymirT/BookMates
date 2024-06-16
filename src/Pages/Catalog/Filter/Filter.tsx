@@ -7,7 +7,6 @@ type Props = {
   filters: {
     id: number;
     name: string;
-    path: string;
   }[];
 };
 
@@ -21,7 +20,7 @@ const Filter = ({ filters, title }: Props) => {
             <li key={filter.id}>
               <NavLink
                 className={({ isActive }) => (isActive ? styles.active : '')}
-                to={`/catalog/${filter.path}`}
+                to={`/catalog/${filter.id}`}
               >
                 {filter.name}
               </NavLink>
