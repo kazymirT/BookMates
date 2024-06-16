@@ -1,47 +1,48 @@
-import classNames from 'classnames';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 
 import styles from './Catalog.module.scss';
 import Filter from './Filter/Filter';
-import BookCard from '@/components/BookCard/BookCard';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
-import Pagination from '@/components/Pagination/Pagination';
 import Select from '@/components/ui-components/Select/Select';
-import { useGetBooksQuery } from '@/redux/services/books';
 import { useGetCategoryAllQuery } from '@/redux/services/category';
-import { SORT_OPTIONS, selectSortOptions } from '@/utils/constants';
+import { selectSortOptions } from '@/utils/constants';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Catalog = () => {
-  const { categoryId } = useParams();
-  const [queryArgs, setQueryArgs] = useState({
-    page: 0,
-    sort: 'За популярністю',
-  });
+  const navigate = useNavigate();
+  const { size, sort, url, categoryId } = useLoaderData() as {
+    size: string;
+    sort: string;
+    url: URL;
+    categoryId: string;
+  };
+  useEffect(() => {
+    setProductPerPage(size);
+    setSortProduct(sort);
+  }, [sort, size]);
 
-  const updateQueryArgs = (newArgs: { page?: number; sort?: string }) => {
-    setQueryArgs((prevArgs) => ({
-      ...prevArgs,
-      ...newArgs,
-    }));
-  };
-  const handleChangePage = (nextPage: number) => {
-    updateQueryArgs({ page: nextPage });
-  };
+  const [sortProduct, setSortProduct] = useState(sort);
+  const [productPerPage, setProductPerPage] = useState(size);
+
+  const newUrl = new URL(url.toString());
 
   const handleChangeSort = (newSort: string) => {
-    updateQueryArgs({ sort: newSort, page: 0 });
+    setSortProduct(newSort);
+    setParams('sort', newSort);
+  };
+  const handleChangeSize = (newProductPerPage: string) => {
+    setProductPerPage(newProductPerPage);
+    setParams('size', newProductPerPage);
   };
 
-  const { data: books, isFetching } = useGetBooksQuery({
-    page: queryArgs.page,
-    sort: [SORT_OPTIONS[queryArgs.sort]],
-  });
-  const booksClassName = classNames(styles.books, {
-    [styles.disabled]: isFetching,
-  });
-  const { data: categoryAll } = useGetCategoryAllQuery();
+  const setParams = (paramsName: string, paramsValue: string) => {
+    newUrl.searchParams.set(paramsName, paramsValue);
+    newUrl.searchParams.set('page', '1');
+    navigate(`${newUrl.search}`);
+  };
+
+  const { data: categoryAll, isLoading } = useGetCategoryAllQuery();
   const currentCategory = categoryAll
     ? categoryAll.find((category) => category.id === Number(categoryId))
     : undefined;
@@ -60,39 +61,26 @@ const Catalog = () => {
                   style="secondary"
                   onChange={handleChangeSort}
                   options={selectSortOptions}
-                  value={queryArgs.sort}
+                  value={sortProduct}
+                />
+              </div>
+              <div className={styles.size}>
+                <Select
+                  style="secondary"
+                  onChange={handleChangeSize}
+                  options={['3', '6', '9', '12', '15', '18']}
+                  value={productPerPage}
                 />
               </div>
             </div>
             <div className={styles.main}>
               <aside className={styles.filters}>
-                {categoryAll && (
-                  <Filter title="Категорії" filters={categoryAll} />
-                )}
+                <Filter
+                  title="Категорії"
+                  filters={!isLoading ? categoryAll : undefined}
+                />
               </aside>
-              <section className={styles.box}>
-                {!books && isFetching && <p>loading...</p>}
-                {books && (
-                  <>
-                    <div className={booksClassName}>
-                      {books &&
-                        books.content.map((book) => (
-                          <BookCard
-                            key={book.id}
-                            slag={categoryId}
-                            data={book}
-                          />
-                        ))}
-                    </div>
-                    <Pagination
-                      totalPages={books.totalPages}
-                      currentPage={books.pageable.pageNumber}
-                      onChange={handleChangePage}
-                    />
-                    {isFetching && <div className={styles.fetching}></div>}
-                  </>
-                )}
-              </section>
+              <Outlet />
             </div>
           </div>
         </div>

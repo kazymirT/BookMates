@@ -1,6 +1,8 @@
 import { skipToken } from '@reduxjs/toolkit/query';
+import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 
+import 'react-loading-skeleton/dist/skeleton.css';
 import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
@@ -10,32 +12,39 @@ import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useGetBookByIdQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
+import 'react-loading-skeleton/dist/skeleton.css';
+
 const Product = () => {
   const { productId } = useParams();
-  const { data: book, isFetching } = useGetBookByIdQuery(
-    productId ?? skipToken
-  );
+  const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs('catalog', book?.categories[0]);
 
   return (
     <div className={styles.product}>
       <div className="container">
-        <Breadcrumbs options={breadcrumbs} activeLastLink />
-        {!book && isFetching && <p>loading</p>}
-        {book && (
+        {isLoading ? (
+          <Skeleton width={300} height={19} />
+        ) : (
+          <Breadcrumbs options={breadcrumbs} activeLastLink />
+        )}
+        {
           <section className={styles['details-product']}>
             <div className={styles['img-box']}>
-              <img
-                src={!book.image ? book1 : book.image.contentType}
-                alt={book.title}
-                width={282}
-                height={328}
-              />
+              {isLoading ? (
+                <Skeleton width={282} height={328} />
+              ) : (
+                <img
+                  src={!book?.image ? book1 : book.image.contentType}
+                  alt={book && book.title}
+                  width={282}
+                  height={328}
+                />
+              )}
             </div>
-            <ProductDetails book={book} />
-            <ProductControl price={book.price} />
+            <ProductDetails book={!isLoading ? book : undefined} />
+            <ProductControl price={!isLoading ? book?.price : undefined} />
           </section>
-        )}
+        }
 
         <section className={styles.likes}>
           <h3>Вам може сподобатись</h3>

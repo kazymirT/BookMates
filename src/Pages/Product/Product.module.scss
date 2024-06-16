@@ -21,7 +21,8 @@
 }
 
 @mixin button-styles($bg-color, $hover-color, $active-color, $font-color) {
-  padding: 0.75rem 3.46875rem;
+  width: 100%;
+  padding: 0.75rem 0;
 
   font-family: fonts.$font-family;
   font-size: 1rem;
@@ -56,7 +57,9 @@
 
   .details-product {
     display: flex;
+    flex-flow: row wrap;
     gap: 24px;
+    justify-content: center;
 
     .img-box {
       position: relative;
@@ -134,7 +137,7 @@
 
         .categories {
           display: flex;
-          flex-direction: row;
+          flex-flow: row wrap;
           gap: 0.75rem;
 
           .item {
@@ -164,6 +167,8 @@
 
   .control {
     box-sizing: border-box;
+    width: 100%;
+    max-width: 282px;
     height: fit-content;
     padding: 2.1875rem 2rem;
 
@@ -173,6 +178,7 @@
     p {
       @include font-styles(500, 1.5rem, 1.2, colors.$button-default);
 
+      display: flex;
       width: fit-content;
       margin-bottom: 1.5rem;
       letter-spacing: 0.1em;
@@ -189,9 +195,11 @@
       display: flex;
       gap: 0.625rem;
       align-items: center;
+      justify-content: center;
 
+      width: 100%;
       margin-bottom: 1rem;
-      padding: 0.584rem 3.2rem;
+      padding: 0.584rem 0;
 
       border: 1px solid colors.$button-default;
       border-radius: 0.25rem;

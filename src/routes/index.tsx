@@ -15,9 +15,10 @@ import {
   NotAuthenticated,
   NotAuthorized,
 } from '@/Pages';
+import { loader as CatalogLoader } from '@/Pages/Catalog/loader';
+import Products from '@/Pages/Catalog/Product/Product';
 import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';
-
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -29,7 +30,13 @@ const route = createBrowserRouter(
       errorElement={<ErrorPage />}
     >
       <Route path={ROUTE_PATH.HOME} element={<Home />} />
-      <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
+      <Route
+        path={'/catalog/:categoryId?'}
+        element={<Catalog />}
+        loader={CatalogLoader}
+      >
+        <Route index element={<Products />} loader={CatalogLoader} />
+      </Route>
       <Route
         path={'/catalog/:categoryId?/product/:productId?'}
         element={<Product />}

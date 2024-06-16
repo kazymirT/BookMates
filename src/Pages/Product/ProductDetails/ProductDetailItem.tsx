@@ -1,3 +1,6 @@
+import Skeleton from 'react-loading-skeleton';
+
+import { InlineWrapperWithMargin } from './ProductDetails';
 import styles from '../Product.module.scss';
 
 const ProductDetailItem = ({
@@ -11,7 +14,20 @@ const ProductDetailItem = ({
 }) => (
   <div>
     <h3>{title}</h3>
-    {value ? <p className={styles.item}>{value}</p> : children}
+    {!value && !children ? (
+      <Skeleton
+        containerClassName="flex-1"
+        width={155}
+        height={37}
+        count={1}
+        inline
+        wrapper={InlineWrapperWithMargin}
+      />
+    ) : value ? (
+      <p className={styles.item}>{value}</p>
+    ) : (
+      children
+    )}
   </div>
 );
 

@@ -8,6 +8,7 @@ import styles from './Slider.module.scss';
 import BookCard from '@/components/BookCard/BookCard';
 import ArrowIcon from '@/components/svg/arrow/Arrow';
 import { useGetBooksQuery } from '@/redux/services/books';
+import { BooksData } from '@/redux/services/services.types';
 
 const SlideNextButton = () => {
   const [isNextSlide, setIsNextSlide] = useState<boolean>(true);
@@ -41,7 +42,6 @@ const SlideNextButton = () => {
   const buttonClassName = classNames(styles.btn, {
     [styles.prev]: !isNextSlide,
   });
-
   return (
     <button onClick={handleNavigate} className={buttonClassName}>
       <ArrowIcon />
@@ -50,7 +50,12 @@ const SlideNextButton = () => {
 };
 
 const Slider = () => {
-  const { data: books } = useGetBooksQuery({ size: '8' });
+  const { data: books, isLoading } = useGetBooksQuery({ size: '8' });
+  const data = (
+    books
+      ? books.content
+      : Array.from({ length: 8 }, (_, index) => ({ id: index }))
+  ) as BooksData[];
   return (
     <div className={styles.slider}>
       <Swiper
@@ -60,12 +65,11 @@ const Slider = () => {
         modules={[Pagination]}
         speed={2000}
       >
-        {books &&
-          books.content.map((book) => (
-            <SwiperSlide key={book.id} className={styles['swiper-slide']}>
-              <BookCard data={book} />
-            </SwiperSlide>
-          ))}
+        {data.map((book) => (
+          <SwiperSlide key={book.id} className={styles['swiper-slide']}>
+            <BookCard data={!isLoading ? book : undefined} />
+          </SwiperSlide>
+        ))}
         <SlideNextButton />
       </Swiper>
     </div>

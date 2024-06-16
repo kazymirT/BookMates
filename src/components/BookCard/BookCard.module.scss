@@ -6,6 +6,10 @@
   flex-flow: column nowrap;
   gap: 1rem;
 
+  width: 100%;
+  min-width: 200px;
+  max-width: 262px;
+
   .img-box {
     position: relative;
     overflow: hidden;
@@ -61,67 +65,86 @@
     }
   }
 
-  .content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .transparent {
+    position: relative;
+    min-height: 108px;
 
-    .headers {
+    .content {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.5rem;
 
-      h3 {
-        font-family: fonts.$font-family;
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.2;
-        color: colors.$grey-500;
-        letter-spacing: 0.05em;
+      .headers {
+        display: flex;
+        justify-content: space-between;
+
+        h3 {
+          overflow: hidden;
+
+          width: 65%;
+
+          font-family: fonts.$font-family;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1.2;
+          color: colors.$grey-500;
+          text-overflow: ellipsis;
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+        }
+
+        p {
+          width: 30%;
+
+          font-family: fonts.$second-family;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 1.1;
+          color: colors.$button-default;
+          text-align: right;
+
+          &::after {
+            content: 'грн';
+            margin-left: 1px;
+          }
+        }
       }
 
       p {
-        font-family: fonts.$second-family;
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1.1;
-        color: colors.$button-default;
+        overflow: hidden;
 
-        &::after {
-          content: 'грн';
-          margin-left: 1px;
-        }
+        font-family: fonts.$font-family;
+        font-size: 14px;
+        line-height: 1.4915;
+        color: colors.$grey-300;
+        text-overflow: ellipsis;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
       }
     }
 
-    p {
+    .buy {
+      align-self: self-start;
+
+      margin-top: 0.5rem;
+      padding: 12px 32px;
+
       font-family: fonts.$font-family;
-      font-size: 0.88rem;
-      line-height: 1.4915;
-      color: colors.$grey-300;
-      letter-spacing: 0.03em;
-    }
-  }
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: colors.$accent-white;
+      text-transform: capitalize;
+      letter-spacing: 0.06em;
 
-  .buy {
-    align-self: self-start;
+      background: colors.$button-default;
+      border-radius: 0.25rem;
 
-    padding: 0.75rem 2rem;
+      transition: all 0.3s;
 
-    font-family: fonts.$font-family;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.2;
-    color: colors.$accent-white;
-    text-transform: capitalize;
-    letter-spacing: 0.06em;
-
-    background: colors.$button-default;
-    border-radius: 0.25rem;
-
-    transition: all 0.3s;
-
-    &:hover {
-      background: colors.$button-hover;
+      &:hover {
+        background: colors.$button-hover;
+      }
     }
   }
 }
