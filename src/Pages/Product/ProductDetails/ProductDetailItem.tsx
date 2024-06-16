@@ -18,7 +18,7 @@ const ProductDetailItem = ({
       <Skeleton
         containerClassName="flex-1"
         width={155}
-        height={37}
+        height={41}
         count={1}
         inline
         wrapper={InlineWrapperWithMargin}

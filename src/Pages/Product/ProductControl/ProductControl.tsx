@@ -4,12 +4,16 @@ import styles from '../Product.module.scss';
 import CartIcon from '@/components/svg/cart/Cart';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
+import { toggleModal } from '@/redux/slices/modalSlice';
 
 const ProductControl = ({ price }: { price?: number }) => {
   const dispatch = useAppDispatch();
   const handleAddCart = () => {
     dispatch(toggleShowCartNotification(true));
   };
+  const handleOpenOrderSuccess = () =>
+    dispatch(toggleModal({ openedModalType: 'order-success' }));
+
   return (
     <div className={styles.control}>
       {price ? (
@@ -19,7 +23,11 @@ const ProductControl = ({ price }: { price?: number }) => {
             <CartIcon />
             До кошика
           </button>
-          <button className={styles.buy} type="button">
+          <button
+            className={styles.buy}
+            type="button"
+            onClick={handleOpenOrderSuccess}
+          >
             Купити зараз
           </button>
         </>

@@ -2,7 +2,6 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 
-import 'react-loading-skeleton/dist/skeleton.css';
 import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
@@ -11,8 +10,6 @@ import book1 from '@/assets/images/fake/book1.png';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useGetBookByIdQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
-
-import 'react-loading-skeleton/dist/skeleton.css';
 
 const Product = () => {
   const { productId } = useParams();

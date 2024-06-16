@@ -11,29 +11,22 @@ import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Catalog = () => {
   const navigate = useNavigate();
-  const { size, sort, url, categoryId } = useLoaderData() as {
-    size: string;
+  const { sort, url, categoryId } = useLoaderData() as {
     sort: string;
     url: URL;
     categoryId: string;
   };
   useEffect(() => {
-    setProductPerPage(size);
     setSortProduct(sort);
-  }, [sort, size]);
+  }, [sort]);
 
   const [sortProduct, setSortProduct] = useState(sort);
-  const [productPerPage, setProductPerPage] = useState(size);
 
   const newUrl = new URL(url.toString());
 
   const handleChangeSort = (newSort: string) => {
     setSortProduct(newSort);
     setParams('sort', newSort);
-  };
-  const handleChangeSize = (newProductPerPage: string) => {
-    setProductPerPage(newProductPerPage);
-    setParams('size', newProductPerPage);
   };
 
   const setParams = (paramsName: string, paramsValue: string) => {
@@ -43,6 +36,7 @@ const Catalog = () => {
   };
 
   const { data: categoryAll, isLoading } = useGetCategoryAllQuery();
+
   const currentCategory = categoryAll
     ? categoryAll.find((category) => category.id === Number(categoryId))
     : undefined;
@@ -62,14 +56,6 @@ const Catalog = () => {
                   onChange={handleChangeSort}
                   options={selectSortOptions}
                   value={sortProduct}
-                />
-              </div>
-              <div className={styles.size}>
-                <Select
-                  style="secondary"
-                  onChange={handleChangeSize}
-                  options={['3', '6', '9', '12', '15', '18']}
-                  value={productPerPage}
                 />
               </div>
             </div>

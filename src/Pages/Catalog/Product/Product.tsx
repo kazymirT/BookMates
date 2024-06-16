@@ -9,9 +9,8 @@ import { BooksData } from '@/redux/services/services.types';
 import { SORT_OPTIONS } from '@/utils/constants';
 
 const Products = () => {
-  const { page, size, sort, categoryId } = useLoaderData() as {
+  const { page, sort, categoryId } = useLoaderData() as {
     page: number;
-    size: string;
     sort: string;
     categoryId: string;
   };
@@ -24,7 +23,6 @@ const Products = () => {
     page: page,
     sort: [SORT_OPTIONS[sort]],
     categoryId: categoryId,
-    size: size,
   });
 
   const booksClassName = classNames(styles.books, {
@@ -35,6 +33,7 @@ const Products = () => {
       ? books.content
       : Array.from({ length: 9 }, (_, index) => ({ id: index }))
   ) as BooksData[];
+
   return (
     <section className={styles.box}>
       {

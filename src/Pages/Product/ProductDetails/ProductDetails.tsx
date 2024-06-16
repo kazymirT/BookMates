@@ -48,7 +48,7 @@ const ProductDetails = ({ book }: { book?: BookById }) => (
               <Skeleton
                 containerClassName="flex-1"
                 width={155}
-                height={37}
+                height={41}
                 count={3}
                 inline
                 wrapper={InlineWrapperWithMargin}
