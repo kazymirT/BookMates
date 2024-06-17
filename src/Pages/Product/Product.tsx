@@ -12,6 +12,7 @@ import { useGetBookByIdQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
+
   const { productId } = useParams();
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs('catalog', book?.categories[0]);
@@ -42,7 +43,6 @@ const Product = () => {
             <ProductControl price={!isLoading ? book?.price : undefined} />
           </section>
         }
-
         <section className={styles.likes}>
           <h3>Вам може сподобатись</h3>
           <Slider />
