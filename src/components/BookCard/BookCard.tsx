@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+/* eslint-disable no-console */
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
@@ -9,22 +9,20 @@ import { BooksData } from '@/redux/services/services.types';
 
 interface Props {
   data?: BooksData;
-  slag?: string;
-}
-export function InlineWrapperWithMargin({
-  children,
-}: PropsWithChildren<unknown>) {
-  return <span style={{ marginRight: '0rem' }}>{children}</span>;
 }
 
-const BookCard = ({ data, slag }: Props) => {
+const BookCard = ({ data }: Props) => {
+  const handleAddAndOpenCard = (event: React.MouseEvent) => {
+    event.preventDefault();
+    console.log(`додати до кошика товар ${data?.id} і відкрити кошик`);
+  };
+  const handleAddToCard = (event: React.MouseEvent) => {
+    event.preventDefault();
+    console.log(`додати до кошика товар ${data?.id}`);
+  };
+
   return (
-    <Link
-      to={{
-        pathname: `${slag ? `/catalog/${slag}` : '/catalog'}/product/${data?.id}`,
-      }}
-      className={styles.card}
-    >
+    <Link to={data ? `/product/${data.id}` : ''} className={styles.card}>
       <div className={styles['img-box']}>
         {data ? (
           <>
@@ -32,7 +30,12 @@ const BookCard = ({ data, slag }: Props) => {
               src={!data.image ? book1 : data.image.contentType}
               alt={data.title}
             />
-            <button type="button" className={styles.cart}>
+            <button
+              type="button"
+              className={styles.cart}
+              onClick={handleAddToCard}
+              aria-label="Add to card"
+            >
               <img src={cart} width={24} height={24} />
             </button>
           </>
@@ -55,7 +58,6 @@ const BookCard = ({ data, slag }: Props) => {
                 height={19}
                 count={2}
                 inline
-                wrapper={InlineWrapperWithMargin}
               />
             )}
           </div>
@@ -63,14 +65,14 @@ const BookCard = ({ data, slag }: Props) => {
             {data ? data.authors.join(', ') : <Skeleton />}
           </p>
           {data ? (
-            <Link
-              to={{
-                pathname: `${slag ? `/catalog/${slag}` : '/catalog'}/product/${data.id}`,
-              }}
+            <button
+              type="button"
+              onClick={handleAddAndOpenCard}
               className={styles.buy}
+              aria-label="Buy now"
             >
               купити
-            </Link>
+            </button>
           ) : (
             <Skeleton width={121} height={44} />
           )}

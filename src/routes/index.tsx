@@ -16,7 +16,6 @@ import {
   NotAuthorized,
 } from '@/Pages';
 import { loader as CatalogLoader } from '@/Pages/Catalog/loader';
-import Products from '@/Pages/Catalog/Product/Product';
 import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';
 const route = createBrowserRouter(
@@ -34,13 +33,8 @@ const route = createBrowserRouter(
         path={'/catalog/:categoryId?'}
         element={<Catalog />}
         loader={CatalogLoader}
-      >
-        <Route index element={<Products />} loader={CatalogLoader} />
-      </Route>
-      <Route
-        path={'/catalog/:categoryId?/product/:productId?'}
-        element={<Product />}
       />
+      <Route path={'/product/:productId?'} element={<Product />} />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route
         path={ROUTE_PATH.NOTAUTHENTICATED}

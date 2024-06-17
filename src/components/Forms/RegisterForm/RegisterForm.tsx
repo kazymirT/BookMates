@@ -98,6 +98,12 @@ const RegisterForm = () => {
             Мінімум 8 символів, без відступів і спеціальних знаків
           </p>
         </div>
+        <Checkbox {...register('accept')}>
+          <p className={styles.terms}>
+            Створюючи кабінет на Bookmate, я погоджуюся з правилами повернення
+            та договором оферти.
+          </p>
+        </Checkbox>
         <button
           type="submit"
           className={styles.submit}
@@ -105,12 +111,6 @@ const RegisterForm = () => {
         >
           Створити акаунт
         </button>
-        <Checkbox {...register('accept')}>
-          <p className={styles.terms}>
-            Створюючи кабінет на Bookmate, я погоджуюся з правилами повернення
-            та договором оферти.
-          </p>
-        </Checkbox>
       </form>
       <button className={styles.register} type="button" onClick={handleLogin}>
         В мене вже є обліковий запис

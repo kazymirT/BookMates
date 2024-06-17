@@ -38,6 +38,7 @@ const Pagination = ({ totalPages, currentPage }: Props) => {
         nextLinkClassName={'next'}
         previousLinkClassName={'previous'}
         disabledLinkClassName={'disabled-link'}
+        breakLinkClassName={'item break'}
       />
     </>
   );

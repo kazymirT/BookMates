@@ -45,6 +45,6 @@ export const SORT_OPTIONS: Record<string, string> = {
   'За популярністю': '',
   'Спочатку дешеві': 'price,asc',
   'Спочатку дорогі': 'price,desc',
-  'Спочатку нові': 'createdAt,desc',
-  'За назвою': 'title,desc',
+  'Спочатку нові': 'createdAt,asc',
+  'За назвою': 'title,asc',
 };
