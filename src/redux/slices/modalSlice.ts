@@ -9,7 +9,7 @@ type ModalState = {
     | 'create-account'
     | 'feedback'
     | 'feedback-success'
-    | 'register-success'
+    | 'order-success'
     | 'reset-password'
     | null;
   redirect: string;

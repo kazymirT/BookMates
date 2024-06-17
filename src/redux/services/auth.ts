@@ -45,12 +45,10 @@ export const authApi = baseApi.injectEndpoints({
         try {
           const { data } = (await queryFulfilled) as { data: AuthResponse };
           handleAuthSuccess(data, dispatch);
-          dispatch(toggleModal({ openedModalType: 'register-success' }));
+          dispatch(toggleStatus('succes'));
         } catch (error) {
+          dispatch(toggleStatus('idle'));
           handleAuthError(error as Error);
-          dispatch(toggleStatus('idle'));
-        } finally {
-          dispatch(toggleStatus('idle'));
         }
       },
     }),
