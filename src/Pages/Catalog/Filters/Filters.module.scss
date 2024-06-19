@@ -1,0 +1,9 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+
+.filters {
+  height: fit-content;
+  padding: 1.5rem 1rem;
+  background-color: colors.$accent-white;
+  border-radius: 0.75rem;
+}

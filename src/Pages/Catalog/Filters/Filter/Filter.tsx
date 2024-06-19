@@ -3,12 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Filter.module.scss';
-import { CategoryAll } from '@/redux/services/services.types';
-
-type Props = {
-  title: string;
-  filters?: CategoryAll[];
-};
+import { FilterProps } from '../../Catalog.types';
 
 export function InlineWrapperWithMargin({
   children,
@@ -18,7 +13,7 @@ export function InlineWrapperWithMargin({
   );
 }
 
-const Filter = ({ filters, title }: Props) => {
+const Filter = ({ filters, title }: FilterProps) => {
   return (
     <div className={styles.filter}>
       <h3>{title}</h3>

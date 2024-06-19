@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './BookCard.module.scss';
 import cart from '@/assets/icons/cart.svg';
-import book1 from '@/assets/images/fake/book1.png';
+import book1 from '@/assets/images/fake/book1.webp';
 import { BooksData } from '@/redux/services/services.types';
 
 interface Props {

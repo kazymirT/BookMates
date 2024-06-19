@@ -6,13 +6,12 @@ import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Slider from './Slider/Slider';
-import book1 from '@/assets/images/fake/book1.png';
+import book1 from '@/assets/images/fake/book1.webp';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useGetBookByIdQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
-
   const { productId } = useParams();
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs('catalog', book?.categories[0]);
