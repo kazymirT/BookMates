@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
 
 type Props = {
-  options: { to: string; label: string }[];
+  options: { to: string; name: string }[];
+  activeLastLink: boolean;
 };
 
-const Breadcrumbs = ({ options }: Props) => {
+const Breadcrumbs = ({ options, activeLastLink }: Props) => {
   return (
     <ul className={styles.breadcrumbs}>
       <li>
@@ -15,7 +16,13 @@ const Breadcrumbs = ({ options }: Props) => {
       {options.map((option, index) => (
         <li key={index}>
           <span>/</span>
-          {<Link to={option.to}>{option.label}</Link>}
+          {index !== options.length - 1 ? (
+            <Link to={option.to}>{option.name}</Link>
+          ) : activeLastLink ? (
+            <Link to={option.to}>{option.name}</Link>
+          ) : (
+            <span>{option.name}</span>
+          )}
         </li>
       ))}
     </ul>

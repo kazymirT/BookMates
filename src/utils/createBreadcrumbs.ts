@@ -1,37 +1,23 @@
-import { BASE_CRUMBS, categories } from './constants';
+import { BASE_CRUMBS } from './constants';
 
 interface Breadcrumb {
-  label: string;
+  name: string;
   to: string;
 }
 
 interface Category {
-  label: string;
-  slag: string;
+  name: string;
+  id: number | string;
 }
 
-export const createBreadcrumbs = (
-  page: string,
-  categoryId?: string | Category
-): Breadcrumb[] => {
+export const createBreadcrumbs = (page: string, categoryId?: Category) => {
   const breadcrumbs: Breadcrumb[] = [BASE_CRUMBS[page]];
 
-  const addCategoryBreadcrumb = (label: string, path: string) => {
+  if (categoryId) {
     breadcrumbs.push({
-      label,
-      to: `/catalog/${path}`,
+      name: categoryId.name,
+      to: `/catalog/${categoryId.id}`,
     });
-  };
-
-  if (typeof categoryId === 'string') {
-    const category = categories.find(
-      (category) => category.path === categoryId
-    );
-    if (category) {
-      addCategoryBreadcrumb(category.name, category.path);
-    }
-  } else {
-    categoryId && addCategoryBreadcrumb(categoryId.label, categoryId.slag);
   }
 
   return breadcrumbs;

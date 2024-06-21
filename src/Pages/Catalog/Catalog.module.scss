@@ -10,55 +10,10 @@
     gap: 2.5rem;
     padding: 2.5rem 0;
 
-    .title {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-
-      h2 {
-        font-family: fonts.$third-family;
-        font-size: 2rem;
-        font-weight: 700;
-        line-height: 0.9;
-        color: colors.$grey-300;
-        letter-spacing: 0.08em;
-      }
-
-      .select {
-        position: absolute;
-        z-index: 5;
-        top: 0;
-        right: 0;
-
-        background-color: colors.$accent-white;
-        border-radius: 0.75rem;
-      }
-    }
-
     .main {
       display: grid;
-      grid-template-columns: 17.625rem 1fr;
+      grid-template-columns: 282px 1fr;
       gap: 5.25rem;
-
-      .filters {
-        height: fit-content;
-        padding: 1.5rem 1rem;
-        background-color: colors.$accent-white;
-        border-radius: 0.75rem;
-      }
-
-      .box {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        .books {
-          display: grid;
-          grid-auto-flow: dense;
-          grid-gap: 1.5rem;
-          grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
-        }
-      }
     }
   }
 }

@@ -1,49 +1,84 @@
-import { NavLink } from 'react-router-dom';
+/* eslint-disable no-console */
+import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 
 import styles from './BookCard.module.scss';
 import cart from '@/assets/icons/cart.svg';
-
-export type BookCardType = {
-  id: number;
-  img: string;
-  title: string;
-  description: string;
-  price: string;
-};
+import book1 from '@/assets/images/fake/book1.webp';
+import { BooksData } from '@/redux/services/services.types';
 
 interface Props {
-  data: BookCardType;
-  slag?: string;
+  data?: BooksData;
 }
 
-const BookCard = ({
-  data: { id, img, title, description, price },
-  slag,
-}: Props) => {
+const BookCard = ({ data }: Props) => {
+  const handleAddAndOpenCard = (event: React.MouseEvent) => {
+    event.preventDefault();
+    console.log(`додати до кошика товар ${data?.id} і відкрити кошик`);
+  };
+  const handleAddToCard = (event: React.MouseEvent) => {
+    event.preventDefault();
+    console.log(`додати до кошика товар ${data?.id}`);
+  };
+
   return (
-    <div className={styles.card}>
+    <Link to={data ? `/product/${data.id}` : ''} className={styles.card}>
       <div className={styles['img-box']}>
-        <img src={img} alt={title} />
-        <button type="button" className={styles.cart}>
-          <img src={cart} width={24} height={24} />
-        </button>
+        {data ? (
+          <>
+            <img
+              src={!data.image ? book1 : data.image.contentType}
+              alt={data.title}
+            />
+            <button
+              type="button"
+              className={styles.cart}
+              onClick={handleAddToCard}
+              aria-label="Add to card"
+            >
+              <img src={cart} width={24} height={24} />
+            </button>
+          </>
+        ) : (
+          <Skeleton width={262} height={305} />
+        )}
       </div>
-      <div className={styles.content}>
-        <div className={styles.headers}>
-          <h3>{title}</h3>
-          <p>{price}</p>
+      <div className={styles.transparent}>
+        <div className={styles.content}>
+          <div className={styles.headers}>
+            {data ? (
+              <>
+                <h3>{data.title}</h3>
+                <p>{data.price}</p>
+              </>
+            ) : (
+              <Skeleton
+                containerClassName="flex-1"
+                width={119}
+                height={19}
+                count={2}
+                inline
+              />
+            )}
+          </div>
+          <p className={styles.description}>
+            {data ? data.authors.join(', ') : <Skeleton />}
+          </p>
+          {data ? (
+            <button
+              type="button"
+              onClick={handleAddAndOpenCard}
+              className={styles.buy}
+              aria-label="Buy now"
+            >
+              купити
+            </button>
+          ) : (
+            <Skeleton width={121} height={44} />
+          )}
         </div>
-        <p className={styles.description}>{description}</p>
       </div>
-      <NavLink
-        to={{
-          pathname: `${slag ? `/catalog/${slag}` : '/catalog'}/product/${id}`,
-        }}
-        className={styles.buy}
-      >
-        купити
-      </NavLink>
-    </div>
+    </Link>
   );
 };
 

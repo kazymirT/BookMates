@@ -1,77 +1,62 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 import styles from './Catalog.module.scss';
-import Filter from './Filter/Filter';
-import BookCard from '@/components/BookCard/BookCard';
+import { CatalogNavigate } from './Catalog.types';
+import CatalogHeader from './CatalogHeader/CatalogHeader';
+import Filters from './Filters/Filters';
+import Products from './Products/Products';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
-import Pagination from '@/components/Pagination/Pagination';
-import Select from '@/components/ui-components/Select/Select';
-import { categories, selectOptions } from '@/utils/constants';
+import { useGetCategoryAllQuery } from '@/redux/services/category';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
-import { catalogBooks } from '@/utils/fake';
-
-const totalElements = 35;
-const elementsPerPage = 9;
 
 const Catalog = () => {
-  const { categoryId } = useParams();
-  const [sortValue, setSortValue] = useState<string>('За популярністю');
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const crumbs = createBreadcrumbs('catalog', categoryId);
+  const navigate = useNavigate();
+  const { sort, page, url, categoryId } = useLoaderData() as CatalogNavigate;
+  const [sortProduct, setSortProduct] = useState(sort);
 
-  const handleChangePage = (nextPage: number) => {
-    if (currentPage !== nextPage) {
-      setCurrentPage(nextPage);
-    }
+  useEffect(() => {
+    sort.length && setSortProduct(sort);
+  }, [sort]);
+
+  const newUrl = new URL(url.toString());
+
+  const handleChangeSort = (newSort: string) => {
+    setParams('sort', newSort);
   };
 
-  const handleChangeSort = (value: string) => {
-    if (sortValue !== value) {
-      setSortValue(value);
-    }
+  const setParams = (paramsName: string, paramsValue: string) => {
+    newUrl.searchParams.set(paramsName, paramsValue);
+    newUrl.searchParams.set('page', '1');
+    navigate(`${newUrl.search}`);
   };
+
+  const { data: categoryAll } = useGetCategoryAllQuery();
+  const currentCategory = categoryAll
+    ? categoryAll.find((category) => category.id === Number(categoryId))
+    : undefined;
+  const breadcrumbs = createBreadcrumbs('catalog', currentCategory);
 
   return (
-    <>
-      <section className={styles.catalog}>
-        <div className="container">
-          <div className={styles['catalog-container']}>
-            <Breadcrumbs options={crumbs} />
-            <div className={styles.title}>
-              <h2>Каталог</h2>
-              <div className={styles.select}>
-                <Select
-                  style="secondary"
-                  onChange={handleChangeSort}
-                  options={selectOptions}
-                  value={sortValue}
-                />
-              </div>
-            </div>
-            <div className={styles.main}>
-              <aside className={styles.filters}>
-                <Filter title="Категорії" filters={categories} />
-              </aside>
-              <section className={styles.box}>
-                <div className={styles.books}>
-                  {catalogBooks &&
-                    catalogBooks.map((book) => (
-                      <BookCard key={book.id} slag={categoryId} data={book} />
-                    ))}
-                </div>
-                <Pagination
-                  elementsPerPage={elementsPerPage}
-                  totalElements={totalElements}
-                  currentPage={currentPage}
-                  onChange={handleChangePage}
-                />
-              </section>
-            </div>
+    <section className={styles.catalog}>
+      <div className="container">
+        <div className={styles['catalog-container']}>
+          <Breadcrumbs options={breadcrumbs} activeLastLink={false} />
+          <CatalogHeader
+            handleChangeSort={handleChangeSort}
+            sortProduct={sortProduct}
+          />
+          <div className={styles.main}>
+            <Filters />
+            <Products
+              categoryId={categoryId}
+              page={page}
+              sortProduct={sortProduct}
+            />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

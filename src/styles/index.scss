@@ -35,3 +35,13 @@ input {
   margin: 0 auto;
   padding: 0 40px;
 }
+
+.flex-1 {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 344px;
+
+  line-height: 1 !important;
+}
