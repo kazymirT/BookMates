@@ -75,3 +75,30 @@ export const searchSchema = z.object({
 });
 
 export type SearchValues = z.infer<typeof searchSchema>;
+
+export const orderSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, 'Це поле є обов`язковим.')
+    .regex(/^[A-ZА-ЯІЇЄ]/, 'Ім`я має починатись з великої літери')
+    .min(4, 'мінімум 4 символи')
+    .max(20, 'максимум 20 символів'),
+  lastName: z
+    .string()
+    .min(1, 'Це поле є обов`язковим.')
+    .regex(/^[A-ZА-ЯІЇЄ]/, 'Прізвище має починатись з великої літери')
+    .min(4, 'мінімум 4 символи')
+    .max(20, 'максимум 20 символів'),
+  email: email,
+  phone: z
+    .string()
+    .regex(
+      /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+      'Введіть дійсний номер телефону'
+    ),
+  city: z.string().min(5, 'Це поле є обов`язковим.'),
+  department: z.string().min(3, 'Це поле є обов`язковим.'),
+  pay: z.string(),
+});
+
+export type OrderValues = z.infer<typeof orderSchema>;

@@ -1,0 +1,105 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+
+.order {
+  background-color: colors.$brown-100;
+
+  .order-container {
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
+
+    padding-top: 40px;
+    padding-bottom: 120px;
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      width: 100%;
+      margin: 0 auto;
+
+      h2 {
+        width: 100%;
+
+        font-family: fonts.$font-family;
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.21;
+        color: colors.$grey-300;
+        letter-spacing: 0.05em;
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: 1fr 393px;
+        gap: 40px;
+
+        .articles {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+
+          .form-item {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 767px;
+            padding: 16px 16px 24px;
+
+            background-color: colors.$accent-white;
+            border-radius: 0.5rem;
+
+            .title {
+              display: flex;
+              gap: 24px;
+              align-items: center;
+
+              .circle {
+                padding: 12.5px 18.7px;
+
+                font-size: 1rem;
+                font-weight: 500;
+                line-height: 1.19;
+                color: colors.$grey-300;
+                letter-spacing: 0.01em;
+
+                background: colors.$button-hover-seccondary;
+                border-radius: 50%;
+              }
+
+              h3 {
+                font-family: fonts.$font-family;
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: colors.$grey-300;
+                letter-spacing: 0.04em;
+              }
+            }
+
+            .input-container {
+              display: flex;
+              flex-flow: row wrap;
+              gap: 24px 31px;
+
+              & > div {
+                width: 100%;
+                max-width: 352px;
+              }
+            }
+
+            .address {
+              display: flex;
+              flex-direction: column;
+              gap: 24px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
