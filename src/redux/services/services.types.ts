@@ -10,6 +10,24 @@ export interface Register {
   password: string;
 }
 
+export interface CartItem {
+  cartItemId: number;
+  bookId: number;
+  quantity: number;
+  price: number;
+}
+export interface CartResponse {
+  userId: number;
+  cartHeaderId: number;
+  totalPrice: number;
+  cartItems: CartItem[];
+}
+
+export interface AddBook {
+  bookId: number;
+  quantity: number;
+}
+
 export interface AuthResponse {
   token: string;
 }

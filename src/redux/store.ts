@@ -8,6 +8,7 @@ import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
 import profileSlice from './slices/profileSlice';
 import { queryParamsSlice } from './slices/queryParams';
+import shoppingCartSlice from './slices/shoppingCartSlice';
 import statusSlice from './slices/statusSlice';
 import userSlice from './slices/userSlice';
 
@@ -22,6 +23,7 @@ const store = configureStore({
     profile: profileSlice,
     status: statusSlice,
     cartNotification: cartNotificationSlice,
+    shoppingCart: shoppingCartSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(novaApi.middleware, baseApi.middleware),

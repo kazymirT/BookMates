@@ -39,7 +39,7 @@ const Product = () => {
               )}
             </div>
             <ProductDetails book={!isLoading ? book : undefined} />
-            <ProductControl price={!isLoading ? book?.price : undefined} />
+            <ProductControl book={book} />
           </section>
         }
         <section className={styles.likes}>

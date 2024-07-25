@@ -12,7 +12,7 @@ import Search from '@/components/Search/Search';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
-import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
+import { toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
 import { addFilterItem, clearFilters } from '@/redux/slices/queryParams';
 import { userId } from '@/redux/slices/userSlice';
 
@@ -22,9 +22,7 @@ const Header = () => {
   const { data: user } = useGetUserQuery(id ?? skipToken);
   const dispatch = useAppDispatch();
 
-  const showNotification = () => {
-    dispatch(toggleShowCartNotification(true));
-  };
+  const openCart = () => dispatch(toggleOpenCart(true));
   const onClickCatalog = () => {
     dispatch(clearFilters());
   };
@@ -56,7 +54,7 @@ const Header = () => {
               alt="cart"
               width={24}
               height={24}
-              onClick={showNotification}
+              onClick={openCart}
             />
           </div>
         </div>
