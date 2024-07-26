@@ -14,7 +14,13 @@ export type CatalogHeaderProps = {
 
 export type FilterProps = {
   title: string;
-  filters?: CategoryAll[];
+  categories?: CategoryAll[];
+  onFilterChange: () => void;
+  isScroll?: boolean;
+  price?: {
+    min: number;
+    max: number;
+  };
 };
 
 export type ProductType = {

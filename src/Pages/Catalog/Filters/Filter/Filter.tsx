@@ -1,42 +1,77 @@
-import { PropsWithChildren } from 'react';
-import Skeleton from 'react-loading-skeleton';
-import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+import { useState, useRef, useEffect } from 'react';
 
 import styles from './Filter.module.scss';
 import { FilterProps } from '../../Catalog.types';
+import arrow from '@/assets/icons/ArrowDown.svg';
+import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 
-export function InlineWrapperWithMargin({
-  children,
-}: PropsWithChildren<unknown>) {
-  return (
-    <span style={{ marginBottom: '1rem', display: 'block' }}>{children}</span>
-  );
-}
+const Filter = ({
+  categories,
+  title,
+  onFilterChange,
+  isScroll,
+}: FilterProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const listRef = useRef<HTMLUListElement>(null);
 
-const Filter = ({ filters, title }: FilterProps) => {
+  const handleToggleOpen = () => {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value, event.target.checked);
+    onFilterChange();
+  };
+
+  useEffect(() => {
+    const ulElement = listRef.current;
+    if (ulElement) {
+      if (isOpen) {
+        ulElement.style.height = `${ulElement.scrollHeight}px`;
+        ulElement.addEventListener(
+          'transitionend',
+          () => {
+            ulElement.style.height = 'auto';
+          },
+          { once: true }
+        );
+      } else {
+        ulElement.style.height = `${ulElement.scrollHeight}px`;
+        requestAnimationFrame(() => {
+          ulElement.style.height = '0';
+        });
+      }
+    }
+  }, [isOpen]);
+
+  const arrowClassNames = classNames(styles.arrow, {
+    [styles['arrow_open']]: !isOpen,
+  });
+  const listsClassNames = classNames(styles.lists, {
+    [styles.open]: isOpen,
+    [styles['open_scroll']]: isScroll,
+  });
+
   return (
     <div className={styles.filter}>
-      <h3>{title}</h3>
-      <ul className={styles.navigate}>
-        {filters ? (
-          filters.map((filter) => (
-            <li key={filter.id}>
-              <NavLink
-                className={({ isActive }) => (isActive ? styles.active : '')}
-                to={`/catalog/${filter.id}?page=1`}
-              >
-                {filter.name}
-              </NavLink>
+      <div className={styles.box} onClick={handleToggleOpen}>
+        <h3>{title}</h3>
+        <img src={arrow} className={arrowClassNames} alt="arrow icon" />
+      </div>
+      <ul ref={listRef} className={listsClassNames}>
+        {categories &&
+          categories.map((category) => (
+            <li key={category.id}>
+              <Checkbox
+                type="checkbox"
+                variant="secondary"
+                value={category.name}
+                onChange={handleFilterChange}
+                label={category.name}
+              />
             </li>
-          ))
-        ) : (
-          <Skeleton
-            count={13}
-            width={250}
-            height={48}
-            wrapper={InlineWrapperWithMargin}
-          />
-        )}
+          ))}
       </ul>
     </div>
   );

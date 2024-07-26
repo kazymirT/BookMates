@@ -102,3 +102,19 @@ export const orderSchema = z.object({
 });
 
 export type OrderValues = z.infer<typeof orderSchema>;
+
+export const priceSchema = z
+  .object({
+    min: z.preprocess((val) => Number(val), z.number()),
+    max: z.preprocess((val) => Number(val), z.number()),
+  })
+  .refine((data) => Number(data.min) < Number(data.max), {
+    path: ['min'],
+    message: 'Мінімальне значення більше за максимальне',
+  })
+  .refine((data) => Number(data.min) < Number(data.max), {
+    path: ['max'],
+    message: 'Максимальне значення менше за мінімальне',
+  });
+
+export type PriceValues = z.infer<typeof priceSchema>;

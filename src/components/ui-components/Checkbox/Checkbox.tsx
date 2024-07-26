@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ComponentPropsWithoutRef, forwardRef, useId } from 'react';
 
 import styles from './Checkbox.module.scss';
@@ -9,20 +10,39 @@ interface InputProps extends ComponentPropsWithoutRef<'input'> {
   value?: string;
   type: 'checkbox' | 'radio';
   children?: JSX.Element;
+  variant: 'primary' | 'secondary';
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Checkbox = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, errorMessage, value, name, type, children, ...rest }, ref) => {
+  (
+    {
+      label,
+      errorMessage,
+      variant,
+      value,
+      name,
+      type,
+      onChange,
+      children,
+      ...rest
+    },
+    ref
+  ) => {
     const id = useId();
-
+    const checkboxClassNames = classNames(styles['checkbox-container'], {
+      [styles['primary']]: variant === 'primary',
+      [styles['secondary']]: variant === 'secondary',
+    });
     return (
-      <div className={styles['checkbox-container']}>
+      <div className={checkboxClassNames}>
         <input
           {...rest}
           id={id}
           type={type}
           value={value}
           ref={ref}
+          onChange={onChange}
           name={name}
           className={styles.input}
         />

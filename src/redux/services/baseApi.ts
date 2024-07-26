@@ -7,7 +7,8 @@ import { login, logout } from '../slices/userSlice';
 import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://teamchallenge.onrender.com/api/',
+  // baseUrl: 'https://teamchallenge.onrender.com/api/',
+  baseUrl: 'http://3.73.128.44:8080/api/',
   // credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).user.token;

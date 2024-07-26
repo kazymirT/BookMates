@@ -98,7 +98,7 @@ const RegisterForm = () => {
             Мінімум 8 символів, без відступів і спеціальних знаків
           </p>
         </div>
-        <Checkbox {...register('accept')} type="checkbox">
+        <Checkbox {...register('accept')} type="checkbox" variant="primary">
           <p className={styles.terms}>
             Створюючи кабінет на Bookmate, я погоджуюся з правилами повернення
             та договором оферти.
