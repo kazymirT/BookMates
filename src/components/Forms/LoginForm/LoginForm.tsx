@@ -54,7 +54,7 @@ const LoginForm = () => {
             placeholder="Електронна пошта"
             type="email"
             serverError={isServerError}
-            handleFocus={hideServerError}
+            onFocus={hideServerError}
             errorMessage={errors.email?.message}
           />
           <Input
@@ -62,7 +62,7 @@ const LoginForm = () => {
             placeholder="Пароль"
             type="password"
             serverError={isServerError}
-            handleFocus={hideServerError}
+            onFocus={hideServerError}
             errorMessage={errors.password?.message}
           />
           {isServerError && (

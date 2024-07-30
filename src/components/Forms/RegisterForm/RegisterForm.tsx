@@ -70,7 +70,7 @@ const RegisterForm = () => {
               placeholder="Електронна пошта"
               type="email"
               serverError={isServerError}
-              handleFocus={hideServerError}
+              onFocus={hideServerError}
               errorMessage={errors.email?.message}
             />
             {isServerError && (

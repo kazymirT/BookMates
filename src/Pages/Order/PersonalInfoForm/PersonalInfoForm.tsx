@@ -1,6 +1,7 @@
 import styles from './PersonalInfoForm.module.scss';
 import { type PersonalInfoFormProps } from '../order.types';
 import Input from '@/components/ui-components/Input/Input';
+import InputPhone from '@/components/ui-components/Input/InputPhone';
 
 const PersonalInfoForm = ({ register, errors }: PersonalInfoFormProps) => {
   return (
@@ -24,7 +25,7 @@ const PersonalInfoForm = ({ register, errors }: PersonalInfoFormProps) => {
           type="text"
           errorMessage={errors.lastName?.message}
         />
-        <Input
+        <InputPhone
           {...register.phone}
           placeholder="Телефон"
           requiredMessage
