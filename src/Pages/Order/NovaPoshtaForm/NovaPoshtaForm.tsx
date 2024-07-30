@@ -1,18 +1,33 @@
+import { skipToken } from '@reduxjs/toolkit/query';
+import { SearchAutocomplete } from '@ui_components/Autocomplete/Autocomplete';
+import AutoCompleteAsync from '@ui_components/Autocomplete/AutocompleteAsync';
+import { CITY_DEFAULT } from '@ui_components/Autocomplete/constants';
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 
-import { NovaPoshtaFormProps } from '../order.types';
+import { type NovaPoshtaFormProps } from '../order.types';
 import styles from '../PersonalInfoForm/PersonalInfoForm.module.scss';
-import AutoComplete from '@/components/ui-components/SearchAutocomplete/AutoComplete';
+import { type Option } from '@/components/ui-components/Select/Select.types';
+import { useAppDispatch } from '@/redux/hooks';
+import { useGetWarehousesQuery } from '@/redux/services/novaApi';
+import { type Address, novaApi } from '@/redux/services/novaApi';
 
-const NovaPoshtaForm = ({ control }: NovaPoshtaFormProps) => {
-  const [cityName, setCityName] = useState<string>('');
-  const handleCityName = (newValue: string) => {
-    setCityName(newValue);
+const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
+  const dispatch = useAppDispatch();
+  const [cityName, setCityName] = useState<string | undefined>(undefined);
+  const { currentData: warehousesData } = useGetWarehousesQuery(
+    cityName ?? skipToken
+  );
+  const loadOptionsCity = async (inputValue: string): Promise<Address[]> => {
+    const result = await dispatch(
+      novaApi.endpoints.getSettlements.initiate(inputValue)
+    ).unwrap();
+    return result;
   };
-  const [warehouses, setWarehouses] = useState<string>('');
-  const handleWarehousesName = (newValue: string) => {
-    setWarehouses(newValue);
+
+  const handleCityName = (newValue?: string) => {
+    setCityName(newValue);
+    setValue('department', '');
   };
 
   return (
@@ -26,17 +41,22 @@ const NovaPoshtaForm = ({ control }: NovaPoshtaFormProps) => {
           control={control}
           name="city"
           render={({ field, fieldState }) => (
-            <AutoComplete
-              placeholder="Місто"
-              value={field.value}
-              type="City"
-              onChange={(newValue: { label: string; value: string }) => {
-                field.onChange(newValue.label);
-                handleCityName(newValue.value);
-                handleWarehousesName('Відділення Нової Пошти/поштомату');
+            <AutoCompleteAsync
+              requiredMessage="Місто"
+              placeholder="Виберіть зі списку, або почніть водити назву вашого міста"
+              defaultOptions={CITY_DEFAULT}
+              value={
+                field.value
+                  ? { label: field.value, value: field.value }
+                  : undefined
+              }
+              onChange={(newValue: Option | null) => {
+                field.onChange(newValue?.label);
+                handleCityName(newValue?.value);
               }}
               onBlur={field.onBlur}
               errorMessage={fieldState.error?.message}
+              loadOptions={loadOptionsCity}
             />
           )}
         />
@@ -44,16 +64,14 @@ const NovaPoshtaForm = ({ control }: NovaPoshtaFormProps) => {
           control={control}
           name="department"
           render={({ field, fieldState }) => (
-            <AutoComplete
+            <SearchAutocomplete
+              data={warehousesData ?? []}
               placeholder="Відділення Нової Пошти/поштомату"
-              value={warehouses}
-              type="Warehouses"
-              isDisabled={cityName.length <= 1 ? true : false}
-              onChange={(newValue: { label: string; value: string }) => {
-                field.onChange(newValue.label);
-                handleWarehousesName(newValue.label);
+              keyChange={cityName}
+              isDisabled={!cityName}
+              onChange={(newValue: Option | null) => {
+                field.onChange(newValue?.label);
               }}
-              searchName={cityName}
               onBlur={field.onBlur}
               errorMessage={fieldState.error?.message}
             />

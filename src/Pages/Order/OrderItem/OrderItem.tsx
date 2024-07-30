@@ -1,9 +1,5 @@
 import styles from './OrderItem.module.scss';
-import { OrderListType } from '@/utils/fake';
-
-type OrderItemProps = {
-  data: OrderListType;
-};
+import { type OrderItemProps } from '../order.types';
 
 const OrderItem = ({
   data: { authors, count, img, price, title },

@@ -1,17 +1,11 @@
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import styles from './OrderActions.module.scss';
+import { type OrderActionsProps } from '../order.types';
 import OrderItem from '../OrderItem/OrderItem';
 import EditIcon from '@/components/svg/edit/Edit';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import { ordersList } from '@/utils/fake';
-
-type OrderActionsProps = {
-  register: UseFormRegisterReturn<'pay'>;
-  isValid: boolean;
-  isSubmitting: boolean;
-};
 
 const OrderActions = ({
   register,
@@ -56,7 +50,6 @@ const OrderActions = ({
         </div>
         <Checkbox
           {...register}
-          // checked
           name="pay"
           type="radio"
           value="Оплата за реквізитами"

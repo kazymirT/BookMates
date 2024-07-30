@@ -1,4 +1,11 @@
-import { Control, UseFormRegisterReturn, FieldErrors } from 'react-hook-form';
+import {
+  Control,
+  UseFormRegisterReturn,
+  FieldErrors,
+  UseFormSetValue,
+} from 'react-hook-form';
+
+import { type OrderListType } from '@/utils/fake';
 
 export type PersonalInfoFormProps = {
   register: {
@@ -32,7 +39,7 @@ export type NovaPoshtaFormProps = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any
   >;
-  errors: FieldErrors<{
+  setValue: UseFormSetValue<{
     firstName: string;
     lastName: string;
     email: string;
@@ -41,4 +48,14 @@ export type NovaPoshtaFormProps = {
     department: string;
     pay: string;
   }>;
+};
+
+export type OrderActionsProps = {
+  register: UseFormRegisterReturn<'pay'>;
+  isValid: boolean;
+  isSubmitting: boolean;
+};
+
+export type OrderItemProps = {
+  data: OrderListType;
 };

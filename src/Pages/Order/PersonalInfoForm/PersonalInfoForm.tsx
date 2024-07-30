@@ -1,5 +1,5 @@
 import styles from './PersonalInfoForm.module.scss';
-import { PersonalInfoFormProps } from '../order.types';
+import { type PersonalInfoFormProps } from '../order.types';
 import Input from '@/components/ui-components/Input/Input';
 
 const PersonalInfoForm = ({ register, errors }: PersonalInfoFormProps) => {

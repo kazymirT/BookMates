@@ -11,7 +11,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
-import { OrderValues, orderSchema } from '@/utils/validateSchema';
+import { type OrderValues, orderSchema } from '@/utils/validateSchema';
 
 const Order = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +20,7 @@ const Order = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { isValid, errors, isSubmitting },
   } = useForm<OrderValues>({
     defaultValues: {
@@ -65,7 +66,7 @@ const Order = () => {
                     phone: register('phone'),
                   }}
                 />
-                <NovaPoshtaForm control={control} errors={errors} />
+                <NovaPoshtaForm control={control} setValue={setValue} />
               </div>
               <OrderActions
                 isSubmitting={isSubmitting}

@@ -96,8 +96,16 @@ export const orderSchema = z.object({
       /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
       'Введіть дійсний номер телефону'
     ),
-  city: z.string().min(5, 'Це поле є обов`язковим.'),
-  department: z.string().min(3, 'Це поле є обов`язковим.'),
+  city: z.string({
+    required_error: 'Це поле є обов`язковим.',
+    invalid_type_error: 'Це поле є обов`язковим.',
+  }),
+  department: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(4, "Це поле є обов'язковим"),
   pay: z.string(),
 });
 
