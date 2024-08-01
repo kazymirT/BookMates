@@ -3,7 +3,11 @@
 
 .filters {
   height: fit-content;
-  padding: 8px 0 11px;
+  padding: 8px 0;
   background-color: colors.$accent-white;
   border-radius: 12px;
+
+  & > div:last-child {
+    border-bottom: none;
+  }
 }

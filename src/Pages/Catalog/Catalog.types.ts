@@ -1,4 +1,5 @@
 import { CategoryAll } from '@/redux/services/services.types';
+import { FilterType } from '@/redux/slices/queryParams';
 
 export type CatalogNavigate = {
   sort: string;
@@ -7,20 +8,16 @@ export type CatalogNavigate = {
   categoryId: string;
 };
 
-export type CatalogHeaderProps = {
-  handleChangeSort: (newSort: string) => void;
-  sortProduct: string;
-};
-
 export type FilterProps = {
   title: string;
   categories?: CategoryAll[];
-  onFilterChange: () => void;
   isScroll?: boolean;
+  isDefaultOpen?: boolean;
   price?: {
     min: number;
     max: number;
   };
+  filterType: keyof FilterType;
 };
 
 export type ProductType = {

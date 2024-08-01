@@ -1,64 +1,33 @@
 import classNames from 'classnames';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import ReactSlider from 'react-slider';
 
 import 'nouislider/distribute/nouislider.css';
 import { FilterProps } from '../../Catalog.types';
 import styles from '../Filter/Filter.module.scss';
 import arrow from '@/assets/icons/ArrowDown.svg';
+import useToggleOpen from '@/hooks/handleToggleOpen';
+import { useAppDispatch } from '@/redux/hooks';
+import { setPrice } from '@/redux/slices/queryParams';
 
-const PriceFilter = ({
-  title,
-  // onFilterChange,
-  price,
-}: FilterProps) => {
-  const listRef = useRef<HTMLUListElement>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const PriceFilter = ({ title, price }: FilterProps) => {
+  const dispatch = useAppDispatch();
+  const { isOpen, handleToggleOpen, listRef } = useToggleOpen<HTMLDivElement>();
   const [value, setValue] = useState<number[]>([
     price ? price.min : 0,
     price ? price.max : 999,
   ]);
-
-  useEffect(() => {
-    const ulElement = listRef.current;
-    if (ulElement) {
-      if (isOpen) {
-        ulElement.style.height = `${ulElement.scrollHeight}px`;
-        ulElement.addEventListener(
-          'transitionend',
-          () => {
-            ulElement.style.height = 'auto';
-          },
-          { once: true }
-        );
-      } else {
-        ulElement.style.height = `${ulElement.scrollHeight}px`;
-        requestAnimationFrame(() => {
-          ulElement.style.height = '0';
-        });
-      }
-    }
-  }, [isOpen]);
-
-  const handleToggleOpen = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
+  const [isError, setIsError] = useState(false);
 
   const handlerLowerBound = (lower: React.ChangeEvent<HTMLInputElement>) => {
     const lowerValue = Number(lower.target.value);
-    // if (lowerValue > value[1]) {
-    //   setValue([value[1], value[1]]);
-    // } else {
-    // }
+    lowerValue >= value[1] ? setIsError(true) : setIsError(false);
     setValue([lowerValue, value[1]]);
   };
 
   const handlerUpperBound = (upper: React.ChangeEvent<HTMLInputElement>) => {
     const upperValue = Number(upper.target.value);
-    // if (upperValue <= value[0]) {
-    //   setValue([value[0], value[0]]);
-    // } else {
-    // }
+    value[0] >= upperValue ? setIsError(true) : setIsError(false);
     setValue([value[0], upperValue]);
   };
 
@@ -68,8 +37,11 @@ const PriceFilter = ({
   const controlClassNames = classNames(styles.control, {
     [styles.open]: isOpen,
   });
+  const inputClassNames = classNames(styles.input, {
+    [styles['input__error']]: isError,
+  });
   const onSubmit = () => {
-    console.log(value);
+    dispatch(setPrice(value));
   };
   return (
     <div className={styles.filter}>
@@ -77,36 +49,36 @@ const PriceFilter = ({
         <h3>{title}</h3>
         <img src={arrow} className={arrowClassNames} alt="arrow icon" />
       </div>
-      <div className={controlClassNames}>
+      <div className={controlClassNames} ref={listRef}>
         <ReactSlider
-          value={value}
-          max={1000}
+          value={value[1] > value[0] ? value : undefined}
+          max={700}
           min={0}
           minDistance={1}
           onChange={(value) => {
             setValue(value);
+            setIsError(false);
           }}
           className={styles['range-slider']}
           thumbClassName={styles['range-slider__thumb']}
-          // trackClassName={styles.track}
         />
         <div className={styles['price-control']} onSubmit={onSubmit}>
           <div className={styles.inputs}>
             <input
-              className={styles.input}
+              className={inputClassNames}
               type="text"
               value={value[0]}
               onChange={handlerLowerBound}
             />
             <span></span>
             <input
-              className={styles.input}
+              className={inputClassNames}
               type="text"
               value={value[1]}
               onChange={handlerUpperBound}
             />
           </div>
-          <button type="button" onClick={onSubmit}>
+          <button type="button" onClick={onSubmit} disabled={isError}>
             ok
           </button>
         </div>

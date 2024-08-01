@@ -1,55 +1,37 @@
 import classNames from 'classnames';
-import { useState, useRef, useEffect } from 'react';
 
 import styles from './Filter.module.scss';
 import { FilterProps } from '../../Catalog.types';
 import arrow from '@/assets/icons/ArrowDown.svg';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
+import useToggleOpen from '@/hooks/handleToggleOpen';
+import { useAppDispatch } from '@/redux/hooks';
+import { addFilterItem, removeFilterItem } from '@/redux/slices/queryParams';
 
 const Filter = ({
   categories,
   title,
-  onFilterChange,
   isScroll,
+  isDefaultOpen,
+  filterType,
 }: FilterProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const listRef = useRef<HTMLUListElement>(null);
-
-  const handleToggleOpen = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
-  };
+  const { isOpen, handleToggleOpen, listRef } =
+    useToggleOpen<HTMLUListElement>(isDefaultOpen);
+  const dispatch = useAppDispatch();
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value, event.target.checked);
-    onFilterChange();
+    const { value, checked } = event.target;
+    checked
+      ? dispatch(addFilterItem({ filterName: filterType, value }))
+      : dispatch(removeFilterItem({ filterName: filterType, value }));
   };
-
-  useEffect(() => {
-    const ulElement = listRef.current;
-    if (ulElement) {
-      if (isOpen) {
-        ulElement.style.height = `${ulElement.scrollHeight}px`;
-        ulElement.addEventListener(
-          'transitionend',
-          () => {
-            ulElement.style.height = 'auto';
-          },
-          { once: true }
-        );
-      } else {
-        ulElement.style.height = `${ulElement.scrollHeight}px`;
-        requestAnimationFrame(() => {
-          ulElement.style.height = '0';
-        });
-      }
-    }
-  }, [isOpen]);
 
   const arrowClassNames = classNames(styles.arrow, {
     [styles['arrow_open']]: !isOpen,
   });
+
   const listsClassNames = classNames(styles.lists, {
-    [styles.open]: isOpen,
+    [styles['open']]: isOpen,
     [styles['open_scroll']]: isScroll,
   });
 

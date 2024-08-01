@@ -1,12 +1,15 @@
 import styles from './CatalogHeader.module.scss';
-import { CatalogHeaderProps } from '../Catalog.types';
 import Select from '@/components/ui-components/Select/Select';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { setSort, sort } from '@/redux/slices/queryParams';
 import { selectSortOptions } from '@/utils/constants';
 
-const CatalogHeader = ({
-  handleChangeSort,
-  sortProduct,
-}: CatalogHeaderProps) => {
+const CatalogHeader = () => {
+  const sortValue = useAppSelector(sort);
+  const dispatch = useAppDispatch();
+  const handleChangeSort = (value: string) => {
+    dispatch(setSort({ sort: value }));
+  };
   return (
     <div className={styles.title}>
       <h2>Каталог</h2>
@@ -15,7 +18,7 @@ const CatalogHeader = ({
           style="secondary"
           onChange={handleChangeSort}
           options={selectSortOptions}
-          value={sortProduct}
+          value={sortValue}
           aria-label="sort by options"
         />
       </div>

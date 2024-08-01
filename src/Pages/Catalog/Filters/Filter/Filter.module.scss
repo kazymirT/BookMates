@@ -2,9 +2,11 @@
 @use '@/styles/fonts.scss';
 
 .filter {
+  // scrollbar-color:  colors.$grey-100 colors.$background-color;
+  scrollbar-width: thin;
+
   display: flex;
   flex-direction: column;
-  gap: 16px;
 
   padding: 16px 16px 14px;
 
@@ -22,6 +24,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
+    cursor: pointer;
     background-color: colors.$grey-100;
     border-radius: 5px;
   }
@@ -67,6 +70,7 @@
       scrollbar-width: none;
       overflow-y: scroll !important;
       height: auto;
+      padding-top: 16px;
 
       &_scroll {
         scrollbar-width: auto;
@@ -120,7 +124,7 @@
         align-items: center;
         padding-top: 3px;
 
-        input {
+        .input {
           width: 100%;
           max-width: 58px;
           padding: 1.85px 7px;
@@ -129,10 +133,11 @@
 
           background-color: colors.$background-color;
           border: none;
+          border: 1px solid transparent;
           border-radius: 6px;
           outline: none;
 
-          &.error {
+          &__error {
             border: 1px solid colors.$accent-red;
           }
         }
@@ -181,11 +186,11 @@
     transition: all 0.3s;
 
     &.open {
-      padding-top: 3px;
+      padding-top: 19px;
     }
 
     & > div {
-      padding-left: 8px;
+      padding-left: 4px;
     }
 
     .range-slider {
@@ -222,16 +227,6 @@
           outline: none;
         }
       }
-
-      // .range-slider__range {
-      //   height: 5px;
-      //   background: colors.$grey-100;
-      // }
     }
   }
-}
-
-.track .track-0 {
-  height: 5px !important;
-  background: red !important;
 }

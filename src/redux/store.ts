@@ -7,6 +7,7 @@ import cartNotificationSlice from './slices/cartNotificationSlice';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
 import profileSlice from './slices/profileSlice';
+import { queryParamsSlice } from './slices/queryParams';
 import statusSlice from './slices/statusSlice';
 import userSlice from './slices/userSlice';
 
@@ -14,6 +15,7 @@ const store = configureStore({
   reducer: {
     [novaApi.reducerPath]: novaApi.reducer,
     [baseApi.reducerPath]: baseApi.reducer,
+    queryParams: queryParamsSlice.reducer,
     modal: modalSlice,
     user: userSlice,
     locationHistory: locationHistorySlice,

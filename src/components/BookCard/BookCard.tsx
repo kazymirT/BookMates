@@ -62,7 +62,7 @@ const BookCard = ({ data }: Props) => {
             )}
           </div>
           <p className={styles.description}>
-            {data ? data.authors.join(', ') : <Skeleton />}
+            {/* {data ? data.authors.join(', ') : <Skeleton />} */}
           </p>
           {data ? (
             <button

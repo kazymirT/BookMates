@@ -46,7 +46,7 @@ export const selectSortOptions = [
 ];
 
 export const SORT_OPTIONS: Record<string, string> = {
-  'За популярністю': '',
+  'За популярністю': 'id,desc',
   'Спочатку дешеві': 'price,asc',
   'Спочатку дорогі': 'price,desc',
   'Спочатку нові': 'createdAt,asc',

@@ -1,37 +1,33 @@
 import Filter from './Filter/Filter';
 import styles from './Filters.module.scss';
 import PriceFilter from './PriceFilter/PriceFilter';
-// import { useGetCategoryAllQuery } from '@/redux/services/category';
 import { FILTERS } from '@/utils/fake';
 
 const Filters = () => {
-  // const { data: categoryAll, isLoading } = useGetCategoryAllQuery();
-  const handleFilterChange = () => {
-    // console.log('change filter');
-  };
-
   return (
     <aside className={styles.filters}>
       <Filter
         title="Категорії"
         categories={FILTERS.categories}
-        onFilterChange={handleFilterChange}
+        filterType="categories"
+        isDefaultOpen
       />
       <Filter
         title="Мова"
+        filterType="language"
         categories={FILTERS.language}
-        onFilterChange={handleFilterChange}
       />
       <Filter
         title="Рік видання"
+        filterType="years"
         categories={FILTERS.years}
         isScroll
-        onFilterChange={handleFilterChange}
+        isDefaultOpen
       />
       <PriceFilter
         title="Ціна"
-        onFilterChange={handleFilterChange}
-        price={{ max: 500, min: 0 }}
+        filterType="price"
+        price={{ max: 700, min: 0 }}
       />
     </aside>
   );

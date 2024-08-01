@@ -8,7 +8,6 @@ import { BooksData } from '@/redux/services/services.types';
 const HitProducts = () => {
   const { data: books, isLoading } = useGetBooksQuery({
     size: '4',
-    categoryId: '2',
   });
   const data = (
     books
