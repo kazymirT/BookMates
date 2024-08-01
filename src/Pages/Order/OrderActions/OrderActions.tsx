@@ -74,7 +74,7 @@ const OrderActions = ({
           Підтвердити замовлення
         </button>
         <Link to={'/catalog'} className={styles.continue} type="button">
-          Продовжити покупку
+          Продовжити покупки
         </Link>
       </div>
     </aside>

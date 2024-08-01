@@ -14,6 +14,7 @@ export const SearchAutocomplete = ({
   placeholder,
   isDisabled,
   errorMessage,
+  requiredMessage,
   keyChange,
 }: AutoCompleteType) => {
   const containerClName = classNames(styles.container, {
@@ -21,44 +22,42 @@ export const SearchAutocomplete = ({
     [styles['container__disabled']]: isDisabled,
   });
   return (
-    <>
-      <div className={styles.wrapper}>
-        <p className={styles.required}>{placeholder}</p>
-        <Select
-          key={`my_unique_select_key__${keyChange}`}
-          placeholder={placeholder}
-          unstyled
-          noOptionsMessage={() => <p>Почніть вводити назву вашого міста</p>}
-          isClearable
-          onChange={onChange}
-          onBlur={onBlur}
-          isSearchable
-          isMulti={false}
-          isDisabled={isDisabled}
-          openMenuOnClick
-          openMenuOnFocus
-          options={data}
-          components={{
-            DropdownIndicator,
-            IndicatorSeparator: null,
-            ClearIndicator,
-            MenuList,
-          }}
-          classNames={{
-            container: () => containerClName,
-            control: () => styles.control,
-            menu: () => styles.menu,
-            indicatorSeparator: () => styles.separator,
-            menuList: () => styles['menu-list'],
-            input: () => styles.input,
-            placeholder: () => styles.placeholder,
-            option: () => styles.option,
-          }}
-        />
-        {errorMessage && (
-          <p className={styles['message-error']}>{errorMessage}</p>
-        )}
-      </div>
-    </>
+    <div className={styles.wrapper}>
+      {requiredMessage && <p className={styles.required}>{requiredMessage}</p>}
+      <Select
+        key={`my_unique_select_key__${keyChange}`}
+        placeholder={placeholder}
+        unstyled
+        noOptionsMessage={() => <p>Почніть вводити назву вашого міста</p>}
+        isClearable
+        onChange={onChange}
+        onBlur={onBlur}
+        isSearchable
+        isMulti={false}
+        isDisabled={isDisabled}
+        openMenuOnClick
+        openMenuOnFocus
+        options={data}
+        components={{
+          DropdownIndicator,
+          IndicatorSeparator: null,
+          ClearIndicator,
+          MenuList,
+        }}
+        classNames={{
+          container: () => containerClName,
+          control: () => styles.control,
+          menu: () => styles.menu,
+          indicatorSeparator: () => styles.separator,
+          menuList: () => styles['menu-list'],
+          input: () => styles.input,
+          placeholder: () => styles.placeholder,
+          option: () => styles.option,
+        }}
+      />
+      {errorMessage && (
+        <p className={styles['message-error']}>{errorMessage}</p>
+      )}
+    </div>
   );
 };

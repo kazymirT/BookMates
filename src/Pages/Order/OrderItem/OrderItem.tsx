@@ -7,7 +7,7 @@ const OrderItem = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles['img-box']}>
-        <img src={img} alt={title} width={63} height={88} />
+        <img src={img} alt={title} width={63} height={91} />
       </div>
       <div className={styles.content}>
         <div className={styles.header}>

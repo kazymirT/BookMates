@@ -22,7 +22,7 @@ const AutoCompleteAsync = ({
   });
   return (
     <div className={styles.wrapper}>
-      <p className={styles.required}>{requiredMessage}</p>
+      {requiredMessage && <p className={styles.required}>{requiredMessage}</p>}
       <AsyncSelect
         value={value}
         isSearchable={true}

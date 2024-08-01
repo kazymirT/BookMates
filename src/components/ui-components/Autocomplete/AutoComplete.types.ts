@@ -11,6 +11,7 @@ export interface AutoCompleteType
   onChange: (value: Option | null) => void;
   errorMessage?: string;
   isDisabled?: boolean;
+  requiredMessage?: string;
   keyChange?: string | undefined;
 }
 
@@ -23,6 +24,6 @@ export interface AutoCompleteAsyncType
   searchName?: string;
   isDisabled?: boolean;
   defaultOptions: Option[];
-  requiredMessage: string;
+  requiredMessage?: string;
   loadOptions: (inputValue: string) => Promise<Option[]>;
 }

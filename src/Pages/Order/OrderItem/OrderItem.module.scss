@@ -3,9 +3,12 @@
 
 .wrapper {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 
-  padding: 20px 12px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 350px;
+  padding: 20px 8px 20px 12px;
 
   background-color: colors.$button-hover-seccondary;
   border-radius: 8px;

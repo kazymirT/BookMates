@@ -34,7 +34,7 @@ const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
     <article className={styles['form-item']}>
       <div className={styles.title}>
         <div className={styles.circle}>2</div>
-        <h3>Як доставити</h3>
+        <h3>Спосіб доставки</h3>
       </div>
       <div className={styles.address}>
         <Controller
@@ -66,7 +66,8 @@ const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
           render={({ field, fieldState }) => (
             <SearchAutocomplete
               data={warehousesData ?? []}
-              placeholder="Відділення Нової Пошти/поштомату"
+              requiredMessage="Відділення Нової Пошти/поштомату"
+              placeholder="Нова пошта"
               keyChange={cityName}
               isDisabled={!cityName}
               onChange={(newValue: Option | null) => {
