@@ -1,0 +1,97 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+
+.wrapper {
+  display: flex;
+  gap: 8px;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 350px;
+  padding: 20px 8px 20px 12px;
+
+  background-color: colors.$button-hover-seccondary;
+  border-radius: 8px;
+
+  .img-box {
+    overflow: hidden;
+    font-size: 0;
+
+    img {
+      transition: all 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-height: 88px;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .title {
+        overflow: hidden;
+
+        width: 100%;
+
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.19;
+        color: colors.$grey-300;
+        text-overflow: ellipsis;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+
+      .authors {
+        overflow: hidden;
+
+        width: 100%;
+
+        font-size: 1rem;
+        line-height: 1.19;
+        color: colors.$icon-default;
+        text-overflow: ellipsis;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+      }
+    }
+
+    .prices {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .price {
+        font-size: 1rem;
+        font-weight: 500;
+        color: colors.$button-default;
+        letter-spacing: 0.01em;
+        // line-height: 1.1876;
+        &::after {
+          content: 'грн';
+        }
+      }
+
+      .count {
+        font-size: 0.75rem;
+        line-height: 1.5;
+        color: colors.$icon-default;
+        letter-spacing: -0.01em;
+
+        &::before {
+          content: 'x';
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+}

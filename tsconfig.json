@@ -22,7 +22,10 @@
 
     /*Aliases */
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@ui_components/*": ["./src/components/ui-components/*"],
+      "@page/*": ["./src/Pages/*"]
     }
   },
   "include": ["src"],

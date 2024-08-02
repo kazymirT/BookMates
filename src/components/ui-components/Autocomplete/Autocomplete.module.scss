@@ -1,0 +1,178 @@
+@use '@/styles/fonts.scss';
+@use '@/styles/colors.scss';
+@use '@/styles/mixin.scss';
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .required {
+    font-family: fonts.$font-family;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.19;
+    color: colors.$grey-300;
+    letter-spacing: 0.04em;
+
+    &::after {
+      content: '*';
+      color: colors.$accent-red;
+    }
+  }
+
+  .container {
+    position: static;
+
+    padding: 10.28px 16px;
+
+    border: 1px solid colors.$grey-100;
+    border-radius: 4px;
+
+    transition: all 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      border-color: colors.$grey-200;
+
+      .menu-list {
+        border-color: colors.$grey-200;
+      }
+    }
+
+    &__error {
+      border-color: colors.$accent-red;
+
+      & div.menu-list {
+        border-color: colors.$accent-red;
+      }
+
+      &:hover {
+        border-color: colors.$accent-red;
+
+        & div.menu-list {
+          border-color: colors.$accent-red;
+        }
+      }
+
+      & .placeholder {
+        color: colors.$accent-red;
+      }
+    }
+
+    &__disabled {
+      background-color: colors.$button-disabled;
+    }
+  }
+
+  .control {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 0;
+    padding: 0;
+  }
+
+  .input,
+  .placeholder {
+    width: 100%;
+
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    line-height: 1.188rem;
+    color: #555;
+    letter-spacing: 0.01em;
+  }
+
+  .indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+
+    &.indicator_opened {
+      transform: rotate(180deg);
+    }
+  }
+
+  .menu {
+    @include mixin.scrollBar(10px, 5px, colors.$background-color, colors.$background-color, colors.$grey-100);
+
+    position: absolute;
+    z-index: 10;
+    top: 70px;
+    left: 0;
+
+    width: 100%;
+
+    background-color: colors.$accent-white;
+
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+
+      padding: 10px 12px;
+
+      background-color: colors.$accent-white;
+      border: 1px solid colors.$grey-100;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: colors.$grey-200;
+      }
+
+      .option {
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 4px;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: colors.$brown-100;
+        }
+
+        &:active {
+          color: colors.$accent-white;
+          background-color: colors.$brown-200;
+        }
+      }
+    }
+  }
+
+  .message-error {
+    position: absolute;
+    top: 75px;
+    left: 0;
+
+    font-size: 0.75rem;
+    color: colors.$accent-red;
+    letter-spacing: 0.01em;
+
+    animation: errorShow 0.3s;
+  }
+
+  .clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+  }
+}
+
+@keyframes errorShow {
+  from {
+    font-size: 0;
+    opacity: 0;
+  }
+
+  to {
+    font-size: 0.75rem;
+    opacity: 1;
+  }
+}

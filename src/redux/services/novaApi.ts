@@ -33,13 +33,6 @@ interface SettlementsResponse {
   warningCodes: [];
   warnings: [];
 }
-
-export interface Address {
-  id: number;
-  address: string;
-  cityName: string;
-}
-
 interface WarehousesData {
   BeaconCode: string;
   BicycleParking: string;
@@ -136,17 +129,19 @@ interface WarehousesResponse {
   infoCodes: [];
 }
 
-export interface Warehouses {
+export type Address = {
+  idCity: number;
+  id: number;
   label: string;
-  schedule: {
-    Monday: string;
-    Tuesday: string;
-    Wednesday: string;
-    Thursday: string;
-    Friday: string;
-  };
-}
+  value: string;
+  cityRef: string;
+};
 
+export type Warehouses = {
+  label: string;
+  value: string;
+  id: number;
+};
 export const novaApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
@@ -163,17 +158,20 @@ export const novaApi = createApi({
           calledMethod: 'searchSettlements',
           methodProperties: {
             CityName: searchName,
-            Limit: '50',
+            Limit: '5',
             Page: `1`,
           },
         }),
       }),
       transformResponse: (response: SettlementsResponse) =>
-        response.data[0].Addresses.map((address) => ({
-          id: address.Warehouses,
-          address: address.Present,
-          cityName: address.MainDescription,
+        response.data[0]?.Addresses.map((address, index) => ({
+          id: index,
+          idCity: address.Warehouses,
+          label: address.Present,
+          value: address.MainDescription,
+          cityRef: address.Ref,
         })),
+      // response.data[0]?.Addresses.map((address) => address.MainDescription),
     }),
     getWarehouses: builder.query<Warehouses[], string>({
       query: (searchName) => ({
@@ -185,13 +183,15 @@ export const novaApi = createApi({
           calledMethod: 'getWarehouses',
           methodProperties: {
             CityName: searchName,
+            // CityRef: searchName,
           },
         }),
       }),
       transformResponse: (response: WarehousesResponse) =>
-        response.data.map((warehouse) => ({
+        response.data.map((warehouse, index) => ({
           label: warehouse.Description,
-          schedule: warehouse.Schedule,
+          value: warehouse.Description,
+          id: index,
         })),
     }),
   }),

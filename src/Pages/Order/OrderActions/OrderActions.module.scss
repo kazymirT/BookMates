@@ -1,0 +1,170 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+@use '@/styles/mixin.scss';
+
+.actions {
+  @include mixin.scrollBar(6px, 5px, colors.$background-color, colors.$background-color, colors.$grey-100);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 16px;
+
+  background-color: colors.$accent-white;
+  border-radius: 0.5rem;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.21;
+      color: colors.$grey-300;
+      letter-spacing: 0.03em;
+    }
+  }
+
+  .order-list {
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: 100%;
+    max-height: 270px;
+  }
+
+  .order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+
+      .label {
+        font-size: 0.88rem;
+        font-weight: 400;
+        line-height: 1.49;
+        color: colors.$icon-default;
+        letter-spacing: 0.01em;
+      }
+
+      .value {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.188;
+        color: colors.$grey-500;
+        letter-spacing: 0.06em;
+
+        &::after {
+          content: 'грн';
+          margin-left: 3px;
+        }
+      }
+
+      .promo-code {
+        width: 100%;
+        max-width: 120px;
+        padding: 3.15px 24px;
+
+        font-size: 0.88rem;
+        line-height: 1.5;
+        color: colors.$icon-default;
+        letter-spacing: 0.01em;
+
+        border: 1px solid colors.$grey-100;
+        border-radius: 28px;
+        outline: none;
+      }
+    }
+  }
+
+  .order-total {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .summary {
+      display: flex;
+      justify-content: space-between;
+
+      .label {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.208;
+        color: colors.$grey-500;
+        letter-spacing: 0.05em;
+      }
+
+      .value {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1.208;
+        color: colors.$grey-500;
+        letter-spacing: 0.06em;
+
+        &::after {
+          content: 'грн';
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+
+  .order-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .submit {
+      width: 100%;
+      padding: 16px;
+
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.188;
+      color: colors.$accent-white;
+      text-align: center;
+      letter-spacing: 0.01em;
+
+      background: colors.$button-default;
+      border-radius: 4px;
+
+      &:hover {
+        background: colors.$button-hover;
+      }
+
+      &:active {
+        background: colors.$button-active;
+      }
+
+      &:disabled {
+        color: colors.$grey-200;
+        background: colors.$button-disabled;
+      }
+    }
+
+    .continue {
+      align-self: center;
+
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.188;
+      color: colors.$grey-300;
+      letter-spacing: 0.01em;
+
+      &:hover {
+        color: colors.$brown-300;
+      }
+
+      &:active {
+        color: colors.$brown-400;
+      }
+    }
+  }
+}

@@ -70,7 +70,7 @@ const RegisterForm = () => {
               placeholder="Електронна пошта"
               type="email"
               serverError={isServerError}
-              handleFocus={hideServerError}
+              onFocus={hideServerError}
               errorMessage={errors.email?.message}
             />
             {isServerError && (
@@ -98,7 +98,7 @@ const RegisterForm = () => {
             Мінімум 8 символів, без відступів і спеціальних знаків
           </p>
         </div>
-        <Checkbox {...register('accept')}>
+        <Checkbox {...register('accept')} type="checkbox">
           <p className={styles.terms}>
             Створюючи кабінет на Bookmate, я погоджуюся з правилами повернення
             та договором оферти.

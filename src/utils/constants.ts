@@ -24,6 +24,10 @@ export const BASE_CRUMBS: Record<
     name: 'Каталог',
     to: '/catalog',
   },
+  order: {
+    name: 'Оформити замовлення',
+    to: '/order',
+  },
 };
 
 export enum TOPICS {
