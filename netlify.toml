@@ -2,4 +2,4 @@
   from = "/*"
   to = "/"
   status = 200
-  
+  /api/* http://3.73.128.44:8080/:splat 200
