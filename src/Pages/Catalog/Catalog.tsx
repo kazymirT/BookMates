@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import styles from './Catalog.module.scss';
 import CatalogHeader from './CatalogHeader/CatalogHeader';
@@ -12,15 +12,10 @@ import { initializeQueryState } from '@/utils/initializeQueryState';
 
 const Catalog = () => {
   const dispatch = useAppDispatch();
-  const hasMounted = useRef(false);
 
   useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-    } else {
-      const newState = initializeQueryState();
-      dispatch(initializeState(newState));
-    }
+    const newState = initializeQueryState();
+    dispatch(initializeState(newState));
   }, [dispatch]);
 
   const breadcrumbs = createBreadcrumbs('catalog');
