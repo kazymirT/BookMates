@@ -9,16 +9,25 @@ import { queryAllData } from '@/redux/slices/queryParams';
 import { SORT_OPTIONS } from '@/utils/constants';
 
 const Products = () => {
-  const { filter, page, search, sort } = useAppSelector(queryAllData);
+  const {
+    filter: { categories, language, price, years },
+    page,
+    sort,
+    search,
+  } = useAppSelector(queryAllData);
   const {
     data: books,
     isFetching,
     isLoading,
   } = useGetBooksQuery({
     page,
-    sort: [SORT_OPTIONS[sort ?? 'За популярністю']],
+    sort: [SORT_OPTIONS[sort]],
+    search,
+    categories,
+    price,
+    language,
+    years,
   });
-  console.log(filter, search);
   const booksClassName = classNames(styles.books, {
     [styles.disabled]: isFetching && !isLoading,
   });

@@ -1,23 +1,25 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 
 import 'nouislider/distribute/nouislider.css';
-import { FilterProps } from '../../Catalog.types';
+import { type PriceFilterProps } from '../../Catalog.types';
 import styles from '../Filter/Filter.module.scss';
 import arrow from '@/assets/icons/ArrowDown.svg';
-import useToggleOpen from '@/hooks/handleToggleOpen';
+import useToggleOpen from '@/hooks/useToggleOpen';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPrice } from '@/redux/slices/queryParams';
 
-const PriceFilter = ({ title, price }: FilterProps) => {
+const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
   const dispatch = useAppDispatch();
-  const { isOpen, handleToggleOpen, listRef } = useToggleOpen<HTMLDivElement>();
-  const [value, setValue] = useState<number[]>([
-    price ? price.min : 0,
-    price ? price.max : 999,
-  ]);
+  const { isOpen, handleToggleOpen, listRef } =
+    useToggleOpen<HTMLDivElement>(isDefaultOpen);
+  const [value, setValue] = useState<number[]>(price);
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    setValue([Number(price[0]), Number(price[1])]);
+  }, [price]);
 
   const handlerLowerBound = (lower: React.ChangeEvent<HTMLInputElement>) => {
     const lowerValue = Number(lower.target.value);
@@ -41,7 +43,7 @@ const PriceFilter = ({ title, price }: FilterProps) => {
     [styles['input__error']]: isError,
   });
   const onSubmit = () => {
-    dispatch(setPrice(value));
+    dispatch(setPrice([String(value[0]), String(value[1])]));
   };
   return (
     <div className={styles.filter}>
@@ -52,7 +54,7 @@ const PriceFilter = ({ title, price }: FilterProps) => {
       <div className={controlClassNames} ref={listRef}>
         <ReactSlider
           value={value[1] > value[0] ? value : undefined}
-          max={700}
+          max={1000}
           min={0}
           minDistance={1}
           onChange={(value) => {

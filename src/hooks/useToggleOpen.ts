@@ -4,21 +4,26 @@ const useToggleOpen = <T extends HTMLElement>(
   initialState: boolean = false
 ) => {
   const [isOpen, setIsOpen] = useState<boolean>(initialState);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const listRef = useRef<T>(null);
 
   const handleToggleOpen = () => {
-    setIsOpen((prevIsOpen) => !prevIsOpen);
+    if (!isAnimating) {
+      setIsOpen(!isOpen);
+    }
   };
 
   useEffect(() => {
     const element = listRef.current;
     if (element) {
+      setIsAnimating(true);
       if (isOpen) {
         element.style.height = `${element.scrollHeight}px`;
         element.addEventListener(
           'transitionend',
           () => {
             element.style.height = 'auto';
+            setIsAnimating(false);
           },
           { once: true }
         );
@@ -26,6 +31,7 @@ const useToggleOpen = <T extends HTMLElement>(
         element.style.height = `${element.scrollHeight}px`;
         requestAnimationFrame(() => {
           element.style.height = '0';
+          setIsAnimating(false);
         });
       }
     }

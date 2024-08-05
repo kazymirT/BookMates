@@ -1,10 +1,10 @@
 import classNames from 'classnames';
+import { useState } from 'react';
 
 import styles from './Filter.module.scss';
 import { FilterProps } from '../../Catalog.types';
 import arrow from '@/assets/icons/ArrowDown.svg';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
-import useToggleOpen from '@/hooks/handleToggleOpen';
 import { useAppDispatch } from '@/redux/hooks';
 import { addFilterItem, removeFilterItem } from '@/redux/slices/queryParams';
 
@@ -15,10 +15,10 @@ const Filter = ({
   isDefaultOpen,
   filterType,
 }: FilterProps) => {
-  const { isOpen, handleToggleOpen, listRef } =
-    useToggleOpen<HTMLUListElement>(isDefaultOpen);
+  const [isOpen, setIsOpen] = useState(!!isDefaultOpen);
   const dispatch = useAppDispatch();
 
+  const handleOnClick = () => setIsOpen(!isOpen);
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
     checked
@@ -37,17 +37,18 @@ const Filter = ({
 
   return (
     <div className={styles.filter}>
-      <div className={styles.box} onClick={handleToggleOpen}>
+      <div className={styles.box} onClick={handleOnClick}>
         <h3>{title}</h3>
         <img src={arrow} className={arrowClassNames} alt="arrow icon" />
       </div>
-      <ul ref={listRef} className={listsClassNames}>
+      <ul className={listsClassNames}>
         {categories &&
           categories.map((category) => (
-            <li key={category.id}>
+            <li key={`${category.id}${category.checked}`}>
               <Checkbox
                 type="checkbox"
                 variant="secondary"
+                defaultChecked={category.checked}
                 value={category.name}
                 onChange={handleFilterChange}
                 label={category.name}

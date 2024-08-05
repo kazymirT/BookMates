@@ -1,6 +1,6 @@
-import ReactPaginate from 'react-paginate';
-// import { useLoaderData, useNavigate } from 'react-router-dom';
 import './Pagination.scss';
+
+import ReactPaginate from 'react-paginate';
 
 import ArrowIcon from '../svg/arrow/Arrow';
 import { useAppDispatch } from '@/redux/hooks';
@@ -12,14 +12,10 @@ type Props = {
 };
 
 const Pagination = ({ totalPages, currentPage }: Props) => {
-  // const { url } = useLoaderData() as { url: URL };
-  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const handlePageClick = (selectedItem: { selected: number }) => {
-    // const newUrl = new URL(url.toString());
-    // newUrl.searchParams.set('page', String(selectedItem.selected + 1));
-    // navigate(`${newUrl.search}`);
-    dispatch(setPage({ page: selectedItem.selected + 1 }));
+    const newPage = String(selectedItem.selected + 1);
+    dispatch(setPage(newPage));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

@@ -11,6 +11,7 @@ import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
+import { addFilterItem, clearFilters } from '@/redux/slices/queryParams';
 import { userId } from '@/redux/slices/userSlice';
 
 const Header = () => {
@@ -22,7 +23,14 @@ const Header = () => {
   const showNotification = () => {
     dispatch(toggleShowCartNotification(true));
   };
-
+  const onClickCatalog = () => {
+    dispatch(clearFilters());
+  };
+  const onClickBestsellers = () => {
+    dispatch(
+      addFilterItem({ filterName: 'categories', value: 'Саморозвиток' })
+    );
+  };
   return (
     <header className={styles.header}>
       <Link to={'/'}>
@@ -31,10 +39,17 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link to={'/catalog/bestseller'}>Хіти продажів</Link>
+            <Link
+              to={'/catalog?categories=self-development'}
+              onClick={onClickBestsellers}
+            >
+              Хіти продажів
+            </Link>
           </li>
           <li>
-            <Link to={'/catalog'}>Каталог</Link>
+            <Link to={'/catalog'} onClick={onClickCatalog}>
+              Каталог
+            </Link>
           </li>
           <li>
             <Link to={'/order'}>Вигідні пропозиції</Link>

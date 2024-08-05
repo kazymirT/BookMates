@@ -8,8 +8,9 @@ const CatalogHeader = () => {
   const sortValue = useAppSelector(sort);
   const dispatch = useAppDispatch();
   const handleChangeSort = (value: string) => {
-    dispatch(setSort({ sort: value }));
+    dispatch(setSort(value));
   };
+
   return (
     <div className={styles.title}>
       <h2>Каталог</h2>

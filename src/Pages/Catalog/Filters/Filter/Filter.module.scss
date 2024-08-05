@@ -2,14 +2,9 @@
 @use '@/styles/fonts.scss';
 
 .filter {
-  // scrollbar-color:  colors.$grey-100 colors.$background-color;
-  scrollbar-width: thin;
-
   display: flex;
   flex-direction: column;
-
   padding: 16px 16px 14px;
-
   border-bottom: 2px solid colors.$brown-100;
 
   ::-webkit-scrollbar-track {

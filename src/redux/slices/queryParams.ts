@@ -2,31 +2,43 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
+import { SORT_OPTIONS_URL } from '@/utils/constants';
+import { updateSearchParams } from '@/utils/updateSearchParams';
+
+const params = new URLSearchParams(window.location.search);
 
 export type FilterType = {
-  price: number[];
+  price: string[];
   years: string[];
   categories: string[];
   language: string[];
 };
 
-type QueryParamsState = {
+export type QueryParamsState = {
   sort: string;
-  search: string | null;
+  search?: string;
   filter: FilterType;
-  page: number;
+  page: string;
 };
 
 const initialState: QueryParamsState = {
-  sort: 'За популярністю',
+  sort: SORT_OPTIONS_URL[params.get('sort') || ''] || 'За популярністю',
   filter: {
-    categories: [],
-    language: [],
-    price: [],
-    years: [],
+    categories:
+      params
+        .get('categories')
+        ?.split('_')
+        .map((lang) => SORT_OPTIONS_URL[lang]) || [],
+    language:
+      params
+        .get('language')
+        ?.split('_')
+        .map((lang) => SORT_OPTIONS_URL[lang]) || [],
+    price: params.get('price')?.split('-') || [],
+    years: params.get('years')?.split('-') || [],
   },
-  search: null,
-  page: 1,
+  search: params.get('search') || undefined,
+  page: params.get('page') || '1',
 };
 
 export const queryParamsSlice = createSlice({
@@ -40,15 +52,24 @@ export const queryParamsSlice = createSlice({
     search: (state) => state.search,
   },
   reducers: {
-    setSort: (state, action: PayloadAction<{ sort: string }>) => {
-      state.sort = action.payload.sort;
-      state.page = 1;
+    setSort: (state, action: PayloadAction<string>) => {
+      state.sort = action.payload;
+      state.page = '1';
+      updateSearchParams('sort', [state.sort]);
     },
-    setSearch: (state, action: PayloadAction<{ search: string }>) => {
-      state.search = action.payload.search;
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+      state.page = '1';
+      updateSearchParams('search', [state.search]);
     },
-    setPage: (state, action: PayloadAction<{ page: number }>) => {
-      state.page = action.payload.page;
+    setPage: (state, action: PayloadAction<string>) => {
+      state.page = action.payload;
+      updateSearchParams('page', [state.page]);
+    },
+    setPrice: (state, action: PayloadAction<string[]>) => {
+      state.filter.price = action.payload;
+      state.page = '1';
+      updateSearchParams('price', state.filter.price);
     },
     addFilterItem: (
       state,
@@ -62,9 +83,8 @@ export const queryParamsSlice = createSlice({
       if (filterArray && !filterArray.includes(value)) {
         filterArray.push(value);
       }
-    },
-    setPrice: (state, action: PayloadAction<number[]>) => {
-      state.filter.price = action.payload;
+      state.page = '1';
+      updateSearchParams(filterName, [...state.filter[filterName]]);
     },
     removeFilterItem: (
       state,
@@ -77,6 +97,23 @@ export const queryParamsSlice = createSlice({
       state.filter[filterName] = state.filter[filterName].filter(
         (item) => item !== value
       ) as never[];
+      state.page = '1';
+      updateSearchParams(filterName, [...state.filter[filterName]]);
+    },
+    clearFilters: (state) => {
+      state.sort = 'За популярністю';
+      state.page = '1';
+      state.search = undefined;
+      state.filter.categories = [];
+      state.filter.language = [];
+      state.filter.price = [];
+      state.filter.years = [];
+    },
+    initializeState: (state, action: PayloadAction<QueryParamsState>) => {
+      state.filter = action.payload.filter;
+      state.page = action.payload.page;
+      state.search = action.payload.search;
+      state.sort = action.payload.sort;
     },
   },
 });
@@ -88,6 +125,8 @@ export const {
   addFilterItem,
   removeFilterItem,
   setPrice,
+  clearFilters,
+  initializeState,
 } = queryParamsSlice.actions;
 export const { filter, page, search, sort } = queryParamsSlice.selectors;
 export const queryAllData = (state: RootState) => state.queryParams;

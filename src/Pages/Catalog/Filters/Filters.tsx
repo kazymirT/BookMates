@@ -1,34 +1,36 @@
 import Filter from './Filter/Filter';
 import styles from './Filters.module.scss';
 import PriceFilter from './PriceFilter/PriceFilter';
-import { FILTERS } from '@/utils/fake';
+import { useAppSelector } from '@/redux/hooks';
+import { filter } from '@/redux/slices/queryParams';
+import { updateFilterParams } from '@/utils/updateFilterParams';
 
 const Filters = () => {
+  const filterQuery = useAppSelector(filter);
+  const { categories, language, price, years } =
+    updateFilterParams(filterQuery);
   return (
     <aside className={styles.filters}>
       <Filter
         title="Категорії"
-        categories={FILTERS.categories}
+        categories={categories}
         filterType="categories"
         isDefaultOpen
       />
       <Filter
         title="Мова"
         filterType="language"
-        categories={FILTERS.language}
+        categories={language}
+        isDefaultOpen
       />
       <Filter
         title="Рік видання"
         filterType="years"
-        categories={FILTERS.years}
+        categories={years}
         isScroll
         isDefaultOpen
       />
-      <PriceFilter
-        title="Ціна"
-        filterType="price"
-        price={{ max: 700, min: 0 }}
-      />
+      <PriceFilter title="Ціна" isDefaultOpen price={price} />
     </aside>
   );
 };
