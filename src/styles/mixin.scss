@@ -11,6 +11,25 @@
   }
 }
 
+@mixin scrollBar($width, $borderRadius, $scrollBac, $trackBac, $thumbBac) {
+  ::-webkit-scrollbar-track {
+    background-color: $trackBac;
+    border-radius: $borderRadius;
+  }
+
+  ::-webkit-scrollbar {
+    width: $width;
+    background-color: $scrollBac;
+    border-radius: $borderRadius;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: $thumbBac;
+    border-radius: $borderRadius;
+  }
+}
+
 @mixin font-styles(
   $font-family: fonts.$font-family,
   $font-size: 1rem,

@@ -3,17 +3,18 @@ import { useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 
 import 'nouislider/distribute/nouislider.css';
+import styles from './PriceFilter.module.scss';
 import { type PriceFilterProps } from '../../Catalog.types';
-import styles from '../Filter/Filter.module.scss';
 import arrow from '@/assets/icons/ArrowDown.svg';
-import useToggleOpen from '@/hooks/useToggleOpen';
+import { useToggleOpen } from '@/hooks/useToggleOpen';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPrice } from '@/redux/slices/queryParams';
 
 const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
   const dispatch = useAppDispatch();
-  const { isOpen, handleToggleOpen, listRef } =
+  const { contentRef, handleToggleOpen, isOpen } =
     useToggleOpen<HTMLDivElement>(isDefaultOpen);
+
   const [value, setValue] = useState<number[]>(price);
   const [isError, setIsError] = useState(false);
 
@@ -33,6 +34,9 @@ const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
     setValue([value[0], upperValue]);
   };
 
+  const onSubmit = () => {
+    dispatch(setPrice([String(value[0]), String(value[1])]));
+  };
   const arrowClassNames = classNames(styles.arrow, {
     [styles['arrow_open']]: !isOpen,
   });
@@ -42,16 +46,13 @@ const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
   const inputClassNames = classNames(styles.input, {
     [styles['input__error']]: isError,
   });
-  const onSubmit = () => {
-    dispatch(setPrice([String(value[0]), String(value[1])]));
-  };
   return (
     <div className={styles.filter}>
       <div className={styles.box} onClick={handleToggleOpen}>
         <h3>{title}</h3>
         <img src={arrow} className={arrowClassNames} alt="arrow icon" />
       </div>
-      <div className={controlClassNames} ref={listRef}>
+      <div className={controlClassNames} ref={contentRef}>
         <ReactSlider
           value={value[1] > value[0] ? value : undefined}
           max={1000}

@@ -1,28 +1,14 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
+@use '@/styles/mixin.scss';
 
 .filter {
+  @include mixin.scrollBar(5px, 5px, colors.$background-color, colors.$background-color, colors.$grey-100);
+
   display: flex;
   flex-direction: column;
   padding: 16px 16px 14px;
   border-bottom: 2px solid colors.$brown-100;
-
-  ::-webkit-scrollbar-track {
-    background-color: colors.$background-color;
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar {
-    width: 5px;
-    background-color: colors.$background-color;
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    cursor: pointer;
-    background-color: colors.$grey-100;
-    border-radius: 5px;
-  }
 
   .box {
     cursor: pointer;
@@ -49,25 +35,25 @@
     }
   }
 
-  .lists,
-  .control {
+  .lists {
+    scrollbar-width: none;
+
     overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 16px;
 
-    height: 0;
+    max-height: 0;
+    margin-top: 0;
     padding-left: 9px;
 
     transition: all 0.3s;
 
     &.open {
-      scrollbar-width: none;
       overflow-y: scroll !important;
-      height: auto;
-      padding-top: 16px;
+      margin-top: 16px;
 
-      &_scroll {
+      &.open_scroll {
         scrollbar-width: auto;
         overflow: hidden;
         max-height: 200px !important;
@@ -76,152 +62,6 @@
 
     li {
       width: 100%;
-
-      a {
-        display: block;
-
-        padding: 0.9rem 0 0.9rem 1.75rem;
-
-        font-family: fonts.$second-family;
-        line-height: 1.201;
-        color: colors.$grey-300;
-        letter-spacing: 0;
-
-        border-radius: 0.25rem;
-
-        transition: all 0.3s;
-
-        &:hover {
-          cursor: pointer;
-          background-color: colors.$brown-100;
-        }
-
-        &:active {
-          color: colors.$accent-white;
-          background-color: colors.$brown-200;
-        }
-
-        &.active {
-          color: colors.$accent-white;
-          background-color: colors.$brown-200;
-        }
-      }
-    }
-
-    .price-control {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .inputs {
-        display: flex;
-        gap: 7px;
-        align-items: center;
-        padding-top: 3px;
-
-        .input {
-          width: 100%;
-          max-width: 58px;
-          padding: 1.85px 7px;
-
-          color: colors.$grey-300;
-
-          background-color: colors.$background-color;
-          border: none;
-          border: 1px solid transparent;
-          border-radius: 6px;
-          outline: none;
-
-          &__error {
-            border: 1px solid colors.$accent-red;
-          }
-        }
-
-        span {
-          width: 15px;
-          height: 1px;
-          background-color: #000;
-        }
-      }
-
-      button {
-        padding: 3px 12.8px;
-
-        font-family: fonts.$font-family;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.19;
-        color: colors.$accent-white;
-        text-align: center;
-        text-transform: uppercase;
-        letter-spacing: 0.01em;
-
-        background-color: colors.$button-default;
-        border-radius: 6px;
-
-        &:hover {
-          background: colors.$button-hover;
-        }
-
-        &:active {
-          background: colors.$button-active;
-        }
-
-        &:disabled {
-          color: colors.$grey-200;
-          background: colors.$button-disabled;
-        }
-      }
-    }
-  }
-
-  .control {
-    padding: 0 3.5px 0 8px;
-    padding-top: 0;
-    transition: all 0.3s;
-
-    &.open {
-      padding-top: 19px;
-    }
-
-    & > div {
-      padding-left: 4px;
-    }
-
-    .range-slider {
-      width: 100%;
-      max-width: 228px;
-      height: 5px;
-
-      & > div:nth-child(1),
-      & > div:nth-child(3) {
-        height: 5px;
-        background: colors.$grey-100;
-      }
-
-      & > div:nth-child(2) {
-        height: 5px;
-        background: colors.$background-color;
-      }
-
-      .range-slider__thumb {
-        cursor: pointer;
-
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-
-        width: 12px;
-        height: 11px;
-
-        background: colors.$brown-200;
-        border-radius: 1px;
-
-        &:focus-visible {
-          border: none;
-          outline: none;
-        }
-      }
     }
   }
 }

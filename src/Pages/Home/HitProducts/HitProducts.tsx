@@ -20,7 +20,7 @@ const HitProducts = () => {
       <div className="container">
         <div className={styles.headers}>
           <h2>Хіти продажів</h2>
-          <NavLink to="catalog/2">більше</NavLink>
+          <NavLink to="/catalog">більше</NavLink>
         </div>
 
         <div className={styles.books}>
