@@ -7,6 +7,8 @@ import UserButton from './UserButton/UserButton';
 import account from '@/assets/icons/Account.svg';
 import cart from '@/assets/icons/cart.svg';
 import logo from '@/assets/icons/Logo.svg';
+import { RadioGroup } from '@/components/RadioGroup/RadioGroup';
+import Search from '@/components/Search/Search';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
@@ -33,9 +35,32 @@ const Header = () => {
   };
   return (
     <header className={styles.header}>
-      <Link to={'/'}>
-        <img src={logo} alt="logo" width={102} height={84} />
-      </Link>
+      <div className={styles['header_top']}>
+        <Link to={'/'}>
+          <img src={logo} alt="logo" width={102} height={84} />
+        </Link>
+        <Search />
+        <div className={styles.btns}>
+          <RadioGroup />
+          <div className={styles.icons}>
+            {user ? (
+              <UserButton {...user} />
+            ) : (
+              <DropDown
+                options={<Menu />}
+                control={<img src={account} alt="" width={24} height={24} />}
+              />
+            )}
+            <img
+              src={cart}
+              alt="cart"
+              width={24}
+              height={24}
+              onClick={showNotification}
+            />
+          </div>
+        </div>
+      </div>
       <nav>
         <ul>
           <li>
@@ -56,23 +81,6 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <div className={styles.btns}>
-        {user ? (
-          <UserButton {...user} />
-        ) : (
-          <DropDown
-            options={<Menu />}
-            control={<img src={account} alt="" width={24} height={24} />}
-          />
-        )}
-        <img
-          src={cart}
-          alt="cart"
-          width={24}
-          height={24}
-          onClick={showNotification}
-        />
-      </div>
     </header>
   );
 };

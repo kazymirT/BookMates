@@ -19,7 +19,7 @@
 
   ::-webkit-scrollbar {
     width: $width;
-    background-color: $scrollBac;
+    // background-color: $scrollBac;
     border-radius: $borderRadius;
   }
 
@@ -44,4 +44,12 @@
   line-height: $line-height;
   color: $color;
   letter-spacing: $letter-spacing;
+}
+
+@mixin container1280 {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
 }

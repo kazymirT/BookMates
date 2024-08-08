@@ -1,0 +1,66 @@
+@use '@/styles/colors.scss';
+@use '@/styles/fonts.scss';
+
+.radio-group__button {
+  cursor: pointer;
+
+  position: relative;
+
+  font-family: fonts.$font-family;
+  color: colors.$icon-active;
+  text-align: center;
+  letter-spacing: 0.01em;
+
+  &:nth-of-type(n + 2)::before {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: -7px;
+    transform: translateY(-45%);
+
+    width: 2px;
+    height: 24px;
+
+    background-color: colors.$icon-active;
+  }
+
+  &:hover {
+    // color: colors.$icon-hover;
+  }
+
+  &--checked {
+    cursor: default;
+    color: colors.$grey-100;
+
+    &:hover {
+      // color: colors.$grey-200;
+    }
+
+    .radio-button__label {
+      cursor: default;
+    }
+  }
+
+  &--disabled {
+    &:hover {
+      cursor: default;
+      background-color: colors.$background-color;
+    }
+  }
+}
+
+.radio-button__input {
+  display: none;
+
+  &:disabled + .radio-button__label {
+    cursor: default;
+  }
+}
+
+.radio-button__label {
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.6;
+  text-transform: capitalize;
+}

@@ -1,24 +1,53 @@
 @use '@/styles/colors.scss';
+@use '@/styles/mixin.scss';
 
 .header {
+  @include mixin.container1280;
+
   display: flex;
+  flex-flow: column;
+  gap: 14px;
   align-items: center;
   justify-content: space-between;
-
-  padding: 1em 5em;
 
   color: #252525;
 
   background-color: #fff;
 
+  &_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding-right: 44px;
+  }
+
   ul {
     display: flex;
     gap: 2rem;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 10rem;
+
+    padding: 12px 24px;
+
+    font-size: 20px;
+    letter-spacing: 0.03em;
   }
 }
 
 .btns {
   display: flex;
-  gap: 1.5em;
+  gap: 48px;
   align-items: center;
+
+  .icons {
+    display: flex;
+    gap: 1.5em;
+    align-items: center;
+  }
 }

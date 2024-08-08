@@ -1,7 +1,7 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
 
-.search {
+.banner {
   width: 100%;
   padding: 7.875rem 0 10.4375rem;
   background-color: colors.$brown-100;
@@ -31,41 +31,6 @@
       line-height: 1.21;
       color: colors.$grey-500;
       letter-spacing: 0.05em;
-    }
-
-    form {
-      position: relative;
-      max-width: 32.25rem;
-
-      button {
-        position: absolute;
-        top: 0.5%;
-        right: 0;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        height: 99%;
-        padding: 0.72rem 1rem;
-
-        background-color: colors.$button-default;
-        border-radius: 0.19rem;
-
-        transition: all 0.3s;
-
-        &:hover {
-          background-color: colors.$button-hover;
-        }
-
-        &:active {
-          background-color: colors.$button-active;
-        }
-
-        &:disabled {
-          background-color: colors.$button-disabled;
-        }
-      }
     }
 
     .images {
