@@ -8,7 +8,6 @@ import { BooksData } from '@/redux/services/services.types';
 const HitProducts = () => {
   const { data: books, isLoading } = useGetBooksQuery({
     size: '4',
-    categoryId: '2',
   });
   const data = (
     books
@@ -21,7 +20,7 @@ const HitProducts = () => {
       <div className="container">
         <div className={styles.headers}>
           <h2>Хіти продажів</h2>
-          <NavLink to="catalog/2">більше</NavLink>
+          <NavLink to="/catalog">більше</NavLink>
         </div>
 
         <div className={styles.books}>

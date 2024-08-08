@@ -49,7 +49,7 @@ export type BookById = {
   price: number;
   totalQuantity: number;
   authors: string[];
-  language: string;
+  languages: string[];
   categories: {
     id: number;
     name: string;
@@ -109,10 +109,14 @@ export type BooksListResponse = {
 };
 
 export type BooksArgs = {
-  page?: number;
+  page?: string;
   size?: string;
   sort?: string[];
-  categoryId?: string;
+  search?: string;
+  price?: string[];
+  years?: string[];
+  language?: string[];
+  categories?: string[];
 };
 
 export type CategoryAll = {

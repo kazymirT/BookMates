@@ -50,6 +50,7 @@ const OrderActions = ({
         </div>
         <Checkbox
           {...register}
+          variant="primary"
           name="pay"
           type="radio"
           value="Оплата за реквізитами"
@@ -58,6 +59,7 @@ const OrderActions = ({
         </Checkbox>
         <Checkbox
           {...register}
+          variant="primary"
           name="pay"
           type="radio"
           value="Оплата при отриманні"

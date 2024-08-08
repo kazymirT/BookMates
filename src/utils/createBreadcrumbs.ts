@@ -1,4 +1,4 @@
-import { BASE_CRUMBS } from './constants';
+import { BASE_CRUMBS, SORT_OPTIONS_URL } from './constants';
 
 interface Breadcrumb {
   name: string;
@@ -7,7 +7,6 @@ interface Breadcrumb {
 
 interface Category {
   name: string;
-  id: number | string;
 }
 
 export const createBreadcrumbs = (page: string, categoryId?: Category) => {
@@ -16,7 +15,7 @@ export const createBreadcrumbs = (page: string, categoryId?: Category) => {
   if (categoryId) {
     breadcrumbs.push({
       name: categoryId.name,
-      to: `/catalog/${categoryId.id}`,
+      to: `/catalog/?categories=${SORT_OPTIONS_URL[categoryId.name]}`,
     });
   }
 

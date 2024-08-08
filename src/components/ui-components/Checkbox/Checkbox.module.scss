@@ -8,44 +8,84 @@
 
   .input {
     cursor: pointer;
-
-    width: 1.042em;
-    height: 1.042em;
-
     appearance: none;
-    border: 0.1em solid colors.$grey-500;
     border-radius: 0.15em;
     outline: none;
-
-    &:checked {
-      position: relative;
-      background-color: colors.$accent-white;
-
-      &::before {
-        content: '\2714';
-
-        position: absolute;
-        top: -2px;
-        right: 1.5px;
-
-        font-size: 0.8em;
-        color: colors.$grey-500;
-      }
-    }
   }
 
   .label {
     cursor: pointer;
-
     display: flex;
     align-items: center;
-
     width: fit-content;
+  }
 
-    font-family: fonts.$font-family;
-    font-size: 0.875rem;
-    line-height: 1.43;
-    color: colors.$grey-500;
-    letter-spacing: 0.05em;
+  &.secondary {
+    gap: 10px;
+    align-items: center;
+
+    .input {
+      width: 16px;
+      height: 16px;
+      border: 0.1em solid colors.$grey-500;
+
+      &:checked {
+        position: relative;
+        background-color: colors.$accent-white;
+
+        &::before {
+          content: '\2714';
+
+          position: absolute;
+          top: -2px;
+          right: 1.5px;
+
+          font-size: 0.8em;
+          color: colors.$grey-500;
+        }
+      }
+    }
+
+    .label {
+      padding-left: 2px;
+
+      font-family: fonts.$font-family;
+      font-size: 16px;
+      line-height: 1.25;
+      color: colors.$grey-300;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &.primary {
+    .input {
+      width: 1.042em;
+      height: 1.042em;
+      border: 0.1em solid colors.$grey-500;
+
+      &:checked {
+        position: relative;
+        background-color: colors.$accent-white;
+
+        &::before {
+          content: '\2714';
+
+          position: absolute;
+          top: -2px;
+          right: 1.5px;
+
+          font-size: 0.8em;
+          color: colors.$grey-500;
+        }
+      }
+    }
+
+    .label {
+      font-family: fonts.$font-family;
+      font-size: 0.875rem;
+      line-height: 1.43;
+      color: colors.$grey-500;
+      letter-spacing: 0.05em;
+    }
   }
 }
