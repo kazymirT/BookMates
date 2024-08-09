@@ -1,7 +1,9 @@
 export enum Sizes {
-  Small = 'small',
-  Big = 'big',
-  Full = 'full-width',
+  Small = 's',
+  Medium = 'm',
+  Large = 'l',
+  ExtraLarge = 'extra_l',
+  Full = 'full',
 }
 
 export enum Variant {

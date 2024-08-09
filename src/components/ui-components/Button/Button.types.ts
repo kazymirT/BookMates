@@ -7,7 +7,7 @@ export interface ButtonProps {
   size: Sizes;
   text: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   buttonType: ButtonType;
   children?: ReactNode;
   iconPosition?: Position;
