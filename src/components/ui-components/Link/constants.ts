@@ -1,4 +1,4 @@
-export enum LinkVariantTypes {
+export enum VariantTypes {
   Main = 'main',
   Default = 'default',
 }

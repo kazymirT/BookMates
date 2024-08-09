@@ -1,8 +1,8 @@
-import { LinkVariantTypes } from './constants';
+import { VariantTypes } from './constants';
 
 export interface LinkProps {
   url: string;
-  variant?: LinkVariantTypes;
+  variant?: VariantTypes;
   isInNewTab?: boolean;
   text: string;
 }
