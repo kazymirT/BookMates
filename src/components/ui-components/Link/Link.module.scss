@@ -1,0 +1,29 @@
+.link {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-decoration: none;
+
+  outline: none;
+
+  transition: color 0.4s ease-in-out;
+
+  &--main {
+    font-weight: 500;
+
+    &:hover {
+    }
+
+    &:focus {
+    }
+  }
+
+  &--default {
+    font-size: 0.6rem;
+
+    &:hover {
+    }
+
+    &:focus {
+    }
+  }
+}
