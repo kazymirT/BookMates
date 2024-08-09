@@ -4,6 +4,12 @@ import styles from './OrderActions.module.scss';
 import { type OrderActionsProps } from '../order.types';
 import OrderItem from '../OrderItem/OrderItem';
 import EditIcon from '@/components/svg/edit/Edit';
+import { Button } from '@/components/ui-components/Button/Button';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import { ordersList } from '@/utils/fake';
 
@@ -68,13 +74,13 @@ const OrderActions = ({
         </Checkbox>
       </div>
       <div className={styles['order-actions']}>
-        <button
-          type="submit"
-          className={styles.submit}
+        <Button
+          buttonType={ButtonType.Submit}
+          size={Sizes.Full}
+          text="Підтвердити замовлення"
+          variant={Variant.Basic}
           disabled={!isValid || isSubmitting}
-        >
-          Підтвердити замовлення
-        </button>
+        />
         <Link to={'/catalog'} className={styles.continue} type="button">
           Продовжити покупки
         </Link>

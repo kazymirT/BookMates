@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
-
 import styles from '../../Forms/Form.module.scss';
 import thanks from '@/assets/images/thanks.png';
 import Salute from '@/components/StatusScreen/Salute/Salute';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
@@ -26,9 +30,14 @@ const OrderSuccess = () => {
           Дякуємо за замовлення. Реквізити для оплати відправлені на пошту.
         </p>
       </div>
-      <Link to={'/catalog'} className={styles.submit} onClick={handleClose}>
-        Продовжити покупки
-      </Link>
+      <ButtonLink
+        buttonType={ButtonType.Button}
+        size={Sizes.Full}
+        variant={Variant.Basic}
+        onClick={handleClose}
+        text="Продовжити покупки"
+        url="/catalog"
+      />
     </section>
   );
 };

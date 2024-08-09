@@ -4,6 +4,10 @@
 @use './fonts.scss';
 @use './mixin.scss';
 
+@import url('colors');
+@import url('fonts');
+@import url('mixin');
+
 :root {
   scrollbar-width: none;
 

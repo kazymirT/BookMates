@@ -34,10 +34,10 @@
 
     width: 50%;
     max-width: 28rem;
-    padding: 9.75rem 5rem 9.5625rem 0.75rem;
+    padding: 155px 5rem 154px 0.75rem;
 
     h2 {
-      @include mixin.font-styles(fonts.$third-family, 2rem, 700, 0.9, colors.$grey-500, 0.055em);
+      @include mixin.font-styles(fonts.$third-family, 2rem, 700, 0.85, colors.$grey-500, 0.055em);
     }
 
     p {

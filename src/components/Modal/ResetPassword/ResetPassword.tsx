@@ -2,6 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import styles from '../../Forms/Form.module.scss';
+import { Button } from '@/components/ui-components/Button/Button';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
 import Input from '@/components/ui-components/Input/Input';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
@@ -61,13 +67,13 @@ const ResetPassword = () => {
             errorMessage={errors.email?.message}
           />
         </div>
-        <button
-          type="submit"
-          className={styles.submit}
+        <Button
+          buttonType={ButtonType.Submit}
+          size={Sizes.Full}
+          variant={Variant.Basic}
+          text="Скинути пароль"
           disabled={!isValid || isSubmitting}
-        >
-          Скинути пароль
-        </button>
+        />
       </form>
       <button
         className={styles.register}

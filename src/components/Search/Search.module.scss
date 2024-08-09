@@ -1,6 +1,4 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
-@use '@/styles/mixin.scss';
+@import url('@/styles');
 
 .wrapper {
   position: relative;
@@ -17,7 +15,7 @@
     input {
       width: 100%;
       padding: 8.4px 16px;
-      border: 0.5px solid colors.$icon-default;
+      border: 0.5px solid $icon-default;
       border-radius: 8px 0 0 8px;
     }
 
@@ -28,7 +26,7 @@
 
       width: 62px;
 
-      background: colors.$button-default;
+      background: $button-default;
       border-radius: 0 8px 8px 0;
     }
   }
@@ -46,8 +44,8 @@
     width: 100%;
     padding: 0 0 32px;
 
-    background-color: colors.$accent-white;
-    border: 0.5px solid colors.$grey-300;
+    background-color: $accent-white;
+    border: 0.5px solid $grey-300;
     border-radius: 3px;
 
     .content {
@@ -59,7 +57,7 @@
         color: #797777;
         letter-spacing: 0.01em;
 
-        border-bottom: 1px solid colors.$background-color;
+        border-bottom: 1px solid $background-color;
       }
 
       .offers {
@@ -73,7 +71,7 @@
 
         h3 {
           font-size: 16px;
-          color: colors.$icon-active;
+          color: $icon-active;
           letter-spacing: 0.01em;
         }
 
@@ -86,39 +84,34 @@
           li {
             padding: 8px 16px;
 
-            font-family: fonts.$font-family;
+            font-family: $font-family;
             font-size: 14px;
             line-height: 1.5;
-            color: colors.$icon-active;
+            color: $icon-active;
             text-align: center;
             letter-spacing: 0.01em;
 
-            background: colors.$background-color;
+            background: $background-color;
             border-radius: 5px;
           }
         }
       }
 
       .books {
-        @include mixin.scrollBar(
-          10px,
-          5px,
-          colors.$background-color,
-          colors.$background-color,
-          colors.$grey-100
-        );
+        @include scrollBar(10px, 5px, $background-color, $background-color, $grey-100);
 
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
 
         padding: 12px 32px;
 
-        border-bottom: 1px solid colors.$background-color;
+        border-bottom: 1px solid $background-color;
 
         h3 {
           font-size: 16px;
-          color: colors.$icon-active;
+          line-height: 1.19;
+          color: $icon-active;
           letter-spacing: 0.01em;
         }
 
@@ -130,7 +123,7 @@
 
           height: 100%;
           max-height: 230px;
-          padding: 5px;
+          padding-right: 5px;
 
           .list {
             display: flex;
@@ -138,7 +131,7 @@
             transition: all 0.3s;
 
             &:hover {
-              background-color: colors.$background-color;
+              background-color: $background-color;
               border-radius: 8px;
             }
 
@@ -152,7 +145,7 @@
 
                 font-size: 16px;
                 line-height: 1.2;
-                color: colors.$icon-active;
+                color: $icon-active;
                 letter-spacing: 0.01em;
               }
 
@@ -161,7 +154,7 @@
 
                 font-size: 16px;
                 font-weight: 600;
-                color: colors.$button-default;
+                color: $button-default;
                 letter-spacing: 0.01em;
 
                 &::after {
@@ -175,21 +168,12 @@
       }
     }
 
-    .more {
-      display: flex;
-      gap: 16px;
-      align-items: center;
+    & > a {
       align-self: center;
 
-      padding: 12px 24px 13px 23px;
-
-      font-size: 16px;
-      font-weight: 500;
-      color: colors.$accent-white;
-      letter-spacing: 0.01em;
-
-      background: colors.$button-default;
-      border-radius: 4px;
+      & > button svg {
+        stroke: $accent-white;
+      }
     }
   }
 }

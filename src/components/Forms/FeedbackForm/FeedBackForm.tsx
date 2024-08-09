@@ -3,6 +3,12 @@ import classNames from 'classnames';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 
 import styles from '../Form.module.scss';
+import { Button } from '@/components/ui-components/Button/Button';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
 import Input from '@/components/ui-components/Input/Input';
 import Select from '@/components/ui-components/Select/Select';
 import { useFormActions } from '@/hooks/useFormActions';
@@ -96,9 +102,13 @@ const FeedBackForm = () => {
             )}
           </div>
         </div>
-        <button type="submit" className={styles.submit} disabled={!isValid}>
-          Відправити
-        </button>
+        <Button
+          buttonType={ButtonType.Submit}
+          size={Sizes.Full}
+          variant={Variant.Basic}
+          text="Відправити"
+          disabled={!isValid}
+        />
       </form>
     </section>
   );

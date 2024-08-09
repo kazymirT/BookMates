@@ -121,28 +121,6 @@
     max-width: 34.875rem;
   }
 
-  .submit {
-    @include mixin.font-styles(fonts.$font-family, 1em, 500, 1.188, colors.$accent-white, 0.01em);
-
-    padding: 1em 2em;
-    text-align: center;
-    background: colors.$button-default;
-    border-radius: 4px;
-
-    &:hover {
-      background: colors.$button-hover;
-    }
-
-    &:active {
-      background: colors.$button-active;
-    }
-
-    &:disabled {
-      color: colors.$grey-200;
-      background: colors.$button-disabled;
-    }
-  }
-
   .success {
     position: relative;
     display: flex;

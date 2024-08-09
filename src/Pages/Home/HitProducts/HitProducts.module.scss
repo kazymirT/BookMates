@@ -19,27 +19,8 @@
       @include mixin.font-styles(fonts.$third-family, 2rem, 700, 0.9, colors.$grey-500, 0.01em);
     }
 
-    a {
-      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.1);
-
-      padding: 0.75rem 2rem;
-
-      text-transform: capitalize;
-
-      border: 1px solid colors.$button-default;
-      border-radius: 0.25rem;
-
-      transition: all 0.3s;
-
-      &:hover {
-        background-color: colors.$button-hover-seccondary;
-        border-color: transparent;
-      }
-
-      &:active {
-        background-color: colors.$button-active-secondary;
-        border-color: transparent;
-      }
+    a button {
+      letter-spacing: 0.02em;
     }
   }
 
