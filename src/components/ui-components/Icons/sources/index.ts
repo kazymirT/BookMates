@@ -1,4 +1,5 @@
-import { Add } from './Add';
+import { Account } from './Account';
+import { Arrow } from './Arrow';
 import { Cart } from './Cart';
 import { IconInstanceName } from '../constants';
 import { IconProps } from '../types';
@@ -8,6 +9,7 @@ type IconInstance = {
 };
 
 export const IconInstance: IconInstance = {
-  Add,
   Cart,
+  Arrow,
+  Account,
 };
