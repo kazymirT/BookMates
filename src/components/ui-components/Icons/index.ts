@@ -20,7 +20,22 @@ export const Icon: Icon = {
     height: '20',
     viewBox: '0 0 20 20',
   }),
+  [IconAppName.ARROW_1]: makeIcon(IconInstance.Arrow_1, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
   [IconAppName.ACCOUNT]: makeIcon(IconInstance.Account, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.EDIT]: makeIcon(IconInstance.Edit, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.CLOSE]: makeIcon(IconInstance.Close, {
     width: '24',
     height: '24',
     viewBox: '0 0 24 24',

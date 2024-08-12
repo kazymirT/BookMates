@@ -3,10 +3,8 @@
 @mixin button-state($border-color, $icon-color) {
   border-color: $border-color;
 
-  & > div svg {
-    path[stroke] {
-      stroke: $icon-color;
-    }
+  & > svg {
+    stroke: $icon-color;
   }
 }
 
@@ -33,6 +31,8 @@
 
   height: fit-content;
   padding: 0.625rem;
+
+  font-size: 0;
 
   border: 1px solid colors.$button-default;
   border-radius: 50%;

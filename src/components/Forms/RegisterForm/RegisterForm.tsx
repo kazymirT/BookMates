@@ -12,6 +12,7 @@ import {
   Sizes,
   Variant,
 } from '@/components/ui-components/Button/constants';
+import { Icon } from '@/components/ui-components/Icons';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -54,7 +55,9 @@ const RegisterForm = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Реєстрація</h2>
-        <button className={styles.close} onClick={handleClose}></button>
+        <button className={styles.close} type="button" onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles['input-container']}>

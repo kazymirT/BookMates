@@ -1,8 +1,8 @@
 import { ClearIndicatorProps } from 'react-select';
 
+import { Icon } from '../../Icons';
 import styles from '../Autocomplete.module.scss';
 import { Option } from '../AutoComplete.types';
-import close from '@/assets/icons/Close.svg';
 
 export const ClearIndicator = (props: ClearIndicatorProps<Option, false>) => {
   const {
@@ -10,7 +10,7 @@ export const ClearIndicator = (props: ClearIndicatorProps<Option, false>) => {
   } = props;
   return (
     <div {...restInnerProps} ref={ref} className={styles.clear}>
-      <img src={close} alt="" width={18} height={18} />
+      <Icon.Close height="18" width="18" viewBox="0, 0, 24, 24" />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styles from './OrderActions.module.scss';
 import { type OrderActionsProps } from '../order.types';
 import OrderItem from '../OrderItem/OrderItem';
-import EditIcon from '@/components/svg/edit/Edit';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
   ButtonType,
@@ -11,6 +10,7 @@ import {
   Variant,
 } from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
+import { Icon } from '@/components/ui-components/Icons';
 import { ordersList } from '@/utils/fake';
 
 const OrderActions = ({
@@ -23,7 +23,7 @@ const OrderActions = ({
       <div className={styles.title}>
         <h3>Моє замовлення</h3>
         <button type="button">
-          <EditIcon />
+          <Icon.Edit />
         </button>
       </div>
       <div className={styles['order-list']}>

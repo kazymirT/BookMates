@@ -8,6 +8,7 @@ import {
   Sizes,
   Variant,
 } from '@/components/ui-components/Button/constants';
+import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
@@ -49,11 +50,9 @@ const ResetPassword = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Відновлення паролю</h2>
-        <button
-          type="button"
-          className={styles.close}
-          onClick={handleClose}
-        ></button>
+        <button type="button" className={styles.close} onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <p className={styles.success}>
         Забули пароль? Вкажіть вашу електронну пошту, щоб відновити пароль.

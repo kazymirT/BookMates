@@ -3,10 +3,11 @@
 @use './colors.scss';
 @use './fonts.scss';
 @use './mixin.scss';
-
-@import url('colors');
-@import url('fonts');
-@import url('mixin');
+/* stylelint-disable */
+@import 'colors';
+@import 'fonts';
+@import 'mixin';
+/* stylelint-enable */
 
 :root {
   scrollbar-width: none;

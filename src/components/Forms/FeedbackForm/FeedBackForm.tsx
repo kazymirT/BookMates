@@ -9,6 +9,7 @@ import {
   Sizes,
   Variant,
 } from '@/components/ui-components/Button/constants';
+import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import Select from '@/components/ui-components/Select/Select';
 import { useFormActions } from '@/hooks/useFormActions';
@@ -58,11 +59,9 @@ const FeedBackForm = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Підтримка</h2>
-        <button
-          type="button"
-          className={styles.close}
-          onClick={handleClose}
-        ></button>
+        <button type="button" className={styles.close} onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <p className={styles.paragraph}>
         Залиште свою електронну адресу, поставте запитання і ми зв’яжемося з

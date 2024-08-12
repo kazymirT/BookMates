@@ -2,6 +2,8 @@
 @use '@/styles/fonts.scss';
 @use '@/styles/mixin.scss';
 
+@import '@/styles';
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -25,9 +27,15 @@
     }
 
     .close {
-      width: 24px;
-      height: 24px;
-      background: url('../../assets/icons/Close.svg');
+      @include flex-center;
+
+      &:hover {
+        @include icon-state($icon-hover);
+      }
+
+      &:active {
+        @include icon-state($icon-hover);
+      }
     }
   }
 

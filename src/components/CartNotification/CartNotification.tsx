@@ -3,8 +3,8 @@ import { CSSTransition } from 'react-transition-group';
 
 import styles from './CartNotification.module.scss';
 import Portal from '../Portal/Portal';
+import { Icon } from '../ui-components/Icons';
 import cart from '@/assets/icons/cart.svg';
-import closeImg from '@/assets/icons/Close.svg';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   isOpen,
@@ -78,7 +78,7 @@ const CartNotification = () => {
           <div className={styles.head}>
             <p>Товар додано до кошика</p>
             <button type="button" onClick={closeNotification}>
-              <img src={closeImg} alt="" width={24} height={24} />
+              <Icon.Close />
             </button>
           </div>
           <div className={styles.info}>

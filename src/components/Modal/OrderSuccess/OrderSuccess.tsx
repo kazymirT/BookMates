@@ -7,6 +7,7 @@ import {
   Variant,
 } from '@/components/ui-components/Button/constants';
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
+import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
@@ -17,11 +18,9 @@ const OrderSuccess = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Замовлення успішне</h2>
-        <button
-          type="button"
-          className={styles.close}
-          onClick={handleClose}
-        ></button>
+        <button type="button" className={styles.close} onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <div className={styles['success']}>
         <img src={thanks} alt="thanks" width={246} height={246} />
