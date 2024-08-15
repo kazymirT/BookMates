@@ -30,16 +30,16 @@ const CartItem = ({
         />
       </div>
       <div className={styles.info}>
-        <div className={styles.row}>
+        <div className={`${styles.row} ${styles['first-row']}`}>
           <p className={styles.title}>{title}</p>
           <button className={styles.btn} onClick={deleteBook}>
             <img src={removeIcon} alt="remove" width={18} height={18} />
           </button>
         </div>
-        <div className={styles.row}>
+        <div className={`${styles.row} ${styles['second-row']}`}>
           <p>{authors.join(', ')}</p>
         </div>
-        <div className={styles.row}>
+        <div className={`${styles.row} ${styles['third-row']}`}>
           <span className={styles.price}>{`${price} грн`}</span>
           <div className={styles.amount}>
             <button onClick={() => dispatch(decreaseQuantity(id))}>-</button>

@@ -1,3 +1,5 @@
+@use '/src/styles/colors.scss';
+
 %text-block {
   display: flex;
   align-items: center;
@@ -57,6 +59,8 @@
 }
 
 .list {
+  scrollbar-width: none;
+
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
@@ -64,10 +68,24 @@
   gap: 0.75em;
 
   margin: 1.25em 0;
+
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
 }
 
 .total {
   @extend %text-block;
 
   margin-bottom: 1.5em;
+  color: colors.$grey-500;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 1em 2em;
+  color: #fff;
+  background-color: colors.$button-default;
 }

@@ -5,13 +5,18 @@ import { Link } from 'react-router-dom';
 import styles from './BookCard.module.scss';
 import cart from '@/assets/icons/cart.svg';
 import book1 from '@/assets/images/fake/book1.webp';
+import { useAppDispatch } from '@/redux/hooks';
 import { BooksData } from '@/redux/services/services.types';
+import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
+import { addGoods } from '@/redux/slices/shoppingCartSlice';
 
 interface Props {
   data?: BooksData;
 }
 
 const BookCard = ({ data }: Props) => {
+  const dispatch = useAppDispatch();
+
   const handleAddAndOpenCard = (event: React.MouseEvent) => {
     event.preventDefault();
     console.log(`додати до кошика товар ${data?.id} і відкрити кошик`);
@@ -19,6 +24,18 @@ const BookCard = ({ data }: Props) => {
   const handleAddToCard = (event: React.MouseEvent) => {
     event.preventDefault();
     console.log(`додати до кошика товар ${data?.id}`);
+    if (data) {
+      dispatch(
+        addGoods({
+          authors: data.authors,
+          id: data.id,
+          img: data.image?.contentType || '',
+          price: String(data.price),
+          title: data.title,
+        })
+      );
+      dispatch(toggleShowCartNotification(true));
+    }
   };
 
   return (

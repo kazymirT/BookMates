@@ -68,9 +68,11 @@ const ShoppingCart = () => {
           <div className={styles.info}>
             <div className={styles.total}>
               <span>Всього</span>
-              <span>{totalPrice}</span>
+              <span>{totalPrice} грн</span>
             </div>
-            <button>Перейти до замовлення</button>
+            <button className={styles['checkout-btn']}>
+              Перейти до замовлення
+            </button>
           </div>
         </aside>
       </CSSTransition>
