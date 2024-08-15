@@ -10,9 +10,15 @@ import {
   isOpen,
   toggleShowCartNotification,
 } from '@/redux/slices/cartNotificationSlice';
+import { goods } from '@/redux/slices/shoppingCartSlice';
 
 const CartNotification = () => {
   const showNotification = useAppSelector(isOpen);
+  const cartItems = useAppSelector(goods);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + Number(item.price) * item.quantity,
+    0
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -32,6 +38,7 @@ const CartNotification = () => {
   };
 
   const openNotification = () => {
+    handleStopTimer();
     setShow(true);
   };
 
@@ -86,8 +93,12 @@ const CartNotification = () => {
               <img src={cart} alt="" width={24} height={24} />
             </div>
             <div className={styles['cart-info']}>
-              <p>У кошику 1 товар </p>
-              <p>Сума товарів у кошику 240 грн</p>
+              <p>
+                {cartItems.length === 1
+                  ? `У кошику 1 товар `
+                  : `У кошику ${cartItems.length} товарів `}
+              </p>
+              <p>{`Сума товарів у кошику ${totalPrice} грн`}</p>
             </div>
           </div>
           <button type="button">Оформити замовлення</button>

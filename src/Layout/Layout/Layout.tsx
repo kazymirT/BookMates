@@ -8,6 +8,7 @@ import CartNotification from '@/components/CartNotification/CartNotification';
 import Modal from '@/components/Modal/Modal';
 import Profile from '@/components/Profile/Profile';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
+import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
 import StatusScreen from '@/components/StatusScreen/StatusScreen';
 
 const Layout = () => {
@@ -30,6 +31,7 @@ const Layout = () => {
       <StatusScreen />
       <CartNotification />
       <ScrollToTop />
+      <ShoppingCart />
     </>
   );
 };
