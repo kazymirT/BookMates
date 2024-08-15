@@ -1,0 +1,11 @@
+.clear {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 37px;
+
+  .filters {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 30px;
+  }
+}

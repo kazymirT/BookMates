@@ -6,6 +6,13 @@ import { RegisterValues, registerSchema } from '../../../utils/validateSchema';
 import Checkbox from '../../ui-components/Checkbox/Checkbox';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
+import { Button } from '@/components/ui-components/Button/Button';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
+import { Icon } from '@/components/ui-components/Icons';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -48,7 +55,9 @@ const RegisterForm = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Реєстрація</h2>
-        <button className={styles.close} onClick={handleClose}></button>
+        <button className={styles.close} type="button" onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles['input-container']}>
@@ -104,13 +113,13 @@ const RegisterForm = () => {
             та договором оферти.
           </p>
         </Checkbox>
-        <button
-          type="submit"
-          className={styles.submit}
+        <Button
+          buttonType={ButtonType.Submit}
+          size={Sizes.Full}
+          variant={Variant.Basic}
+          text="Створити акаунт"
           disabled={!isValid || isServerError || isSubmitting}
-        >
-          Створити акаунт
-        </button>
+        />
       </form>
       <button className={styles.register} type="button" onClick={handleLogin}>
         В мене вже є обліковий запис

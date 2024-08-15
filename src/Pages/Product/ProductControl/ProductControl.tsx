@@ -1,7 +1,14 @@
 import Skeleton from 'react-loading-skeleton';
 
 import styles from '../Product.module.scss';
-import CartIcon from '@/components/svg/cart/Cart';
+import { Button } from '@/components/ui-components/Button/Button';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+  Position,
+} from '@/components/ui-components/Button/constants';
+import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import { BookById } from '@/redux/services/services.types';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
@@ -36,21 +43,22 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
       {book && book.price ? (
         <>
           <p className={styles.price}>{book.price}</p>
-          <button
-            className={styles.cart}
-            type="button"
-            onClick={handleAddToCart}
-          >
-            <CartIcon />
-            До кошика
-          </button>
-          <button
-            className={styles.buy}
-            type="button"
+          <Button
+            buttonType={ButtonType.Button}
+            size={Sizes.ExtraLarge}
+            text="Купити зараз"
+            variant={Variant.Basic}
             onClick={handleOpenOrderSuccess}
-          >
-            Купити зараз
-          </button>
+          />
+          <Button
+            buttonType={ButtonType.Button}
+            text="До кошика"
+            variant={Variant.Primary}
+            iconPosition={Position.Left}
+            size={Sizes.Large}
+            onClick={handleAddToCart}
+            icon={<Icon.Cart />}
+          />
         </>
       ) : (
         <Skeleton width={218} height={48} count={3} />

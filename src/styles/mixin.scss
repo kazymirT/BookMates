@@ -51,5 +51,27 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 32px 40px 30px;
+}
+
+@mixin icon-state($default-color) {
+  & > svg {
+    stroke: $default-color;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin hover-active($hover-color, $active-color) {
+  &:hover {
+    color: $hover-color;
+  }
+
+  &:active {
+    color: $active-color;
+  }
 }

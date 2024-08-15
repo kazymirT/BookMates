@@ -1,7 +1,7 @@
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
+import { Icon } from '../ui-components/Icons';
 import cart from '@/assets/icons/cart.svg';
-import close from '@/assets/icons/Close.svg';
 import gear from '@/assets/icons/Gear.svg';
 import profile from '@/assets/icons/Profile.svg';
 import quit from '@/assets/icons/Quit.svg';
@@ -51,7 +51,7 @@ const Profile = () => {
               <div className={styles['head-info']}>
                 <h2>Профіль користувача</h2>
                 <button onClick={handleClose}>
-                  <img src={close} alt="close" width={24} height={24} />
+                  <Icon.Close />
                 </button>
               </div>
               <div className={styles.user}>

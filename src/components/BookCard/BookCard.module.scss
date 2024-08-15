@@ -1,5 +1,4 @@
-@use '@/styles/fonts.scss';
-@use '@/styles/colors.scss';
+@import '@/styles';
 
 .card {
   display: flex;
@@ -33,17 +32,18 @@
 
       padding: 0.625rem;
 
-      background: colors.$accent-white;
+      background: $accent-white;
       border-radius: 50%;
 
       transition: all 0.3s;
 
-      img {
+      &:hover svg {
+        stroke: $accent-white;
         transition: all 0.3s;
       }
 
       &:hover {
-        background: colors.$button-hover;
+        background: $button-hover;
 
         img {
           color: #fff;
@@ -52,7 +52,7 @@
       }
 
       &:active {
-        background: colors.$button-active;
+        background: $button-active;
       }
     }
 
@@ -72,78 +72,60 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 15px;
 
-      .headers {
+      .text {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 8px;
 
-        h3 {
-          overflow: hidden;
+        .headers {
+          display: flex;
+          justify-content: space-between;
 
-          width: 65%;
+          h3 {
+            overflow: hidden;
 
-          font-family: fonts.$font-family;
-          font-size: 16px;
-          font-weight: 500;
-          line-height: 1.2;
-          color: colors.$grey-500;
-          text-overflow: ellipsis;
-          letter-spacing: 0.05em;
-          white-space: nowrap;
+            width: 65%;
+
+            font-family: $font-family;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.2;
+            color: $grey-500;
+            text-overflow: ellipsis;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+          }
+
+          p {
+            width: 30%;
+
+            font-family: $second-family;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: $button-default;
+            text-align: right;
+
+            &::after {
+              content: 'грн';
+              margin-left: 1px;
+            }
+          }
         }
 
         p {
-          width: 30%;
+          overflow: hidden;
 
-          font-family: fonts.$second-family;
-          font-size: 16px;
-          font-weight: 700;
-          line-height: 1.1;
-          color: colors.$button-default;
-          text-align: right;
-
-          &::after {
-            content: 'грн';
-            margin-left: 1px;
-          }
+          font-family: $font-family;
+          font-size: 14px;
+          line-height: 1.4915;
+          color: $grey-300;
+          text-overflow: ellipsis;
+          letter-spacing: 0.03em;
+          white-space: nowrap;
         }
-      }
-
-      p {
-        overflow: hidden;
-
-        font-family: fonts.$font-family;
-        font-size: 14px;
-        line-height: 1.4915;
-        color: colors.$grey-300;
-        text-overflow: ellipsis;
-        letter-spacing: 0.03em;
-        white-space: nowrap;
-      }
-    }
-
-    .buy {
-      align-self: self-start;
-
-      margin-top: 0.5rem;
-      padding: 12px 32px;
-
-      font-family: fonts.$font-family;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.2;
-      color: colors.$accent-white;
-      text-transform: capitalize;
-      letter-spacing: 0.06em;
-
-      background: colors.$button-default;
-      border-radius: 0.25rem;
-
-      transition: all 0.3s;
-
-      &:hover {
-        background: colors.$button-hover;
       }
     }
   }

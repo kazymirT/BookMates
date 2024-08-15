@@ -2,7 +2,7 @@ import './Pagination.scss';
 
 import ReactPaginate from 'react-paginate';
 
-import ArrowIcon from '../svg/arrow/Arrow';
+import { Icon } from '../ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPage } from '@/redux/slices/queryParams';
 
@@ -16,19 +16,18 @@ const Pagination = ({ totalPages, currentPage }: Props) => {
   const handlePageClick = (selectedItem: { selected: number }) => {
     const newPage = String(selectedItem.selected + 1);
     dispatch(setPage(newPage));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
       <ReactPaginate
-        nextLabel={<ArrowIcon />}
+        nextLabel={<Icon.Arrow_1 />}
         onPageChange={handlePageClick}
         breakLabel="..."
         pageRangeDisplayed={3}
         marginPagesDisplayed={0}
         pageCount={totalPages}
-        previousLabel={<ArrowIcon />}
+        previousLabel={<Icon.Arrow_1 />}
         renderOnZeroPageCount={null}
         forcePage={currentPage}
         className={'pagination'}

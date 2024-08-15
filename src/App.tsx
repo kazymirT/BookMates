@@ -6,11 +6,9 @@ import route from './routes';
 
 const App = () => {
   return (
-    <>
-      <Provider store={store}>
-        <RouterProvider router={route} />
-      </Provider>
-    </>
+    <Provider store={store}>
+      <RouterProvider router={route} />
+    </Provider>
   );
 };
 

@@ -1,7 +1,11 @@
-import { NavLink } from 'react-router-dom';
-
 import styles from './HitProducts.module.scss';
 import BookCard from '@/components/BookCard/BookCard';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { BooksData } from '@/redux/services/services.types';
 
@@ -20,7 +24,13 @@ const HitProducts = () => {
       <div className="container">
         <div className={styles.headers}>
           <h2>Хіти продажів</h2>
-          <NavLink to="/catalog">більше</NavLink>
+          <ButtonLink
+            buttonType={ButtonType.Button}
+            size={Sizes.Medium}
+            text="Більше"
+            url="/catalog"
+            variant={Variant.Primary}
+          />
         </div>
 
         <div className={styles.books}>

@@ -17,6 +17,7 @@ export default {
               `Expected class selector "${selector}" to be lowerCamelCase`,
           },
         ],
+        'import-notation': 'string',
       },
     },
   ],

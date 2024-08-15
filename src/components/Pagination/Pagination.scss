@@ -1,36 +1,25 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
+/* stylelint-disable */
+@import '@/styles';
+/* stylelint-enable */
 
 @mixin next-previous($rotate) {
+  @include flex-center;
+
   transform: rotate($rotate);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   padding: 0.625rem;
-
-  border: 1px solid colors.$button-default;
+  border: 1px solid $button-default;
   border-radius: 50%;
 
   &:hover {
-    border-color: colors.$button-hover;
+    @include icon-state($icon-hover);
 
-    & > div svg {
-      path[stroke] {
-        stroke: colors.$icon-hover;
-      }
-    }
+    border-color: $button-hover;
   }
 
   &:active {
-    border-color: colors.$button-active;
+    @include icon-state($icon-active);
 
-    & > div svg {
-      path[stroke] {
-        stroke: colors.$icon-active;
-      }
-    }
+    border-color: $button-active;
   }
 }
 
@@ -40,17 +29,15 @@
   align-self: center;
 
   .item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
 
     padding: 0.78125rem 1.055rem;
 
-    font-family: fonts.$font-family;
+    font-family: $font-family;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.105;
-    color: colors.$grey-500;
+    color: $grey-500;
 
     border: 1px solid transparent;
     border-radius: 50%;
@@ -58,18 +45,18 @@
     transition: all 0.3s;
 
     &:hover {
-      background: colors.$accent-white;
+      background: $accent-white;
     }
 
     &.active {
-      border-color: colors.$button-default;
+      border-color: $button-default;
 
       &:hover {
-        border-color: colors.$button-hover;
+        border-color: $button-hover;
       }
 
       &:active {
-        border-color: colors.$button-active;
+        border-color: $button-active;
       }
     }
   }
@@ -83,24 +70,16 @@
   }
 
   a.disabled-link {
+    @include icon-state($button-disabled);
+
     cursor: auto;
     opacity: 0.3;
-    border-color: colors.$button-disabled;
-
-    & > div svg {
-      path[stroke] {
-        stroke: colors.$button-disabled;
-      }
-    }
+    border-color: $button-disabled;
 
     &:hover {
-      border-color: colors.$button-disabled;
+      @include icon-state($button-disabled);
 
-      & > div svg {
-        path[stroke] {
-          stroke: colors.$button-disabled;
-        }
-      }
+      border-color: $button-disabled;
     }
   }
 

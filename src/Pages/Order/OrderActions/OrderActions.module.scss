@@ -1,9 +1,7 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
-@use '@/styles/mixin.scss';
+@import '@/styles';
 
 .actions {
-  @include mixin.scrollBar(6px, 5px, colors.$background-color, colors.$background-color, colors.$grey-100);
+  @include scrollBar(6px, 5px, $background-color, $background-color, $grey-100);
 
   display: flex;
   flex-direction: column;
@@ -11,7 +9,7 @@
 
   padding: 16px;
 
-  background-color: colors.$accent-white;
+  background-color: $accent-white;
   border-radius: 0.5rem;
 
   .title {
@@ -22,8 +20,18 @@
       font-size: 1.5rem;
       font-weight: 500;
       line-height: 1.21;
-      color: colors.$grey-300;
+      color: $grey-300;
       letter-spacing: 0.03em;
+    }
+
+    button {
+      @include flex-center;
+
+      padding: 0;
+
+      &:hover {
+        @include icon-state($icon-hover);
+      }
     }
   }
 
@@ -50,7 +58,7 @@
         font-size: 0.88rem;
         font-weight: 400;
         line-height: 1.49;
-        color: colors.$icon-default;
+        color: $icon-default;
         letter-spacing: 0.01em;
       }
 
@@ -58,7 +66,7 @@
         font-size: 1rem;
         font-weight: 500;
         line-height: 1.188;
-        color: colors.$grey-500;
+        color: $grey-500;
         letter-spacing: 0.06em;
 
         &::after {
@@ -74,10 +82,10 @@
 
         font-size: 0.88rem;
         line-height: 1.5;
-        color: colors.$icon-default;
+        color: $icon-default;
         letter-spacing: 0.01em;
 
-        border: 1px solid colors.$grey-100;
+        border: 1px solid $grey-100;
         border-radius: 28px;
         outline: none;
       }
@@ -97,7 +105,7 @@
         font-size: 24px;
         font-weight: 500;
         line-height: 1.208;
-        color: colors.$grey-500;
+        color: $grey-500;
         letter-spacing: 0.05em;
       }
 
@@ -105,7 +113,7 @@
         font-size: 24px;
         font-weight: 500;
         line-height: 1.208;
-        color: colors.$grey-500;
+        color: $grey-500;
         letter-spacing: 0.06em;
 
         &::after {
@@ -121,50 +129,16 @@
     flex-direction: column;
     gap: 16px;
 
-    .submit {
-      width: 100%;
-      padding: 16px;
-
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.188;
-      color: colors.$accent-white;
-      text-align: center;
-      letter-spacing: 0.01em;
-
-      background: colors.$button-default;
-      border-radius: 4px;
-
-      &:hover {
-        background: colors.$button-hover;
-      }
-
-      &:active {
-        background: colors.$button-active;
-      }
-
-      &:disabled {
-        color: colors.$grey-200;
-        background: colors.$button-disabled;
-      }
-    }
-
     .continue {
+      @include hover-active($brown-300, $brown-400);
+
       align-self: center;
 
       font-size: 16px;
       font-weight: 500;
       line-height: 1.188;
-      color: colors.$grey-300;
+      color: $grey-300;
       letter-spacing: 0.01em;
-
-      &:hover {
-        color: colors.$brown-300;
-      }
-
-      &:active {
-        color: colors.$brown-400;
-      }
     }
   }
 }

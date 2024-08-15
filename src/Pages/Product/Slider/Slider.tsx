@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
 import styles from './Slider.module.scss';
 import BookCard from '@/components/BookCard/BookCard';
-import ArrowIcon from '@/components/svg/arrow/Arrow';
+import { Icon } from '@/components/ui-components/Icons';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { BooksData } from '@/redux/services/services.types';
 
@@ -44,7 +44,8 @@ const SlideNextButton = () => {
   });
   return (
     <button onClick={handleNavigate} className={buttonClassName}>
-      <ArrowIcon />
+      {/* <ArrowIcon /> */}
+      <Icon.Arrow_1 />
     </button>
   );
 };

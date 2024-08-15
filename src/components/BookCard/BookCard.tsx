@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
+import { Icon } from '@ui_components/Icons';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
 import styles from './BookCard.module.scss';
-import cart from '@/assets/icons/cart.svg';
+import { Button } from '../ui-components/Button/Button';
+import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
 import book1 from '@/assets/images/fake/book1.webp';
 import { useAppDispatch } from '@/redux/hooks';
 import { BooksData } from '@/redux/services/services.types';
@@ -53,7 +55,7 @@ const BookCard = ({ data }: Props) => {
               onClick={handleAddToCard}
               aria-label="Add to card"
             >
-              <img src={cart} width={24} height={24} />
+              <Icon.Cart />
             </button>
           </>
         ) : (
@@ -62,34 +64,35 @@ const BookCard = ({ data }: Props) => {
       </div>
       <div className={styles.transparent}>
         <div className={styles.content}>
-          <div className={styles.headers}>
-            {data ? (
-              <>
-                <h3>{data.title}</h3>
-                <p>{data.price}</p>
-              </>
-            ) : (
-              <Skeleton
-                containerClassName="flex-1"
-                width={119}
-                height={19}
-                count={2}
-                inline
-              />
-            )}
+          <div className={styles.text}>
+            <div className={styles.headers}>
+              {data ? (
+                <>
+                  <h3>{data.title}</h3>
+                  <p>{data.price}</p>
+                </>
+              ) : (
+                <Skeleton
+                  containerClassName="flex-1"
+                  width={119}
+                  height={19}
+                  count={2}
+                  inline
+                />
+              )}
+            </div>
+            <p className={styles.description}>
+              {data ? data.authors.join(', ') : <Skeleton />}
+            </p>
           </div>
-          <p className={styles.description}>
-            {data ? data.authors.join(', ') : <Skeleton />}
-          </p>
           {data ? (
-            <button
-              type="button"
+            <Button
+              buttonType={ButtonType.Button}
+              size={Sizes.Medium}
               onClick={handleAddAndOpenCard}
-              className={styles.buy}
-              aria-label="Buy now"
-            >
-              купити
-            </button>
+              text="Купити"
+              variant={Variant.Basic}
+            />
           ) : (
             <Skeleton width={121} height={44} />
           )}

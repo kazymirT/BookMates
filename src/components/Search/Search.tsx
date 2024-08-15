@@ -2,7 +2,14 @@ import { ChangeEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Search.module.scss';
-import arrow from '@/assets/icons/arrow_up.svg';
+import {
+  ButtonType,
+  Position,
+  Sizes,
+  Variant,
+} from '../ui-components/Button/constants';
+import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
+import { Icon } from '../ui-components/Icons';
 import search from '@/assets/icons/search.svg';
 import book1 from '@/assets/images/fake/book1.webp';
 import useClickOutside from '@/hooks/useClickOutside';
@@ -84,14 +91,16 @@ const Search = () => {
               </ul>
             </div>
           </div>
-          <Link
-            to={`/catalog/?search=${value}`}
-            className={styles.more}
+          <ButtonLink
+            buttonType={ButtonType.Button}
+            icon={<Icon.Arrow />}
+            iconPosition={Position.Right}
+            size={Sizes.Small}
+            text="Показати все"
             onClick={onClickSearch}
-          >
-            Показати все
-            <img src={arrow} alt="" width={20} height={20} />
-          </Link>
+            url={`/catalog/?search=${value}`}
+            variant={Variant.Basic}
+          />
         </div>
       )}
     </div>

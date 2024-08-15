@@ -1,0 +1,43 @@
+import { FC } from 'react';
+
+import { IconAppName } from './constants';
+import makeIcon from './MakeIcon';
+import { IconInstance } from './sources';
+import { IconProps } from './types';
+
+type Icon = {
+  [Key in IconAppName]: FC<IconProps>;
+};
+
+export const Icon: Icon = {
+  [IconAppName.CART]: makeIcon(IconInstance.Cart, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.ARROW]: makeIcon(IconInstance.Arrow, {
+    width: '20',
+    height: '20',
+    viewBox: '0 0 20 20',
+  }),
+  [IconAppName.ARROW_1]: makeIcon(IconInstance.Arrow_1, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.ACCOUNT]: makeIcon(IconInstance.Account, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.EDIT]: makeIcon(IconInstance.Edit, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.CLOSE]: makeIcon(IconInstance.Close, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+};

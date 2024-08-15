@@ -1,8 +1,13 @@
-import { Link } from 'react-router-dom';
-
 import styles from '../../Forms/Form.module.scss';
 import thanks from '@/assets/images/thanks.png';
 import Salute from '@/components/StatusScreen/Salute/Salute';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
+import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
@@ -13,11 +18,9 @@ const OrderSuccess = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Замовлення успішне</h2>
-        <button
-          type="button"
-          className={styles.close}
-          onClick={handleClose}
-        ></button>
+        <button type="button" className={styles.close} onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <div className={styles['success']}>
         <img src={thanks} alt="thanks" width={246} height={246} />
@@ -26,9 +29,14 @@ const OrderSuccess = () => {
           Дякуємо за замовлення. Реквізити для оплати відправлені на пошту.
         </p>
       </div>
-      <Link to={'/catalog'} className={styles.submit} onClick={handleClose}>
-        Продовжити покупки
-      </Link>
+      <ButtonLink
+        buttonType={ButtonType.Button}
+        size={Sizes.Full}
+        variant={Variant.Basic}
+        onClick={handleClose}
+        text="Продовжити покупки"
+        url="/catalog"
+      />
     </section>
   );
 };

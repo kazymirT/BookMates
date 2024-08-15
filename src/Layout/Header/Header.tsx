@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import Menu from './Menu/Menu';
 import UserButton from './UserButton/UserButton';
-import account from '@/assets/icons/Account.svg';
 import cart from '@/assets/icons/cart.svg';
 import logo from '@/assets/icons/Logo.svg';
 import { RadioGroup } from '@/components/RadioGroup/RadioGroup';
 import Search from '@/components/Search/Search';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
+import { Icon } from '@/components/ui-components/Icons';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
 import { addFilterItem, clearFilters } from '@/redux/slices/queryParams';
@@ -53,10 +53,7 @@ const Header = () => {
             {user ? (
               <UserButton {...user} />
             ) : (
-              <DropDown
-                options={<Menu />}
-                control={<img src={account} alt="" width={24} height={24} />}
-              />
+              <DropDown options={<Menu />} control={<Icon.Account />} />
             )}
             <button className={styles['cart-btn']}>
               <img

@@ -3,7 +3,10 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 import { SORT_OPTIONS_URL } from '@/utils/constants';
-import { updateSearchParams } from '@/utils/updateSearchParams';
+import {
+  deleteSearchParams,
+  updateSearchParams,
+} from '@/utils/updateSearchParams';
 
 const params = new URLSearchParams(window.location.search);
 
@@ -108,6 +111,7 @@ export const queryParamsSlice = createSlice({
       state.filter.language = [];
       state.filter.price = [];
       state.filter.years = [];
+      deleteSearchParams();
     },
     initializeState: (state, action: PayloadAction<QueryParamsState>) => {
       state.filter = action.payload.filter;

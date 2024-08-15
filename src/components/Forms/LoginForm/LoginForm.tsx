@@ -4,6 +4,13 @@ import { useForm } from 'react-hook-form';
 
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
+import { Button } from '@/components/ui-components/Button/Button';
+import {
+  ButtonType,
+  Sizes,
+  Variant,
+} from '@/components/ui-components/Button/constants';
+import { Icon } from '@/components/ui-components/Icons';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -45,7 +52,9 @@ const LoginForm = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>Логін</h2>
-        <button className={styles.close} onClick={handleClose}></button>
+        <button className={styles.close} onClick={handleClose}>
+          <Icon.Close />
+        </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles['input-container']}>
@@ -90,14 +99,13 @@ const LoginForm = () => {
             Забув пароль
           </button>
         )}
-
-        <button
-          type="submit"
-          className={styles.submit}
+        <Button
+          buttonType={ButtonType.Submit}
+          size={Sizes.Full}
+          variant={Variant.Basic}
+          text="Увійти"
           disabled={!isValid || isSubmitting || isServerError}
-        >
-          Увійти
-        </button>
+        />
       </form>
       <button
         className={styles.register}

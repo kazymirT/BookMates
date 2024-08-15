@@ -2,6 +2,8 @@
 @use '@/styles/colors.scss';
 @use '@/styles/mixin.scss';
 
+@import '@/styles';
+
 .wrapper {
   position: relative;
   display: flex;
@@ -88,9 +90,9 @@
   }
 
   .indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
+    @include icon-state(#6a6a6a);
+
     transition: all 0.3s;
 
     &.indicator_opened {
@@ -158,9 +160,8 @@
   }
 
   .clear {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
+
     height: 24px;
   }
 }
