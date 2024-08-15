@@ -4,7 +4,9 @@ import { CSSTransition } from 'react-transition-group';
 import CartItem from './CartItem/CartItem';
 import styles from './ShoppingCart.module.scss';
 import Portal from '../Portal/Portal';
-import closeIcon from '@/assets/icons/Close.svg';
+import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
+import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
+import { Icon } from '../ui-components/Icons';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import {
   isOpen,
@@ -49,7 +51,7 @@ const ShoppingCart = () => {
           <div className={styles.head}>
             <h3>Кошик</h3>
             <button onClick={closeCart}>
-              <img src={closeIcon} alt="close" width={24} height={24} />
+              <Icon.Close />
             </button>
           </div>
           {cartItems.length === 0 ? (
@@ -70,9 +72,14 @@ const ShoppingCart = () => {
               <span>Всього</span>
               <span>{totalPrice} грн</span>
             </div>
-            <button className={styles['checkout-btn']}>
-              Перейти до замовлення
-            </button>
+            <ButtonLink
+              text="Перейти до замовлення"
+              buttonType={ButtonType.Button}
+              size={Sizes.Full}
+              url="/order"
+              onClick={closeCart}
+              variant={Variant.Basic}
+            />
           </div>
         </aside>
       </CSSTransition>
