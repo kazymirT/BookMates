@@ -4,7 +4,6 @@
 @import url('@/styles');
 
 @mixin next-previous($rotate) {
-
   @include flex-center;
 
   transform: rotate($rotate);

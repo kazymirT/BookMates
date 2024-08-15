@@ -27,3 +27,6 @@ export const updateSearchParams = (paramName: string, paramValue: string[]) => {
 
   window.history.pushState({}, '', newUrl);
 };
+export const deleteSearchParams = () => {
+  window.history.pushState({}, '', window.location.pathname);
+};

@@ -6,7 +6,7 @@ import {
   Sizes,
   Variant,
 } from '@/components/ui-components/Button/constants';
-import { ButtonLinkIcon } from '@/components/ui-components/ButtonLinkIcon/ButtonLinkIcon';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
 
 const Banner = () => {
@@ -21,7 +21,7 @@ const Banner = () => {
               інтернет-крамниці!
             </p>
           </div>
-          <ButtonLinkIcon
+          <ButtonLink
             url="/catalog"
             buttonType={ButtonType.Button}
             icon={<Icon.Arrow />}

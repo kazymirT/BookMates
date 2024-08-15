@@ -1,4 +1,5 @@
 export enum Sizes {
+  ExtraSmall = 'xs',
   Small = 's',
   Medium = 'm',
   Large = 'l',
@@ -9,6 +10,8 @@ export enum Sizes {
 export enum Variant {
   Basic = 'basic',
   Primary = 'primary',
+  Label = 'label',
+  LabelX = 'label-x',
 }
 
 export enum ButtonType {

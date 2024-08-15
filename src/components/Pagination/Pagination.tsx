@@ -16,7 +16,6 @@ const Pagination = ({ totalPages, currentPage }: Props) => {
   const handlePageClick = (selectedItem: { selected: number }) => {
     const newPage = String(selectedItem.selected + 1);
     dispatch(setPage(newPage));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

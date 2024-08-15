@@ -8,7 +8,7 @@ import {
   Sizes,
   Variant,
 } from '../ui-components/Button/constants';
-import { ButtonLinkIcon } from '../ui-components/ButtonLinkIcon/ButtonLinkIcon';
+import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
 import search from '@/assets/icons/search.svg';
 import book1 from '@/assets/images/fake/book1.webp';
@@ -91,7 +91,7 @@ const Search = () => {
               </ul>
             </div>
           </div>
-          <ButtonLinkIcon
+          <ButtonLink
             buttonType={ButtonType.Button}
             icon={<Icon.Arrow />}
             iconPosition={Position.Right}

@@ -9,12 +9,12 @@ import HistoryWrapper from './HistoryWrapper';
 import Layout from '@/Layout/Layout/Layout';
 import {
   Catalog,
-  ErrorPage,
   Home,
   Page404,
   NotAuthenticated,
   NotAuthorized,
   Order,
+  ErrorPage,
 } from '@/Pages';
 import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';

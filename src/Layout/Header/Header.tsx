@@ -39,22 +39,24 @@ const Header = () => {
         <Link to={'/'}>
           <img src={logo} alt="logo" width={102} height={84} />
         </Link>
-        <Search />
-        <div className={styles.btns}>
-          <RadioGroup />
-          <div className={styles.icons}>
-            {user ? (
-              <UserButton {...user} />
-            ) : (
-              <DropDown options={<Menu />} control={<Icon.Account />} />
-            )}
-            <img
-              src={cart}
-              alt="cart"
-              width={24}
-              height={24}
-              onClick={showNotification}
-            />
+        <div className={styles['row-1']}>
+          <Search />
+          <div className={styles.btns}>
+            <RadioGroup />
+            <div className={styles.icons}>
+              {user ? (
+                <UserButton {...user} />
+              ) : (
+                <DropDown options={<Menu />} control={<Icon.Account />} />
+              )}
+              <img
+                src={cart}
+                alt="cart"
+                width={24}
+                height={24}
+                onClick={showNotification}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -76,6 +76,41 @@
     }
   }
 
+  &--label {
+    font-weight: 400;
+    color: $grey-300;
+    letter-spacing: 0.05em;
+
+    background-color: $grey-100;
+    border-radius: 12px;
+  }
+
+  &--label-x {
+    gap: 5px;
+
+    font-weight: 400;
+    color: $grey-300;
+    letter-spacing: 0.04em;
+
+    background-color: $grey-100;
+    border-radius: 12px;
+
+    &::after {
+      content: 'x';
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 9px;
+      height: 9px;
+    }
+  }
+
+  &--xs {
+    padding: 15px;
+  }
+
   &--s {
     padding: 12.5px 23px;
   }

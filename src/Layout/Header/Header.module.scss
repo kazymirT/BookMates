@@ -16,12 +16,18 @@
 
   &_top {
     display: flex;
+    gap: 89px;
     align-items: center;
-    justify-content: space-between;
 
     box-sizing: border-box;
     width: 100%;
-    padding-right: 44px;
+
+    .row-1 {
+      display: flex;
+      gap: 186px;
+      align-items: center;
+      width: 100%;
+    }
   }
 
   ul {

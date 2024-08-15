@@ -43,23 +43,5 @@
     p {
       @include mixin.font-styles(fonts.$font-family, 1.5rem, 500, 1.21, colors.$grey-400, 0.04em);
     }
-
-    button {
-      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.19, colors.$accent-white, 0.055em);
-
-      align-self: start;
-
-      width: 100%;
-      padding: 1rem 4.53rem;
-
-      background: colors.$button-default;
-      border-radius: 0.25rem;
-
-      transition: all 0.3s;
-
-      &:hover {
-        background-color: colors.$button-hover;
-      }
-    }
   }
 }

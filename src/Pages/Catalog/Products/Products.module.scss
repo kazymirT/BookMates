@@ -1,6 +1,8 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
 
+@import '@/styles';
+
 .box {
   position: relative;
   display: flex;
@@ -16,6 +18,16 @@
     &.disabled {
       opacity: 0.5;
     }
+  }
+
+  .no-result {
+    padding-top: 36.5px;
+
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: $grey-400;
+    letter-spacing: 0.033em;
   }
 
   .fetching {

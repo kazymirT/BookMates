@@ -10,5 +10,6 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent) => void;
   buttonType: ButtonType;
   children?: ReactNode;
+  icon?: ReactNode;
   iconPosition?: Position;
 }

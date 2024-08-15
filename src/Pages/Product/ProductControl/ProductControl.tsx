@@ -8,7 +8,6 @@ import {
   Variant,
   Position,
 } from '@/components/ui-components/Button/constants';
-import { ButtonIcon } from '@/components/ui-components/ButtonIcon/ButtonIcon';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
@@ -35,7 +34,7 @@ const ProductControl = ({ price }: { price?: number }) => {
               variant={Variant.Basic}
               onClick={handleOpenOrderSuccess}
             />
-            <ButtonIcon
+            <Button
               buttonType={ButtonType.Button}
               text="До кошика"
               variant={Variant.Primary}
