@@ -1,7 +1,11 @@
 import styles from './CartItem.module.scss';
 import removeIcon from '@/assets/icons/TrashBin.svg';
 import { useAppDispatch } from '@/redux/hooks';
-import { removePosition } from '@/redux/slices/shoppingCartSlice';
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removePosition,
+} from '@/redux/slices/shoppingCartSlice';
 //import { useRemoveBookMutation } from '@/redux/services/cart';
 import { type CartItem as CartItemType } from '@/redux/slices/shoppingCartSlice';
 
@@ -38,9 +42,9 @@ const CartItem = ({
         <div className={styles.row}>
           <span className={styles.price}>{`${price} грн`}</span>
           <div className={styles.amount}>
-            <button>-</button>
+            <button onClick={() => dispatch(decreaseQuantity(id))}>-</button>
             <div className={styles.value}>{quantity}</div>
-            <button>+</button>
+            <button onClick={() => dispatch(increaseQuantity(id))}>+</button>
           </div>
         </div>
       </div>

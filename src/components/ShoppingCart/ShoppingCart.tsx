@@ -16,6 +16,10 @@ import {
 const ShoppingCart = () => {
   const isCartOpen = useAppSelector(isOpen);
   const cartItems = useAppSelector(goods);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + Number(item.price) * item.quantity,
+    0
+  );
   const dispatch = useAppDispatch();
 
   const [show, setShow] = React.useState(true);
@@ -64,7 +68,7 @@ const ShoppingCart = () => {
           <div className={styles.info}>
             <div className={styles.total}>
               <span>Всього</span>
-              <span>450 грн</span>
+              <span>{totalPrice}</span>
             </div>
             <button>Перейти до замовлення</button>
           </div>

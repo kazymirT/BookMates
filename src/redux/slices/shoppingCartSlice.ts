@@ -42,20 +42,24 @@ export const shoppingCart = createSlice({
         existedItem.quantity++;
       } else state.goods.push({ ...action.payload, quantity: 1 });
     },
-    removeGoods: (state, action: PayloadAction<CartItem['id']>) => {
+    increaseQuantity: (state, action: PayloadAction<CartItem['id']>) => {
       const existedItem = state.goods.find(
         (item) => item.id === action.payload
       );
       if (existedItem) {
-        if (existedItem.quantity === 1) {
-          state.goods = state.goods.filter(
-            (item) => item.id !== action.payload
-          );
-        } else existedItem.quantity--;
+        existedItem.quantity++;
+      }
+    },
+    decreaseQuantity: (state, action: PayloadAction<CartItem['id']>) => {
+      const existedItem = state.goods.find(
+        (item) => item.id === action.payload
+      );
+      if (existedItem && existedItem.quantity !== 1) {
+        existedItem.quantity--;
       }
     },
     removePosition: (state, action: PayloadAction<CartItem['id']>) => {
-      state.goods.filter((item) => item.id !== action.payload);
+      state.goods = state.goods.filter((item) => item.id !== action.payload);
     },
   },
 });
@@ -64,7 +68,8 @@ export const {
   //togglePendingCart,
   toggleOpenCart,
   addGoods,
-  removeGoods,
+  increaseQuantity,
+  decreaseQuantity,
   removePosition,
 } = shoppingCart.actions;
 export const isOpen = (state: RootState) => state.shoppingCart.isOpenCart;
