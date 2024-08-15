@@ -1,6 +1,3 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
-
 @import url('@/styles');
 
 @mixin next-previous($rotate) {
@@ -8,19 +5,19 @@
 
   transform: rotate($rotate);
   padding: 0.625rem;
-  border: 1px solid colors.$button-default;
+  border: 1px solid $button-default;
   border-radius: 50%;
 
   &:hover {
     @include icon-state($icon-hover);
 
-    border-color: colors.$button-hover;
+    border-color: $button-hover;
   }
 
   &:active {
     @include icon-state($icon-active);
 
-    border-color: colors.$button-active;
+    border-color: $button-active;
   }
 }
 
@@ -34,11 +31,11 @@
 
     padding: 0.78125rem 1.055rem;
 
-    font-family: fonts.$font-family;
+    font-family: $font-family;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.105;
-    color: colors.$grey-500;
+    color: $grey-500;
 
     border: 1px solid transparent;
     border-radius: 50%;
@@ -46,18 +43,18 @@
     transition: all 0.3s;
 
     &:hover {
-      background: colors.$accent-white;
+      background: $accent-white;
     }
 
     &.active {
-      border-color: colors.$button-default;
+      border-color: $button-default;
 
       &:hover {
-        border-color: colors.$button-hover;
+        border-color: $button-hover;
       }
 
       &:active {
-        border-color: colors.$button-active;
+        border-color: $button-active;
       }
     }
   }
@@ -75,12 +72,12 @@
 
     cursor: auto;
     opacity: 0.3;
-    border-color: colors.$button-disabled;
+    border-color: $button-disabled;
 
     &:hover {
       @include icon-state($button-disabled);
 
-      border-color: colors.$button-disabled;
+      border-color: $button-disabled;
     }
   }
 
