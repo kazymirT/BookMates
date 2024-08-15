@@ -8,11 +8,11 @@ import {
   Variant,
   Position,
 } from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import { BookById } from '@/redux/services/services.types';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
-import { toggleModal } from '@/redux/slices/modalSlice';
 //import { useAddBookMutation } from '@/redux/services/cart';
 import { addGoods } from '@/redux/slices/shoppingCartSlice';
 
@@ -28,37 +28,37 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
           id: book.id,
           price: String(book.price),
           authors: book.authors,
-          img: book.image?.contentType || '',
+          img: book.imageUrl,
           title: book.title,
         })
       );
       dispatch(toggleShowCartNotification(true));
     }
   };
-  const handleOpenOrderSuccess = () =>
-    dispatch(toggleModal({ openedModalType: 'order-success' }));
-
   return (
     <div className={styles.control}>
       {book && book.price ? (
         <>
           <p className={styles.price}>{book.price}</p>
-          <Button
-            buttonType={ButtonType.Button}
-            size={Sizes.ExtraLarge}
-            text="Купити зараз"
-            variant={Variant.Basic}
-            onClick={handleOpenOrderSuccess}
-          />
-          <Button
-            buttonType={ButtonType.Button}
-            text="До кошика"
-            variant={Variant.Primary}
-            iconPosition={Position.Left}
-            size={Sizes.Large}
-            onClick={handleAddToCart}
-            icon={<Icon.Cart />}
-          />
+          <div className={styles.btns}>
+            <ButtonLink
+              url="/order"
+              buttonType={ButtonType.Button}
+              size={Sizes.ExtraLarge}
+              text="Купити зараз"
+              variant={Variant.Basic}
+              onClick={handleAddToCart}
+            />
+            <Button
+              buttonType={ButtonType.Button}
+              text="До кошика"
+              variant={Variant.Primary}
+              iconPosition={Position.Left}
+              size={Sizes.Large}
+              onClick={handleAddToCart}
+              icon={<Icon.Cart />}
+            />
+          </div>
         </>
       ) : (
         <Skeleton width={218} height={48} count={3} />

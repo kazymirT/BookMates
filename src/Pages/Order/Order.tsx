@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import NovaPoshtaForm from './NovaPoshtaForm/NovaPoshtaForm';
 import styles from './Order.module.scss';
@@ -15,6 +16,7 @@ import { type OrderValues, orderSchema } from '@/utils/validateSchema';
 
 const Order = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { sendFeedback } = useFormActions();
   const {
     register,
@@ -44,6 +46,7 @@ const Order = () => {
     if (response) {
       dispatch(toggleStatus('idle'));
       dispatch(toggleModal({ openedModalType: 'order-success' }));
+      navigate('/');
     }
   };
   const breadCrumbs = createBreadcrumbs('order');

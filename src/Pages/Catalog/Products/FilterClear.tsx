@@ -55,39 +55,37 @@ const FilterClear = () => {
               onClick={() => dispatch(clearFilters())}
             />
           )}
-          <div className={styles.filters}>
-            {!!filters.length &&
-              filters.map((filter) => (
-                <Button
-                  key={filter.filterName + filter.value}
-                  buttonType={ButtonType.Button}
-                  size={Sizes.ExtraSmall}
-                  text={filter.value}
-                  variant={Variant.LabelX}
-                  onClick={() => handleOnClear(filter.filterName, filter.value)}
-                />
-              ))}
-            {priceFilter && (
+          {!!filters.length &&
+            filters.map((filter) => (
               <Button
-                key={priceFilter}
+                key={filter.filterName + filter.value}
                 buttonType={ButtonType.Button}
                 size={Sizes.ExtraSmall}
-                text={priceFilter}
+                text={filter.value}
                 variant={Variant.LabelX}
-                onClick={() => dispatch(setPrice([]))}
+                onClick={() => handleOnClear(filter.filterName, filter.value)}
               />
-            )}
-            {search && (
-              <Button
-                key={search}
-                buttonType={ButtonType.Button}
-                size={Sizes.ExtraSmall}
-                text={search}
-                variant={Variant.LabelX}
-                onClick={() => dispatch(setSearch(''))}
-              />
-            )}
-          </div>
+            ))}
+          {priceFilter && (
+            <Button
+              key={priceFilter}
+              buttonType={ButtonType.Button}
+              size={Sizes.ExtraSmall}
+              text={priceFilter}
+              variant={Variant.LabelX}
+              onClick={() => dispatch(setPrice([]))}
+            />
+          )}
+          {search && (
+            <Button
+              key={search}
+              buttonType={ButtonType.Button}
+              size={Sizes.ExtraSmall}
+              text={search}
+              variant={Variant.LabelX}
+              onClick={() => dispatch(setSearch(''))}
+            />
+          )}
         </div>
       )}
     </>

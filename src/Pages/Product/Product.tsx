@@ -6,7 +6,6 @@ import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Slider from './Slider/Slider';
-import book1 from '@/assets/images/fake/book1.webp';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useGetBookByIdQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
@@ -31,7 +30,7 @@ const Product = () => {
                 <Skeleton width={282} height={328} />
               ) : (
                 <img
-                  src={!book?.image ? book1 : book.image.contentType}
+                  src={book?.imageUrl}
                   alt={book && book.title}
                   width={282}
                   height={328}

@@ -46,29 +46,31 @@ const Header = () => {
         <Link to={'/'}>
           <img src={logo} alt="logo" width={102} height={84} />
         </Link>
-        <Search />
-        <div className={styles.btns}>
-          <RadioGroup />
-          <div className={styles.icons}>
-            {user ? (
-              <UserButton {...user} />
-            ) : (
-              <DropDown options={<Menu />} control={<Icon.Account />} />
-            )}
-            <button className={styles['cart-btn']}>
-              <img
-                src={cart}
-                alt="cart"
-                width={24}
-                height={24}
-                onClick={openCart}
-              />
-              {cartItemsCount > 0 && (
-                <div className={styles['cart-counter']}>
-                  <span>{cartItemsCount}</span>
-                </div>
+        <div className={styles['row-1']}>
+          <Search />
+          <div className={styles.btns}>
+            <RadioGroup />
+            <div className={styles.icons}>
+              {user ? (
+                <UserButton {...user} />
+              ) : (
+                <DropDown options={<Menu />} control={<Icon.Account />} />
               )}
-            </button>
+              <button className={styles['cart-btn']}>
+                <img
+                  src={cart}
+                  alt="cart"
+                  width={24}
+                  height={24}
+                  onClick={openCart}
+                />
+                {cartItemsCount > 0 && (
+                  <div className={styles['cart-counter']}>
+                    <span>{cartItemsCount}</span>
+                  </div>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -88,7 +90,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to={'/order'}>Вигідні пропозиції</Link>
+            <Link to={'/catalog'}>Вигідні пропозиції</Link>
           </li>
         </ul>
       </nav>

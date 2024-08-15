@@ -23,7 +23,7 @@ const Search = () => {
   const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const { data: books } = useGetBooksQuery(
-    { size: '22', search: value, sort: [SORT_OPTIONS['Дорожчі']] }
+    { size: '3', search: value, sort: [SORT_OPTIONS['Дорожчі']] }
     // { skip: value.length < 1 }
   );
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -66,29 +66,36 @@ const Search = () => {
               </ul>
             </div>
             <div className={styles.books}>
-              <h3>Книги</h3>
-              <ul className={styles['books_list']}>
-                {books?.content &&
-                  books.content.map((book) => (
-                    <Link
-                      to={`/product/${book.id}`}
-                      key={book.id}
-                      className={styles.list}
-                      onClick={handleOnClose}
-                    >
-                      <img
-                        src={book1}
-                        alt={book.title}
-                        width={43}
-                        height={66}
-                      />
-                      <div className={styles.content}>
-                        <h3>{book.title}</h3>
-                        <span className={styles.price}>{book.price}</span>
-                      </div>
-                    </Link>
-                  ))}
-              </ul>
+              {books?.content.length ? (
+                <>
+                  <h3>Книги</h3>
+                  <ul className={styles['books_list']}>
+                    {books.content.map((book) => (
+                      <Link
+                        to={`/product/${book.id}`}
+                        key={book.id}
+                        className={styles.list}
+                        onClick={handleOnClose}
+                      >
+                        <img
+                          src={book1}
+                          alt={book.title}
+                          width={43}
+                          height={66}
+                        />
+                        <div className={styles.content}>
+                          <h3>{book.title}</h3>
+                          <span className={styles.price}>{book.price}</span>
+                        </div>
+                      </Link>
+                    ))}
+                  </ul>
+                </>
+              ) : (
+                <p className={styles['no-result']}>
+                  За вашим запитом не знайдено жодних результатів
+                </p>
+              )}
             </div>
           </div>
           <ButtonLink

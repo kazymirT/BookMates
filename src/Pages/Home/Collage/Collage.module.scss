@@ -32,16 +32,21 @@
     flex-direction: column;
     gap: 2rem;
 
-    width: 50%;
-    max-width: 28rem;
+    width: fit-content;
     padding: 155px 5rem 154px 0.75rem;
 
     h2 {
       @include mixin.font-styles(fonts.$third-family, 2rem, 700, 0.85, colors.$grey-500, 0.055em);
+
+      width: 100%;
+      max-width: 448px;
     }
 
     p {
       @include mixin.font-styles(fonts.$font-family, 1.5rem, 500, 1.21, colors.$grey-400, 0.04em);
+
+      width: 100%;
+      max-width: 448px;
     }
   }
 }

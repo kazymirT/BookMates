@@ -1,4 +1,3 @@
-import book1 from '@/assets/images/fake/book1.webp';
 import sale1001 from '@/assets/images/fake/sale/sale-10-01.png';
 import sale1002 from '@/assets/images/fake/sale/sale-10-02.png';
 import sale1003 from '@/assets/images/fake/sale/sale-10-03.png';
@@ -33,90 +32,6 @@ export const saleBooks: SaleBooksType[] = [
     title: 'Знижки 20',
     images: [sale2001, sale2002, sale2003, sale2004],
     id: 3,
-  },
-];
-
-export type OrderListType = {
-  id: number;
-  img: string;
-  title: string;
-  authors: string[];
-  price: string;
-  count: number;
-};
-
-export const ordersList = [
-  {
-    id: 1,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '200',
-    count: 1,
-  },
-  {
-    id: 2,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '300',
-    count: 2,
-  },
-  {
-    id: 3,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '500',
-    count: 10,
-  },
-  {
-    id: 4,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '200',
-    count: 1,
-  },
-  {
-    id: 5,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '300',
-    count: 2,
-  },
-  {
-    id: 6,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '500',
-    count: 10,
-  },
-  {
-    id: 7,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '200',
-    count: 1,
-  },
-  {
-    id: 8,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '300',
-    count: 2,
-  },
-  {
-    id: 9,
-    img: book1,
-    title: 'Містер Пінґвін. Втрачений скарб',
-    authors: ['Алекс Т. Сміт'],
-    price: '500',
-    count: 10,
   },
 ];
 
