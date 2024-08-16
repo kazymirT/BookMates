@@ -13,7 +13,7 @@ const Search = () => {
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);
-
+  const clearValue = () => setValue('');
   const handleOnClose = () => setIsOpen(false);
 
   useClickOutside(wrapperRef, handleOnClose);
@@ -32,7 +32,12 @@ const Search = () => {
           <img src={search} width={24} height={24} alt="search icon" />
         </button>
       </div>
-      <Result isOpen={isOpen} value={value} handleOnClose={handleOnClose} />
+      <Result
+        isOpen={isOpen && value.length >= 3}
+        value={value}
+        handleOnClose={handleOnClose}
+        clearValue={clearValue}
+      />
     </div>
   );
 };

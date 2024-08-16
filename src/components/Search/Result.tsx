@@ -18,10 +18,12 @@ const Result = ({
   value,
   isOpen,
   handleOnClose,
+  clearValue,
 }: {
   value: string;
   isOpen: boolean;
   handleOnClose: () => void;
+  clearValue: () => void;
 }) => {
   const dispatch = useAppDispatch();
   const { data: books } = useGetBooksQuery(
@@ -31,6 +33,7 @@ const Result = ({
   const onClickSearch = () => {
     dispatch(setSearch(value));
     handleOnClose();
+    clearValue();
   };
   return (
     <>
@@ -57,7 +60,7 @@ const Result = ({
                         to={`/product/${book.id}`}
                         key={book.id}
                         className={styles.list}
-                        onClick={handleOnClose}
+                        onClick={onClickSearch}
                       >
                         <img
                           src={book.imageUrl}
