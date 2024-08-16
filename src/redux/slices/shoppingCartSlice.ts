@@ -61,6 +61,9 @@ export const shoppingCart = createSlice({
     removePosition: (state, action: PayloadAction<CartItem['id']>) => {
       state.goods = state.goods.filter((item) => item.id !== action.payload);
     },
+    clearCart: (state) => {
+      state.goods = [];
+    },
   },
 });
 
@@ -71,6 +74,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   removePosition,
+  clearCart,
 } = shoppingCart.actions;
 export const isOpen = (state: RootState) => state.shoppingCart.isOpenCart;
 export const goods = (state: RootState) => state.shoppingCart.goods;

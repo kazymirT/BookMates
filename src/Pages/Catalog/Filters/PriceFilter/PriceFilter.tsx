@@ -24,13 +24,13 @@ const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
 
   const handlerLowerBound = (lower: React.ChangeEvent<HTMLInputElement>) => {
     const lowerValue = Number(lower.target.value);
-    lowerValue >= value[1] ? setIsError(true) : setIsError(false);
+    lowerValue > value[1] ? setIsError(true) : setIsError(false);
     setValue([lowerValue, value[1]]);
   };
 
   const handlerUpperBound = (upper: React.ChangeEvent<HTMLInputElement>) => {
     const upperValue = Number(upper.target.value);
-    value[0] >= upperValue ? setIsError(true) : setIsError(false);
+    value[0] > upperValue ? setIsError(true) : setIsError(false);
     setValue([value[0], upperValue]);
   };
 
@@ -54,10 +54,10 @@ const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
       </div>
       <div className={controlClassNames} ref={contentRef}>
         <ReactSlider
-          value={value[1] > value[0] ? value : undefined}
+          value={value[1] >= value[0] ? value : undefined}
           max={1000}
           min={0}
-          minDistance={1}
+          minDistance={0}
           onChange={(value) => {
             setValue(value);
             setIsError(false);

@@ -46,10 +46,10 @@ export const selectSortOptions = [
 ];
 
 export const SORT_OPTIONS: Record<string, string> = {
-  'За популярністю': 'id,desc',
+  'За популярністю': 'id,asc',
   Дешевші: 'price,asc',
   Дорожчі: 'price,desc',
-  Новинки: 'createdAt,asc',
+  Новинки: 'id,desc',
   'За назвою': 'title,asc',
 };
 

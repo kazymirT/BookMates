@@ -24,8 +24,8 @@ const Pagination = ({ totalPages, currentPage }: Props) => {
         nextLabel={<Icon.Arrow_1 />}
         onPageChange={handlePageClick}
         breakLabel="..."
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={0}
+        pageRangeDisplayed={2}
+        marginPagesDisplayed={1}
         pageCount={totalPages}
         previousLabel={<Icon.Arrow_1 />}
         renderOnZeroPageCount={null}
