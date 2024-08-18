@@ -6,7 +6,6 @@ import Portal from '../Portal/Portal';
 import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
 import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
-import cart from '@/assets/icons/cart.svg';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   isOpen,
@@ -92,7 +91,7 @@ const CartNotification = () => {
           </div>
           <div className={styles.info}>
             <div className={styles.logo}>
-              <img src={cart} alt="" width={24} height={24} />
+              <Icon.Cart />
             </div>
             <div className={styles['cart-info']}>
               <p>

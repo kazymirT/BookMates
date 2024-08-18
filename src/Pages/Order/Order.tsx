@@ -8,16 +8,18 @@ import OrderActions from './OrderActions/OrderActions';
 import PersonalInfoForm from './PersonalInfoForm/PersonalInfoForm';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useFormActions } from '@/hooks/useFormActions';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { clearCart } from '@/redux/slices/shoppingCartSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
+import { userData } from '@/redux/slices/userSlice';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 import { type OrderValues, orderSchema } from '@/utils/validateSchema';
 
 const Order = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { user } = useAppSelector(userData);
   const { sendFeedback } = useFormActions();
   const {
     register,
@@ -27,9 +29,9 @@ const Order = () => {
     formState: { isValid, errors, isSubmitting },
   } = useForm<OrderValues>({
     defaultValues: {
-      firstName: undefined,
-      lastName: undefined,
-      email: undefined,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      email: user?.email,
       phone: '0',
       department: undefined,
       city: undefined,

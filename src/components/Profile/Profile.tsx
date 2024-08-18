@@ -1,43 +1,26 @@
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
 import { Icon } from '../ui-components/Icons';
-import cart from '@/assets/icons/cart.svg';
-import gear from '@/assets/icons/Gear.svg';
-import profile from '@/assets/icons/Profile.svg';
-import quit from '@/assets/icons/Quit.svg';
-import support from '@/assets/icons/Support.svg';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import { toggleModal } from '@/redux/slices/modalSlice';
 import { isOpen, toggleOpenProfile } from '@/redux/slices/profileSlice';
-import { userData } from '@/redux/slices/userSlice';
-
-const profileOptions = [
-  {
-    src: cart,
-    title: 'Мої замовлення',
-  },
-  {
-    src: gear,
-    title: 'Налаштування',
-  },
-  {
-    src: support,
-    title: 'Підтримка',
-  },
-  {
-    src: quit,
-    title: 'Вийти',
-  },
-];
+import { logout, userData } from '@/redux/slices/userSlice';
 
 const Profile = () => {
   const isProfileOpen = useAppSelector(isOpen);
   const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
-
   const handleClose = () => {
     dispatch(toggleOpenProfile(false));
   };
-
+  const onLogout = () => {
+    dispatch(logout());
+    handleClose();
+  };
+  const onClickSupport = () => {
+    handleClose();
+    dispatch(toggleModal({ openedModalType: 'feedback' }));
+  };
   return (
     <>
       {user && (
@@ -55,7 +38,9 @@ const Profile = () => {
                 </button>
               </div>
               <div className={styles.user}>
-                <img src={profile} alt="" width={40} height={40} />
+                <div className={styles.icon}>
+                  <Icon.Profile />
+                </div>
                 <div className={styles['user-info']}>
                   <p>{`${user.firstName} ${user.lastName}`}</p>
                   <p>{user.email}</p>
@@ -64,12 +49,22 @@ const Profile = () => {
             </div>
             <nav className={styles.nav}>
               <ul>
-                {profileOptions.map((option) => (
-                  <li key={option.title}>
-                    <img src={option.src} alt="" width={24} height={24} />
-                    <span>{option.title}</span>
-                  </li>
-                ))}
+                <li>
+                  <Icon.Cart />
+                  <span>Мої замовлення</span>
+                </li>
+                <li>
+                  <Icon.Settings />
+                  <span>Налаштування</span>
+                </li>
+                <li onClick={onClickSupport}>
+                  <Icon.Support />
+                  <span>Підтримка</span>
+                </li>
+                <li onClick={onLogout}>
+                  <Icon.Logout />
+                  <span>Вийти</span>
+                </li>
               </ul>
             </nav>
           </aside>

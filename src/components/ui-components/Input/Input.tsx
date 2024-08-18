@@ -1,5 +1,11 @@
 import classNames from 'classnames';
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 
 import styles from './Input.module.scss';
 import { type InputProps } from './Input.types';
@@ -31,6 +37,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       () => inputRef.current || ({} as HTMLInputElement),
       [inputRef]
     );
+
+    useEffect(() => {
+      inputRef.current?.value && setIsFocus(true);
+    }, []);
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       onBlur && onBlur(event);

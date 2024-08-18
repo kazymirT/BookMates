@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import Menu from './Menu/Menu';
 import UserButton from './UserButton/UserButton';
-import cart from '@/assets/icons/cart.svg';
 import logo from '@/assets/icons/Logo.svg';
 import { RadioGroup } from '@/components/RadioGroup/RadioGroup';
 import Search from '@/components/Search/Search';
@@ -51,19 +50,13 @@ const Header = () => {
           <div className={styles.btns}>
             <RadioGroup />
             <div className={styles.icons}>
-              {user ? (
+              {user && id ? (
                 <UserButton {...user} />
               ) : (
                 <DropDown options={<Menu />} control={<Icon.Account />} />
               )}
-              <button className={styles['cart-btn']}>
-                <img
-                  src={cart}
-                  alt="cart"
-                  width={24}
-                  height={24}
-                  onClick={openCart}
-                />
+              <button className={styles['cart-btn']} onClick={openCart}>
+                <Icon.Cart />
                 {cartItemsCount > 0 && (
                   <div className={styles['cart-counter']}>
                     <span>{cartItemsCount}</span>

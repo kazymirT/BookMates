@@ -77,6 +77,7 @@ const ShoppingCart = () => {
               buttonType={ButtonType.Button}
               size={Sizes.Full}
               url="/order"
+              disabled={!totalPrice}
               onClick={closeCart}
               variant={Variant.Basic}
             />

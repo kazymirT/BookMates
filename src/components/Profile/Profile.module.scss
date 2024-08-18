@@ -1,5 +1,7 @@
 @use '@/styles/colors.scss';
 
+@import '@/styles';
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -50,23 +52,43 @@
   &-info p:first-of-type {
     font-weight: 500;
   }
+
+  .icon {
+    @include flex-center;
+    @include icon-state(#fff);
+
+    background-color: $brown-200;
+    border-radius: 50%;
+  }
 }
 
 .nav {
-  padding: 1.5em 1em;
+  padding: 1.5em 0;
 
   ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
     li {
       cursor: pointer;
 
       display: flex;
-      gap: 0.5em;
+      gap: 16px;
       align-items: center;
 
-      padding: 0.75em;
+      padding: 12px 28px;
 
       span {
         font-weight: 500;
+      }
+
+      &:hover {
+        background-color: $brown-100;
+      }
+
+      &:active {
+        background-color: $brown-200;
       }
     }
   }
