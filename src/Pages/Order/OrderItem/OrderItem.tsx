@@ -2,7 +2,7 @@ import styles from './OrderItem.module.scss';
 import { type OrderItemProps } from '../order.types';
 
 const OrderItem = ({
-  data: { authors, count, img, price, title },
+  data: { authors, quantity, img, price, title },
 }: OrderItemProps) => {
   return (
     <div className={styles.wrapper}>
@@ -16,7 +16,7 @@ const OrderItem = ({
         </div>
         <div className={styles.prices}>
           <p className={styles.price}>{price}</p>
-          <p className={styles.count}>{count}</p>
+          <p className={styles.count}>{quantity}</p>
         </div>
       </div>
     </div>

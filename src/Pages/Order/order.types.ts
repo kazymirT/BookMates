@@ -5,7 +5,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form';
 
-import { type OrderListType } from '@/utils/fake';
+import { CartItem } from '@/redux/slices/shoppingCartSlice';
 
 export type PersonalInfoFormProps = {
   register: {
@@ -57,5 +57,5 @@ export type OrderActionsProps = {
 };
 
 export type OrderItemProps = {
-  data: OrderListType;
+  data: CartItem;
 };

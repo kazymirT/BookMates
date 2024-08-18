@@ -72,12 +72,7 @@ export type BookById = {
     id: number;
     name: string;
   }[];
-  image: {
-    id: number;
-    name: string;
-    contentType: string;
-    bytes: string[];
-  };
+  imageUrl: string;
   expected: true;
 };
 
@@ -88,12 +83,7 @@ export type BooksData = {
   price: number;
   totalQuantity: number;
   authors: string[];
-  image: {
-    id: number;
-    name: string;
-    contentType: string;
-    bytes: string[];
-  };
+  imageUrl: string;
   expected: boolean;
 };
 

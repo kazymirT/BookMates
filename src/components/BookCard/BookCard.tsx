@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom';
 import styles from './BookCard.module.scss';
 import { Button } from '../ui-components/Button/Button';
 import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
-import book1 from '@/assets/images/fake/book1.webp';
 import { useAppDispatch } from '@/redux/hooks';
 import { BooksData } from '@/redux/services/services.types';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
-import { addGoods } from '@/redux/slices/shoppingCartSlice';
+import { addGoods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
 
 interface Props {
   data?: BooksData;
@@ -19,10 +18,6 @@ interface Props {
 const BookCard = ({ data }: Props) => {
   const dispatch = useAppDispatch();
 
-  const handleAddAndOpenCard = (event: React.MouseEvent) => {
-    event.preventDefault();
-    console.log(`додати до кошика товар ${data?.id} і відкрити кошик`);
-  };
   const handleAddToCard = (event: React.MouseEvent) => {
     event.preventDefault();
     console.log(`додати до кошика товар ${data?.id}`);
@@ -31,7 +26,7 @@ const BookCard = ({ data }: Props) => {
         addGoods({
           authors: data.authors,
           id: data.id,
-          img: data.image?.contentType || '',
+          img: data.imageUrl,
           price: String(data.price),
           title: data.title,
         })
@@ -40,13 +35,20 @@ const BookCard = ({ data }: Props) => {
     }
   };
 
+  const handleAddAndOpenCard = (event: React.MouseEvent) => {
+    event.preventDefault();
+    handleAddToCard(event);
+    dispatch(toggleOpenCart(true));
+  };
   return (
     <Link to={data ? `/product/${data.id}` : ''} className={styles.card}>
       <div className={styles['img-box']}>
         {data ? (
           <>
             <img
-              src={!data.image ? book1 : data.image.contentType}
+              src={data.imageUrl}
+              width={265}
+              height={305}
               alt={data.title}
             />
             <button
@@ -82,7 +84,7 @@ const BookCard = ({ data }: Props) => {
               )}
             </div>
             <p className={styles.description}>
-              {data ? data.authors.join(', ') : <Skeleton />}
+              {data?.authors ? data.authors.join(', ') : <Skeleton />}
             </p>
           </div>
           {data ? (

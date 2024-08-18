@@ -1,11 +1,9 @@
 .clear {
   display: flex;
   flex-flow: row wrap;
-  gap: 37px;
+  gap: 15px 30px;
 
-  .filters {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 30px;
+  & > button:nth-child(1) {
+    margin-right: 7px;
   }
 }

@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import NovaPoshtaForm from './NovaPoshtaForm/NovaPoshtaForm';
 import styles from './Order.module.scss';
@@ -9,12 +10,14 @@ import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
+import { clearCart } from '@/redux/slices/shoppingCartSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 import { type OrderValues, orderSchema } from '@/utils/validateSchema';
 
 const Order = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { sendFeedback } = useFormActions();
   const {
     register,
@@ -42,8 +45,10 @@ const Order = () => {
     dispatch(toggleStatus('loading'));
     const response = await sendFeedback();
     if (response) {
+      dispatch(clearCart());
       dispatch(toggleStatus('idle'));
       dispatch(toggleModal({ openedModalType: 'order-success' }));
+      navigate('/');
     }
   };
   const breadCrumbs = createBreadcrumbs('order');

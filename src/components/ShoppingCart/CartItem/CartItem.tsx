@@ -22,12 +22,7 @@ const CartItem = ({
   return (
     <div className={styles.item}>
       <div className={styles.picture}>
-        <img
-          src={img}
-          alt="img"
-          //width={'100%'}
-          height={'100%'}
-        />
+        <img src={img} alt="img" width={63} height={91} />
       </div>
       <div className={styles.info}>
         <div className={`${styles.row} ${styles['first-row']}`}>
