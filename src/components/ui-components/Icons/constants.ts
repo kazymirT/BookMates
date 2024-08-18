@@ -8,6 +8,10 @@ export enum IconInstanceName {
   ACCOUNT = 'Account',
   EDIT = 'Edit',
   CLOSE = 'Close',
+  SUPPORT = 'Support',
+  LOGOUT = 'Logout',
+  SETTINGS = 'Settings',
+  PROFILE = 'Profile',
 }
 
 export enum IconAppName {
@@ -17,4 +21,8 @@ export enum IconAppName {
   ACCOUNT = 'Account',
   EDIT = 'Edit',
   CLOSE = 'Close',
+  SUPPORT = 'Support',
+  LOGOUT = 'Logout',
+  SETTINGS = 'Settings',
+  PROFILE = 'Profile',
 }

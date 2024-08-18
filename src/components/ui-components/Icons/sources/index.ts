@@ -4,6 +4,10 @@ import { Arrow_1 } from './Arrow_1';
 import { Cart } from './Cart';
 import { Close } from './Close';
 import { Edit } from './Edit';
+import { Logout } from './Logout';
+import { Profile } from './Profile';
+import { Settings } from './Settings';
+import { Support } from './Support';
 import { IconInstanceName } from '../constants';
 import { IconProps } from '../types';
 
@@ -18,4 +22,8 @@ export const IconInstance: IconInstance = {
   Account,
   Edit,
   Close,
+  Logout,
+  Settings,
+  Support,
+  Profile,
 };

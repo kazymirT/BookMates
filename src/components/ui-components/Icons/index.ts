@@ -40,4 +40,24 @@ export const Icon: Icon = {
     height: '24',
     viewBox: '0 0 24 24',
   }),
+  [IconAppName.SETTINGS]: makeIcon(IconInstance.Settings, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.SUPPORT]: makeIcon(IconInstance.Support, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.LOGOUT]: makeIcon(IconInstance.Logout, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
+  [IconAppName.PROFILE]: makeIcon(IconInstance.Profile, {
+    width: '40',
+    height: '40',
+    viewBox: '0 0 40 40',
+  }),
 };
