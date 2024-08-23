@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { clearCart } from '@/redux/slices/shoppingCartSlice';
+import { clearCart, goods } from '@/redux/slices/shoppingCartSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 import { userData } from '@/redux/slices/userSlice';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
@@ -19,6 +20,7 @@ import { type OrderValues, orderSchema } from '@/utils/validateSchema';
 const Order = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const bookInCard = useAppSelector(goods);
   const { user } = useAppSelector(userData);
   const { sendFeedback } = useFormActions();
   const {
@@ -40,6 +42,11 @@ const Order = () => {
     resolver: zodResolver(orderSchema),
     mode: 'onTouched',
   });
+  useEffect(() => {
+    if (bookInCard.length === 0) {
+      navigate('/catalog');
+    }
+  }, [bookInCard, navigate]);
 
   const onSubmit = async (formData: OrderValues) => {
     // eslint-disable-next-line no-console
