@@ -1,0 +1,64 @@
+@import '@/styles';
+
+.form-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 622px;
+  padding: 28px 32px;
+
+  background-color: $accent-white;
+  border-radius: 12px;
+  box-shadow: 2px 3px 37px 0 rgb(0 0 0 / 25%);
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      @include font-styles($font-family, 1.5rem, 700, 1.21, $grey-500, 0.07em);
+    }
+
+    .close {
+      @include flex-center;
+
+      &:hover {
+        @include icon-state($icon-hover);
+      }
+
+      &:active {
+        @include icon-state($icon-hover);
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .input-container {
+      display: flex;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .image-preview {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .btns {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+  }
+}
