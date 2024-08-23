@@ -12,6 +12,8 @@ export enum IconInstanceName {
   LOGOUT = 'Logout',
   SETTINGS = 'Settings',
   PROFILE = 'Profile',
+  PLUS = 'Plus',
+  REMOVE = 'Remove',
 }
 
 export enum IconAppName {
@@ -25,4 +27,6 @@ export enum IconAppName {
   LOGOUT = 'Logout',
   SETTINGS = 'Settings',
   PROFILE = 'Profile',
+  PLUS = 'Plus',
+  REMOVE = 'Remove',
 }

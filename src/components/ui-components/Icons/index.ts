@@ -60,4 +60,14 @@ export const Icon: Icon = {
     height: '40',
     viewBox: '0 0 40 40',
   }),
+  [IconAppName.PLUS]: makeIcon(IconInstance.Plus, {
+    width: '25',
+    height: '24',
+    viewBox: '0 0 25 24',
+  }),
+  [IconAppName.REMOVE]: makeIcon(IconInstance.Remove, {
+    width: '19',
+    height: '18',
+    viewBox: '0 0 19 18',
+  }),
 };
