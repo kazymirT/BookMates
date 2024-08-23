@@ -1,0 +1,175 @@
+@import '@/styles';
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+
+  .lists {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 7.2px;
+      border-bottom: 1px solid $grey-100;
+
+      p {
+        font-family: $font-family;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.209;
+        color: $grey-300;
+        letter-spacing: 0.01em;
+      }
+
+      button {
+        @include flex-center;
+        @include icon-state($button-default);
+
+        cursor: pointer;
+        padding: 10px;
+        background: $accent-white;
+        border-radius: 50%;
+
+        &:hover {
+          @include icon-state($button-hover);
+        }
+      }
+    }
+  }
+}
+
+.books {
+
+  @include scrollBar(5px, 5px, $background-color, $grey-100, $grey-200);
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+
+  table,
+  th,
+  tr,
+  td {
+    text-align: center;
+    border: 2px solid $grey-100;
+  }
+
+  th {
+    padding: 14.5px 15px;
+  }
+
+  tbody tr {
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $brown-200;
+    }
+  }
+
+  td.img {
+    width: 100px;
+    height: 108px;
+    padding: 11.5px 14px;
+    font-size: 0;
+  }
+
+  .td {
+    padding: 12px 7px;
+  }
+
+  td {
+    max-width: 250px;
+    height: 108px;
+    padding: 12px 10px;
+  }
+
+  .title {
+    overflow-y: scroll;
+    max-width: 250px;
+    height: 100px;
+  }
+
+  .authors {
+    max-width: 150px;
+    height: 108px;
+  }
+
+  .price {
+    text-align: center;
+
+    &::after {
+      content: 'грн';
+      margin-left: 2px;
+    }
+  }
+
+  .years {
+    text-align: center;
+  }
+}
+
+.client {
+  width: 100%;
+
+  table,
+  th,
+  tr,
+  td {
+    border: 2px solid $grey-100;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .id {
+    width: 158px;
+  }
+
+  .name {
+    width: 357px;
+  }
+
+  .city {
+    width: 255px;
+  }
+
+  .edit {
+    width: 102px;
+  }
+
+  th {
+    padding: 12.9px 0;
+    line-height: 1.29;
+    text-align: center;
+  }
+
+  td {
+    padding: 13px 0;
+    font-size: 16px;
+    line-height: 1.275;
+    text-align: center;
+  }
+
+  .edit-icon {
+    padding: 7px;
+
+    button {
+      @include flex-center;
+      @include icon-state($button-default);
+
+      margin: 0 auto;
+      padding: 8px;
+      background-color: $accent-white;
+      border-radius: 50%;
+    }
+  }
+}

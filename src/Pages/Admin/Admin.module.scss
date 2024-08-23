@@ -1,0 +1,58 @@
+@import '@/styles';
+
+.admin {
+  display: flex;
+  gap: 46px;
+
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px;
+
+  aside {
+    width: 100%;
+    max-width: 282px;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      padding: 24px 16px;
+
+      background: $accent-white;
+      border-radius: 12px;
+
+      li {
+        a {
+          display: block;
+
+          padding: 14.5px 19px 14.5px 28px;
+
+          font-family: $font-family;
+          line-height: 1.19;
+          color: $grey-300;
+          letter-spacing: 0.04em;
+
+          border-radius: 4px;
+
+          transition: all 0.3s;
+
+          &:hover {
+            background: $background-color;
+          }
+
+          &.active {
+            color: $accent-white;
+            background: $brown-200;
+          }
+        }
+      }
+    }
+  }
+
+  main {
+    width: 100%;
+    max-width: 872px;
+  }
+}

@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistStore,
@@ -12,29 +12,9 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { rootReducer } from './rootReducers';
 import { baseApi } from './services/baseApi';
 import { novaApi } from './services/novaApi';
-import cartNotificationSlice from './slices/cartNotificationSlice';
-import locationHistorySlice from './slices/locationHistorySlice';
-import modalSlice from './slices/modalSlice';
-import profileSlice from './slices/profileSlice';
-import { queryParamsSlice } from './slices/queryParams';
-import shoppingCartSlice from './slices/shoppingCartSlice';
-import statusSlice from './slices/statusSlice';
-import userSlice from './slices/userSlice';
-
-const rootReducer = combineReducers({
-  [novaApi.reducerPath]: novaApi.reducer,
-  [baseApi.reducerPath]: baseApi.reducer,
-  queryParams: queryParamsSlice.reducer,
-  modal: modalSlice,
-  user: userSlice,
-  locationHistory: locationHistorySlice,
-  profile: profileSlice,
-  status: statusSlice,
-  cartNotification: cartNotificationSlice,
-  shoppingCart: shoppingCartSlice,
-});
 
 const persistConfig = {
   key: 'root',

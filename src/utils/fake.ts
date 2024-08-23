@@ -70,3 +70,12 @@ export const FILTERS = {
   ],
   price: [0, 1000],
 };
+
+export const clientArr = [
+  { id: 1, user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 2, user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 3, user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 4, user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 5, user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 6, user: 'Мельник Валерія', city: 'Одеса' },
+];
