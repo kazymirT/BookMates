@@ -107,6 +107,16 @@
     }
   }
 
+  &--delete {
+    color: $accent-white;
+    background-color: $icon-hover;
+  }
+
+  &--accent {
+    color: $accent-white;
+    background-color: $accent-red;
+  }
+
   &--xs {
     padding: 15px;
   }
@@ -132,9 +142,16 @@
     max-width: 100%;
     padding: 16px 32px;
   }
+
+  &--full-s {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 32px;
+  }
 }
 
-button.button--primary.button--l {
+button.button--primary.button--l,
+button.button--primary.button--full-s {
   padding-top: 9.2px;
   padding-bottom: 9.2px;
 }

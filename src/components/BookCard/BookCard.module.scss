@@ -20,7 +20,7 @@
       transition: all 0.3s;
     }
 
-    button {
+    button.addCard {
       position: absolute;
       z-index: 2;
       top: 12px;
@@ -41,6 +41,40 @@
         stroke: $accent-white;
         transition: all 0.3s;
       }
+
+      &:hover {
+        background: $button-hover;
+
+        img {
+          color: #fff;
+          filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(265deg) brightness(102%) contrast(102%);
+        }
+      }
+
+      &:active {
+        background: $button-active;
+      }
+    }
+
+    button.isCard {
+
+      @include icon-state($accent-white);
+
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      right: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0.625rem;
+
+      background: $button-default;
+      border-radius: 50%;
+
+      transition: all 0.3s;
 
       &:hover {
         background: $button-hover;

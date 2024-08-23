@@ -1,6 +1,8 @@
 @use '@/styles/colors.scss';
 @use '@/styles/fonts.scss';
 
+@import '@/styles';
+
 @mixin font-styles($font-weight, $font-size, $line-height, $color) {
   font-family: fonts.$font-family;
   font-size: $font-size;
@@ -203,6 +205,10 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      .arrow {
+        stroke: $accent-white;
+      }
     }
   }
 

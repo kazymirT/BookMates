@@ -6,10 +6,14 @@ import { Link } from 'react-router-dom';
 import styles from './BookCard.module.scss';
 import { Button } from '../ui-components/Button/Button';
 import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { BooksData } from '@/redux/services/services.types';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
-import { addGoods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
+import {
+  addGoods,
+  goods,
+  toggleOpenCart,
+} from '@/redux/slices/shoppingCartSlice';
 
 interface Props {
   data?: BooksData;
@@ -17,6 +21,8 @@ interface Props {
 
 const BookCard = ({ data }: Props) => {
   const dispatch = useAppDispatch();
+  const goobs = useAppSelector(goods);
+  const isBookInCard = goobs.some((goob) => goob.id === data?.id);
 
   const handleAddToCard = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -35,6 +41,11 @@ const BookCard = ({ data }: Props) => {
     }
   };
 
+  const handleOpenCard = (event: React.MouseEvent) => {
+    event.preventDefault();
+    dispatch(toggleOpenCart(true));
+  };
+
   const handleAddAndOpenCard = (event: React.MouseEvent) => {
     event.preventDefault();
     handleAddToCard(event);
@@ -51,14 +62,25 @@ const BookCard = ({ data }: Props) => {
               height={305}
               alt={data.title}
             />
-            <button
-              type="button"
-              className={styles.cart}
-              onClick={handleAddToCard}
-              aria-label="Add to card"
-            >
-              <Icon.Cart />
-            </button>
+            {!isBookInCard ? (
+              <button
+                type="button"
+                className={styles.addCard}
+                onClick={handleAddToCard}
+                aria-label="Add to card"
+              >
+                <Icon.Cart />
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={styles.isCard}
+                onClick={handleOpenCard}
+                aria-label="Add to card"
+              >
+                <Icon.Arrow_1 />
+              </button>
+            )}
           </>
         ) : (
           <Skeleton width={262} height={305} />

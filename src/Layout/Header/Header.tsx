@@ -83,7 +83,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to={'/catalog'}>Вигідні пропозиції</Link>
+            <Link to={'/admin'}>Адмін</Link>
           </li>
         </ul>
       </nav>

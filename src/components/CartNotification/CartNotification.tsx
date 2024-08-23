@@ -56,7 +56,10 @@ const CartNotification = () => {
   const handleClose = () => {
     closeNotificationWithDelay(300);
   };
-
+  const cartItemsCount = React.useMemo(
+    () => cartItems.reduce((acc, item) => (acc += item.quantity), 0),
+    [cartItems]
+  );
   return (
     <Portal
       isOpen={showNotification}
@@ -95,9 +98,9 @@ const CartNotification = () => {
             </div>
             <div className={styles['cart-info']}>
               <p>
-                {cartItems.length === 1
+                {cartItemsCount === 1
                   ? `У кошику 1 товар `
-                  : `У кошику ${cartItems.length} товарів `}
+                  : `У кошику ${cartItemsCount} товарів `}
               </p>
               <p>{`Сума товарів у кошику ${totalPrice} грн`}</p>
             </div>

@@ -10,19 +10,24 @@ import {
 } from '@/components/ui-components/Button/constants';
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { BookById } from '@/redux/services/services.types';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
 //import { useAddBookMutation } from '@/redux/services/cart';
-import { addGoods } from '@/redux/slices/shoppingCartSlice';
+import {
+  addGoods,
+  goods,
+  toggleOpenCart,
+} from '@/redux/slices/shoppingCartSlice';
 
 const ProductControl = ({ book }: { book: BookById | undefined }) => {
   const dispatch = useAppDispatch();
-
+  const goobs = useAppSelector(goods);
+  const isBookInCard = goobs.some((goob) => goob.id === book?.id);
   //const [ addToCart ] = useAddBookMutation()
   const handleAddToCart = () => {
     //addToCart({bookId: 1, quantity: 1})
-    if (book) {
+    if (book && !isBookInCard) {
       dispatch(
         addGoods({
           id: book.id,
@@ -35,6 +40,7 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
       dispatch(toggleShowCartNotification(true));
     }
   };
+  const handleOpenCart = () => dispatch(toggleOpenCart(true));
   return (
     <div className={styles.control}>
       {book && book.price ? (
@@ -49,15 +55,27 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
               variant={Variant.Basic}
               onClick={handleAddToCart}
             />
-            <Button
-              buttonType={ButtonType.Button}
-              text="До кошика"
-              variant={Variant.Primary}
-              iconPosition={Position.Left}
-              size={Sizes.Large}
-              onClick={handleAddToCart}
-              icon={<Icon.Cart />}
-            />
+            {!isBookInCard ? (
+              <Button
+                buttonType={ButtonType.Button}
+                text="До кошика"
+                variant={Variant.Primary}
+                iconPosition={Position.Left}
+                size={Sizes.Large}
+                onClick={handleAddToCart}
+                icon={<Icon.Cart />}
+              />
+            ) : (
+              <Button
+                buttonType={ButtonType.Button}
+                text="У кошику"
+                variant={Variant.Basic}
+                iconPosition={Position.Left}
+                size={Sizes.FullS}
+                onClick={handleOpenCart}
+                icon={<Icon.Arrow_1 className={styles.arrow} />}
+              />
+            )}
           </div>
         </>
       ) : (
