@@ -110,19 +110,68 @@ export const orderSchema = z.object({
 });
 
 export type OrderValues = z.infer<typeof orderSchema>;
+const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
+const ACCEPTED_FILE_TYPES = ['image/png'];
 
-export const priceSchema = z
-  .object({
-    min: z.preprocess((val) => Number(val), z.number()),
-    max: z.preprocess((val) => Number(val), z.number()),
-  })
-  .refine((data) => Number(data.min) < Number(data.max), {
-    path: ['min'],
-    message: 'Мінімальне значення більше за максимальне',
-  })
-  .refine((data) => Number(data.min) < Number(data.max), {
-    path: ['max'],
-    message: 'Максимальне значення менше за мінімальне',
-  });
+export const addBookSchema = z.object({
+  title: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  authors: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
 
-export type PriceValues = z.infer<typeof priceSchema>;
+  description: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+
+  price: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
+  year: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{4}$/, 'Введіть коректний рік'),
+  quantity: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
+  picture: z
+    .instanceof(File)
+    .optional()
+    .refine((file) => {
+      return file ? file.size <= MAX_UPLOAD_SIZE : false;
+    }, 'File size must be less than 3MB')
+    .refine((file) => {
+      return file ? ACCEPTED_FILE_TYPES.includes(file.type) : false;
+    }, 'File must be a PNG'),
+});
+
+export type AddBookValues = z.infer<typeof addBookSchema>;
+
+export const addCategorySchema = z.object({
+  category: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+});
+
+export type AddCategoryValues = z.infer<typeof addCategorySchema>;

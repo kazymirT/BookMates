@@ -15,6 +15,7 @@ import {
   NotAuthorized,
   Order,
   ErrorPage,
+  Admin,
 } from '@/Pages';
 import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';
@@ -38,6 +39,7 @@ const route = createBrowserRouter(
         element={<NotAuthenticated />}
       />
       <Route path={ROUTE_PATH.NOTAUTHORIZED} element={<NotAuthorized />} />
+      <Route path={'/admin/:adminId?'} element={<Admin />} />
     </Route>
   )
 );
