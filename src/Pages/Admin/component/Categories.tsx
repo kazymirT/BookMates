@@ -10,6 +10,7 @@ import {
 } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import { useGetCategoryAllQuery } from '@/redux/services/category';
+import { CategoryAll } from '@/redux/services/services.types';
 import { setCategoryId } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
@@ -19,8 +20,8 @@ const Categories = () => {
   const handleOnAddCategory = () => {
     dispatch(toggleModal({ openedModalType: 'add-category' }));
   };
-  const handleOnEdit = (id: number) => {
-    dispatch(setCategoryId(id));
+  const handleOnEdit = (category: CategoryAll) => {
+    dispatch(setCategoryId(category));
     dispatch(toggleModal({ openedModalType: 'edit-category' }));
   };
   return (
@@ -39,7 +40,7 @@ const Categories = () => {
           categories.map((category) => (
             <li key={category.id}>
               <p>{category.name}</p>
-              <button onClick={() => handleOnEdit(category.id)}>
+              <button onClick={() => handleOnEdit(category)}>
                 <Icon.Edit />
               </button>
             </li>

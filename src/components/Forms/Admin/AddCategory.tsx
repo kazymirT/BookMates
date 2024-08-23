@@ -9,7 +9,7 @@ import {
   Variant,
 } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
-import InputA from '@/components/ui-components/InputA/InputA';
+import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { AddCategoryValues, addCategorySchema } from '@/utils/validateSchema';
@@ -43,7 +43,7 @@ const AddCategory = () => {
         </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputA
+        <InputAdmin
           {...register('category')}
           placeholder="Назва категорії"
           type="text"

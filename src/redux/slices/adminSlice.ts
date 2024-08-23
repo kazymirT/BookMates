@@ -2,17 +2,17 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
-
+type Category = { name: string; id: number } | null;
 type AdminState = {
   bookId: number | null;
-  categoryId: number | null;
+  category: Category;
   clientId: number | null;
   orderId: number | null;
 };
 
 const initialState: AdminState = {
   bookId: null,
-  categoryId: null,
+  category: null,
   clientId: null,
   orderId: null,
 };
@@ -22,7 +22,7 @@ export const adminSlice = createSlice({
   initialState,
   selectors: {
     bookId: (state) => state.bookId,
-    categoryId: (state) => state.categoryId,
+    category: (state) => state.category,
     clientId: (state) => state.clientId,
     orderId: (state) => state.orderId,
   },
@@ -30,8 +30,8 @@ export const adminSlice = createSlice({
     setBookId: (state, action: PayloadAction<number | null>) => {
       state.bookId = action.payload;
     },
-    setCategoryId: (state, action: PayloadAction<number | null>) => {
-      state.categoryId = action.payload;
+    setCategoryId: (state, action: PayloadAction<Category>) => {
+      state.category = action.payload;
     },
     setClientId: (state, action: PayloadAction<number | null>) => {
       state.clientId = action.payload;
@@ -44,6 +44,6 @@ export const adminSlice = createSlice({
 
 export const { setBookId, setCategoryId, setClientId, setOrderId } =
   adminSlice.actions;
-export const { bookId, categoryId, clientId, orderId } = adminSlice.selectors;
+export const { bookId, category, clientId, orderId } = adminSlice.selectors;
 export const userData = (state: RootState) => state.user;
 export default adminSlice.reducer;

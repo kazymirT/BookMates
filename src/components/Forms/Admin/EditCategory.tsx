@@ -11,7 +11,7 @@ import {
   Variant,
 } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
-import InputA from '@/components/ui-components/InputA/InputA';
+import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { category } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -71,7 +71,7 @@ const EditCategory = () => {
         </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <InputA
+        <InputAdmin
           {...register('category')}
           placeholder="Назва категорії"
           type="text"
