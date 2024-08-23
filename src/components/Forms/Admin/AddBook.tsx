@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import classNames from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 
 import styles from './Form.module.scss';
@@ -50,7 +51,12 @@ const AddBook = () => {
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   return (
-    <section className={styles['form-container']}>
+    <section
+      className={classNames(
+        styles['form-container'],
+        styles['form-container__add-book']
+      )}
+    >
       <div className={styles['title-container']}>
         <h2>Додати книгу</h2>
         <button className={styles.close} onClick={handleClose}>
