@@ -1,5 +1,5 @@
 import styles from './CartItem.module.scss';
-import removeIcon from '@/assets/icons/TrashBin.svg';
+import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import {
   increaseQuantity,
@@ -28,7 +28,7 @@ const CartItem = ({
         <div className={`${styles.row} ${styles['first-row']}`}>
           <p className={styles.title}>{title}</p>
           <button className={styles.btn} onClick={deleteBook}>
-            <img src={removeIcon} alt="remove" width={18} height={18} />
+            <Icon.Remove width="18" height="18" />
           </button>
         </div>
         <div className={`${styles.row} ${styles['second-row']}`}>
