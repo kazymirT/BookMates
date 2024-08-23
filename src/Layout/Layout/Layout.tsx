@@ -1,5 +1,5 @@
 import { SkeletonTheme } from 'react-loading-skeleton';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
@@ -7,7 +7,6 @@ import Header from '../Header/Header';
 import CartNotification from '@/components/CartNotification/CartNotification';
 import Modal from '@/components/Modal/Modal';
 import Profile from '@/components/Profile/Profile';
-import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
 import StatusScreen from '@/components/StatusScreen/StatusScreen';
 
@@ -30,7 +29,7 @@ const Layout = () => {
       <Profile />
       <StatusScreen />
       <CartNotification />
-      <ScrollToTop />
+      <ScrollRestoration />
       <ShoppingCart />
     </>
   );

@@ -1,6 +1,10 @@
 import FeedbackSuccess from './FeedbackSuccess/FeedbackSuccess';
 import OrderSuccess from './OrderSuccess/OrderSuccess';
 import ResetPassword from './ResetPassword/ResetPassword';
+import AddBook from '../Forms/Admin/AddBook';
+import AddCategory from '../Forms/Admin/AddCategory';
+import EditBook from '../Forms/Admin/EditBook';
+import EditCategory from '../Forms/Admin/EditCategory';
 import FeedBackForm from '../Forms/FeedbackForm/FeedBackForm';
 import LoginForm from '../Forms/LoginForm/LoginForm';
 import RegisterForm from '../Forms/RegisterForm/RegisterForm';
@@ -33,6 +37,14 @@ const Modal = () => {
         <OrderSuccess />
       ) : openedModalType === 'reset-password' ? (
         <ResetPassword />
+      ) : openedModalType === 'edit-book' ? (
+        <EditBook />
+      ) : openedModalType === 'add-book' ? (
+        <AddBook />
+      ) : openedModalType === 'add-category' ? (
+        <AddCategory />
+      ) : openedModalType === 'edit-category' ? (
+        <EditCategory />
       ) : null}
     </Portal>
   );

@@ -1,0 +1,65 @@
+@import '@/styles';
+
+.textArea-box {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .textArea {
+      width: 100%;
+      padding: 0.865rem 1rem;
+
+      font-family: $font-family;
+      font-size: 1rem;
+      line-height: 1.188rem;
+      color: $grey-300;
+      letter-spacing: 0.01em;
+
+      border: 1px solid $grey-100;
+      border-radius: 0.25rem;
+      outline: 1px solid transparent;
+
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: $grey-200;
+      }
+
+      &:focus {
+        outline: 1px solid $grey-300;
+      }
+    }
+  }
+
+  .error {
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+
+    font-size: 0.75rem;
+    line-height: 1.25;
+    color: $accent-red;
+    letter-spacing: 0.03em;
+  }
+}
+
+@keyframes errorShow {
+  from {
+    font-size: 0;
+    opacity: 0;
+  }
+
+  to {
+    font-size: 0.75rem;
+    opacity: 1;
+  }
+}

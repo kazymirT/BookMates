@@ -1,3 +1,4 @@
+import Admin from './Admin/Admin';
 import Catalog from './Catalog/Catalog';
 import ErrorPage from './ErrorPage/ErrorPage';
 import Home from './Home/Home';
@@ -14,4 +15,5 @@ export {
   NotAuthenticated,
   NotAuthorized,
   Order,
+  Admin,
 };

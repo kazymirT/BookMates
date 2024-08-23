@@ -5,7 +5,9 @@ import { Cart } from './Cart';
 import { Close } from './Close';
 import { Edit } from './Edit';
 import { Logout } from './Logout';
+import { Plus } from './Plus';
 import { Profile } from './Profile';
+import { Remove } from './Remove';
 import { Settings } from './Settings';
 import { Support } from './Support';
 import { IconInstanceName } from '../constants';
@@ -26,4 +28,6 @@ export const IconInstance: IconInstance = {
   Settings,
   Support,
   Profile,
+  Plus,
+  Remove,
 };

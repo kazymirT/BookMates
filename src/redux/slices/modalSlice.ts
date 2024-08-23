@@ -11,6 +11,10 @@ type ModalState = {
     | 'feedback-success'
     | 'order-success'
     | 'reset-password'
+    | 'edit-book'
+    | 'add-book'
+    | 'add-category'
+    | 'edit-category'
     | null;
   redirect: string;
 };

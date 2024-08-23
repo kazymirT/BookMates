@@ -106,3 +106,11 @@ export const SORT_OPTIONS_URL: Record<string, string> = {
   'great-deals': 'Вигідні пропозиції',
   bestsellers: 'Хіти продажів',
 };
+
+export const ADMIN_LIST = [
+  { id: 1, name: 'Введення книжок', url: '/admin/books' },
+  { id: 2, name: 'Введення категорій', url: '/admin/categories' },
+  { id: 3, name: 'Клієнти зареєстровані', url: '/admin/client' },
+  { id: 4, name: 'Клієнти не зареєстровані', url: '/admin/clientN' },
+  { id: 5, name: 'Замовлення', url: '/admin/order' },
+];
