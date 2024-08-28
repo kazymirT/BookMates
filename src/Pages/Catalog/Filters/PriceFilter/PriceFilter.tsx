@@ -13,7 +13,10 @@ import { setPrice } from '@/redux/slices/queryParams';
 const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
   const dispatch = useAppDispatch();
   const { contentRef, handleToggleOpen, isOpen } =
-    useToggleOpen<HTMLDivElement>(isDefaultOpen);
+    useToggleOpen<HTMLDivElement>({
+      initialState: isDefaultOpen,
+      initialHeight: 70,
+    });
 
   const [value, setValue] = useState<number[]>(price);
   const [isError, setIsError] = useState(false);

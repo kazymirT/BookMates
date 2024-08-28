@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useToggleOpen = <T extends HTMLElement>(
-  initialState: boolean = false
-) => {
+export const useToggleOpen = <T extends HTMLElement>({
+  initialState = false,
+  initialHeight,
+}: {
+  initialState?: boolean;
+  initialHeight?: number;
+}) => {
   const [isOpen, setIsOpen] = useState<boolean>(initialState);
   const contentRef = useRef<T>(null);
   const handleToggleOpen = () => setIsOpen(!isOpen);
@@ -10,9 +14,9 @@ export const useToggleOpen = <T extends HTMLElement>(
   useEffect(() => {
     if (contentRef.current) {
       contentRef.current.style.maxHeight = isOpen
-        ? `${contentRef.current.scrollHeight}px`
+        ? `${initialHeight ? initialHeight : contentRef.current.scrollHeight}px`
         : '0px';
     }
-  }, [isOpen]);
+  }, [initialHeight, isOpen]);
   return { isOpen, handleToggleOpen, contentRef };
 };
