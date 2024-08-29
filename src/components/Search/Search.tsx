@@ -1,11 +1,16 @@
 import { ChangeEvent, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Result from './Result';
 import styles from './Search.module.scss';
 import search from '@/assets/icons/search.svg';
 import useClickOutside from '@/hooks/useClickOutside';
+import { useAppDispatch } from '@/redux/hooks';
+import { setSearch } from '@/redux/slices/queryParams';
 
 const Search = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,9 +20,19 @@ const Search = () => {
     setValue(event.target.value);
   const clearValue = () => setValue('');
   const handleOnClose = () => setIsOpen(false);
-
+  const handleOnSearch = () => {
+    dispatch(setSearch(value));
+    navigate(`/catalog/?search=${value}`);
+    handleOnClose();
+    clearValue();
+  };
   useClickOutside(wrapperRef, handleOnClose);
-
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && value.length > 2) {
+      handleOnSearch();
+      event.currentTarget.blur();
+    }
+  };
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
       <div className={styles.search}>
@@ -27,8 +42,9 @@ const Search = () => {
           value={value}
           onChange={handleOnChange}
           onFocus={() => setIsOpen(true)}
+          onKeyDown={handleKeyDown}
         />
-        <button type="button">
+        <button type="button" onClick={handleOnSearch}>
           <img src={search} width={24} height={24} alt="search icon" />
         </button>
       </div>

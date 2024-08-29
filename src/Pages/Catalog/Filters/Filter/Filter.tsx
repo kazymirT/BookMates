@@ -17,7 +17,7 @@ const Filter = ({
 }: FilterProps) => {
   const dispatch = useAppDispatch();
   const { contentRef, handleToggleOpen, isOpen } =
-    useToggleOpen<HTMLUListElement>(isDefaultOpen);
+    useToggleOpen<HTMLUListElement>({ initialState: isDefaultOpen });
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
     checked
