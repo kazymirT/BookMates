@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { TOPICS } from '@/utils/constants';
+import { ORDER_STATUS, TOPICS } from '@/utils/constants';
 const accept = z.boolean().refine((data) => data === true);
 const phone = z
   .string()
@@ -61,6 +61,9 @@ export const registerSchema = z
 export type RegisterValues = z.infer<typeof registerSchema>;
 
 const TopicsEnum = z.nativeEnum(TOPICS, {
+  required_error: 'Це поле є обов`язковим.',
+});
+const OrderEnum = z.nativeEnum(ORDER_STATUS, {
   required_error: 'Це поле є обов`язковим.',
 });
 
@@ -226,3 +229,40 @@ export const userNotInfoSchema = z.object({
 });
 
 export type UserNotInfoValues = z.infer<typeof userNotInfoSchema>;
+
+export const orderListSchema = z.object({
+  orderId: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректне id'),
+  userId: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректне id'),
+  book: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  price: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
+
+  quantity: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
+  status: OrderEnum,
+});
+
+export type OrderListValues = z.infer<typeof orderListSchema>;

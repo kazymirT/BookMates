@@ -91,6 +91,8 @@ div.container {
   }
 
   .menu-list {
+    scrollbar-width: none;
+
     @for $i from 1 through 10 {
       & :nth-child(#{$i}n) {
         animation-delay: #{(($i)-1) * 0.075}s;

@@ -7,7 +7,7 @@ type AdminState = {
   bookId: number | null;
   category: Category;
   clientId: number | null;
-  orderId: number | null;
+  orderId: string | null;
 };
 
 const initialState: AdminState = {
@@ -36,7 +36,7 @@ export const adminSlice = createSlice({
     setClientId: (state, action: PayloadAction<number | null>) => {
       state.clientId = action.payload;
     },
-    setOrderId: (state, action: PayloadAction<number | null>) => {
+    setOrderId: (state, action: PayloadAction<string | null>) => {
       state.orderId = action.payload;
     },
   },

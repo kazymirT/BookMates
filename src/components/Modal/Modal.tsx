@@ -7,6 +7,7 @@ import AddBook from '../Forms/Admin/AddBook';
 import AddCategory from '../Forms/Admin/AddCategory';
 import EditBook from '../Forms/Admin/EditBook';
 import EditCategory from '../Forms/Admin/EditCategory';
+import OrderEdit from '../Forms/Admin/OrderEdit';
 import FeedBackForm from '../Forms/FeedbackForm/FeedBackForm';
 import LoginForm from '../Forms/LoginForm/LoginForm';
 import RegisterForm from '../Forms/RegisterForm/RegisterForm';
@@ -51,6 +52,8 @@ const Modal = () => {
         <UserInfo />
       ) : openedModalType === 'userNotAuthorized-info' ? (
         <UserNotAuthorizedInfo />
+      ) : openedModalType === 'edit-order' ? (
+        <OrderEdit />
       ) : null}
     </Portal>
   );

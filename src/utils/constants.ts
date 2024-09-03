@@ -37,6 +37,17 @@ export enum TOPICS {
   Other = 'Інше',
 }
 
+export enum ORDER_STATUS {
+  Pending = 'Очікує',
+  Confirmed = 'Підтверджено',
+  Processing = 'Обробляється',
+  Shipped = 'Відправлено',
+  Delivered = 'Доставлено',
+  Completed = 'Завершено',
+  Cancelled = 'Скасовано',
+  Returned = 'Повернено',
+}
+
 export const selectSortOptions = [
   'За популярністю',
   'Дешевші',
