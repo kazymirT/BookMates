@@ -23,6 +23,12 @@ const UserNotAuthorizedInfoForm: FC<{ onClose: () => void }> = ({
     handleSubmit,
     formState: { isValid, errors, isSubmitting },
   } = useForm<UserNotInfoValues>({
+    defaultValues: {
+      name: 'Мельник Валерія',
+      city: 'Одеса',
+      email: 'example@gmail.com',
+      phone: '+38 (000) 000-00-00',
+    },
     resolver: zodResolver(userNotInfoSchema),
     mode: 'onTouched',
   });

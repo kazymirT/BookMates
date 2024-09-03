@@ -21,6 +21,15 @@ const UserInfoForm: FC<{ onClose: () => void }> = ({ onClose }) => {
     handleSubmit,
     formState: { isValid, errors, isSubmitting },
   } = useForm<UserInfoValues>({
+    defaultValues: {
+      name: 'Мельник Валерія',
+      city: 'Одеса',
+      email: 'example@gmail.com',
+      phone: '+38 (000) 000-00-00',
+      date: '2024-08-28',
+      password: '1qQqqqqqq',
+      userId: '1',
+    },
     resolver: zodResolver(userInfoSchema),
     mode: 'onTouched',
   });
@@ -35,7 +44,6 @@ const UserInfoForm: FC<{ onClose: () => void }> = ({ onClose }) => {
         <InputAdmin
           {...register('userId')}
           placeholder="User ID"
-          type="text"
           errorMessage={errors.userId?.message}
         />
         <InputAdmin
@@ -49,13 +57,11 @@ const UserInfoForm: FC<{ onClose: () => void }> = ({ onClose }) => {
         <InputAdmin
           {...register('name')}
           placeholder="ПІ"
-          type="text"
           errorMessage={errors.name?.message}
         />
         <InputAdmin
           {...register('city')}
           placeholder="Місто"
-          type="text"
           errorMessage={errors.city?.message}
         />
       </div>
@@ -63,20 +69,18 @@ const UserInfoForm: FC<{ onClose: () => void }> = ({ onClose }) => {
         <InputAdmin
           {...register('phone')}
           placeholder="Номер телефону"
-          type="text"
           errorMessage={errors.phone?.message}
         />
         <InputAdmin
           {...register('password')}
           placeholder="Пароль"
-          type="text"
+          type="password"
           errorMessage={errors.password?.message}
         />
       </div>
       <InputAdmin
         {...register('email')}
         placeholder="Електронна пошта"
-        type="email"
         errorMessage={errors.email?.message}
       />
       <Button

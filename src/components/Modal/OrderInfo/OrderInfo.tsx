@@ -1,9 +1,16 @@
 import styles from './OrderInfo.module.scss';
 import { Icon } from '@/components/ui-components/Icons';
+import { useAppDispatch } from '@/redux/hooks';
+import { setOrderId } from '@/redux/slices/adminSlice';
+import { toggleModal } from '@/redux/slices/modalSlice';
 import { orderList } from '@/utils/fake';
 
 const OrderInfo = () => {
-  const handleOnClick = (id: number) => console.log('edit order', id);
+  const dispatch = useAppDispatch();
+  const handleOnClick = () => {
+    dispatch(setOrderId('12345'));
+    dispatch(toggleModal({ openedModalType: 'edit-order' }));
+  };
   return (
     <table className={styles.table}>
       <thead>
@@ -24,7 +31,7 @@ const OrderInfo = () => {
               <td className={styles.status}>{order.status}</td>
               <td className={styles.price}>{order.price}</td>
               <td>
-                <button onClick={() => handleOnClick(order.id)}>
+                <button onClick={handleOnClick}>
                   <Icon.Edit width="16" height="16" />
                 </button>
               </td>
