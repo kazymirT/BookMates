@@ -1,3 +1,4 @@
+import { InputMask } from '@react-input/mask';
 import classNames from 'classnames';
 import { forwardRef, useId } from 'react';
 
@@ -18,13 +19,25 @@ const InputAdmindmin = forwardRef<HTMLInputElement, InputProps>(
       <div className={styles['input-box']}>
         <label htmlFor={id}>
           {placeholder}
-          <input
-            {...rest}
-            id={id}
-            ref={ref}
-            onChange={onChange}
-            className={inputClassName}
-          />
+          {placeholder === 'Номер телефону' ? (
+            <InputMask
+              mask="+38 (___) ___-__-__"
+              showMask
+              replacement={{ _: /\d/ }}
+              className={inputClassName}
+              ref={ref}
+              type="text"
+              {...rest}
+            />
+          ) : (
+            <input
+              {...rest}
+              id={id}
+              ref={ref}
+              onChange={onChange}
+              className={inputClassName}
+            />
+          )}
         </label>
         {!!errorMessage && <span className={styles.error}>{errorMessage}</span>}
       </div>
