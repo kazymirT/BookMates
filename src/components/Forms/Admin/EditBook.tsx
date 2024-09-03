@@ -81,10 +81,10 @@ const EditBook = () => {
         <DeletePopup onClose={handleClosePopup} onDelete={handleDeleteBook} />
       )}
       <div className={styles['title-container']}>
-        <h2>Редагувати</h2>
         <button className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
+        <h2>Редагувати</h2>
       </div>
       {book && (
         <form onSubmit={handleSubmit(onSubmit)}>

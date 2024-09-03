@@ -65,10 +65,10 @@ const EditCategory = () => {
         <DeletePopup onClose={handleClosePopup} onDelete={handleDeleteBook} />
       )}
       <div className={styles['title-container']}>
-        <h2>Редагувати категорію</h2>
         <button className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
+        <h2>Редагувати категорію</h2>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputAdmin

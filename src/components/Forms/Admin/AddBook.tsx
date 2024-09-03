@@ -58,10 +58,10 @@ const AddBook = () => {
       )}
     >
       <div className={styles['title-container']}>
-        <h2>Додати книгу</h2>
         <button className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
+        <h2>Додати книгу</h2>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputAdmin
