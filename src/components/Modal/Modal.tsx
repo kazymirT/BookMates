@@ -1,6 +1,8 @@
 import FeedbackSuccess from './FeedbackSuccess/FeedbackSuccess';
 import OrderSuccess from './OrderSuccess/OrderSuccess';
 import ResetPassword from './ResetPassword/ResetPassword';
+import UserInfo from './UserInfo/UserInfo';
+import UserNotAuthorizedInfo from './UserNotAuthorizedInfo/UserNotAuthorizedInfo';
 import AddBook from '../Forms/Admin/AddBook';
 import AddCategory from '../Forms/Admin/AddCategory';
 import EditBook from '../Forms/Admin/EditBook';
@@ -45,6 +47,10 @@ const Modal = () => {
         <AddCategory />
       ) : openedModalType === 'edit-category' ? (
         <EditCategory />
+      ) : openedModalType === 'user-info' ? (
+        <UserInfo />
+      ) : openedModalType === 'userNotAuthorized-info' ? (
+        <UserNotAuthorizedInfo />
       ) : null}
     </Portal>
   );

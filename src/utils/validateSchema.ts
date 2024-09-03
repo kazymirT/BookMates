@@ -2,7 +2,12 @@ import { z } from 'zod';
 
 import { TOPICS } from '@/utils/constants';
 const accept = z.boolean().refine((data) => data === true);
-
+const phone = z
+  .string()
+  .regex(
+    /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+    'Введіть дійсний номер телефону'
+  );
 const email = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
@@ -90,12 +95,7 @@ export const orderSchema = z.object({
     .min(4, 'мінімум 4 символи')
     .max(20, 'максимум 20 символів'),
   email: email,
-  phone: z
-    .string()
-    .regex(
-      /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
-      'Введіть дійсний номер телефону'
-    ),
+  phone: phone,
   city: z.string({
     required_error: 'Це поле є обов`язковим.',
     invalid_type_error: 'Це поле є обов`язковим.',
@@ -175,3 +175,54 @@ export const addCategorySchema = z.object({
 });
 
 export type AddCategoryValues = z.infer<typeof addCategorySchema>;
+
+export const userInfoSchema = z.object({
+  userId: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,9}$/, 'Введіть коректний id'),
+  date: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{4}(.\d{2})(.\d{2})$/, 'Введіть коректну дату'),
+  name: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  city: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  phone: phone,
+  email: email,
+  password: password,
+});
+
+export type UserInfoValues = z.infer<typeof userInfoSchema>;
+
+export const userNotInfoSchema = z.object({
+  name: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  city: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  phone: phone,
+  email: email,
+});
+
+export type UserNotInfoValues = z.infer<typeof userNotInfoSchema>;

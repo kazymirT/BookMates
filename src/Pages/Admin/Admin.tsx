@@ -4,7 +4,7 @@ import styles from './Admin.module.scss';
 import Books from './component/Books';
 import Categories from './component/Categories';
 import Client from './component/Client';
-import ClientN from './component/ClientN';
+import ClientNotAuthorized from './component/ClientNotAuthorized';
 import OrderA from './component/Order';
 import { ADMIN_LIST } from '@/utils/constants';
 
@@ -33,7 +33,7 @@ const Admin = () => {
         ) : adminId === 'client' ? (
           <Client />
         ) : adminId === 'clientN' ? (
-          <ClientN />
+          <ClientNotAuthorized />
         ) : adminId === 'order' ? (
           <OrderA />
         ) : (

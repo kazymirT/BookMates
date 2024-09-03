@@ -1,0 +1,48 @@
+@import '@/styles';
+
+.table {
+  th,
+  td {
+    border: 1px solid $grey-100;
+  }
+
+  th {
+    padding: 14.5px 6.5px;
+  }
+
+  td {
+    padding: 10px 8px;
+    text-align: center;
+  }
+
+  td.id {
+    padding: 25px 20px;
+  }
+
+  td.address {
+    width: 236px;
+    padding: 10px 24px;
+    text-align: left;
+  }
+
+  td.status {
+    padding: 20px 7px;
+    color: $accent-success;
+  }
+
+  td.price {
+    &::after {
+      content: 'грн';
+      margin-left: 3px;
+    }
+  }
+
+  button {
+    @include icon-state($accent-white);
+
+    padding: 8px;
+    font-size: 0;
+    background-color: $button-default;
+    border-radius: 50%;
+  }
+}
