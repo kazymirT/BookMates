@@ -156,13 +156,13 @@ export const addBookSchema = z.object({
     })
     .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
   picture: z
-    .instanceof(File)
+    .instanceof(FileList)
     .optional()
     .refine((file) => {
-      return file ? file.size <= MAX_UPLOAD_SIZE : false;
+      return file?.length ? file[0].size <= MAX_UPLOAD_SIZE : false;
     }, 'File size must be less than 3MB')
     .refine((file) => {
-      return file ? ACCEPTED_FILE_TYPES.includes(file.type) : false;
+      return file?.length ? ACCEPTED_FILE_TYPES.includes(file[0].type) : false;
     }, 'File must be a PNG'),
 });
 

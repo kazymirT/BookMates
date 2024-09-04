@@ -3,18 +3,19 @@ import classNames from 'classnames';
 import { forwardRef, useId } from 'react';
 
 import styles from './InputAdmin.module.scss';
-import { InputProps } from './InputAdmin.types';
+import { InputAdminProps } from './InputAdmin.types';
 
-const InputAdmindmin = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMessage, serverError, onChangeFile, placeholder, ...rest }, ref) => {
-    const inputClassName = classNames(styles.input, {
-      [styles['input-error']]: errorMessage || serverError,
-    });
+const InputAdmin = forwardRef<HTMLInputElement, InputAdminProps>(
+  ({ errorMessage, placeholder, ...rest }, ref) => {
     const id = useId();
+
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       rest.onChange && rest.onChange(event);
-      onChangeFile && onChangeFile(event);
     };
+
+    const inputClassName = classNames(styles.input, {
+      [styles['input-error']]: errorMessage,
+    });
     return (
       <div className={styles['input-box']}>
         <label htmlFor={id}>
@@ -45,4 +46,4 @@ const InputAdmindmin = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-export default InputAdmindmin;
+export default InputAdmin;

@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import styles from './Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -23,16 +23,11 @@ const AddBook = () => {
   const {
     register,
     handleSubmit,
-    control,
+    resetField,
+    setValue,
     formState: { isValid, errors, isSubmitting },
   } = useForm<AddBookValues>({
     defaultValues: {
-      authors: '',
-      description: '',
-      price: '',
-      quantity: '',
-      title: '',
-      year: '',
       picture: undefined,
     },
     resolver: zodResolver(addBookSchema),
@@ -40,8 +35,8 @@ const AddBook = () => {
   });
 
   const onSubmit = async (data: AddBookValues) => {
-    if (data.picture instanceof File) {
-      const base64Image = await convertImage(data.picture);
+    if (data.picture instanceof FileList) {
+      const base64Image = await convertImage(data.picture[0]);
       const newData = { ...data, picture: base64Image };
       console.log(newData);
     } else {
@@ -103,18 +98,12 @@ const AddBook = () => {
             type="text"
             errorMessage={errors.year?.message}
           />
-          <Controller
-            name="picture"
-            control={control}
-            render={({ field, fieldState }) => (
-              <InputFile
-                errorMessage={fieldState.error?.message}
-                placeholder="Додати фото"
-                onChange={(newValue: FileList | undefined) => {
-                  field.onChange(newValue);
-                }}
-              />
-            )}
+          <InputFile
+            {...register('picture')}
+            placeholder="Додати фото"
+            errorMessage={errors.picture?.message}
+            onReset={() => resetField('picture')}
+            onClean={() => setValue('picture', undefined)}
           />
         </div>
         <Button

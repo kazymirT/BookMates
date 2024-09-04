@@ -1,5 +1,6 @@
-export type InputProps = {
-  errorMessage?: string;
-  placeholder: string;
-  onChange: (newValue: FileList | undefined) => void;
-};
+import { InputAdminProps } from '../InputAdmin/InputAdmin.types';
+
+export interface InputFileProps extends InputAdminProps {
+  onReset?: () => void;
+  onClean?: () => void;
+}
