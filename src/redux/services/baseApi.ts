@@ -8,8 +8,8 @@ import { RootState } from '../store';
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: 'https://teamchallenge.onrender.com/api/',
-  // baseUrl: 'http://3.73.128.44:8080/api/',
-  baseUrl: 'https://3.73.128.44.nip.io/api/',
+  baseUrl: 'http://3.73.128.44:8080/api/',
+  // baseUrl: 'https://3.73.128.44.nip.io/api/',
 
   // credentials: 'include',
   prepareHeaders: (headers, { getState }) => {

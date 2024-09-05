@@ -1,0 +1,170 @@
+@use '@/styles/colors.scss';
+
+%option {
+  cursor: pointer;
+  padding: 0.75em;
+  border-radius: 4px;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+div.container {
+  position: static;
+
+  padding: 0.78rem 1rem 0 0.78rem;
+
+  font-size: 1rem;
+  line-height: 1.188rem;
+  color: colors.$quartz;
+  letter-spacing: 0.01em;
+
+  border: 1px solid colors.$light-grey;
+  border-radius: 0.25rem;
+
+  &.secondary {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    padding: 0;
+
+    background-color: colors.$brown-100;
+    border: none;
+
+    .control {
+      display: flex;
+      gap: 0.5rem;
+      align-self: flex-end;
+    }
+
+    .menu {
+      position: inherit;
+      top: 0;
+
+      width: 100%;
+      padding: 1rem 0.75rem;
+
+      background-color: colors.$accent-white;
+      border: none;
+      box-shadow: 2px 3px 37px 0 #00000040;
+
+      .menu-list {
+        gap: 0;
+        text-align: left;
+      }
+    }
+  }
+
+  &-error {
+    border-color: colors.$accent-red;
+
+    & + .message {
+      color: colors.$accent-red;
+    }
+
+    & div.menu {
+      border-color: colors.$accent-red;
+    }
+  }
+
+  .control {
+    cursor: pointer;
+    align-items: center;
+    min-height: auto;
+    padding-bottom: 0.75em;
+  }
+
+  .menu {
+    position: absolute;
+    top: 43px;
+    left: 0;
+
+    padding: 0.625rem;
+
+    background-color: colors.$accent-white;
+    border: 1px solid colors.$grey-100;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .menu-list {
+    scrollbar-width: none;
+
+    @for $i from 1 through 10 {
+      & :nth-child(#{$i}n) {
+        animation-delay: #{(($i)-1) * 0.075}s;
+      }
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .option {
+    @extend %option;
+
+    animation: appear 0.35s;
+    animation-fill-mode: backwards;
+
+    &_focused {
+      @extend %option;
+
+      background-color: colors.$brown-100;
+    }
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .indicator {
+    display: inline-flex;
+
+    & > img {
+      transform: rotate(0);
+      transition: transform 0.35s;
+    }
+
+    &_opened {
+      & > img {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .multi {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .multi-remove {
+    align-self: center;
+  }
+
+  .value-container {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+.message {
+  position: absolute;
+  font-size: 0.75em;
+  letter-spacing: 0.01em;
+}
+
+@keyframes appear {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}

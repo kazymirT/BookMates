@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { ORDER_STATUS, TOPICS } from '@/utils/constants';
 const accept = z.boolean().refine((data) => data === true);
+const acceptB = z.boolean();
 const phone = z
   .string()
   .regex(
@@ -136,8 +137,20 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-
+  category: z.string().array().nonempty({ message: 'Мінімум одна категорія' }),
+  language: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
   price: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
+  discountPrice: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
@@ -164,6 +177,7 @@ export const addBookSchema = z.object({
     .refine((file) => {
       return file?.length ? ACCEPTED_FILE_TYPES.includes(file[0].type) : false;
     }, 'File must be a PNG'),
+  expected: acceptB,
 });
 
 export type AddBookValues = z.infer<typeof addBookSchema>;
