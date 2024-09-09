@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
+import { useMemo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import styles from './Form.module.scss';
@@ -17,14 +18,31 @@ import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
 import { useAppDispatch } from '@/redux/hooks';
 import { useAddBookMutation } from '@/redux/services/admin';
+import { useGetCategoryAllQuery } from '@/redux/services/category';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { CATEGORY_DEFAULT } from '@/utils/constants';
-import { convertImage } from '@/utils/convertImage';
 import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
 
 const AddBook = () => {
   const dispatch = useAppDispatch();
   const [AddBook] = useAddBookMutation();
+  const { data: categories } = useGetCategoryAllQuery();
+
+  const changeOptions = useMemo(() => {
+    if (categories) {
+      return categories.map((category) => ({
+        label: category.name,
+        value: category.name,
+      }));
+    } else {
+      return CATEGORY_DEFAULT.map((category) => ({
+        label: category,
+        value: category,
+      }));
+    }
+  }, [categories]);
+
+  const categoriesOptions = changeOptions;
   const {
     register,
     handleSubmit,
@@ -43,31 +61,38 @@ const AddBook = () => {
   });
 
   const onSubmit = async (data: AddBookValues) => {
-    if (data.picture instanceof FileList) {
-      const base64Image = await convertImage(data.picture[0]);
-      const newData = { ...data, picture: base64Image };
-      try {
-        await AddBook({
-          // photo: base64Image,
-          title: data.title,
-          discount: Number(data.discountPrice),
-          description: data.description,
-          price: Number(data.price),
-          totalQuantity: Number(data.quantity),
-          authorNames: data.authors.split(', '),
-          categoryNames: data.category,
-          expected: false,
-          languageNames: data.language.split(', '),
-          year: Number(data.year),
-          // photo: ''
-        }).unwrap();
-      } catch (error) {
-        // const { message } = error as Error;
-        console.log(error);
-      }
-      console.log(newData);
-    } else {
-      console.error('Invalid picture type');
+    try {
+      const {
+        // picture,
+        authors,
+        category,
+        description,
+        discountPrice,
+        expected,
+        language,
+        price,
+        quantity,
+        title,
+        year,
+      } = data;
+      await AddBook({
+        // photo: base64Image,
+        title,
+        discount: Number(discountPrice),
+        description,
+        price: Number(price),
+        totalQuantity: Number(quantity),
+        authorNames: authors.split(', '),
+        categoryNames: category,
+        expected: expected,
+        languageNames: language.split(', '),
+        year: Number(year),
+      }).unwrap();
+    } catch (error) {
+      // const { message } = error as Error;
+      console.log(error);
+    } finally {
+      handleClose();
     }
   };
 
@@ -112,10 +137,7 @@ const AddBook = () => {
               placeholder="Категорія"
               value={field.value}
               isMulti
-              options={CATEGORY_DEFAULT.map((category) => ({
-                label: category,
-                value: category,
-              }))}
+              options={categoriesOptions}
               onChange={(newValue) => field.onChange(newValue)}
               onBlur={field.onBlur}
               error={!!fieldState.error}

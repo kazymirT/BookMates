@@ -14,7 +14,7 @@ export interface AddBook {
   expected: boolean;
 }
 
-export const booksApi = baseApi.injectEndpoints({
+export const AdminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addBook: builder.mutation<string, AddBook>({
       query: (body) => ({
@@ -22,9 +22,17 @@ export const booksApi = baseApi.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Books'],
+    }),
+    deleteBookById: builder.mutation<string, number>({
+      query: (id) => ({
+        url: `admin/book/delete-book/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Books'],
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useAddBookMutation } = booksApi;
+export const { useAddBookMutation, useDeleteBookByIdMutation } = AdminApi;

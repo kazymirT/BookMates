@@ -61,7 +61,7 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
             <img src={imagePreview} alt="Preview" height={76} width={62} />
           </div>
         )}
-        {!!errorMessage && <span className={styles.error}>{errorMessage}</span>}
+        {!!errorMessage && <p className={styles.error}>{errorMessage}</p>}
       </div>
     );
   }

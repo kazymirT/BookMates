@@ -1,6 +1,8 @@
 @import '@/styles';
 
 .input-box {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -58,6 +60,19 @@
       background: url('../../../assets/icons/icons_plus.svg') no-repeat center;
       outline: none;
     }
+  }
+
+  .error {
+    position: absolute;
+    bottom: -18px;
+
+    width: 100%;
+
+    font-size: 12px;
+    line-height: 1.25;
+    color: $accent-red;
+    text-align: center;
+    letter-spacing: 0.03em;
   }
 
   .image-preview {
