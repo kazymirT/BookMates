@@ -11,65 +11,100 @@ import {
   Sizes,
   Variant,
 } from '@/components/ui-components/Button/constants';
+import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import { Icon } from '@/components/ui-components/Icons';
 import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import InputFile from '@/components/ui-components/InputFile/InputFile';
+import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
+import { useCategoryOptions } from '@/hooks/useCategoryOptions';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+  useChangeImageMutation,
+  useDeleteBookByIdMutation,
+} from '@/redux/services/adminBook';
 import { useGetBookByIdQuery } from '@/redux/services/books';
 import { bookId } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { convertImage } from '@/utils/convertImage';
 import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
 
 const EditBook = () => {
   const dispatch = useAppDispatch();
   const id = useAppSelector(bookId);
-  const { data: book } = useGetBookByIdQuery(`${id}`);
+
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const categoriesOptions = useCategoryOptions();
+  const { data: book, isLoading } = useGetBookByIdQuery(`${id}`);
+  const [deleteBookById] = useDeleteBookByIdMutation();
+  const [changeImage] = useChangeImageMutation();
+
   const {
     register,
     handleSubmit,
-    control,
     reset,
+    resetField,
+    setValue,
+    control,
     formState: { isValid, errors, isSubmitting },
   } = useForm<AddBookValues>({
+    defaultValues: {
+      categoryNames: ['start'],
+    },
     resolver: zodResolver(addBookSchema),
     mode: 'onTouched',
   });
 
-  const onSubmit = async (data: AddBookValues) => {
-    if (data.picture instanceof File) {
-      const base64Image = await convertImage(data.picture);
-      const newData = { ...data, picture: base64Image };
-      console.log(newData);
-    } else {
-      console.error('Invalid picture type');
-    }
-  };
   useEffect(() => {
     const setValue = async () => {
       if (book) {
         reset({
-          authors: book.authors.join(', '),
+          authorsNames: book.authors.join(', '),
           description: book.description,
           price: String(book.price),
-          quantity: String(book.totalQuantity),
+          totalQuantity: String(book.totalQuantity),
           title: book.title,
           year: String(book.year),
           picture: undefined,
+          discountPrice: String(100),
+          languageNames: book.languages.join(', '),
+          expected: book.expected,
+          categoryNames: book.categories.map((category) => category.name),
         });
       }
     };
     setValue();
   }, [book, reset]);
+
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const handleOpenPopup = () => setIsPopupOpen(true);
   const handleClosePopup = () => setIsPopupOpen(false);
-  const handleDeleteBook = () => {
+  const handleDeleteBook = async () => {
     setIsPopupOpen(false);
+    if (!id) return;
     handleClose();
+    try {
+      await deleteBookById(id).unwrap();
+    } catch (error) {
+      console.error(error);
+    }
   };
+  const onSubmit = async (data: AddBookValues) => {
+    console.log(data);
+    try {
+      const { picture } = data;
+      const formData = new FormData();
+      picture && formData.append('photo', picture[0]);
+      id && changeImage({ body: formData, id }).unwrap();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      handleClose();
+    }
+  };
+
+  if (isLoading) {
+    return <p>Loading</p>; // Відобразити лоадер, поки дані завантажуються
+  }
   return (
     <section
       className={classNames(
@@ -95,10 +130,10 @@ const EditBook = () => {
             errorMessage={errors.title?.message}
           />
           <InputAdmin
-            {...register('authors')}
+            {...register('authorsNames')}
             placeholder="Автори книги"
             type="text"
-            errorMessage={errors.authors?.message}
+            errorMessage={errors.authorsNames?.message}
           />
           <TextArea
             {...register('description')}
@@ -106,6 +141,24 @@ const EditBook = () => {
             rows={3}
             errorMessage={errors.description?.message}
           />
+          {book.categories && (
+            <Controller
+              control={control}
+              name="categoryNames"
+              render={({ field, fieldState }) => (
+                <SelectMulti
+                  placeholder="Категорія"
+                  value={field.value}
+                  isMulti
+                  options={categoriesOptions}
+                  onChange={(newValue) => field.onChange(newValue)}
+                  onBlur={field.onBlur}
+                  error={!!fieldState.error}
+                  helperText={fieldState.error?.message}
+                />
+              )}
+            />
+          )}
           <div className={styles['input-container']}>
             <InputAdmin
               {...register('price')}
@@ -114,33 +167,45 @@ const EditBook = () => {
               errorMessage={errors.price?.message}
             />
             <InputAdmin
-              {...register('quantity')}
-              placeholder="Кількість"
+              {...register('discountPrice')}
+              placeholder="Вартість із знижкою"
               type="text"
-              errorMessage={errors.quantity?.message}
+              errorMessage={errors.discountPrice?.message}
             />
           </div>
           <div className={styles['input-container']}>
+            <InputAdmin
+              {...register('totalQuantity')}
+              placeholder="Кількість"
+              type="text"
+              errorMessage={errors.totalQuantity?.message}
+            />
             <InputAdmin
               {...register('year')}
               placeholder="Рік видання"
               type="text"
               errorMessage={errors.year?.message}
             />
-            <Controller
-              name="picture"
-              control={control}
-              render={({ field, fieldState }) => (
-                <InputFile
-                  errorMessage={fieldState.error?.message}
-                  placeholder="Додати фото"
-                  onChange={(newValue: FileList | undefined) => {
-                    field.onChange(newValue);
-                  }}
-                />
-              )}
+          </div>
+          <div className={styles['input-container']}>
+            <InputAdmin
+              {...register('languageNames')}
+              placeholder="Мова"
+              type="text"
+              errorMessage={errors.languageNames?.message}
+            />
+            <InputFile
+              {...register('picture')}
+              placeholder="Додати фото"
+              baseImages={book.imageUrl}
+              errorMessage={errors.picture?.message}
+              onReset={() => resetField('picture')}
+              onClean={() => setValue('picture', undefined)}
             />
           </div>
+          <Checkbox {...register('expected')} type="checkbox" variant="primary">
+            <p>Hемає в наявності</p>
+          </Checkbox>
           <div className={styles.btns}>
             <Button
               buttonType={ButtonType.Submit}
