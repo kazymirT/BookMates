@@ -124,21 +124,23 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-  authors: z
-    .string({
-      required_error: 'Це поле є обов`язковим.',
-      invalid_type_error: 'Це поле є обов`язковим.',
-    })
-    .min(1, 'Це поле є обов`язковим.'),
-
   description: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-  category: z.string().array().nonempty({ message: 'Мінімум одна категорія' }),
-  language: z
+  authorsNames: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  categoryNames: z
+    .string()
+    .array()
+    .nonempty({ message: 'Мінімум одна категорія' }),
+  languageNames: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
@@ -162,7 +164,7 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .regex(/^\d{4}$/, 'Введіть коректний рік'),
-  quantity: z
+  totalQuantity: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',

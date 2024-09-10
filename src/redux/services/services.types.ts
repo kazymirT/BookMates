@@ -131,3 +131,22 @@ export type CategoryAll = {
   id: number;
   name: string;
 };
+
+export interface AddBook {
+  photo: string;
+  title: string;
+  categoryNames: string[];
+  authorNames: string[];
+  description: string;
+  year: string;
+  languageNames: string[];
+  price: string;
+  totalQuantity: string;
+  discount: string;
+  expected: boolean;
+}
+
+export interface ChangeImage {
+  id: number;
+  body: FormData;
+}

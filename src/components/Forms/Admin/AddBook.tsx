@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
-import { useMemo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import styles from './Form.module.scss';
@@ -16,33 +15,17 @@ import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import InputFile from '@/components/ui-components/InputFile/InputFile';
 import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
+import { useCategoryOptions } from '@/hooks/useCategoryOptions';
 import { useAppDispatch } from '@/redux/hooks';
-import { useAddBookMutation } from '@/redux/services/admin';
-import { useGetCategoryAllQuery } from '@/redux/services/category';
+import { useAddBookMutation } from '@/redux/services/adminBook';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { CATEGORY_DEFAULT } from '@/utils/constants';
 import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
 
 const AddBook = () => {
   const dispatch = useAppDispatch();
   const [AddBook] = useAddBookMutation();
-  const { data: categories } = useGetCategoryAllQuery();
+  const categoriesOptions = useCategoryOptions();
 
-  const changeOptions = useMemo(() => {
-    if (categories) {
-      return categories.map((category) => ({
-        label: category.name,
-        value: category.name,
-      }));
-    } else {
-      return CATEGORY_DEFAULT.map((category) => ({
-        label: category,
-        value: category,
-      }));
-    }
-  }, [categories]);
-
-  const categoriesOptions = changeOptions;
   const {
     register,
     handleSubmit,
@@ -54,7 +37,7 @@ const AddBook = () => {
     defaultValues: {
       picture: undefined,
       expected: true,
-      category: [],
+      categoryNames: [],
     },
     resolver: zodResolver(addBookSchema),
     mode: 'onTouched',
@@ -63,47 +46,47 @@ const AddBook = () => {
   const onSubmit = async (data: AddBookValues) => {
     try {
       const {
-        // picture,
-        authors,
-        category,
+        picture,
+        authorsNames,
+        categoryNames,
         description,
         discountPrice,
         expected,
-        language,
+        languageNames,
         price,
-        quantity,
+        totalQuantity,
         title,
         year,
       } = data;
-      await AddBook({
-        // photo: base64Image,
-        title,
-        discount: Number(discountPrice),
-        description,
-        price: Number(price),
-        totalQuantity: Number(quantity),
-        authorNames: authors.split(', '),
-        categoryNames: category,
-        expected: expected,
-        languageNames: language.split(', '),
-        year: Number(year),
-      }).unwrap();
+      const formData = new FormData();
+      picture && formData.append('photo', picture[0]);
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('expected', String(expected));
+      formData.append('price', price);
+      formData.append('discountPrice', discountPrice);
+
+      formData.append('year', year);
+      formData.append('totalQuantity', totalQuantity);
+
+      formData.append('categoryNames', categoryNames.join(', '));
+      formData.append('languageNames', languageNames);
+      formData.append('authorNames', authorsNames);
+      await AddBook(formData).unwrap();
     } catch (error) {
-      // const { message } = error as Error;
-      console.log(error);
+      console.error(error);
     } finally {
       handleClose();
     }
   };
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
+  const sectionClassName = classNames(
+    styles['form-container'],
+    styles['form-container__add-book']
+  );
   return (
-    <section
-      className={classNames(
-        styles['form-container'],
-        styles['form-container__add-book']
-      )}
-    >
+    <section className={sectionClassName}>
       <div className={styles['title-container']}>
         <button className={styles.close} onClick={handleClose}>
           <Icon.Close />
@@ -118,10 +101,10 @@ const AddBook = () => {
           errorMessage={errors.title?.message}
         />
         <InputAdmin
-          {...register('authors')}
+          {...register('authorsNames')}
           placeholder="Автори книги"
           type="text"
-          errorMessage={errors.authors?.message}
+          errorMessage={errors.authorsNames?.message}
         />
         <TextArea
           {...register('description')}
@@ -131,7 +114,7 @@ const AddBook = () => {
         />
         <Controller
           control={control}
-          name="category"
+          name="categoryNames"
           render={({ field, fieldState }) => (
             <SelectMulti
               placeholder="Категорія"
@@ -161,10 +144,10 @@ const AddBook = () => {
         </div>
         <div className={styles['input-container']}>
           <InputAdmin
-            {...register('quantity')}
+            {...register('totalQuantity')}
             placeholder="Кількість"
             type="text"
-            errorMessage={errors.quantity?.message}
+            errorMessage={errors.totalQuantity?.message}
           />
           <InputAdmin
             {...register('year')}
@@ -175,10 +158,10 @@ const AddBook = () => {
         </div>
         <div className={styles['input-container']}>
           <InputAdmin
-            {...register('language')}
+            {...register('languageNames')}
             placeholder="Мова"
             type="text"
-            errorMessage={errors.language?.message}
+            errorMessage={errors.languageNames?.message}
           />
           <InputFile
             {...register('picture')}
