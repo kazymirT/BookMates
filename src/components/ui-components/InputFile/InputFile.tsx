@@ -6,14 +6,19 @@ import { InputFileProps } from './InputFile.types';
 import { Icon } from '../Icons';
 
 const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
-  ({ errorMessage, placeholder, onReset, onClean, ...rest }, ref) => {
-    const [imagePreview, setImagePreview] = useState<string | null>(null);
+  (
+    { errorMessage, placeholder, baseImages, onReset, onClean, ...rest },
+    ref
+  ) => {
+    const [imagePreview, setImagePreview] = useState<string | undefined>(
+      baseImages
+    );
     const id = useId();
 
     const handleCancelImage = () => {
       onClean && onClean();
       onReset && onReset();
-      setImagePreview(null);
+      setImagePreview(undefined);
     };
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
