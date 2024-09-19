@@ -74,6 +74,7 @@ export type BookById = {
   }[];
   imageUrl: string;
   expected: true;
+  discount: number;
 };
 
 export type BooksData = {
@@ -85,6 +86,7 @@ export type BooksData = {
   authors: string[];
   imageUrl: string;
   expected: boolean;
+  discount: number;
 };
 
 export type BooksListResponse = {
