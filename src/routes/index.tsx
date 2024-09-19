@@ -19,6 +19,7 @@ import {
 } from '@/Pages';
 import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';
+
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route

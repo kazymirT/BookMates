@@ -15,6 +15,10 @@ type ModalState = {
     | 'add-book'
     | 'add-category'
     | 'edit-category'
+    | 'edit-order'
+    | 'user-info'
+    | 'userNotAuthorized-info'
+    | 'order-info'
     | null;
   redirect: string;
 };

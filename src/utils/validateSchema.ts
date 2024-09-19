@@ -1,8 +1,14 @@
 import { z } from 'zod';
 
-import { TOPICS } from '@/utils/constants';
+import { ORDER_STATUS, TOPICS } from '@/utils/constants';
 const accept = z.boolean().refine((data) => data === true);
-
+const acceptB = z.boolean();
+const phone = z
+  .string()
+  .regex(
+    /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
+    'Введіть дійсний номер телефону'
+  );
 const email = z
   .string()
   .min(1, 'Це поле є обов`язковим.')
@@ -58,6 +64,9 @@ export type RegisterValues = z.infer<typeof registerSchema>;
 const TopicsEnum = z.nativeEnum(TOPICS, {
   required_error: 'Це поле є обов`язковим.',
 });
+const OrderEnum = z.nativeEnum(ORDER_STATUS, {
+  required_error: 'Це поле є обов`язковим.',
+});
 
 export const feedbackSchema = z.object({
   email: email,
@@ -90,12 +99,7 @@ export const orderSchema = z.object({
     .min(4, 'мінімум 4 символи')
     .max(20, 'максимум 20 символів'),
   email: email,
-  phone: z
-    .string()
-    .regex(
-      /^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
-      'Введіть дійсний номер телефону'
-    ),
+  phone: phone,
   city: z.string({
     required_error: 'Це поле є обов`язковим.',
     invalid_type_error: 'Це поле є обов`язковим.',
@@ -120,21 +124,35 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-  authors: z
-    .string({
-      required_error: 'Це поле є обов`язковим.',
-      invalid_type_error: 'Це поле є обов`язковим.',
-    })
-    .min(1, 'Це поле є обов`язковим.'),
-
   description: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-
+  authorsNames: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  categoryNames: z
+    .string()
+    .array()
+    .nonempty({ message: 'Мінімум одна категорія' }),
+  languageNames: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
   price: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
+  discountPrice: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
@@ -146,21 +164,22 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .regex(/^\d{4}$/, 'Введіть коректний рік'),
-  quantity: z
+  totalQuantity: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
   picture: z
-    .instanceof(File)
+    .instanceof(FileList)
     .optional()
     .refine((file) => {
-      return file ? file.size <= MAX_UPLOAD_SIZE : false;
+      return file?.length ? file[0].size <= MAX_UPLOAD_SIZE : false;
     }, 'File size must be less than 3MB')
     .refine((file) => {
-      return file ? ACCEPTED_FILE_TYPES.includes(file.type) : false;
+      return file?.length ? ACCEPTED_FILE_TYPES.includes(file[0].type) : false;
     }, 'File must be a PNG'),
+  expected: acceptB,
 });
 
 export type AddBookValues = z.infer<typeof addBookSchema>;
@@ -175,3 +194,91 @@ export const addCategorySchema = z.object({
 });
 
 export type AddCategoryValues = z.infer<typeof addCategorySchema>;
+
+export const userInfoSchema = z.object({
+  userId: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,9}$/, 'Введіть коректний id'),
+  date: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{4}(.\d{2})(.\d{2})$/, 'Введіть коректну дату'),
+  name: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  city: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  phone: phone,
+  email: email,
+  password: password,
+});
+
+export type UserInfoValues = z.infer<typeof userInfoSchema>;
+
+export const userNotInfoSchema = z.object({
+  name: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  city: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  phone: phone,
+  email: email,
+});
+
+export type UserNotInfoValues = z.infer<typeof userNotInfoSchema>;
+
+export const orderListSchema = z.object({
+  orderId: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректне id'),
+  userId: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректне id'),
+  book: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  price: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
+
+  quantity: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
+  status: OrderEnum,
+});
+
+export type OrderListValues = z.infer<typeof orderListSchema>;

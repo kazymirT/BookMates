@@ -37,10 +37,10 @@ const AddCategory = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Додати категорію</h2>
         <button className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
+        <h2>Додати категорію</h2>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputAdmin

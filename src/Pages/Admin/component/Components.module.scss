@@ -45,7 +45,6 @@
 }
 
 .books {
-
   @include scrollBar(5px, 5px, $background-color, $grey-100, $grey-200);
 
   display: flex;
@@ -102,15 +101,6 @@
     height: 108px;
   }
 
-  .price {
-    text-align: center;
-
-    &::after {
-      content: 'грн';
-      margin-left: 2px;
-    }
-  }
-
   .years {
     text-align: center;
   }
@@ -158,18 +148,55 @@
     line-height: 1.275;
     text-align: center;
   }
+}
 
-  .edit-icon {
-    padding: 7px;
+.order-table {
+  table {
+    width: 100%;
+  }
 
-    button {
-      @include flex-center;
-      @include icon-state($button-default);
+  table,
+  th,
+  tr,
+  td {
+    text-align: center;
+    border: 2px solid $grey-100;
+  }
 
-      margin: 0 auto;
-      padding: 8px;
-      background-color: $accent-white;
-      border-radius: 50%;
-    }
+  th {
+    padding: 14.5px 0;
+  }
+
+  td.book {
+    width: 311px;
+    padding: 5px 10px;
+  }
+
+  td.userId {
+    width: 178px;
+  }
+}
+
+.edit-icon {
+  padding: 8px;
+
+  button {
+    @include flex-center;
+    @include icon-state($button-default);
+
+    margin: 0 auto;
+    padding: 8px;
+    background-color: $accent-white;
+    border-radius: 50%;
+  }
+}
+
+.price {
+  width: 100px;
+  text-align: center;
+
+  &::after {
+    content: 'грн';
+    margin-left: 2px;
   }
 }

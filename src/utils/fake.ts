@@ -1,3 +1,4 @@
+import { ORDER_STATUS } from './constants';
 import sale1001 from '@/assets/images/fake/sale/sale-10-01.png';
 import sale1002 from '@/assets/images/fake/sale/sale-10-02.png';
 import sale1003 from '@/assets/images/fake/sale/sale-10-03.png';
@@ -72,10 +73,52 @@ export const FILTERS = {
 };
 
 export const clientArr = [
-  { id: 1, user: 'Мельник Валерія', city: 'Одеса' },
-  { id: 2, user: 'Мельник Валерія', city: 'Одеса' },
-  { id: 3, user: 'Мельник Валерія', city: 'Одеса' },
-  { id: 4, user: 'Мельник Валерія', city: 'Одеса' },
-  { id: 5, user: 'Мельник Валерія', city: 'Одеса' },
-  { id: 6, user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 1, phone: '+ 380 000 000 000', user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 2, phone: '+ 380 000 000 000', user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 3, phone: '+ 380 000 000 000', user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 4, phone: '+ 380 000 000 000', user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 5, phone: '+ 380 000 000 000', user: 'Мельник Валерія', city: 'Одеса' },
+  { id: 6, phone: '+ 380 000 000 000', user: 'Мельник Валерія', city: 'Одеса' },
+];
+
+export const orderList = [
+  {
+    id: 10,
+    address: 'Нова Пошта №35 вулиця Канатна, 83',
+    status: 'Виконано',
+    price: '230',
+  },
+  {
+    id: 12,
+    address: 'Нова Пошта №35 вулиця Канатна, 83',
+    status: 'Виконано',
+    price: '230',
+  },
+];
+
+export const ORDER_LIST = [
+  {
+    orderId: '12345',
+    userId: '12345',
+    book: 'Містер Пінґвін. Втрачений скарб. Алекс Т. Сміт',
+    quality: '11',
+    price: '240',
+    status: ORDER_STATUS.Completed,
+  },
+  {
+    orderId: '22345',
+    userId: '22345',
+    book: 'Містер Пінґвін. Втрачений скарб. Алекс Т. Сміт',
+    quality: '11',
+    price: '240',
+    status: ORDER_STATUS.Delivered,
+  },
+  {
+    orderId: '32345',
+    userId: '42345',
+    book: 'Містер Пінґвін. Втрачений скарб. Алекс Т. Сміт',
+    quality: '11',
+    price: '240',
+    status: ORDER_STATUS.Pending,
+  },
 ];

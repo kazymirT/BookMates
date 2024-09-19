@@ -5,19 +5,19 @@ import { setClientId } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { clientArr } from '@/utils/fake';
 
-const Client = () => {
+const ClientNotAuthorized = () => {
   const dispatch = useAppDispatch();
   const handleOnClick = (id: number) => {
     dispatch(setClientId(id));
-    dispatch(toggleModal({ openedModalType: 'user-info' }));
+    dispatch(toggleModal({ openedModalType: 'userNotAuthorized-info' }));
   };
   return (
     <div className={styles.client}>
       <table>
         <thead>
           <tr>
-            <th className={styles.id}>User id</th>
             <th className={styles.name}>ПІ</th>
+            <th className={styles.id}>Номер</th>
             <th className={styles.city}>Місто</th>
             <th className={styles.edit}>Редагувати</th>
           </tr>
@@ -26,8 +26,8 @@ const Client = () => {
           {clientArr?.length &&
             clientArr.map((client) => (
               <tr key={client.id}>
-                <td>{client.id}</td>
                 <td>{client.user}</td>
+                <td>{client.phone}</td>
                 <td>{client.city}</td>
                 <td className={styles['edit-icon']}>
                   <button onClick={() => handleOnClick(client.id)}>
@@ -42,4 +42,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default ClientNotAuthorized;

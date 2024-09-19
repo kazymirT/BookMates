@@ -16,6 +16,7 @@ export const booksApi = baseApi.injectEndpoints({
       }) => ({
         url: `/open/book/list?page=${page}&size=${size}&sort=${sort}&title=${search}&price=${price.join(',')}&language=${language.join(',')}&year=${years.join(',')}&category=${categories.join(',')}`,
       }),
+      providesTags: ['Books'],
     }),
     getBookById: builder.query<BookById, string>({
       query: (id) => ({

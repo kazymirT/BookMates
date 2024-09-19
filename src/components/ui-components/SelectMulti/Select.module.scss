@@ -135,9 +135,26 @@ div.container {
       }
     }
   }
+
+  .multi {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .multi-remove {
+    align-self: center;
+  }
+
+  .value-container {
+    width: 100%;
+    max-width: 500px;
+  }
 }
 
 .message {
+  position: absolute;
   font-size: 0.75em;
   letter-spacing: 0.01em;
 }
