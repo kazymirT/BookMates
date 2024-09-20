@@ -130,22 +130,12 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-  authorsNames: z
-    .string({
-      required_error: 'Це поле є обов`язковим.',
-      invalid_type_error: 'Це поле є обов`язковим.',
-    })
-    .min(1, 'Це поле є обов`язковим.'),
+  authorsNames: z.string().array().nonempty({ message: 'Мінімум один автор' }),
   categoryNames: z
     .string()
     .array()
     .nonempty({ message: 'Мінімум одна категорія' }),
-  languageNames: z
-    .string({
-      required_error: 'Це поле є обов`язковим.',
-      invalid_type_error: 'Це поле є обов`язковим.',
-    })
-    .min(1, 'Це поле є обов`язковим.'),
+  languageNames: z.string().array().nonempty({ message: 'Мінімум одна мова' }),
   price: z
     .string({
       required_error: 'Це поле є обов`язковим.',
@@ -184,8 +174,8 @@ export const addBookSchema = z.object({
 
 export type AddBookValues = z.infer<typeof addBookSchema>;
 
-export const addCategorySchema = z.object({
-  category: z
+export const addAttributesSchema = z.object({
+  attributes: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
@@ -193,7 +183,7 @@ export const addCategorySchema = z.object({
     .min(1, 'Це поле є обов`язковим.'),
 });
 
-export type AddCategoryValues = z.infer<typeof addCategorySchema>;
+export type AddAttributesValues = z.infer<typeof addAttributesSchema>;
 
 export const userInfoSchema = z.object({
   userId: z

@@ -1,6 +1,8 @@
+import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import styles from './Components.module.scss';
+import { type AttributesPageProps } from '../types';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
   ButtonType,
@@ -9,35 +11,40 @@ import {
   Variant,
 } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
-import { useGetCategoryAllQuery } from '@/redux/services/category';
+import { useGetAllAttributesQuery } from '@/redux/services/attributes';
 import { CategoryAll } from '@/redux/services/services.types';
-import { setCategoryId } from '@/redux/slices/adminSlice';
+import { setAttributes, setAttributesName } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
-const Categories = () => {
+const AttributesPage: FC<AttributesPageProps> = ({
+  buttonName,
+  listName,
+  name,
+}) => {
   const dispatch = useDispatch();
-  const { data: categories } = useGetCategoryAllQuery();
-  const handleOnAddCategory = () => {
-    dispatch(toggleModal({ openedModalType: 'add-category' }));
+  const { data: categories } = useGetAllAttributesQuery();
+  const handleOnAddAttributes = () => {
+    dispatch(setAttributesName(name));
+    dispatch(toggleModal({ openedModalType: 'add-attributes' }));
   };
   const handleOnEdit = (category: CategoryAll) => {
-    dispatch(setCategoryId(category));
-    dispatch(toggleModal({ openedModalType: 'edit-category' }));
+    dispatch(setAttributes({ name, item: category }));
+    dispatch(toggleModal({ openedModalType: 'edit-attributes' }));
   };
   return (
     <div className={styles.categories}>
       <Button
         buttonType={ButtonType.Button}
         size={Sizes.FullS}
-        text="Додати категорію"
+        text={buttonName}
         variant={Variant.Primary}
         icon={<Icon.Plus />}
-        onClick={handleOnAddCategory}
+        onClick={handleOnAddAttributes}
         iconPosition={Position.Left}
       />
       <ul className={styles.lists}>
         {categories &&
-          categories.map((category) => (
+          categories[listName].map((category) => (
             <li key={category.id}>
               <p>{category.name}</p>
               <button onClick={() => handleOnEdit(category)}>
@@ -50,4 +57,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default AttributesPage;

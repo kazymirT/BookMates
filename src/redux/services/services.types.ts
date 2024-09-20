@@ -152,3 +152,14 @@ export interface ChangeImage {
   id: number;
   body: FormData;
 }
+
+interface Attributes {
+  id: number;
+  name: string;
+}
+
+export interface AllAttributes {
+  languages: Attributes[];
+  authors: Attributes[];
+  categories: Attributes[];
+}

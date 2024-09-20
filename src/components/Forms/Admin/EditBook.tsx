@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useState } from 'react';
+import { toast, TypeOptions } from 'react-toastify';
 
 import styles from './Form.module.scss';
 import DeletePopup from '@/components/DeletePopup/DeletePopup';
@@ -23,13 +24,17 @@ const EditBook = () => {
   const handleOpenPopup = () => setIsPopupOpen(true);
   const handleClosePopup = () => setIsPopupOpen(false);
 
+  const notify = (type: TypeOptions, text: string) => toast(text, { type });
+
   const handleDeleteBook = async () => {
     setIsPopupOpen(false);
     if (!id) return;
     try {
-      await deleteBookById(id).unwrap();
+      const response = await deleteBookById(id).unwrap();
+      notify('success', `Видалено книгу з id ${response}`);
     } catch (error) {
-      console.error(error);
+      const { data } = error as { data: string };
+      notify('error', data);
     } finally {
       handleClose();
     }

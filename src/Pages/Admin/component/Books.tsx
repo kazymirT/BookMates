@@ -11,10 +11,14 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { setBookId } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
+import { SORT_OPTIONS } from '@/utils/constants';
 
 const Books = () => {
   const dispatch = useAppDispatch();
-  const { data: books } = useGetBooksQuery({ size: '99' });
+  const { data: books } = useGetBooksQuery({
+    size: '99',
+    sort: [SORT_OPTIONS['Новинки']],
+  });
   const handleOnClick = (id: number) => {
     dispatch(setBookId(id));
     dispatch(toggleModal({ openedModalType: 'edit-book' }));
