@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import CartItem from './CartItem/CartItem';
@@ -29,6 +29,12 @@ const ShoppingCart = () => {
   const handleCloseCart = () => dispatch(toggleOpenCart(false));
 
   const closeCart = () => setShow(false);
+
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      closeCart();
+    }
+  }, [cartItems]);
 
   //const {data, error} = useGetCartQuery(undefined,{skip: !isCartOpen});
 
