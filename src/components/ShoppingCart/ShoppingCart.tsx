@@ -31,10 +31,11 @@ const ShoppingCart = () => {
   const closeCart = () => setShow(false);
 
   useEffect(() => {
-    if (cartItems.length === 0) {
+    if (cartItems.length === 0 && show) {
       closeCart();
     }
-  }, [cartItems]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItems.length]);
 
   //const {data, error} = useGetCartQuery(undefined,{skip: !isCartOpen});
 
