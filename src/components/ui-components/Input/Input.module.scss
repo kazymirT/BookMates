@@ -39,7 +39,12 @@
 
       transition: all 0.3s;
 
-      &:hover {
+      &:disabled {
+        background-color: colors.$grey-100;
+        border-color: transparent;
+      }
+
+      &:hover:not(:disabled) {
         border-color: colors.$grey-200;
       }
 

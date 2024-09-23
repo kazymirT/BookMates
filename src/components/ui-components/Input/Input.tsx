@@ -50,6 +50,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       !errorMessage && setIsValid(true);
     };
 
+    useEffect(() => {
+      inputRef.current?.value.length && setIsFocus(true);
+      if (
+        !inputRef.current?.value.length &&
+        inputRef.current !== document.activeElement
+      ) {
+        setIsFocus(false);
+      }
+    }, [inputRef.current?.value]);
+
     const handleOnInput = () => {
       inputRef.current?.value.length !== 0 && setIsFocus(true);
     };

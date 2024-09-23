@@ -1,9 +1,25 @@
+import { useEffect } from 'react';
+
 import styles from './PersonalInfoForm.module.scss';
 import { type PersonalInfoFormProps } from '../order.types';
 import Input from '@/components/ui-components/Input/Input';
 import InputPhone from '@/components/ui-components/Input/InputPhone';
+import { useAppSelector } from '@/redux/hooks';
+import { userData } from '@/redux/slices/userSlice';
 
-const PersonalInfoForm = ({ register, errors }: PersonalInfoFormProps) => {
+const PersonalInfoForm = ({
+  register,
+  errors,
+  resetField,
+}: PersonalInfoFormProps) => {
+  const { user } = useAppSelector(userData);
+
+  useEffect(() => {
+    resetField('firstName', { defaultValue: user?.firstName ?? '' });
+    resetField('lastName', { defaultValue: user?.lastName ?? '' });
+    resetField('email', { defaultValue: user?.email ?? '' });
+  }, [resetField, user]);
+
   return (
     <article className={styles['form-item']}>
       <div className={styles.title}>
@@ -37,6 +53,7 @@ const PersonalInfoForm = ({ register, errors }: PersonalInfoFormProps) => {
           requiredMessage
           placeholder="Email"
           type="text"
+          disabled={!!user?.email}
           errorMessage={errors.email?.message}
         />
       </div>
