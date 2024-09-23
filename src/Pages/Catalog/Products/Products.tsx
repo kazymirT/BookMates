@@ -12,9 +12,10 @@ import { SORT_OPTIONS } from '@/utils/constants';
 
 const Products = () => {
   const {
-    filter: { categories, language, price, years },
+    filter: { categories, language },
     page,
     sort,
+    price,
     search,
   } = useAppSelector(queryAllData);
   const {
@@ -25,10 +26,10 @@ const Products = () => {
     page,
     sort: [SORT_OPTIONS[sort]],
     search,
-    categories,
+    categories: categories.map((c) => c.name),
     price,
-    language,
-    years,
+    language: language.map((l) => l.name),
+    // years: years.map((y) => y.name),
   });
   const booksClassName = classNames(styles.books, {
     [styles.disabled]: isFetching && !isLoading,

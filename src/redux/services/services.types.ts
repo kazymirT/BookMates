@@ -153,7 +153,7 @@ export interface ChangeImage {
   body: FormData;
 }
 
-interface Attributes {
+export interface Attributes {
   id: number;
   name: string;
 }

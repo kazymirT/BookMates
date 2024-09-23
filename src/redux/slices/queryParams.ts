@@ -10,14 +10,16 @@ import {
 
 const params = new URLSearchParams(window.location.search);
 
+type Attributes = { id: number; name: string };
+
 export type FilterType = {
-  price: string[];
-  years: string[];
-  categories: string[];
-  language: string[];
+  // years: Attributes[];
+  categories: Attributes[];
+  language: Attributes[];
 };
 
 export type QueryParamsState = {
+  price: string[];
   sort: string;
   search?: string;
   filter: FilterType;
@@ -27,19 +29,11 @@ export type QueryParamsState = {
 const initialState: QueryParamsState = {
   sort: SORT_OPTIONS_URL[params.get('sort') || ''] || 'За популярністю',
   filter: {
-    categories:
-      params
-        .get('categories')
-        ?.split('_')
-        .map((lang) => SORT_OPTIONS_URL[lang]) || [],
-    language:
-      params
-        .get('language')
-        ?.split('_')
-        .map((lang) => SORT_OPTIONS_URL[lang]) || [],
-    price: params.get('price')?.split('-') || [],
-    years: params.get('years')?.split('-') || [],
+    categories: [],
+    language: [],
+    // years: [],
   },
+  price: params.get('price')?.split('-') || [],
   search: params.get('search') || undefined,
   page: params.get('page') || '1',
 };
@@ -70,38 +64,47 @@ export const queryParamsSlice = createSlice({
       updateSearchParams('page', [state.page]);
     },
     setPrice: (state, action: PayloadAction<string[]>) => {
-      state.filter.price = action.payload;
+      state.price = action.payload;
       state.page = '1';
-      updateSearchParams('price', state.filter.price);
+      updateSearchParams('price', state.price);
     },
     addFilterItem: (
       state,
       action: PayloadAction<{
         filterName: keyof FilterType;
-        value: string | number;
+        attributes: { id: number; name: string };
       }>
     ) => {
-      const { filterName, value } = action.payload;
-      const filterArray = state.filter[filterName] as (string | number)[];
-      if (filterArray && !filterArray.includes(value)) {
-        filterArray.push(value);
+      const { filterName, attributes } = action.payload;
+
+      const filterArray = state.filter[filterName];
+
+      if (filterArray && !filterArray.includes(attributes)) {
+        filterArray.push(attributes);
       }
+
       state.page = '1';
-      updateSearchParams(filterName, [...state.filter[filterName]]);
+      updateSearchParams(
+        filterName,
+        state.filter[filterName].map((filter) => filter.id)
+      );
     },
     removeFilterItem: (
       state,
       action: PayloadAction<{
         filterName: keyof FilterType;
-        value: string | number;
+        attributes: { id: number; name: string };
       }>
     ) => {
-      const { filterName, value } = action.payload;
+      const { filterName, attributes } = action.payload;
       state.filter[filterName] = state.filter[filterName].filter(
-        (item) => item !== value
-      ) as never[];
+        (item) => item.id !== attributes.id
+      );
       state.page = '1';
-      updateSearchParams(filterName, [...state.filter[filterName]]);
+      updateSearchParams(
+        filterName,
+        state.filter[filterName].map((filter) => filter.id)
+      );
     },
     clearFilters: (state) => {
       state.sort = 'За популярністю';
@@ -109,15 +112,17 @@ export const queryParamsSlice = createSlice({
       state.search = undefined;
       state.filter.categories = [];
       state.filter.language = [];
-      state.filter.price = [];
-      state.filter.years = [];
+      state.price = [];
+      // state.filter.years = [];
       deleteSearchParams();
     },
     initializeState: (state, action: PayloadAction<QueryParamsState>) => {
-      state.filter = action.payload.filter;
-      state.page = action.payload.page;
-      state.search = action.payload.search;
-      state.sort = action.payload.sort;
+      const { filter, page, price, sort, search } = action.payload;
+      state.filter = filter;
+      state.page = page;
+      state.search = search;
+      state.sort = sort;
+      state.price = price;
     },
   },
 });
