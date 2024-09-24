@@ -110,11 +110,15 @@
       background-color: colors.$accent-white;
 
       &.span-active {
-        animation: animateSpanActive 0.3s forwards;
+        animation: animateSpanActive 0s forwards;
       }
 
       &.span-inactive {
-        animation: animateSpanInactive 0.3s forwards; /* Загальна тривалість анімації */
+        animation: animateSpanInactive 0s forwards;
+      }
+
+      &.span-animation {
+        animation-duration: 0.3s;
       }
 
       &:hover + .input {

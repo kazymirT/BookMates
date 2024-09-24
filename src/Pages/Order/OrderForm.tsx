@@ -27,6 +27,9 @@ const OrderForm = () => {
     formState: { isValid, errors, isSubmitting },
   } = useForm<OrderValues>({
     defaultValues: {
+      firstName: ' ',
+      lastName: ' ',
+      email: ' ',
       phone: '0',
       department: undefined,
       city: undefined,
