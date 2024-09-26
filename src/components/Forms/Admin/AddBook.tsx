@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
+import { toast, TypeOptions } from 'react-toastify';
 
 import styles from './Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -15,7 +16,7 @@ import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import InputFile from '@/components/ui-components/InputFile/InputFile';
 import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
-import { useCategoryOptions } from '@/hooks/useCategoryOptions';
+import { useAttributesOptions } from '@/hooks/useAttributesOptions';
 import { useAppDispatch } from '@/redux/hooks';
 import { useAddBookMutation } from '@/redux/services/adminBook';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -24,7 +25,8 @@ import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
 const AddBook = () => {
   const dispatch = useAppDispatch();
   const [AddBook] = useAddBookMutation();
-  const categoriesOptions = useCategoryOptions();
+  const { authorsOptions, categoriesOptions, languagesOptions } =
+    useAttributesOptions();
 
   const {
     register,
@@ -37,11 +39,14 @@ const AddBook = () => {
     defaultValues: {
       picture: undefined,
       expected: true,
+      authorsNames: [],
+      languageNames: [],
       categoryNames: [],
     },
     resolver: zodResolver(addBookSchema),
     mode: 'onTouched',
   });
+  const notify = (type: TypeOptions, text: string) => toast(text, { type });
 
   const onSubmit = async (data: AddBookValues) => {
     try {
@@ -70,11 +75,13 @@ const AddBook = () => {
       formData.append('totalQuantity', totalQuantity);
 
       formData.append('categoryNames', categoryNames.join(', '));
-      formData.append('languageNames', languageNames);
-      formData.append('authorNames', authorsNames);
-      await AddBook(formData).unwrap();
+      formData.append('languageNames', languageNames.join(', '));
+      formData.append('authorNames', authorsNames.join(', '));
+      const response = await AddBook(formData).unwrap();
+      notify('success', `Додано книгу з id ${response}`);
     } catch (error) {
-      console.error(error);
+      const { data } = error as { data: string };
+      notify('error', data);
     } finally {
       handleClose();
     }
@@ -100,11 +107,27 @@ const AddBook = () => {
           type="text"
           errorMessage={errors.title?.message}
         />
-        <InputAdmin
+        {/* <InputAdmin
           {...register('authorsNames')}
           placeholder="Автори книги"
           type="text"
           errorMessage={errors.authorsNames?.message}
+        /> */}
+        <Controller
+          control={control}
+          name="authorsNames"
+          render={({ field, fieldState }) => (
+            <SelectMulti
+              placeholder="Автори книги"
+              value={field.value}
+              isMulti
+              options={authorsOptions}
+              onChange={(newValue) => field.onChange(newValue)}
+              onBlur={field.onBlur}
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+            />
+          )}
         />
         <TextArea
           {...register('description')}
@@ -156,13 +179,23 @@ const AddBook = () => {
             errorMessage={errors.year?.message}
           />
         </div>
+        <Controller
+          control={control}
+          name="languageNames"
+          render={({ field, fieldState }) => (
+            <SelectMulti
+              placeholder="Мова"
+              value={field.value}
+              isMulti
+              options={languagesOptions}
+              onChange={(newValue) => field.onChange(newValue)}
+              onBlur={field.onBlur}
+              error={!!fieldState.error}
+              helperText={fieldState.error?.message}
+            />
+          )}
+        />
         <div className={styles['input-container']}>
-          <InputAdmin
-            {...register('languageNames')}
-            placeholder="Мова"
-            type="text"
-            errorMessage={errors.languageNames?.message}
-          />
           <InputFile
             {...register('picture')}
             placeholder="Додати фото"

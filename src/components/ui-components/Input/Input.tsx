@@ -24,10 +24,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [type, setType] = useState<boolean>(rest.type === 'password');
-    const [isFocus, setIsFocus] = useState<boolean>(false);
-    const [isValid, setIsValid] = useState<boolean>(false);
-    const handleShowPassword = () => setType(!type);
+    const [type, setType] = useState(rest.type === 'password');
+    const [isFocus, setIsFocus] = useState(false);
+    const [isValid, setIsValid] = useState(false);
+    const [isAnimation, setIsAnimation] = useState(false);
     const inputType = rest.type === 'password' && type ? 'password' : 'text';
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -39,27 +39,41 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     );
 
     useEffect(() => {
-      inputRef.current?.value && setIsFocus(true);
-    }, []);
+      if (inputRef.current) {
+        const { value } = inputRef.current;
 
-    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        if (value.length) {
+          setIsFocus(true);
+        }
+        !value.length &&
+          inputRef.current !== document.activeElement &&
+          setIsFocus(false);
+      }
+    }, [inputRef.current?.value.length]);
+
+    const handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+      setIsAnimation(true);
       onBlur && onBlur(event);
       if (inputRef.current && inputRef.current.value.length === 0) {
         setIsFocus(false);
       }
       !errorMessage && setIsValid(true);
     };
-
     const handleOnInput = () => {
       inputRef.current?.value.length !== 0 && setIsFocus(true);
     };
-
+    const handleOnFocus = () => {
+      onFocus && onFocus();
+      setIsAnimation(true);
+    };
     const handleClickSpan = () => {
       if (inputRef.current) {
         setIsFocus(true);
         inputRef.current.focus();
       }
     };
+    const handleShowPassword = () => setType(!type);
+
     const inputClassName = classNames(styles.input, {
       [styles['input-error']]: errorMessage || serverError,
       [styles['input-valid']]: isValid && !noValidate,
@@ -68,6 +82,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     const spanClassName = classNames(styles.span, {
       [styles['span-active']]: isFocus,
       [styles['span-inactive']]: !isFocus,
+      [styles['span-animation']]: isAnimation,
     });
 
     const inputPasswordClass = classNames(styles.button, {
@@ -82,8 +97,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             type={inputType}
             ref={inputRef}
             className={inputClassName}
-            onFocus={onFocus}
-            onBlur={handleBlur}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             onInput={handleOnInput}
           />
           <span className={spanClassName} onClick={handleClickSpan}>

@@ -27,7 +27,7 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
         </div>
       </div>
       <div className={styles.details}>
-        <div className={styles.row}>
+        {/* <div className={styles.row}>
           <ProductDetailItems
             link="/catalog?language="
             options={book?.languages}
@@ -38,11 +38,11 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
             options={[String(book?.year)]}
             title="Рік видання"
           />
-        </div>
+        </div> */}
         <div className={styles.row}>
           <ProductDetailItems
             link="/catalog?categories="
-            options={book?.categories.map((category) => category.name)}
+            options={book?.categories}
             title="Категорія"
           />
         </div>

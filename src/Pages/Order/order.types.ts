@@ -3,6 +3,7 @@ import {
   UseFormRegisterReturn,
   FieldErrors,
   UseFormSetValue,
+  UseFormResetField,
 } from 'react-hook-form';
 
 import { CartItem } from '@/redux/slices/shoppingCartSlice';
@@ -15,6 +16,15 @@ export type PersonalInfoFormProps = {
     phone: UseFormRegisterReturn<'phone'>;
   };
   errors: FieldErrors<{
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    city: string;
+    department: string;
+    pay: string;
+  }>;
+  resetField: UseFormResetField<{
     firstName: string;
     lastName: string;
     email: string;

@@ -15,7 +15,7 @@ import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import InputFile from '@/components/ui-components/InputFile/InputFile';
 import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
-import { useCategoryOptions } from '@/hooks/useCategoryOptions';
+import { useAttributesOptions } from '@/hooks/useAttributesOptions';
 import { useChangeImageMutation } from '@/redux/services/adminBook';
 import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
 
@@ -36,7 +36,7 @@ const EditBookForm: FC<EditBookProps> = ({
     formState: { errors },
   } = useForm<AddBookValues>({
     defaultValues: {
-      authorsNames: book.authors.join(', '),
+      authorsNames: book.authors,
       description: book.description,
       price: String(book.price),
       totalQuantity: String(book.totalQuantity),
@@ -44,7 +44,7 @@ const EditBookForm: FC<EditBookProps> = ({
       year: String(book.year),
       picture: undefined,
       discountPrice: String(book.discount ?? 0),
-      languageNames: book.languages.join(', '),
+      languageNames: book.languages,
       expected: book.expected,
       categoryNames: book.categories.map((category) => category.name),
     },
@@ -64,7 +64,8 @@ const EditBookForm: FC<EditBookProps> = ({
       handleClose();
     }
   };
-  const categoriesOptions = useCategoryOptions();
+  const { categoriesOptions, authorsOptions, languagesOptions } =
+    useAttributesOptions();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,11 +75,21 @@ const EditBookForm: FC<EditBookProps> = ({
         type="text"
         errorMessage={errors.title?.message}
       />
-      <InputAdmin
-        {...register('authorsNames')}
-        placeholder="Автори книги"
-        type="text"
-        errorMessage={errors.authorsNames?.message}
+      <Controller
+        control={control}
+        name="authorsNames"
+        render={({ field, fieldState }) => (
+          <SelectMulti
+            placeholder="Автори книги"
+            value={field.value}
+            isMulti
+            options={authorsOptions}
+            onChange={(newValue) => field.onChange(newValue)}
+            onBlur={field.onBlur}
+            error={!!fieldState.error}
+            helperText={fieldState.error?.message}
+          />
+        )}
       />
       <TextArea
         {...register('description')}
@@ -130,13 +141,23 @@ const EditBookForm: FC<EditBookProps> = ({
           errorMessage={errors.year?.message}
         />
       </div>
+      <Controller
+        control={control}
+        name="languageNames"
+        render={({ field, fieldState }) => (
+          <SelectMulti
+            placeholder="Мова"
+            value={field.value}
+            isMulti
+            options={languagesOptions}
+            onChange={(newValue) => field.onChange(newValue)}
+            onBlur={field.onBlur}
+            error={!!fieldState.error}
+            helperText={fieldState.error?.message}
+          />
+        )}
+      />
       <div className={styles['input-container']}>
-        <InputAdmin
-          {...register('languageNames')}
-          placeholder="Мова"
-          type="text"
-          errorMessage={errors.languageNames?.message}
-        />
         <InputFile
           {...register('picture')}
           placeholder="Додати фото"

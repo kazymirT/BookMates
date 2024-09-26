@@ -36,7 +36,10 @@ const Header = () => {
   };
   const onClickBestsellers = () => {
     dispatch(
-      addFilterItem({ filterName: 'categories', value: 'Саморозвиток' })
+      addFilterItem({
+        filterName: 'categories',
+        attributes: { id: 1, name: '' },
+      })
     );
   };
   return (
@@ -70,11 +73,8 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link
-              to={'/catalog?categories=self-development'}
-              onClick={onClickBestsellers}
-            >
-              Хіти продажів
+            <Link to={'/catalog?categories=1'} onClick={onClickBestsellers}>
+              Дитяча література
             </Link>
           </li>
           <li>

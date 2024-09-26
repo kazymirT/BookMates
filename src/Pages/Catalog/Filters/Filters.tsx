@@ -1,36 +1,15 @@
-import Filter from './Filter/Filter';
-import styles from './Filters.module.scss';
-import PriceFilter from './PriceFilter/PriceFilter';
-import { useAppSelector } from '@/redux/hooks';
-import { filter } from '@/redux/slices/queryParams';
-import { updateFilterParams } from '@/utils/updateFilterParams';
+import { FC } from 'react';
 
-const Filters = () => {
-  const filterQuery = useAppSelector(filter);
-  const { categories, language, price, years } =
-    updateFilterParams(filterQuery);
+import FilterContent from './FilterContent';
+import styles from './Filters.module.scss';
+import { useGetAllAttributesQuery } from '@/redux/services/attributes';
+
+const Filters: FC = () => {
+  const { data: attributes, isSuccess } = useGetAllAttributesQuery();
+
   return (
     <aside className={styles.filters}>
-      <Filter
-        title="Категорії"
-        categories={categories}
-        filterType="categories"
-        isDefaultOpen
-      />
-      <Filter
-        title="Мова"
-        filterType="language"
-        categories={language}
-        isDefaultOpen
-      />
-      <Filter
-        title="Рік видання"
-        filterType="years"
-        categories={years}
-        isScroll
-        isDefaultOpen
-      />
-      <PriceFilter title="Ціна" isDefaultOpen price={price} />
+      {isSuccess && <FilterContent attributes={attributes} />}
     </aside>
   );
 };

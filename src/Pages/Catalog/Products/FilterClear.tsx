@@ -17,17 +17,24 @@ import {
 
 const FilterClear = () => {
   const {
-    filter: { categories, language, price, years },
+    filter: { categories, language },
     search,
+    price,
   } = useAppSelector(queryAllData);
   const dispatch = useAppDispatch();
 
-  const handleOnClear = (filterName: keyof FilterType, value: string) => {
-    dispatch(removeFilterItem({ filterName, value }));
+  const handleOnClear = (
+    filterName: keyof FilterType,
+    value: { id: number; name: string }
+  ) => {
+    dispatch(removeFilterItem({ filterName, attributes: value }));
   };
 
   // Створення загального списку фільтрів для очищення
-  const filters: { filterName: keyof FilterType; value: string }[] = [
+  const filters: {
+    filterName: keyof FilterType;
+    value: { id: number; name: string };
+  }[] = [
     ...categories.map((category) => ({
       filterName: 'categories' as const,
       value: category,
@@ -36,10 +43,10 @@ const FilterClear = () => {
       filterName: 'language' as const,
       value: lang,
     })),
-    ...years.map((year) => ({
-      filterName: 'years' as const,
-      value: year,
-    })),
+    // ...years.map((year) => ({
+    //   filterName: 'years' as const,
+    //   value: year,
+    // })),
   ];
   const priceFilter = price.join(' - ');
   return (
@@ -61,7 +68,7 @@ const FilterClear = () => {
                 key={filter.filterName + filter.value}
                 buttonType={ButtonType.Button}
                 size={Sizes.ExtraSmall}
-                text={filter.value}
+                text={filter.value.name}
                 variant={Variant.LabelX}
                 onClick={() => handleOnClear(filter.filterName, filter.value)}
               />

@@ -37,26 +37,6 @@ export const saleBooks: SaleBooksType[] = [
 ];
 
 export const FILTERS = {
-  categories: [
-    { id: 1, name: 'Хіти продажів', checked: false },
-    { id: 2, name: 'Вигідні пропозиції', checked: false },
-    { id: 3, name: 'Книги іноземною мовою', checked: false },
-    { id: 4, name: 'Вивчення мов', checked: false },
-    { id: 5, name: 'Фантастика, фентезі', checked: false },
-    { id: 6, name: 'Психологія і взаємини', checked: false },
-    { id: 7, name: 'Саморозвиток', checked: false },
-    { id: 8, name: 'Бізнес, гроші, економіка', checked: false },
-    { id: 9, name: 'Дитяча література', checked: false },
-    { id: 10, name: 'Біографії і мемуари', checked: false },
-    { id: 11, name: 'Хоббі і дозвілля', checked: false },
-    { id: 12, name: 'Художня література', checked: false },
-  ],
-  language: [
-    { id: 1, name: 'Українська', checked: false },
-    { id: 2, name: 'Англійська', checked: false },
-    { id: 3, name: 'Польська', checked: false },
-    { id: 4, name: 'Іспанська', checked: false },
-  ],
   years: [
     { id: 1, name: '2023', checked: false },
     { id: 2, name: '2022', checked: false },

@@ -1,23 +1,21 @@
 import { SORT_OPTIONS_URL } from './constants';
+import { AllAttributes, Attributes } from '@/redux/services/services.types';
 
-export const initializeQueryState = () => {
+export const initializeQueryState = (attributes: AllAttributes) => {
   const params = new URLSearchParams(window.location.search);
+  const categoryIds = params.get('categories')?.split('-').map(Number) || [];
+  const languagesIds = params.get('language')?.split('-').map(Number) || [];
+
+  const setAttributes = (attributes: Attributes[], attId: number[]) =>
+    attributes.filter((att) => attId.includes(att.id));
+
   const newState = {
     sort: SORT_OPTIONS_URL[params.get('sort') || ''] || 'За популярністю',
     filter: {
-      categories:
-        params
-          .get('categories')
-          ?.split('_')
-          .map((lang) => SORT_OPTIONS_URL[lang]) || [],
-      language:
-        params
-          .get('language')
-          ?.split('_')
-          .map((lang) => SORT_OPTIONS_URL[lang]) || [],
-      price: params.get('price')?.split('-') || [],
-      years: params.get('years')?.split('-') || [],
+      categories: setAttributes(attributes.categories, categoryIds),
+      language: setAttributes(attributes.languages, languagesIds),
     },
+    price: params.get('price')?.split('-') || [],
     search: params.get('search') || undefined,
     page: params.get('page') || '1',
   };

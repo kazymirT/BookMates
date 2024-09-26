@@ -1,6 +1,7 @@
-import { SORT_OPTIONS_URL } from './constants';
-
-export const updateSearchParams = (paramName: string, paramValue: string[]) => {
+export const updateSearchParams = (
+  paramName: string,
+  paramValue: number[] | string[]
+) => {
   const params = new URLSearchParams(window.location.search);
   if (paramName === 'page') {
     params.set(paramName, paramValue.join(''));
@@ -9,10 +10,7 @@ export const updateSearchParams = (paramName: string, paramValue: string[]) => {
     paramName === 'language' ||
     paramName === 'categories'
   ) {
-    params.set(
-      paramName,
-      paramValue.map((arr) => SORT_OPTIONS_URL[arr]).join('_')
-    );
+    params.set(paramName, paramValue.join('-'));
     params.set('page', '1');
   } else {
     params.set(paramName, paramValue.join('-'));

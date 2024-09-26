@@ -3,10 +3,10 @@ import OrderSuccess from './OrderSuccess/OrderSuccess';
 import ResetPassword from './ResetPassword/ResetPassword';
 import UserInfo from './UserInfo/UserInfo';
 import UserNotAuthorizedInfo from './UserNotAuthorizedInfo/UserNotAuthorizedInfo';
+import AddCategory from '../Forms/Admin/AddAttributes';
 import AddBook from '../Forms/Admin/AddBook';
-import AddCategory from '../Forms/Admin/AddCategory';
+import EditCategory from '../Forms/Admin/EditAttributes';
 import EditBook from '../Forms/Admin/EditBook';
-import EditCategory from '../Forms/Admin/EditCategory';
 import OrderEdit from '../Forms/Admin/OrderEdit';
 import FeedBackForm from '../Forms/FeedbackForm/FeedBackForm';
 import LoginForm from '../Forms/LoginForm/LoginForm';
@@ -44,9 +44,9 @@ const Modal = () => {
         <EditBook />
       ) : openedModalType === 'add-book' ? (
         <AddBook />
-      ) : openedModalType === 'add-category' ? (
+      ) : openedModalType === 'add-attributes' ? (
         <AddCategory />
-      ) : openedModalType === 'edit-category' ? (
+      ) : openedModalType === 'edit-attributes' ? (
         <EditCategory />
       ) : openedModalType === 'user-info' ? (
         <UserInfo />

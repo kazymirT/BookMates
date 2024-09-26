@@ -4,20 +4,21 @@ import { useAppDispatch } from '@/redux/hooks';
 import {
   increaseQuantity,
   decreaseQuantity,
-  removePosition,
 } from '@/redux/slices/shoppingCartSlice';
 //import { useRemoveBookMutation } from '@/redux/services/cart';
 import { type CartItem as CartItemType } from '@/redux/slices/shoppingCartSlice';
 
 const CartItem = ({
   item: { id, img, title, authors, price, quantity },
+  handleDeleteItem,
 }: {
   item: CartItemType;
+  handleDeleteItem: (id: number) => void;
 }) => {
   //const [removeBook, {data}] = useRemoveBookMutation();
   const dispatch = useAppDispatch();
 
-  const deleteBook = () => dispatch(removePosition(id));
+  const deleteBook = () => handleDeleteItem(id);
 
   return (
     <div className={styles.item}>

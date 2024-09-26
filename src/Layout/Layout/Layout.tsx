@@ -1,6 +1,8 @@
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -25,6 +27,7 @@ const Layout = () => {
         </SkeletonTheme>
       </main>
       <Footer />
+      <ToastContainer />
       <Modal />
       <Profile />
       <StatusScreen />

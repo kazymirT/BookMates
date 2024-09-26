@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { InlineWrapperWithMargin } from './ProductDetails';
 import styles from '../Product.module.scss';
-import { SORT_OPTIONS_URL } from '@/utils/constants';
+import { Attributes } from '@/redux/services/services.types';
 
 const ProductDetailItems = ({
   title,
@@ -12,7 +12,7 @@ const ProductDetailItems = ({
 }: {
   title: string;
   link: string;
-  options?: string[];
+  options?: Attributes[];
 }) => (
   <div>
     <h3>{title}</h3>
@@ -20,11 +20,11 @@ const ProductDetailItems = ({
       {options ? (
         options.map((option) => (
           <Link
-            key={option}
+            key={option.id}
             className={styles.item}
-            to={`${link}${title !== 'Рік видання' ? SORT_OPTIONS_URL[option] : option}`}
+            to={`${link}${option.id}`}
           >
-            {option}
+            {option.name}
           </Link>
         ))
       ) : (

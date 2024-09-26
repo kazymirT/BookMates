@@ -12,6 +12,7 @@ import {
   isOpen,
   goods,
   toggleOpenCart,
+  removePosition,
 } from '@/redux/slices/shoppingCartSlice';
 //import { useGetCartQuery } from '@/redux/services/cart';
 
@@ -30,6 +31,12 @@ const ShoppingCart = () => {
 
   const closeCart = () => setShow(false);
 
+  const handleDeleteItem = (id: number) => {
+    dispatch(removePosition(id));
+    if (cartItems.length === 1) {
+      closeCart();
+    }
+  };
   //const {data, error} = useGetCartQuery(undefined,{skip: !isCartOpen});
 
   return (
@@ -62,7 +69,7 @@ const ShoppingCart = () => {
             <ul className={styles.list}>
               {cartItems.map((item) => (
                 <li key={item.id}>
-                  <CartItem item={item} />
+                  <CartItem handleDeleteItem={handleDeleteItem} item={item} />
                 </li>
               ))}
             </ul>

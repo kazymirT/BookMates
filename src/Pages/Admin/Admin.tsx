@@ -1,8 +1,8 @@
 import { NavLink, useParams } from 'react-router-dom';
 
 import styles from './Admin.module.scss';
+import AttributesPage from './component/AttributesPage';
 import Books from './component/Books';
-import Categories from './component/Categories';
 import Client from './component/Client';
 import ClientNotAuthorized from './component/ClientNotAuthorized';
 import OrderA from './component/Order';
@@ -29,13 +29,29 @@ const Admin = () => {
       </aside>
       <main>
         {adminId === 'categories' ? (
-          <Categories />
+          <AttributesPage
+            buttonName="Додати категорію"
+            listName="categories"
+            name="category"
+          />
         ) : adminId === 'client' ? (
           <Client />
         ) : adminId === 'clientN' ? (
           <ClientNotAuthorized />
         ) : adminId === 'order' ? (
           <OrderA />
+        ) : adminId === 'authors' ? (
+          <AttributesPage
+            buttonName="Додати автора"
+            listName="authors"
+            name="authors"
+          />
+        ) : adminId === 'language' ? (
+          <AttributesPage
+            buttonName="Додати мову"
+            listName="languages"
+            name="language"
+          />
         ) : (
           <Books />
         )}
