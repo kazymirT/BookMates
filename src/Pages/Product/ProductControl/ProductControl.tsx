@@ -1,6 +1,7 @@
 import Skeleton from 'react-loading-skeleton';
 
 import styles from '../Product.module.scss';
+import Price from '@/components/Price/Price';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
   ButtonType,
@@ -41,11 +42,16 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
     }
   };
   const handleOpenCart = () => dispatch(toggleOpenCart(true));
+  const discount = 300;
   return (
     <div className={styles.control}>
       {book && book.price ? (
         <>
-          <p className={styles.price}>{book.price}</p>
+          <Price
+            normalPrice={book.price}
+            variant="product"
+            discountPrice={discount}
+          />
           <div className={styles.btns}>
             <ButtonLink
               url="/order"

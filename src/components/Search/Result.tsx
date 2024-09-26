@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import styles from './Result.module.scss';
+import Price from '../Price/Price';
 import {
   ButtonType,
   Position,
@@ -35,6 +36,7 @@ const Result = ({
     handleOnClose();
     clearValue();
   };
+  const discount = 305;
   return (
     <>
       {isOpen && books?.content && (
@@ -70,7 +72,11 @@ const Result = ({
                         />
                         <div className={styles.content}>
                           <h3>{book.title}</h3>
-                          <span className={styles.price}>{book.price}</span>
+                          <Price
+                            normalPrice={book.price}
+                            discountPrice={discount}
+                            variant="search"
+                          />
                         </div>
                       </Link>
                     ))}

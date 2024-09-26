@@ -18,7 +18,7 @@
   border-radius: 3px;
 
   .content {
-    p {
+    .search {
       padding: 13px 32px 12px;
 
       font-size: 14px;
@@ -124,20 +124,6 @@
               line-height: 1.2;
               color: $icon-active;
               letter-spacing: 0.01em;
-            }
-
-            span.price {
-              padding: 0;
-
-              font-size: 16px;
-              font-weight: 600;
-              color: $button-default;
-              letter-spacing: 0.01em;
-
-              &::after {
-                content: 'грн.';
-                margin-left: 3px;
-              }
             }
           }
         }

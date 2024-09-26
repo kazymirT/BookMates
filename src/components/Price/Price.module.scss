@@ -1,0 +1,180 @@
+@import '@/styles';
+
+div.discount {
+  display: flex;
+  align-items: center;
+
+  .normal-price {
+    @include priceAfter;
+
+    padding: 0;
+    text-decoration: line-through;
+    border-bottom: none;
+  }
+
+  .discount-price {
+    @include priceAfter;
+
+    padding: 0;
+    border-bottom: none;
+  }
+
+  &-bookCard {
+    flex-direction: column;
+    gap: 3px;
+
+    .discount-price {
+      font-family: $second-family;
+      font-size: 16px;
+      font-weight: 700;
+      color: $accent-red;
+      letter-spacing: 0.01em;
+    }
+
+    .normal-price {
+      font-family: $font-family;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 150%;
+      color: $icon-default;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  &-search {
+    gap: 6px;
+
+    .normal-price {
+      font-family: $font-family;
+      font-size: 12px;
+      font-weight: 400;
+      color: $icon-default;
+      letter-spacing: 0.01em;
+    }
+
+    .discount-price {
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 600;
+      color: $button-default;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  &-product {
+    justify-content: space-between;
+    padding: 0 20px;
+
+    .normal-price {
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 400;
+      color: $icon-default;
+      text-align: center;
+      text-decoration: line-through;
+      letter-spacing: 0.01em;
+    }
+
+    .discount-price {
+      font-family: $font-family;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.21;
+      color: $button-default;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  &-cart {
+    flex-direction: column;
+
+    .normal-price {
+      font-family: $font-family;
+      font-size: 10px;
+      font-weight: 400;
+      color: $icon-default;
+      text-align: center;
+      text-decoration: line-through;
+      letter-spacing: 0.01em;
+    }
+
+    .discount-price {
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 500;
+      color: $button-default;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  &-order {
+    flex-direction: column;
+    gap: 2px;
+
+    .normal-price {
+      font-family: $font-family;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.2;
+      color: $icon-default;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    .discount-price {
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.188;
+      color: $button-default;
+      letter-spacing: 0.01em;
+    }
+  }
+}
+
+p.price {
+  @include priceAfter;
+
+  padding: 0;
+  font-family: $second-family;
+  color: $button-default;
+
+  &-bookCard {
+    width: 30%;
+
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+    letter-spacing: 0.01em;
+  }
+
+  &-search {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  &-product {
+    font-family: $font-family;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.21;
+    letter-spacing: 0.01em;
+  }
+
+  &-cart {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 500;
+    color: $button-default;
+    letter-spacing: 0.01em;
+  }
+
+  &-order {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 500;
+    color: $button-default;
+    letter-spacing: 0.01em;
+  }
+}

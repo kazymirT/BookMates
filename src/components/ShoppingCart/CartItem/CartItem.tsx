@@ -1,4 +1,5 @@
 import styles from './CartItem.module.scss';
+import Price from '@/components/Price/Price';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
 import {
@@ -19,7 +20,7 @@ const CartItem = ({
   const dispatch = useAppDispatch();
 
   const deleteBook = () => handleDeleteItem(id);
-
+  const discount = 100;
   return (
     <div className={styles.item}>
       <div className={styles.picture}>
@@ -36,7 +37,11 @@ const CartItem = ({
           <p>{authors.join(', ')}</p>
         </div>
         <div className={`${styles.row} ${styles['third-row']}`}>
-          <span className={styles.price}>{`${price} грн`}</span>
+          <Price
+            normalPrice={Number(price)}
+            variant="cart"
+            discountPrice={discount}
+          />
           <div className={styles.amount}>
             <button onClick={() => dispatch(decreaseQuantity(id))}>-</button>
             <div className={styles.value}>{quantity}</div>

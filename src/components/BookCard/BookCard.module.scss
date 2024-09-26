@@ -57,7 +57,6 @@
     }
 
     button.isCard {
-
       @include icon-state($accent-white);
 
       position: absolute;
@@ -115,6 +114,7 @@
 
         .headers {
           display: flex;
+          align-items: center;
           justify-content: space-between;
 
           h3 {
@@ -131,25 +131,9 @@
             letter-spacing: 0.05em;
             white-space: nowrap;
           }
-
-          p {
-            width: 30%;
-
-            font-family: $second-family;
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.1;
-            color: $button-default;
-            text-align: right;
-
-            &::after {
-              content: 'грн';
-              margin-left: 1px;
-            }
-          }
         }
 
-        p {
+        .description {
           overflow: hidden;
 
           font-family: $font-family;

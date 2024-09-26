@@ -75,3 +75,22 @@
     color: $active-color;
   }
 }
+
+@mixin priceAfter {
+  &::after {
+    content: 'грн';
+    margin-left: 3px;
+  }
+}
+
+@mixin price {
+
+  @include priceAfter;
+
+  padding: 0;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: $button-default;
+  letter-spacing: 0.01em;
+}
