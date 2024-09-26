@@ -15,12 +15,12 @@ const Footer = () => {
       <div className={styles.container}>
         <nav>
           <ul className={styles.links}>
-            <Link to={'/'}>
-              <li>Головна сторінка</li>
-            </Link>
-            <Link to={'/'}>
-              <li>Доставка та оплата</li>
-            </Link>
+            <li>
+              <Link to={'/'}>Головна сторінка</Link>
+            </li>
+            <li>
+              <Link to={'/'}>Доставка та оплата</Link>
+            </li>
             <li onClick={handleOnSupport}>Зворотній зв’язок</li>
           </ul>
           <div className={styles.btns}>

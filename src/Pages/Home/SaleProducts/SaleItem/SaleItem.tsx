@@ -13,7 +13,7 @@ const SaleItem = ({ data: { images, title } }: SaleItemType) => {
       <div className={styles['img-box']}>
         {images &&
           images.map((image, index) => (
-            <img src={image} key={index} alt={title} />
+            <img src={image} key={index} alt="Book with sale" />
           ))}
       </div>
       <h3>{title}</h3>
