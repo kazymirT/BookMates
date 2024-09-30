@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import styles from './SaleItem.module.scss';
@@ -8,6 +9,7 @@ type SaleItemType = {
 };
 
 const SaleItem = ({ data: { images, title } }: SaleItemType) => {
+  const { t } = useTranslation();
   return (
     <NavLink to={''} className={styles.sale}>
       <div className={styles['img-box']}>
@@ -16,7 +18,7 @@ const SaleItem = ({ data: { images, title } }: SaleItemType) => {
             <img src={image} key={index} alt="Book with sale" />
           ))}
       </div>
-      <h3>{title}</h3>
+      <h3>{t('home.sales.sale', { value: title })}</h3>
     </NavLink>
   );
 };

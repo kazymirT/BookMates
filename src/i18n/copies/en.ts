@@ -35,5 +35,18 @@ export const english = {
 in Our Online Bookstore!`,
       button: 'In Catalog',
     },
+    'best-sellers': {
+      title: 'Best sellers',
+      button: 'More',
+    },
+    collage: {
+      title: 'The largest bookstore in your area',
+      description: `Join our community of book lovers: Create your account and immerse yourself in endless reading pleasure!`,
+      button: 'Create Account',
+    },
+    sales: {
+      title: 'Deals',
+      sale: '{{value}} Sale',
+    },
   },
 };

@@ -20,17 +20,17 @@ export type SaleBooksType = {
 
 export const saleBooks: SaleBooksType[] = [
   {
-    title: 'Знижки 10',
+    title: '10%',
     images: [sale1001, sale1002, sale1003, sale1004],
     id: 1,
   },
   {
-    title: 'Знижки 15',
+    title: '15%',
     images: [sale1501, sale1502, sale1503, sale1504],
     id: 2,
   },
   {
-    title: 'Знижки 20',
+    title: '20%',
     images: [sale2001, sale2002, sale2003, sale2004],
     id: 3,
   },

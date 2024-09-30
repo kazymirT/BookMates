@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './Collage.module.scss';
 import collageBook from '@/assets/images/collage.png';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -10,6 +12,8 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const Collage = () => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
   const handleOnClick = () =>
     dispatch(toggleModal({ openedModalType: 'create-account' }));
@@ -20,15 +24,12 @@ const Collage = () => {
         <img src={collageBook} alt="collage books" />
       </div>
       <div className={styles.content}>
-        <h2>Найбільший книжковий магазин у вашому регіоні</h2>
-        <p>
-          Приєднуйтесь до нашої спільноти книголюбів: Створіть свій обліковий
-          запис і пориньте в нескінченну насолоду від читання!
-        </p>
+        <h2>{t('home.collage.title')}</h2>
+        <p>{t('home.collage.description')}</p>
         <Button
           buttonType={ButtonType.Button}
           size={Sizes.Full}
-          text="Створити акаунт"
+          text={t('home.collage.button')}
           onClick={handleOnClick}
           variant={Variant.Basic}
         />
