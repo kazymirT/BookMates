@@ -15,6 +15,7 @@ export default defineConfig({
         './src/components/ui-components'
       ),
       '@pages': path.resolve(__dirname, './src/Pages'),
+      '@i18n': path.resolve(__dirname, './src/i18n'),
     },
   },
 });
