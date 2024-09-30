@@ -66,4 +66,40 @@ export const ukraine = {
     'btn-buy': 'Купити зараз',
     'btn-basket': 'До кошика',
   },
+  order: {
+    title: 'Оформити замовлення',
+    form: {
+      one: {
+        title: 'Дані для доставки',
+        firstName: 'Ім`я',
+        lastName: 'Прізвище',
+        phone: 'Телефон',
+        email: 'Email',
+      },
+      two: {
+        title: 'Спосіб доставки',
+        city: {
+          placeholder:
+            'Виберіть зі списку, або почніть водити назву вашого міста',
+          required: 'Місто',
+        },
+        department: {
+          placeholder: 'Нова пошта',
+          required: 'Відділення Нової Пошти/поштомату',
+        },
+      },
+    },
+    aside: {
+      title: 'Моє замовлення',
+      amount: 'Сумма',
+      delivery: 'Доставка',
+      'promo-code': 'Промокод',
+      'promo-code-placeholder': 'промокод',
+      together: 'Разом',
+      'payment-by-details': 'Оплата за реквізитами',
+      'payment-upon-receipt': 'Оплата при отриманні',
+      'btn-order': 'Підтвердити замовлення',
+      'btn-shopping': 'Продовжити покупки',
+    },
+  },
 };

@@ -66,4 +66,40 @@ in Our Online Bookstore!`,
     'btn-buy': 'Buy now',
     'btn-basket': 'To basket',
   },
+  order: {
+    title: 'Make an order',
+    form: {
+      one: {
+        title: 'Delivery data',
+        firstName: 'First name',
+        lastName: 'Last name',
+        phone: 'Phone',
+        email: 'Email',
+      },
+      two: {
+        title: 'Method of delivery',
+        city: {
+          placeholder:
+            'Choose from the list or start typing the name of your city',
+          required: 'City',
+        },
+        department: {
+          placeholder: 'Nova Poshta',
+          required: 'Nova Poshta branch/postal machine',
+        },
+      },
+    },
+    aside: {
+      title: 'My order',
+      amount: 'Amount',
+      delivery: 'Delivery',
+      'promo-code': 'Promo code',
+      'promo-code-placeholder': 'promo code',
+      together: 'Together',
+      'payment-by-details': 'Payment by details',
+      'payment-upon-receipt': 'Payment upon receipt',
+      'btn-order': 'Confirm the order',
+      'btn-shopping': 'Continue shopping',
+    },
+  },
 };

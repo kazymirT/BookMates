@@ -4,6 +4,7 @@ import AutoCompleteAsync from '@ui_components/Autocomplete/AutocompleteAsync';
 import { CITY_DEFAULT } from '@ui_components/Autocomplete/constants';
 import { useState } from 'react';
 import { Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { type NovaPoshtaFormProps } from '../order.types';
 import styles from '../PersonalInfoForm/PersonalInfoForm.module.scss';
@@ -13,6 +14,8 @@ import { useGetWarehousesQuery } from '@/redux/services/novaApi';
 import { type Address, novaApi } from '@/redux/services/novaApi';
 
 const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
   const [cityName, setCityName] = useState<string | undefined>(undefined);
   const { currentData: warehousesData } = useGetWarehousesQuery(
@@ -34,7 +37,7 @@ const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
     <article className={styles['form-item']}>
       <div className={styles.title}>
         <div className={styles.circle}>2</div>
-        <h3>Спосіб доставки</h3>
+        <h3>{t('order.form.two.title')}</h3>
       </div>
       <div className={styles.address}>
         <Controller
@@ -42,8 +45,8 @@ const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
           name="city"
           render={({ field, fieldState }) => (
             <AutoCompleteAsync
-              requiredMessage="Місто"
-              placeholder="Виберіть зі списку, або почніть водити назву вашого міста"
+              requiredMessage={t('order.form.two.city.required')}
+              placeholder={t('order.form.two.city.placeholder')}
               defaultOptions={CITY_DEFAULT}
               value={
                 field.value
@@ -66,8 +69,8 @@ const NovaPoshtaForm = ({ control, setValue }: NovaPoshtaFormProps) => {
           render={({ field, fieldState }) => (
             <SearchAutocomplete
               data={warehousesData ?? []}
-              requiredMessage="Відділення Нової Пошти/поштомату"
-              placeholder="Нова пошта"
+              requiredMessage={t('order.form.two.department.required')}
+              placeholder={t('order.form.two.department.placeholder')}
               keyChange={cityName}
               isDisabled={!cityName}
               onChange={(newValue: Option | null) => {

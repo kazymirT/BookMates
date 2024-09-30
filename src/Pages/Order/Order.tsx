@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Order.module.scss';
@@ -9,6 +10,7 @@ import { goods } from '@/redux/slices/shoppingCartSlice';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Order = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const booksInCard = useAppSelector(goods);
 
@@ -26,7 +28,7 @@ const Order = () => {
         <div className={styles['order-container']}>
           <Breadcrumbs options={breadCrumbs} activeLastLink={false} />
           <section className={styles.main}>
-            <h2>Оформити замовлення</h2>
+            <h2>{t('order.title')}</h2>
             <OrderForm />
           </section>
         </div>

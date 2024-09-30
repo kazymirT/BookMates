@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './PersonalInfoForm.module.scss';
 import { type PersonalInfoFormProps } from '../order.types';
@@ -12,6 +13,7 @@ const PersonalInfoForm = ({
   errors,
   resetField,
 }: PersonalInfoFormProps) => {
+  const { t } = useTranslation();
   const { user } = useAppSelector(userData);
 
   useEffect(() => {
@@ -24,26 +26,26 @@ const PersonalInfoForm = ({
     <article className={styles['form-item']}>
       <div className={styles.title}>
         <div className={styles.circle}>1</div>
-        <h3>Дані для доставки</h3>
+        <h3>{t('order.form.one.title')}</h3>
       </div>
       <div className={styles['input-container']}>
         <Input
           {...register.firstName}
-          placeholder="Ім`я"
+          placeholder={t('order.form.one.firstName')}
           requiredMessage
           type="text"
           errorMessage={errors.firstName?.message}
         />
         <Input
           {...register.lastName}
-          placeholder="Прізвище"
+          placeholder={t('order.form.one.lastName')}
           requiredMessage
           type="text"
           errorMessage={errors.lastName?.message}
         />
         <InputPhone
           {...register.phone}
-          placeholder="Телефон"
+          placeholder={t('order.form.one.phone')}
           requiredMessage
           type="text"
           errorMessage={errors.phone?.message}
@@ -51,7 +53,7 @@ const PersonalInfoForm = ({
         <Input
           {...register.email}
           requiredMessage
-          placeholder="Email"
+          placeholder={t('order.form.one.email')}
           type="text"
           disabled={!!user?.email}
           errorMessage={errors.email?.message}
