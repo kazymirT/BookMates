@@ -49,4 +49,12 @@ export const ukraine = {
       sale: 'Знижки {{value}}',
     },
   },
+  catalog: {
+    title: 'Каталог',
+    filter: {
+      categories: 'Категорії',
+      language: 'Мова',
+      price: 'Ціна',
+    },
+  },
 };

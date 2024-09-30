@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './CatalogHeader.module.scss';
 import Select from '@/components/ui-components/Select/Select';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -5,6 +7,7 @@ import { setSort, sort } from '@/redux/slices/queryParams';
 import { selectSortOptions } from '@/utils/constants';
 
 const CatalogHeader = () => {
+  const { t } = useTranslation();
   const sortValue = useAppSelector(sort);
   const dispatch = useAppDispatch();
   const handleChangeSort = (value: string) => {
@@ -13,7 +16,7 @@ const CatalogHeader = () => {
 
   return (
     <div className={styles.title}>
-      <h2>Каталог</h2>
+      <h2>{t('catalog.title')}</h2>
       <div className={styles.sort}>
         <Select
           style="secondary"

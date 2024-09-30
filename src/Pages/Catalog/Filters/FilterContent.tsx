@@ -1,4 +1,5 @@
 import { FC, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Filter from './Filter/Filter';
 import PriceFilter from './PriceFilter/PriceFilter';
@@ -14,6 +15,8 @@ interface FilterContentProps {
 }
 
 const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -32,18 +35,22 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
   return (
     <>
       <Filter
-        title="Категорії"
+        title={t('catalog.filter.categories')}
         categories={categories}
         filterType="categories"
         isDefaultOpen
       />
       <Filter
-        title="Мова"
+        title={t('catalog.filter.language')}
         filterType="language"
         categories={language}
         isDefaultOpen
       />
-      <PriceFilter title="Ціна" isDefaultOpen price={price} />
+      <PriceFilter
+        title={t('catalog.filter.price')}
+        isDefaultOpen
+        price={price}
+      />
     </>
   );
 };

@@ -49,4 +49,12 @@ in Our Online Bookstore!`,
       sale: '{{value}} Sale',
     },
   },
+  catalog: {
+    title: 'Catalog',
+    filter: {
+      categories: 'Categories',
+      language: 'Language',
+      price: 'Price',
+    },
+  },
 };
