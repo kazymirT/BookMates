@@ -1,23 +1,28 @@
+import { lazy } from 'react';
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import HistoryWrapper from './HistoryWrapper';
 // import ProtectedRoute from './ProtectedRoute';
+
+const Home = lazy(() => import('../Pages/Home/Home'));
+const Catalog = lazy(() => import('../Pages/Catalog/Catalog'));
+const Page404 = lazy(() => import('../Pages/Page404/Page404'));
+const Order = lazy(() => import('../Pages/Order/Order'));
+const Product = lazy(() => import('../Pages/Product/Product'));
+const Admin = lazy(() => import('../Pages/Admin/Admin'));
+const ErrorPage = lazy(() => import('../Pages/ErrorPage/ErrorPage'));
+const NotAuthenticated = lazy(
+  () => import('../Pages/NotAuthenticated/NotAuthenticated')
+);
+const NotAuthorized = lazy(
+  () => import('../Pages/NotAuthorized/NotAuthorized')
+);
+
+import HistoryWrapper from './HistoryWrapper';
 import Layout from '@/Layout/Layout/Layout';
-import {
-  Catalog,
-  Home,
-  Page404,
-  NotAuthenticated,
-  NotAuthorized,
-  Order,
-  ErrorPage,
-  Admin,
-} from '@/Pages';
-import Product from '@/Pages/Product/Product';
 import { ROUTE_PATH } from '@/utils/constants';
 
 const route = createBrowserRouter(
