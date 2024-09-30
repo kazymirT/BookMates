@@ -1,4 +1,5 @@
 import { ChangeEvent, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import Result from './Result';
@@ -9,6 +10,8 @@ import { useAppDispatch } from '@/redux/hooks';
 import { setSearch } from '@/redux/slices/queryParams';
 
 const Search = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [value, setValue] = useState('');
@@ -38,7 +41,7 @@ const Search = () => {
       <div className={styles.search}>
         <input
           type="text"
-          placeholder="Шукати"
+          placeholder={t('header.search.placeholder')}
           value={value}
           onChange={handleOnChange}
           onFocus={() => setIsOpen(true)}

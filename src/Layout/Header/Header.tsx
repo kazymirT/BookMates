@@ -79,16 +79,16 @@ const Header = () => {
         <ul>
           <li>
             <Link to={'/catalog?categories=1'} onClick={onClickBestsellers}>
-              {t('lang')}
+              {t('header.links.children')}
             </Link>
           </li>
           <li>
             <Link to={'/catalog'} onClick={onClickCatalog}>
-              Каталог
+              {t('header.links.catalog')}
             </Link>
           </li>
           <li>
-            <Link to={'/admin'}>Адмін</Link>
+            <Link to={'/admin'}>{t('header.links.admin')}</Link>
           </li>
         </ul>
       </nav>
