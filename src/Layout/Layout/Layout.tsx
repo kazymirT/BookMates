@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -23,7 +24,9 @@ const Layout = () => {
           borderRadius="0.5rem"
           duration={4}
         >
-          <Outlet />
+          <Suspense fallback={<div>loading</div>}>
+            <Outlet />
+          </Suspense>
         </SkeletonTheme>
       </main>
       <Footer />
