@@ -1,4 +1,5 @@
 import { skipToken } from '@reduxjs/toolkit/query';
+import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 
@@ -11,6 +12,7 @@ import { useGetBookByIdQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
+  const { t } = useTranslation();
   const { productId } = useParams();
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs('catalog', book?.categories[0]);
@@ -42,7 +44,7 @@ const Product = () => {
           </section>
         }
         <section className={styles.likes}>
-          <h3>Вам може сподобатись</h3>
+          <h3>{t('product.offers')}</h3>
           <Slider />
         </section>
       </div>

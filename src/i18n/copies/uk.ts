@@ -57,4 +57,13 @@ export const ukraine = {
       price: 'Ціна',
     },
   },
+  product: {
+    categories: 'Категорія',
+    years: 'Рік видання',
+    language: 'Мова книги',
+    description: 'Короткий опис',
+    offers: 'Вам може сподобатись',
+    'btn-buy': 'Купити зараз',
+    'btn-basket': 'До кошика',
+  },
 };

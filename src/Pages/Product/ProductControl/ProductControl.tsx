@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 
 import styles from '../Product.module.scss';
@@ -22,6 +23,8 @@ import {
 } from '@/redux/slices/shoppingCartSlice';
 
 const ProductControl = ({ book }: { book: BookById | undefined }) => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
   const goobs = useAppSelector(goods);
   const isBookInCard = goobs.some((goob) => goob.id === book?.id);
@@ -56,18 +59,18 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
             <ButtonLink
               url="/order"
               buttonType={ButtonType.Button}
-              size={Sizes.ExtraLarge}
-              text="Купити зараз"
+              size={Sizes.FullS}
+              text={t('product.btn-buy')}
               variant={Variant.Basic}
               onClick={handleAddToCart}
             />
             {!isBookInCard ? (
               <Button
                 buttonType={ButtonType.Button}
-                text="До кошика"
+                text={t('product.btn-basket')}
                 variant={Variant.Primary}
                 iconPosition={Position.Left}
-                size={Sizes.Large}
+                size={Sizes.FullS}
                 onClick={handleAddToCart}
                 icon={<Icon.Cart />}
               />

@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 
 import ProductDetailItems from './ProductDetailItems';
@@ -12,6 +13,7 @@ export function InlineWrapperWithMargin({
 }
 
 const ProductDetails = ({ book }: { book?: BookById }) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.book}>
       <div className={styles.info}>
@@ -31,24 +33,24 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
           <ProductDetailItems
             link="/catalog?language="
             options={book?.languages}
-            title="Мова книжки"
+            title={t('product.language')}
           />
           <ProductDetailItems
             link="/catalog?years="
             options={[String(book?.year)]}
-            title="Рік видання"
+            title={t('product.years')}
           />
         </div> */}
         <div className={styles.row}>
           <ProductDetailItems
             link="/catalog?categories="
             options={book?.categories}
-            title="Категорія"
+            title={t('product.categories')}
           />
         </div>
       </div>
       <div className={styles.description}>
-        <h3>Короткий опис</h3>
+        <h3>{t('product.description')}</h3>
         <p>{book ? book.description : <Skeleton count={5} />}</p>
       </div>
     </div>

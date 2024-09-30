@@ -57,4 +57,13 @@ in Our Online Bookstore!`,
       price: 'Price',
     },
   },
+  product: {
+    categories: 'Category',
+    years: 'Year of publication',
+    language: 'Language',
+    description: 'Description',
+    offers: 'You might like it',
+    'btn-buy': 'Buy now',
+    'btn-basket': 'To basket',
+  },
 };
