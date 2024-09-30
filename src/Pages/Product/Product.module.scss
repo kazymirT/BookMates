@@ -178,6 +178,10 @@
   }
 
   .control {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
     box-sizing: border-box;
     width: 100%;
     max-width: 282px;
@@ -192,12 +196,46 @@
 
       display: flex;
       width: fit-content;
-      margin-bottom: 1.5rem;
       letter-spacing: 0.1em;
 
       &::after {
         content: 'грн';
         margin-left: 5px;
+      }
+    }
+
+    .discount {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+
+      .discount-price {
+        font-family: $font-family;
+        font-size: 16px;
+        font-weight: 400;
+        color: $icon-default;
+        text-align: center;
+        text-decoration: line-through;
+        letter-spacing: 0.01em;
+
+        &::after {
+          content: 'грн';
+          margin-left: 5px;
+        }
+      }
+
+      .normal-price {
+        @include font-styles(500, 1.5rem, 1.2, colors.$button-default);
+
+        display: flex;
+        width: fit-content;
+        letter-spacing: 0.1em;
+
+        &::after {
+          content: 'грн';
+          margin-left: 5px;
+        }
       }
     }
 

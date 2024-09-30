@@ -1,5 +1,5 @@
 import styles from './Banner.module.scss';
-import bookshelf from '@/assets/images/bookshelf.png';
+import bookshelf from '@/assets/images/bookshelf.webp';
 import {
   ButtonType,
   Position,

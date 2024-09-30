@@ -1,9 +1,11 @@
 import styles from './OrderItem.module.scss';
 import { type OrderItemProps } from '../order.types';
+import Price from '@/components/Price/Price';
 
 const OrderItem = ({
   data: { authors, quantity, img, price, title },
 }: OrderItemProps) => {
+  const discount = 100;
   return (
     <div className={styles.wrapper}>
       <div className={styles['img-box']}>
@@ -15,7 +17,11 @@ const OrderItem = ({
           <h3 className={styles.authors}>{authors.join(', ')}</h3>
         </div>
         <div className={styles.prices}>
-          <p className={styles.price}>{price}</p>
+          <Price
+            normalPrice={Number(price)}
+            variant="order"
+            discountPrice={discount}
+          />
           <p className={styles.count}>{quantity}</p>
         </div>
       </div>

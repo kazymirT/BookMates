@@ -4,6 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
 import styles from './BookCard.module.scss';
+import Price from '../Price/Price';
 import { Button } from '../ui-components/Button/Button';
 import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -51,6 +52,7 @@ const BookCard = ({ data }: Props) => {
     handleAddToCard(event);
     dispatch(toggleOpenCart(true));
   };
+  const discount = 100;
   return (
     <Link to={data ? `/product/${data.id}` : ''} className={styles.card}>
       <div className={styles['img-box']}>
@@ -93,7 +95,11 @@ const BookCard = ({ data }: Props) => {
               {data ? (
                 <>
                   <h3>{data.title}</h3>
-                  <p>{data.price}</p>
+                  <Price
+                    normalPrice={data.price}
+                    discountPrice={discount}
+                    variant="bookCard"
+                  />
                 </>
               ) : (
                 <Skeleton

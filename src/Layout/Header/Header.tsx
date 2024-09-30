@@ -58,7 +58,11 @@ const Header = () => {
               ) : (
                 <DropDown options={<Menu />} control={<Icon.Account />} />
               )}
-              <button className={styles['cart-btn']} onClick={openCart}>
+              <button
+                className={styles['cart-btn']}
+                onClick={openCart}
+                aria-label="Open cart"
+              >
                 <Icon.Cart />
                 {cartItemsCount > 0 && (
                   <div className={styles['cart-counter']}>

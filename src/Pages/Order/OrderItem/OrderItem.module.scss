@@ -70,17 +70,7 @@
       display: flex;
       gap: 1rem;
       align-items: center;
-
-      .price {
-        font-size: 1rem;
-        font-weight: 500;
-        color: colors.$button-default;
-        letter-spacing: 0.01em;
-
-        &::after {
-          content: 'грн';
-        }
-      }
+      justify-content: space-between;
 
       .count {
         font-size: 0.75rem;
