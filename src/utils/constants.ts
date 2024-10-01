@@ -39,11 +39,34 @@ export const BASE_CRUMBS: Record<
 };
 
 export enum TOPICS {
+  Payment = 'Payment and delivery',
+  Assortment = 'Assortment of goods',
+  Complaints = 'Complaints and suggestions',
+  Other = 'Other',
+}
+export enum TOPICS_URK {
   Payment = 'Оплата і доставка',
   Assortment = 'Асортимент товарів',
   Complaints = 'Скарги і пропозиції',
   Other = 'Інше',
 }
+export enum TOPICS_VALIDATE {
+  PaymentUa = 'Оплата і доставка',
+  AssortmentUa = 'Асортимент товарів',
+  ComplaintsUA = 'Скарги і пропозиції',
+  OtherUa = 'Інше',
+  Payment = 'Payment and delivery',
+  Assortment = 'Assortment of goods',
+  Complaints = 'Complaints and suggestions',
+  Other = 'Other',
+}
+export const TOPIC_WITH_LANGUAGES: Record<
+  string,
+  typeof TOPICS | typeof TOPICS_URK
+> = {
+  en: TOPICS,
+  ua: TOPICS_URK,
+};
 
 export enum ORDER_STATUS {
   Pending = 'Очікує',

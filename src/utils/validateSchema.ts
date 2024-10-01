@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { ORDER_STATUS, TOPICS } from '@/utils/constants';
+import { ORDER_STATUS, TOPICS_VALIDATE } from '@/utils/constants';
 const accept = z.boolean().refine((data) => data === true);
 const acceptB = z.boolean();
 const phone = z
@@ -61,7 +61,7 @@ export const registerSchema = z
 
 export type RegisterValues = z.infer<typeof registerSchema>;
 
-const TopicsEnum = z.nativeEnum(TOPICS, {
+const TopicsEnum = z.nativeEnum(TOPICS_VALIDATE, {
   required_error: 'Це поле є обов`язковим.',
 });
 const OrderEnum = z.nativeEnum(ORDER_STATUS, {

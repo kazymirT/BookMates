@@ -17,7 +17,7 @@ import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
-import { TOPICS } from '@/utils/constants';
+import { TOPIC_WITH_LANGUAGES } from '@/utils/constants';
 import { FeedbackValues, feedbackSchema } from '@/utils/validateSchema';
 
 const FeedBackForm = () => {
@@ -56,7 +56,6 @@ const FeedBackForm = () => {
   const textareaClName = classNames(styles.textarea, {
     [styles['textarea-error']]: errors.question?.message,
   });
-
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
@@ -81,7 +80,9 @@ const FeedBackForm = () => {
               <Select
                 placeholder={t('support.select')}
                 value={field.value}
-                options={Object.values(TOPICS)}
+                options={Object.values(
+                  TOPIC_WITH_LANGUAGES[t('support.select-topic')]
+                )}
                 onChange={(newValue) => field.onChange(newValue)}
                 onBlur={field.onBlur}
                 error={!!fieldState.error}
