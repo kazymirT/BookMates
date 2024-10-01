@@ -21,10 +21,18 @@ export const BASE_CRUMBS: Record<
   }
 > = {
   catalog: {
+    name: 'Catalog',
+    to: '/catalog',
+  },
+  'make an order': {
+    name: 'Make an order',
+    to: '/order',
+  },
+  каталог: {
     name: 'Каталог',
     to: '/catalog',
   },
-  order: {
+  'оформити замовлення': {
     name: 'Оформити замовлення',
     to: '/order',
   },

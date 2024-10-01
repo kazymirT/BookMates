@@ -11,7 +11,6 @@ interface Category {
 
 export const createBreadcrumbs = (page: string, categoryId?: Category) => {
   const breadcrumbs: Breadcrumb[] = [BASE_CRUMBS[page]];
-
   if (categoryId) {
     breadcrumbs.push({
       name: categoryId.name,

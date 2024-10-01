@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { Icon } from '@ui_components/Icons';
+import { useTranslation } from 'react-i18next';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ interface Props {
 }
 
 const BookCard = ({ data }: Props) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const goobs = useAppSelector(goods);
   const isBookInCard = goobs.some((goob) => goob.id === data?.id);
@@ -120,7 +122,7 @@ const BookCard = ({ data }: Props) => {
               buttonType={ButtonType.Button}
               size={Sizes.Medium}
               onClick={handleAddAndOpenCard}
-              text="Купити"
+              text={t('book-card')}
               variant={Variant.Basic}
             />
           ) : (

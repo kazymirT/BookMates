@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './Price.module.scss';
 import { PriceProps } from './Price.type';
 
 const Price: FC<PriceProps> = ({ normalPrice, discountPrice, variant }) => {
+  const { t } = useTranslation();
   const discountClassNames = classNames(
     styles.discount,
     styles[`discount-${variant}`]
@@ -14,11 +16,15 @@ const Price: FC<PriceProps> = ({ normalPrice, discountPrice, variant }) => {
     <>
       {!!discountPrice ? (
         <div className={discountClassNames}>
-          <p className={styles['normal-price']}>{normalPrice}</p>
-          <p className={styles['discount-price']}>{discountPrice}</p>
+          <p className={styles['normal-price']}>
+            {t('price', { price: normalPrice })}
+          </p>
+          <p className={styles['discount-price']}>
+            {t('price', { price: discountPrice })}
+          </p>
         </div>
       ) : (
-        <p className={priceClassNames}>{normalPrice}</p>
+        <p className={priceClassNames}>{t('price', { price: normalPrice })}</p>
       )}
     </>
   );

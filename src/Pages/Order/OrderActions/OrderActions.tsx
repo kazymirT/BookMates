@@ -45,11 +45,15 @@ const OrderActions = ({
       <div className={styles['order-details']}>
         <div className={styles.item}>
           <span className={styles.label}>{t('order.aside.amount')}</span>
-          <span className={styles.value}>{totalPrice}</span>
+          <span className={styles.value}>
+            {t('order.aside.price', { price: totalPrice })}
+          </span>
         </div>
         <div className={styles.item}>
           <span className={styles.label}>{t('order.aside.delivery')}</span>
-          <span className={styles.value}>0</span>
+          <span className={styles.value}>
+            {t('order.aside.price', { price: 0 })}
+          </span>
         </div>
         <div className={styles.item}>
           <span className={styles.label}>{t('order.aside.promo-code')}</span>
@@ -64,7 +68,9 @@ const OrderActions = ({
       <div className={styles['order-total']}>
         <div className={styles.summary}>
           <span className={styles.label}>{t('order.aside.together')}</span>
-          <span className={styles.value}>{totalPrice}</span>
+          <span className={styles.value}>
+            {t('order.aside.price', { price: totalPrice })}
+          </span>
         </div>
         <Checkbox
           {...register}

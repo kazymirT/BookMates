@@ -15,8 +15,10 @@ const Product = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
-  const breadcrumbs = createBreadcrumbs('catalog', book?.categories[0]);
-
+  const breadcrumbs = createBreadcrumbs(
+    t('breadcrumbs.catalog'),
+    book?.categories[0]
+  );
   return (
     <div className={styles.product}>
       <div className="container">

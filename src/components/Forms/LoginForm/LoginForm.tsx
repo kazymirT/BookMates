@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
@@ -17,6 +18,7 @@ import { toggleModal } from '@/redux/slices/modalSlice';
 import { LoginValues, loginSchema } from '@/utils/validateSchema';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const [isServerError, setIsServerError] = useState<boolean>(false);
   const { loginUser } = useFormActions();
   const dispatch = useAppDispatch();
@@ -51,7 +53,7 @@ const LoginForm = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Логін</h2>
+        <h2>{t('login.title')}</h2>
         <button className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
@@ -60,7 +62,7 @@ const LoginForm = () => {
         <div className={styles['input-container']}>
           <Input
             {...register('email')}
-            placeholder="Електронна пошта"
+            placeholder={t('login.email')}
             type="email"
             serverError={isServerError}
             onFocus={hideServerError}
@@ -68,7 +70,7 @@ const LoginForm = () => {
           />
           <Input
             {...register('password')}
-            placeholder="Пароль"
+            placeholder={t('login.password')}
             type="password"
             serverError={isServerError}
             onFocus={hideServerError}
@@ -76,16 +78,13 @@ const LoginForm = () => {
           />
           {isServerError && (
             <div className={styles.error}>
-              <p>
-                Ваша Електронна пошта або пароль невірні. Будь ласка, спробуйте
-                ще раз або
-              </p>
+              <p>{t('login.wrong')}</p>
               <button
                 type="button"
                 onClick={handleResetPassword}
                 className={styles.remember}
               >
-                змініть пароль.
+                {t('login.btn-reset-password')}
               </button>
             </div>
           )}
@@ -96,14 +95,14 @@ const LoginForm = () => {
             onClick={handleResetPassword}
             className={styles['reset-password']}
           >
-            Забув пароль
+            {t('login.reset-password')}
           </button>
         )}
         <Button
           buttonType={ButtonType.Submit}
           size={Sizes.Full}
           variant={Variant.Basic}
-          text="Увійти"
+          text={t('login.btn-in')}
           disabled={!isValid || isSubmitting || isServerError}
         />
       </form>
@@ -112,7 +111,7 @@ const LoginForm = () => {
         type="button"
         onClick={handleRegister}
       >
-        В мене немає облікового запису
+        {t('login.btn-register')}
       </button>
     </section>
   );

@@ -20,7 +20,7 @@ const Order = () => {
     }
   }, [booksInCard, navigate]);
 
-  const breadCrumbs = createBreadcrumbs('order');
+  const breadCrumbs = createBreadcrumbs(t('breadcrumbs.order'));
 
   return (
     <div className={styles.order}>
