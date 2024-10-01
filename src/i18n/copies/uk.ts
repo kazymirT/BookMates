@@ -102,4 +102,18 @@ export const ukraine = {
       'btn-shopping': 'Продовжити покупки',
     },
   },
+  cart: {
+    title: 'Кошик',
+    together: 'Всього',
+    'total-price': '{{totalPrice}} грн',
+    empty: 'Кошик порожній',
+    btn: 'Перейти до замовлення',
+    notification: {
+      title: 'Товар додано до кошика',
+      'count-one': 'У кошику 1 товар',
+      'count-more': 'У кошику {{cartItemsCount}} товарів',
+      price: 'Сума товарів у кошику {{totalPrice}} грн',
+      btn: 'Оформити замовлення',
+    },
+  },
 };

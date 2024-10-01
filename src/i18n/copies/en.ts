@@ -102,4 +102,18 @@ in Our Online Bookstore!`,
       'btn-shopping': 'Continue shopping',
     },
   },
+  cart: {
+    title: 'Cart',
+    together: 'Together',
+    'total-price': '{{totalPrice}} $',
+    btn: 'Go to order',
+    empty: 'Your cart is empty',
+    notification: {
+      title: 'The product has been added to the cart',
+      'count-one': 'There is 1 product in the cart ',
+      'count-more': '{{cartItemsCount}} items in cart ',
+      price: 'The amount of goods in the basket {{totalPrice}} $',
+      btn: 'Make an order',
+    },
+  },
 };

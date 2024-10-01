@@ -10,7 +10,7 @@ i18n
   .use(LanguageDetector)
   .init({
     resources,
-    fallbackLng: Lang.English,
+    fallbackLng: Lang.EnglishUs,
     detection: {
       order: ['navigator', 'localStorage'],
       caches: ['localStorage'],

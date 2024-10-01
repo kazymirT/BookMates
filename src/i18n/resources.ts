@@ -3,10 +3,16 @@ import { english } from './copies/en';
 import { ukraine } from './copies/uk';
 
 export const resources = {
-  [Lang.Ukraine]: {
+  [Lang.UkraineUa]: {
     translation: ukraine,
   },
-  [Lang.English]: {
+  [Lang.UkraineUk]: {
+    translation: ukraine,
+  },
+  [Lang.EnglishEn]: {
+    translation: english,
+  },
+  [Lang.EnglishUs]: {
     translation: english,
   },
 };
