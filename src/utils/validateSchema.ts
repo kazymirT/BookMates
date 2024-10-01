@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import { z } from 'zod';
 
 import { ORDER_STATUS, TOPICS_VALIDATE } from '@/utils/constants';
@@ -23,97 +24,131 @@ const password = z
   .regex(/^(?=.*[0-9])/, 'мінімум одна цифра')
   .min(8, 'мінімальна кількість символів 8')
   .max(12, 'максимальна кількість символів 12');
+const getPhone = (t: TFunction<'translation', undefined>) => {
+  return z
+    .string()
+    .regex(/^\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, t?.('forms-error.phone'));
+};
+const getEmail = (t: TFunction<'translation', undefined>) => {
+  return z
+    .string()
+    .min(1, { message: t?.('forms-error.email.required') })
+    .max(30, { message: t?.('forms-error.email.max') })
+    .email({ message: t?.('forms-error.email.email') });
+};
+const getPassword = (t: TFunction<'translation', undefined>) => {
+  return z
+    .string()
+    .min(1, { message: t?.('forms-error.password.required') })
+    .regex(/^(?!.*\s).+$/, { message: t?.('forms-error.password.space') })
+    .regex(/^(?=.*[a-zа-я])/, {
+      message: t?.('forms-error.password.lower-letter'),
+    })
+    .regex(/^(?=.*[A-ZА-Я])/, {
+      message: t?.('forms-error.password.upper-letter'),
+    })
+    .regex(/^(?=.*[0-9])/, { message: t?.('forms-error.password.number') })
+    .min(8, { message: t?.('forms-error.password.min') })
+    .max(12, { message: t?.('forms-error.password.max') });
+};
+const getFirstName = (t: TFunction<'translation', undefined>) => {
+  return z
+    .string()
+    .min(1, { message: t?.('forms-error.first-name.required') })
+    .regex(/^[A-ZА-ЯІЇЄ]/, { message: t?.('forms-error.first-name.upper') })
+    .min(4, { message: t?.('forms-error.first-name.min') })
+    .max(20, { message: t?.('forms-error.first-name.max') });
+};
+const getLastName = (t: TFunction<'translation', undefined>) => {
+  return z
+    .string()
+    .min(1, { message: t?.('forms-error.last-name.required') })
+    .regex(/^[A-ZА-ЯІЇЄ]/, { message: t?.('forms-error.last-name.upper') })
+    .min(4, { message: t?.('forms-error.last-name.min') })
+    .max(20, { message: t?.('forms-error.last-name.max') });
+};
 
-export const loginSchema = z.object({
-  email: email,
-  password: password,
-});
-export type LoginValues = z.infer<typeof loginSchema>;
-
-export const resetPasswordSchema = z.object({
-  email: email,
-});
-export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>;
-
-export const registerSchema = z
-  .object({
-    firstName: z
-      .string()
-      .min(1, 'Це поле є обов`язковим.')
-      .regex(/^[A-ZА-ЯІЇЄ]/, 'Ім`я має починатись з великої літери')
-      .min(4, 'мінімум 4 символи')
-      .max(20, 'максимум 20 символів'),
-    lastName: z
-      .string()
-      .min(1, 'Це поле є обов`язковим.')
-      .regex(/^[A-ZА-ЯІЇЄ]/, 'Прізвище має починатись з великої літери')
-      .min(4, 'мінімум 4 символи')
-      .max(20, 'максимум 20 символів'),
-    email: email,
-    confirmEmail: email,
-    password: password,
-    accept: accept,
-  })
-  .refine((data) => data.confirmEmail === data.email, {
-    path: ['confirmEmail'],
-    message: 'Електрона адреса не збігається',
+export const getLoginSchema = (t: TFunction<'translation', undefined>) => {
+  return z.object({
+    email: getEmail(t),
+    password: getPassword(t),
   });
+};
+export type LoginValues = z.infer<ReturnType<typeof getLoginSchema>>;
 
-export type RegisterValues = z.infer<typeof registerSchema>;
+export const getResetPasswordSchema = (
+  t: TFunction<'translation', undefined>
+) => {
+  return z.object({
+    email: getEmail(t),
+  });
+};
+export type ResetPasswordValues = z.infer<
+  ReturnType<typeof getResetPasswordSchema>
+>;
+export const getRegisterSchema = (t: TFunction<'translation', undefined>) => {
+  return z
+    .object({
+      firstName: getFirstName(t),
+      lastName: getLastName(t),
+      email: getEmail(t),
+      confirmEmail: getEmail(t),
+      password: getPassword(t),
+      accept: accept,
+    })
+    .refine((data) => data.confirmEmail === data.email, {
+      path: ['confirmEmail'],
+      message: t?.('forms-error.email-confirm'),
+    });
+};
 
-const TopicsEnum = z.nativeEnum(TOPICS_VALIDATE, {
-  required_error: 'Це поле є обов`язковим.',
-});
+export type RegisterValues = z.infer<ReturnType<typeof getRegisterSchema>>;
+
+const getTopicsEnum = (t: TFunction<'translation', undefined>) => {
+  return z.nativeEnum(TOPICS_VALIDATE, {
+    required_error: t?.('forms-error.topic'),
+  });
+};
+// const getOrderEnum = (t: TFunction<'translation', undefined>) => {
+//   return z.nativeEnum(ORDER_STATUS, {
+//     required_error: t?.('form-error.topic'),
+//   });
+// };
 const OrderEnum = z.nativeEnum(ORDER_STATUS, {
   required_error: 'Це поле є обов`язковим.',
 });
 
-export const feedbackSchema = z.object({
-  email: email,
-  topic: TopicsEnum,
-  question: z.string().min(5, { message: 'мінімум 5 символів' }),
-});
+export const getFeedbackSchema = (t: TFunction<'translation', undefined>) => {
+  return z.object({
+    email: getEmail(t),
+    topic: getTopicsEnum(t),
+    question: z.string().min(5, { message: t?.('forms-error.question') }),
+  });
+};
 
-export type FeedbackValues = z.infer<typeof feedbackSchema>;
+export type FeedbackValues = z.infer<ReturnType<typeof getFeedbackSchema>>;
 
-export const searchSchema = z.object({
-  search: z
-    .string()
-    .min(3, 'мінімум 3 символи')
-    .max(25, 'максимум 25 символів'),
-});
+export const getOrderSchema = (t: TFunction<'translation', undefined>) => {
+  return z.object({
+    firstName: getFirstName(t),
+    lastName: getLastName(t),
+    email: getEmail(t),
+    phone: getPhone(t),
+    city: z.string({
+      required_error: t?.('forms-error.city'),
+      invalid_type_error: t?.('forms-error.city'),
+    }),
+    department: z
+      .string({
+        required_error: t?.('forms-error.city'),
+        invalid_type_error: t?.('forms-error.city'),
+      })
+      .min(4, t?.('form-error.required')),
+    pay: z.string(),
+  });
+};
 
-export type SearchValues = z.infer<typeof searchSchema>;
-
-export const orderSchema = z.object({
-  firstName: z
-    .string()
-    .min(1, 'Це поле є обов`язковим.')
-    .regex(/^[A-ZА-ЯІЇЄ]/, 'Ім`я має починатись з великої літери')
-    .min(4, 'мінімум 4 символи')
-    .max(20, 'максимум 20 символів'),
-  lastName: z
-    .string()
-    .min(1, 'Це поле є обов`язковим.')
-    .regex(/^[A-ZА-ЯІЇЄ]/, 'Прізвище має починатись з великої літери')
-    .min(4, 'мінімум 4 символи')
-    .max(20, 'максимум 20 символів'),
-  email: email,
-  phone: phone,
-  city: z.string({
-    required_error: 'Це поле є обов`язковим.',
-    invalid_type_error: 'Це поле є обов`язковим.',
-  }),
-  department: z
-    .string({
-      required_error: 'Це поле є обов`язковим.',
-      invalid_type_error: 'Це поле є обов`язковим.',
-    })
-    .min(4, "Це поле є обов'язковим"),
-  pay: z.string(),
-});
-
-export type OrderValues = z.infer<typeof orderSchema>;
+export type OrderValues = z.infer<ReturnType<typeof getOrderSchema>>;
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_FILE_TYPES = ['image/png'];
 

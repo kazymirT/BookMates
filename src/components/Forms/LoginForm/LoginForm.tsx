@@ -15,7 +15,7 @@ import { Icon } from '@/components/ui-components/Icons';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { LoginValues, loginSchema } from '@/utils/validateSchema';
+import { LoginValues, getLoginSchema } from '@/utils/validateSchema';
 
 const LoginForm = () => {
   const { t } = useTranslation();
@@ -32,7 +32,7 @@ const LoginForm = () => {
       email: '',
       password: '',
     },
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(getLoginSchema(t)),
     mode: 'onTouched',
   });
 

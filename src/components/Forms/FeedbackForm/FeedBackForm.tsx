@@ -18,7 +18,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 import { TOPIC_WITH_LANGUAGES } from '@/utils/constants';
-import { FeedbackValues, feedbackSchema } from '@/utils/validateSchema';
+import { FeedbackValues, getFeedbackSchema } from '@/utils/validateSchema';
 
 const FeedBackForm = () => {
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const FeedBackForm = () => {
       topic: undefined,
       question: '',
     },
-    resolver: zodResolver(feedbackSchema),
+    resolver: zodResolver(getFeedbackSchema(t)),
     mode: 'onTouched',
   });
 

@@ -3,7 +3,10 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { RegisterValues, registerSchema } from '../../../utils/validateSchema';
+import {
+  RegisterValues,
+  getRegisterSchema,
+} from '../../../utils/validateSchema';
 import Checkbox from '../../ui-components/Checkbox/Checkbox';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
@@ -37,7 +40,7 @@ const RegisterForm = () => {
       password: '',
       accept: false,
     },
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(getRegisterSchema(t)),
     mode: 'onTouched',
   });
 

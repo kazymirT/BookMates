@@ -17,14 +17,13 @@ import { toggleModal } from '@/redux/slices/modalSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 import {
   ResetPasswordValues,
-  resetPasswordSchema,
+  getResetPasswordSchema,
 } from '@/utils/validateSchema';
 
 const ResetPassword = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { sendResetPassword } = useFormActions();
-
   const {
     register,
     handleSubmit,
@@ -33,7 +32,7 @@ const ResetPassword = () => {
     defaultValues: {
       email: '',
     },
-    resolver: zodResolver(resetPasswordSchema),
+    resolver: zodResolver(getResetPasswordSchema(t)),
     mode: 'onTouched',
   });
   const onSubmit = async (data: ResetPasswordValues) => {
