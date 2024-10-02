@@ -10,7 +10,7 @@ import {
 import { type CartItem as CartItemType } from '@/redux/slices/shoppingCartSlice';
 
 const CartItem = ({
-  item: { id, img, title, authors, price, quantity },
+  item: { id, img, title, authors, price, quantity, discount, discountPrice },
   handleDeleteItem,
 }: {
   item: CartItemType;
@@ -18,9 +18,7 @@ const CartItem = ({
 }) => {
   //const [removeBook, {data}] = useRemoveBookMutation();
   const dispatch = useAppDispatch();
-
   const deleteBook = () => handleDeleteItem(id);
-  const discount = 100;
   return (
     <div className={styles.item}>
       <div className={styles.picture}>
@@ -40,7 +38,7 @@ const CartItem = ({
           <Price
             normalPrice={Number(price)}
             variant="cart"
-            discountPrice={discount}
+            discountPrice={discount ? discountPrice : undefined}
           />
           <div className={styles.amount}>
             <button onClick={() => dispatch(decreaseQuantity(id))}>-</button>

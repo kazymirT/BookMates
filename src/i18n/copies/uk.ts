@@ -55,6 +55,7 @@ export const ukraine = {
       categories: 'Категорії',
       language: 'Мова',
       price: 'Ціна',
+      years: 'Рік видання',
     },
     'clear-filter': 'Очистити',
     sort: 'ua',

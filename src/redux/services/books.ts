@@ -1,5 +1,10 @@
 import { baseApi } from './baseApi';
-import { BookById, BooksArgs, BooksListResponse } from './services.types';
+import {
+  BookById,
+  BookByIdResponse,
+  BooksArgs,
+  BooksListResponse,
+} from './services.types';
 
 export const booksApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -21,6 +26,10 @@ export const booksApi = baseApi.injectEndpoints({
     getBookById: builder.query<BookById, string>({
       query: (id) => ({
         url: `/open/book/${id}`,
+      }),
+      transformResponse: (response: BookByIdResponse) => ({
+        ...response,
+        year: [{ id: response.year, name: String(response.year) }],
       }),
     }),
   }),

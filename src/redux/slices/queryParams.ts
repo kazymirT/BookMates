@@ -12,7 +12,7 @@ const params = new URLSearchParams(window.location.search);
 type Attributes = { id: number; name: string };
 
 export type FilterType = {
-  // years: Attributes[];
+  years: Attributes[];
   categories: Attributes[];
   language: Attributes[];
 };
@@ -30,7 +30,7 @@ const initialState: QueryParamsState = {
   filter: {
     categories: [],
     language: [],
-    // years: [],
+    years: [],
   },
   price: params.get('price')?.split('-') || [],
   search: params.get('search') || undefined,
@@ -112,7 +112,7 @@ export const queryParamsSlice = createSlice({
       state.filter.categories = [];
       state.filter.language = [];
       state.price = [];
-      // state.filter.years = [];
+      state.filter.years = [];
       deleteSearchParams();
     },
     initializeState: (state, action: PayloadAction<QueryParamsState>) => {

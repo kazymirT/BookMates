@@ -59,22 +59,36 @@ export interface ResponseError {
   isUnhandledError: boolean;
 }
 
-export type BookById = {
+export type BookByIdResponse = {
   id: number;
   title: string;
   description: string;
   year: number;
   price: number;
   totalQuantity: number;
-  authors: string[];
-  languages: string[];
-  categories: {
-    id: number;
-    name: string;
-  }[];
+  languages: Attributes[];
+  authors: Attributes[];
+  categories: Attributes[];
   imageUrl: string;
   expected: true;
   discount: number;
+  discountPrice: number;
+};
+
+export type BookById = {
+  id: number;
+  title: string;
+  description: string;
+  year: Attributes[];
+  price: number;
+  totalQuantity: number;
+  languages: Attributes[];
+  authors: Attributes[];
+  categories: Attributes[];
+  imageUrl: string;
+  expected: true;
+  discount: number;
+  discountPrice: number;
 };
 
 export type BooksData = {
@@ -87,6 +101,7 @@ export type BooksData = {
   imageUrl: string;
   expected: boolean;
   discount: number;
+  discountPrice: number;
 };
 
 export type BooksListResponse = {
@@ -158,8 +173,15 @@ export interface Attributes {
   name: string;
 }
 
+export interface AllAttributesResponse {
+  languages: Attributes[];
+  authors: Attributes[];
+  categories: Attributes[];
+  years: number[];
+}
 export interface AllAttributes {
   languages: Attributes[];
   authors: Attributes[];
   categories: Attributes[];
+  years: Attributes[];
 }

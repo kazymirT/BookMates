@@ -21,13 +21,12 @@ export const updateFilterParams = (
   price: string[],
   attributes: AllAttributes
 ) => {
-  const { categories, language } = filter;
-
+  const { categories, language, years } = filter;
   const newLanguage = getUpdatedFilter(
     language,
     setChecked(attributes.languages)
   );
-  // const newYears = getUpdatedFilter(years, FILTERS.years);
+  const newYears = getUpdatedFilter(years, setChecked(attributes.years));
   const newCategories = getUpdatedFilter(
     categories,
     setChecked(attributes.categories)
@@ -37,7 +36,7 @@ export const updateFilterParams = (
     : FILTERS.price;
   return {
     price: newPrice,
-    // years: newYears,
+    years: newYears,
     categories: newCategories,
     language: newLanguage,
   };

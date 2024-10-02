@@ -11,7 +11,7 @@ import { queryAllData } from '@/redux/slices/queryParams';
 
 const Products = () => {
   const {
-    filter: { categories, language },
+    filter: { categories, language, years },
     page,
     sort,
     price,
@@ -28,7 +28,7 @@ const Products = () => {
     categories: categories.map((c) => c.name),
     price,
     language: language.map((l) => l.name),
-    // years: years.map((y) => y.name),
+    years: years.map((y) => y.name),
   });
   const booksClassName = classNames(styles.books, {
     [styles.disabled]: isFetching && !isLoading,

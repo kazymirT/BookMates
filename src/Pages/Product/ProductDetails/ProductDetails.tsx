@@ -21,7 +21,7 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
         <div className={styles.authors}>
           <h2>
             {book ? (
-              book.authors.join(', ')
+              book.authors.map((author) => author.name).join(', ')
             ) : (
               <Skeleton containerClassName="flex-1" width={588} />
             )}
@@ -29,7 +29,7 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
         </div>
       </div>
       <div className={styles.details}>
-        {/* <div className={styles.row}>
+        <div className={styles.row}>
           <ProductDetailItems
             link="/catalog?language="
             options={book?.languages}
@@ -37,10 +37,10 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
           />
           <ProductDetailItems
             link="/catalog?years="
-            options={[String(book?.year)]}
+            options={book?.year}
             title={t('product.years')}
           />
-        </div> */}
+        </div>
         <div className={styles.row}>
           <ProductDetailItems
             link="/catalog?categories="
