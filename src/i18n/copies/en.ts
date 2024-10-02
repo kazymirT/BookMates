@@ -57,6 +57,7 @@ in Our Online Bookstore!`,
       price: 'Price',
     },
     'clear-filter': 'Clean up',
+    sort: 'en',
   },
   product: {
     categories: 'Category',

@@ -12,7 +12,7 @@ i18n
     resources,
     fallbackLng: Lang.EnglishUs,
     detection: {
-      order: ['navigator', 'localStorage'],
+      order: ['localStorage', 'navigator'],
       caches: ['localStorage'],
     },
     interpolation: {

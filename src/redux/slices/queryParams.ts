@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
-import { SORT_OPTIONS_URL } from '@/utils/constants';
 import {
   deleteSearchParams,
   updateSearchParams,
@@ -27,7 +26,7 @@ export type QueryParamsState = {
 };
 
 const initialState: QueryParamsState = {
-  sort: SORT_OPTIONS_URL[params.get('sort') || ''] || 'За популярністю',
+  sort: params.get('sort') || 'id-asc',
   filter: {
     categories: [],
     language: [],
@@ -107,7 +106,7 @@ export const queryParamsSlice = createSlice({
       );
     },
     clearFilters: (state) => {
-      state.sort = 'За популярністю';
+      state.sort = 'id-asc';
       state.page = '1';
       state.search = undefined;
       state.filter.categories = [];

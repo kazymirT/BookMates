@@ -57,6 +57,7 @@ export const ukraine = {
       price: 'Ціна',
     },
     'clear-filter': 'Очистити',
+    sort: 'ua',
   },
   product: {
     categories: 'Категорія',

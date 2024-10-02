@@ -12,14 +12,14 @@ export const RadioGroup = () => {
 
   return (
     <div className={styles['radioGroup']}>
-      {radioButtons.map(({ id, label, name }) => (
+      {radioButtons.map(({ id, label, name, lang }) => (
         <RadioButton
           key={id}
           id={id}
           value={label}
           name={name}
           label={label}
-          checked={i18next.language === id}
+          checked={i18next.language === id || i18next.language === lang}
           onChange={handleOnChange}
         />
       ))}

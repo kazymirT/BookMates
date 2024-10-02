@@ -1,4 +1,3 @@
-import { SORT_OPTIONS_URL } from './constants';
 import { AllAttributes, Attributes } from '@/redux/services/services.types';
 
 export const initializeQueryState = (attributes: AllAttributes) => {
@@ -10,7 +9,7 @@ export const initializeQueryState = (attributes: AllAttributes) => {
     attributes.filter((att) => attId.includes(att.id));
 
   const newState = {
-    sort: SORT_OPTIONS_URL[params.get('sort') || ''] || 'За популярністю',
+    sort: params.get('sort') || 'id-asc',
     filter: {
       categories: setAttributes(attributes.categories, categoryIds),
       language: setAttributes(attributes.languages, languagesIds),
