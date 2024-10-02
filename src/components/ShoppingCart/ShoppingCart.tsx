@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 
 import CartItem from './CartItem/CartItem';
@@ -17,6 +18,7 @@ import {
 //import { useGetCartQuery } from '@/redux/services/cart';
 
 const ShoppingCart = () => {
+  const { t } = useTranslation();
   const isCartOpen = useAppSelector(isOpen);
   const cartItems = useAppSelector(goods);
   const totalPrice = cartItems.reduce(
@@ -56,14 +58,14 @@ const ShoppingCart = () => {
       >
         <aside className={styles.container}>
           <div className={styles.head}>
-            <h3>Кошик</h3>
+            <h3>{t('cart.title')}</h3>
             <button onClick={closeCart}>
               <Icon.Close />
             </button>
           </div>
           {cartItems.length === 0 ? (
             <div className={styles.empty}>
-              <h4>Кошик порожній</h4>
+              <h4>{t('cart.empty')}</h4>
             </div>
           ) : (
             <ul className={styles.list}>
@@ -76,11 +78,11 @@ const ShoppingCart = () => {
           )}
           <div className={styles.info}>
             <div className={styles.total}>
-              <span>Всього</span>
-              <span>{totalPrice} грн</span>
+              <span>{t('cart.together')}</span>
+              <span>{t('cart.total-price', { totalPrice })}</span>
             </div>
             <ButtonLink
-              text="Перейти до замовлення"
+              text={t('cart.btn')}
               buttonType={ButtonType.Button}
               size={Sizes.Full}
               url="/order"

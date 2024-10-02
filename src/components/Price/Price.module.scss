@@ -5,16 +5,12 @@ div.discount {
   align-items: center;
 
   .normal-price {
-    @include priceAfter;
-
     padding: 0;
     text-decoration: line-through;
     border-bottom: none;
   }
 
   .discount-price {
-    @include priceAfter;
-
     padding: 0;
     border-bottom: none;
   }
@@ -133,8 +129,6 @@ div.discount {
 }
 
 p.price {
-  @include priceAfter;
-
   padding: 0;
   font-family: $second-family;
   color: $button-default;

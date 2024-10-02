@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import styles from './Result.module.scss';
@@ -26,6 +27,7 @@ const Result = ({
   handleOnClose: () => void;
   clearValue: () => void;
 }) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { data: books } = useGetBooksQuery(
     { size: '3', search: value, sort: [SORT_OPTIONS['Дорожчі']] },
@@ -42,11 +44,13 @@ const Result = ({
       {isOpen && books?.content && (
         <div className={styles.results}>
           <div className={styles.content}>
-            <p className={styles.search}>Шукати {value}</p>
+            <p className={styles.search}>
+              {t('header.search.search', { value })}
+            </p>
             {books?.content.length ? (
               <>
                 <div className={styles.offers}>
-                  <h3>Пропозиції</h3>
+                  <h3>{t('header.search.offers')}</h3>
                   <ul className={styles['offers_lists']}>
                     <li>Джон Сміт</li>
                     <li>Доді Сміт</li>
@@ -55,7 +59,7 @@ const Result = ({
                   </ul>
                 </div>
                 <div className={styles.books}>
-                  <h3>Книги</h3>
+                  <h3>{t('header.search.books')}</h3>
                   <ul className={styles['books_list']}>
                     {books.content.map((book) => (
                       <Link
@@ -85,7 +89,7 @@ const Result = ({
               </>
             ) : (
               <p className={styles['no-result']}>
-                За вашим запитом не знайдено жодних результатів
+                {t('header.search.no-result')}
               </p>
             )}
           </div>
@@ -95,7 +99,7 @@ const Result = ({
               icon={<Icon.Arrow />}
               iconPosition={Position.Right}
               size={Sizes.Small}
-              text="Показати все"
+              text={t('header.search.show-all')}
               onClick={onClickSearch}
               url={`/catalog/?search=${value}`}
               variant={Variant.Basic}

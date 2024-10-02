@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './HitProducts.module.scss';
 import BookCard from '@/components/BookCard/BookCard';
 import {
@@ -10,6 +12,8 @@ import { useGetBooksQuery } from '@/redux/services/books';
 import { BooksData } from '@/redux/services/services.types';
 
 const HitProducts = () => {
+  const { t } = useTranslation();
+
   const { data: books, isLoading } = useGetBooksQuery({
     size: '4',
   });
@@ -23,11 +27,11 @@ const HitProducts = () => {
     <section className={styles.hit}>
       <div className="container">
         <div className={styles.headers}>
-          <h2>Хіти продажів</h2>
+          <h2>{t('home.best-sellers.title')}</h2>
           <ButtonLink
             buttonType={ButtonType.Button}
             size={Sizes.Medium}
-            text="Більше"
+            text={t('home.best-sellers.button')}
             url="/catalog"
             variant={Variant.Primary}
           />

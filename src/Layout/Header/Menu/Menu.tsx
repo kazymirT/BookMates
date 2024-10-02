@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './Menu.module.scss';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const Menu = () => {
+  const { t } = useTranslation();
+
   const dispatch = useAppDispatch();
 
   const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));
@@ -15,9 +19,9 @@ const Menu = () => {
 
   return (
     <ul className={styles.list}>
-      <li onClick={handleLogin}>Логін</li>
-      <li onClick={handleRegister}>Реєстрація</li>
-      <li onClick={handleFeedback}>Підтримка</li>
+      <li onClick={handleLogin}>{t('header.menu.login')}</li>
+      <li onClick={handleRegister}>{t('header.menu.register')}</li>
+      <li onClick={handleFeedback}>{t('header.menu.support')}</li>
     </ul>
   );
 };

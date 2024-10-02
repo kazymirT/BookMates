@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import styles from './OrderActions.module.scss';
@@ -19,6 +20,8 @@ const OrderActions = ({
   isValid,
   isSubmitting,
 }: OrderActionsProps) => {
+  const { t } = useTranslation();
+
   const cartItems = useAppSelector(goods);
   const dispatch = useAppDispatch();
   const totalPrice = cartItems.reduce(
@@ -30,7 +33,7 @@ const OrderActions = ({
   return (
     <aside className={styles.actions}>
       <div className={styles.title}>
-        <h3>Моє замовлення</h3>
+        <h3>{t('order.aside.title')}</h3>
         <button type="button" onClick={openCart}>
           <Icon.Edit />
         </button>
@@ -41,27 +44,33 @@ const OrderActions = ({
       </div>
       <div className={styles['order-details']}>
         <div className={styles.item}>
-          <span className={styles.label}>Сумма</span>
-          <span className={styles.value}>{totalPrice}</span>
+          <span className={styles.label}>{t('order.aside.amount')}</span>
+          <span className={styles.value}>
+            {t('order.aside.price', { price: totalPrice })}
+          </span>
         </div>
         <div className={styles.item}>
-          <span className={styles.label}>Доставка</span>
-          <span className={styles.value}>0</span>
+          <span className={styles.label}>{t('order.aside.delivery')}</span>
+          <span className={styles.value}>
+            {t('order.aside.price', { price: 0 })}
+          </span>
         </div>
         <div className={styles.item}>
-          <span className={styles.label}>Промокод</span>
+          <span className={styles.label}>{t('order.aside.promo-code')}</span>
           <input
             className={styles['promo-code']}
-            placeholder="промокод"
+            placeholder={t('order.aside.promo-code-placeholder')}
             type="text"
-            name="промокод"
+            name="promo code"
           />
         </div>
       </div>
       <div className={styles['order-total']}>
         <div className={styles.summary}>
-          <span className={styles.label}>Разом</span>
-          <span className={styles.value}>{totalPrice}</span>
+          <span className={styles.label}>{t('order.aside.together')}</span>
+          <span className={styles.value}>
+            {t('order.aside.price', { price: totalPrice })}
+          </span>
         </div>
         <Checkbox
           {...register}
@@ -70,7 +79,7 @@ const OrderActions = ({
           type="radio"
           value="Оплата за реквізитами"
         >
-          <p>Оплата за реквізитами</p>
+          <p>{t('order.aside.payment-by-details')}</p>
         </Checkbox>
         <Checkbox
           {...register}
@@ -79,19 +88,19 @@ const OrderActions = ({
           type="radio"
           value="Оплата при отриманні"
         >
-          <p>Оплата при отриманні</p>
+          <p>{t('order.aside.payment-upon-receipt')}</p>
         </Checkbox>
       </div>
       <div className={styles['order-actions']}>
         <Button
           buttonType={ButtonType.Submit}
           size={Sizes.Full}
-          text="Підтвердити замовлення"
+          text={t('order.aside.btn-order')}
           variant={Variant.Basic}
           disabled={!isValid || isSubmitting}
         />
         <Link to={'/catalog'} className={styles.continue} type="button">
-          Продовжити покупки
+          {t('order.aside.btn-shopping')}
         </Link>
       </div>
     </aside>

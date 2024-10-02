@@ -1,5 +1,6 @@
 import { skipToken } from '@reduxjs/toolkit/query/react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import styles from './Header.module.scss';
@@ -18,7 +19,7 @@ import { userId } from '@/redux/slices/userSlice';
 
 const Header = () => {
   const id = useAppSelector(userId);
-
+  const { t } = useTranslation();
   const { data: user } = useGetUserQuery(id ?? skipToken);
   const dispatch = useAppDispatch();
 
@@ -78,16 +79,16 @@ const Header = () => {
         <ul>
           <li>
             <Link to={'/catalog?categories=1'} onClick={onClickBestsellers}>
-              Дитяча література
+              {t('header.links.children')}
             </Link>
           </li>
           <li>
             <Link to={'/catalog'} onClick={onClickCatalog}>
-              Каталог
+              {t('header.links.catalog')}
             </Link>
           </li>
           <li>
-            <Link to={'/admin'}>Адмін</Link>
+            <Link to={'/admin'}>{t('header.links.admin')}</Link>
           </li>
         </ul>
       </nav>

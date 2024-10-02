@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import styles from '../../Forms/Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -16,13 +17,13 @@ import { toggleModal } from '@/redux/slices/modalSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
 import {
   ResetPasswordValues,
-  resetPasswordSchema,
+  getResetPasswordSchema,
 } from '@/utils/validateSchema';
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { sendResetPassword } = useFormActions();
-
   const {
     register,
     handleSubmit,
@@ -31,7 +32,7 @@ const ResetPassword = () => {
     defaultValues: {
       email: '',
     },
-    resolver: zodResolver(resetPasswordSchema),
+    resolver: zodResolver(getResetPasswordSchema(t)),
     mode: 'onTouched',
   });
   const onSubmit = async (data: ResetPasswordValues) => {
@@ -49,19 +50,17 @@ const ResetPassword = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Відновлення паролю</h2>
+        <h2>{t('reset-password.title')}</h2>
         <button type="button" className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
       </div>
-      <p className={styles.success}>
-        Забули пароль? Вкажіть вашу електронну пошту, щоб відновити пароль.
-      </p>
+      <p className={styles.success}>{t('support.description')}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles['input-container']}>
           <Input
             {...register('email')}
-            placeholder="Електронна пошта"
+            placeholder={t('reset-password.email')}
             type="email"
             errorMessage={errors.email?.message}
           />
@@ -70,7 +69,7 @@ const ResetPassword = () => {
           buttonType={ButtonType.Submit}
           size={Sizes.Full}
           variant={Variant.Basic}
-          text="Скинути пароль"
+          text={t('reset-password.btn-in')}
           disabled={!isValid || isSubmitting}
         />
       </form>
@@ -79,7 +78,7 @@ const ResetPassword = () => {
         type="button"
         onClick={handleRegister}
       >
-        Я згадав свій пароль
+        {t('reset-password.btn-login')}
       </button>
     </section>
   );

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 
 import styles from './CartNotification.module.scss';
@@ -14,6 +15,8 @@ import {
 import { goods } from '@/redux/slices/shoppingCartSlice';
 
 const CartNotification = () => {
+  const { t } = useTranslation();
+
   const showNotification = useAppSelector(isOpen);
   const cartItems = useAppSelector(goods);
   const totalPrice = cartItems.reduce(
@@ -87,7 +90,7 @@ const CartNotification = () => {
           onMouseLeave={handleClose}
         >
           <div className={styles.head}>
-            <p>Товар додано до кошика</p>
+            <p>{t('cart.notification.title')}</p>
             <button type="button" onClick={closeNotification}>
               <Icon.Close />
             </button>
@@ -98,15 +101,17 @@ const CartNotification = () => {
             </div>
             <div className={styles['cart-info']}>
               <p>
-                {cartItemsCount === 1
-                  ? `У кошику 1 товар `
-                  : `У кошику ${cartItemsCount} товарів `}
+                {cartItemsCount === 1 ? (
+                  <>{t('cart.notification.count-one')}</>
+                ) : (
+                  <>{t('cart.notification.count-one', { cartItemsCount })}</>
+                )}
               </p>
-              <p>{`Сума товарів у кошику ${totalPrice} грн`}</p>
+              <p>{t('cart.notification.price', { totalPrice })}</p>
             </div>
           </div>
           <ButtonLink
-            text="Оформити замовлення"
+            text={t('cart.notification.btn')}
             buttonType={ButtonType.Button}
             size={Sizes.Full}
             url="/order"

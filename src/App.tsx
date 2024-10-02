@@ -4,6 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import store, { persister } from './redux/store';
 import route from './routes';
+import '@i18n';
 
 const App = () => {
   return (

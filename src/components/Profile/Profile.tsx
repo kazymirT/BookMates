@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
 import { Icon } from '../ui-components/Icons';
@@ -7,6 +9,7 @@ import { isOpen, toggleOpenProfile } from '@/redux/slices/profileSlice';
 import { logout, userData } from '@/redux/slices/userSlice';
 
 const Profile = () => {
+  const { t } = useTranslation();
   const isProfileOpen = useAppSelector(isOpen);
   const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
@@ -32,7 +35,7 @@ const Profile = () => {
           <aside className={styles.profile}>
             <div className={styles.head}>
               <div className={styles['head-info']}>
-                <h2>Профіль користувача</h2>
+                <h2>{t('profile.title')}</h2>
                 <button onClick={handleClose}>
                   <Icon.Close />
                 </button>
@@ -51,19 +54,19 @@ const Profile = () => {
               <ul>
                 <li>
                   <Icon.Cart />
-                  <span>Мої замовлення</span>
+                  <span>{t('profile.links.order')}</span>
                 </li>
                 <li>
                   <Icon.Settings />
-                  <span>Налаштування</span>
+                  <span>{t('profile.links.settings')}</span>
                 </li>
                 <li onClick={onClickSupport}>
                   <Icon.Support />
-                  <span>Підтримка</span>
+                  <span>{t('profile.links.support')}</span>
                 </li>
                 <li onClick={onLogout}>
                   <Icon.Logout />
-                  <span>Вийти</span>
+                  <span>{t('profile.links.logout')}</span>
                 </li>
               </ul>
             </nav>

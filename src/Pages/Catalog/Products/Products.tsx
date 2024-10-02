@@ -8,7 +8,6 @@ import Pagination from '@/components/Pagination/Pagination';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { queryAllData } from '@/redux/slices/queryParams';
-import { SORT_OPTIONS } from '@/utils/constants';
 
 const Products = () => {
   const {
@@ -24,7 +23,7 @@ const Products = () => {
     isLoading,
   } = useGetBooksQuery({
     page,
-    sort: [SORT_OPTIONS[sort]],
+    sort: [sort.replace('-', ',')],
     search,
     categories: categories.map((c) => c.name),
     price,

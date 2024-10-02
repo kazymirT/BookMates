@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import NovaPoshtaForm from './NovaPoshtaForm/NovaPoshtaForm';
@@ -11,9 +12,10 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { clearCart } from '@/redux/slices/shoppingCartSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
-import { orderSchema, OrderValues } from '@/utils/validateSchema';
+import { getOrderSchema, OrderValues } from '@/utils/validateSchema';
 
 const OrderForm = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { sendFeedback } = useFormActions();
@@ -35,7 +37,7 @@ const OrderForm = () => {
       city: undefined,
       pay: 'Оплата за реквізитами',
     },
-    resolver: zodResolver(orderSchema),
+    resolver: zodResolver(getOrderSchema(t)),
     mode: 'onTouched',
   });
 

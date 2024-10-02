@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -16,10 +17,11 @@ import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { toggleStatus } from '@/redux/slices/statusSlice';
-import { TOPICS } from '@/utils/constants';
-import { FeedbackValues, feedbackSchema } from '@/utils/validateSchema';
+import { TOPIC_WITH_LANGUAGES } from '@/utils/constants';
+import { FeedbackValues, getFeedbackSchema } from '@/utils/validateSchema';
 
 const FeedBackForm = () => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -31,7 +33,7 @@ const FeedBackForm = () => {
       topic: undefined,
       question: '',
     },
-    resolver: zodResolver(feedbackSchema),
+    resolver: zodResolver(getFeedbackSchema(t)),
     mode: 'onTouched',
   });
 
@@ -54,24 +56,20 @@ const FeedBackForm = () => {
   const textareaClName = classNames(styles.textarea, {
     [styles['textarea-error']]: errors.question?.message,
   });
-
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Підтримка</h2>
+        <h2>{t('support.title')}</h2>
         <button type="button" className={styles.close} onClick={handleClose}>
           <Icon.Close />
         </button>
       </div>
-      <p className={styles.paragraph}>
-        Залиште свою електронну адресу, поставте запитання і ми зв’яжемося з
-        вами якнайшвидше.
-      </p>
+      <p className={styles.paragraph}>{t('support.description')}</p>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles['input-container']}>
           <Input
             {...register('email')}
-            placeholder="Електронна пошта"
+            placeholder={t('support.email')}
             type="email"
             errorMessage={errors.email?.message}
           />
@@ -80,9 +78,11 @@ const FeedBackForm = () => {
             name="topic"
             render={({ field, fieldState }) => (
               <Select
-                placeholder="Тема"
+                placeholder={t('support.select')}
                 value={field.value}
-                options={Object.values(TOPICS)}
+                options={Object.values(
+                  TOPIC_WITH_LANGUAGES[t('support.select-topic')]
+                )}
                 onChange={(newValue) => field.onChange(newValue)}
                 onBlur={field.onBlur}
                 error={!!fieldState.error}
@@ -94,7 +94,7 @@ const FeedBackForm = () => {
             <textarea
               {...register('question')}
               className={textareaClName}
-              placeholder="Ваше запитання"
+              placeholder={t('support.question')}
             />
             {errors.question && (
               <p className={styles.error}>{errors.question?.message}</p>
@@ -105,7 +105,7 @@ const FeedBackForm = () => {
           buttonType={ButtonType.Submit}
           size={Sizes.Full}
           variant={Variant.Basic}
-          text="Відправити"
+          text={t('support.btn-send')}
           disabled={!isValid}
         />
       </form>

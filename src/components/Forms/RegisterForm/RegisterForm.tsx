@@ -1,8 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-import { RegisterValues, registerSchema } from '../../../utils/validateSchema';
+import {
+  RegisterValues,
+  getRegisterSchema,
+} from '../../../utils/validateSchema';
 import Checkbox from '../../ui-components/Checkbox/Checkbox';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
@@ -18,6 +22,7 @@ import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const RegisterForm = () => {
+  const { t } = useTranslation();
   const [isServerError, setIsServerError] = useState<boolean>(false);
   const { registerUser } = useFormActions();
   const dispatch = useAppDispatch();
@@ -35,7 +40,7 @@ const RegisterForm = () => {
       password: '',
       accept: false,
     },
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(getRegisterSchema(t)),
     mode: 'onTouched',
   });
 
@@ -54,7 +59,7 @@ const RegisterForm = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <h2>Реєстрація</h2>
+        <h2>{t('register.title')}</h2>
         <button className={styles.close} type="button" onClick={handleClose}>
           <Icon.Close />
         </button>
@@ -63,20 +68,20 @@ const RegisterForm = () => {
         <div className={styles['input-container']}>
           <Input
             {...register('firstName')}
-            placeholder="Ім`я"
+            placeholder={t('register.first-name')}
             type="text"
             errorMessage={errors.firstName?.message}
           />
           <Input
             {...register('lastName')}
-            placeholder="Прізвище"
+            placeholder={t('register.last-name')}
             type="text"
             errorMessage={errors.lastName?.message}
           />
           <div className={styles['email-container']}>
             <Input
               {...register('email')}
-              placeholder="Електронна пошта"
+              placeholder={t('register.email')}
               type="email"
               serverError={isServerError}
               onFocus={hideServerError}
@@ -84,45 +89,42 @@ const RegisterForm = () => {
             />
             {isServerError && (
               <div className={styles.error}>
-                <p>Обліковий запис з такою електроною поштою вже існує.</p>{' '}
+                <p>{t('register.email-error')}</p>{' '}
                 <button type="button" onClick={handleResetPassword}>
-                  Забув пароль
+                  {t('register.btn-reset-password')}
                 </button>
               </div>
             )}
           </div>
           <Input
             {...register('confirmEmail')}
-            placeholder="Підтвердіть електронну пошту"
+            placeholder={t('register.confirm-email')}
             type="email"
             errorMessage={errors.confirmEmail?.message}
           />
           <Input
             {...register('password')}
-            placeholder="Пароль"
+            placeholder={t('register.password')}
             type="password"
             errorMessage={errors.password?.message}
           />
           <p className={styles['password-hint']}>
-            Мінімум 8 символів, без відступів і спеціальних знаків
+            {t('register.support-text')}
           </p>
         </div>
         <Checkbox {...register('accept')} type="checkbox" variant="primary">
-          <p className={styles.terms}>
-            Створюючи кабінет на Bookmate, я погоджуюся з правилами повернення
-            та договором оферти.
-          </p>
+          <p className={styles.terms}>{t('register.checkbox')}</p>
         </Checkbox>
         <Button
           buttonType={ButtonType.Submit}
           size={Sizes.Full}
           variant={Variant.Basic}
-          text="Створити акаунт"
+          text={t('register.btn-in')}
           disabled={!isValid || isServerError || isSubmitting}
         />
       </form>
       <button className={styles.register} type="button" onClick={handleLogin}>
-        В мене вже є обліковий запис
+        {t('register.btn-register')}
       </button>
     </section>
   );

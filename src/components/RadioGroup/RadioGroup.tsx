@@ -1,28 +1,25 @@
-import { useState } from 'react';
+import i18next from 'i18next';
 
-import { radioButtons } from './RadioButton/constants';
+import { radioButtons } from './constants';
 import { RadioButton } from './RadioButton/RadioButton';
 import styles from './RadioGroup.module.scss';
 
 export const RadioGroup = () => {
-  const [radioValue, setRadioValue] = useState('UA');
-
+  console.log(i18next.language);
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue(e.target.value);
-    // eslint-disable-next-line no-console
-    console.log(e.target.value);
+    i18next.changeLanguage(e.target.id);
   };
 
   return (
     <div className={styles['radioGroup']}>
-      {radioButtons.map(({ id, label, name }) => (
+      {radioButtons.map(({ id, label, name, lang }) => (
         <RadioButton
           key={id}
           id={id}
           value={label}
           name={name}
           label={label}
-          checked={radioValue === label}
+          checked={i18next.language === id || i18next.language === lang}
           onChange={handleOnChange}
         />
       ))}

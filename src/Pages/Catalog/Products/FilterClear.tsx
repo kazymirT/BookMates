@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './FilterClear.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
@@ -16,6 +18,7 @@ import {
 } from '@/redux/slices/queryParams';
 
 const FilterClear = () => {
+  const { t } = useTranslation();
   const {
     filter: { categories, language },
     search,
@@ -57,7 +60,7 @@ const FilterClear = () => {
             <Button
               buttonType={ButtonType.Button}
               size={Sizes.ExtraSmall}
-              text="Очистити"
+              text={t('catalog.clear-filter')}
               variant={Variant.Label}
               onClick={() => dispatch(clearFilters())}
             />

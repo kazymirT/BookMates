@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +8,7 @@ import googleplay from '@/assets/icons/GooglePlay.svg';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const handleOnSupport = () =>
     dispatch(toggleModal({ openedModalType: 'feedback' }));
@@ -16,12 +18,12 @@ const Footer = () => {
         <nav>
           <ul className={styles.links}>
             <li>
-              <Link to={'/'}>Головна сторінка</Link>
+              <Link to={'/'}>{t('footer.links.main')}</Link>
             </li>
             <li>
-              <Link to={'/'}>Доставка та оплата</Link>
+              <Link to={'/'}>{t('footer.links.delivery')}</Link>
             </li>
-            <li onClick={handleOnSupport}>Зворотній зв’язок</li>
+            <li onClick={handleOnSupport}>{t('footer.links.support')}</li>
           </ul>
           <div className={styles.btns}>
             <img src={appstore} alt="app store" width={160} height={48} />
@@ -30,7 +32,7 @@ const Footer = () => {
         </nav>
         <div>
           <span>&copy;</span>
-          <span>Bookmate 2024. Усі права захищено</span>
+          <span>{t('footer.copyright')}</span>
         </div>
       </div>
     </footer>
