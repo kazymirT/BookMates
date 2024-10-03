@@ -1,10 +1,14 @@
 import { baseApi } from './baseApi';
-import { AllAttributes } from './services.types';
+import { AllAttributes, AllAttributesResponse } from './services.types';
 
 export const AttributesApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllAttributes: builder.query<AllAttributes, void>({
       query: () => 'admin/book/get-all-lists',
+      transformResponse: (response: AllAttributesResponse) => ({
+        ...response,
+        years: response.years.map((year) => ({ id: year, name: String(year) })),
+      }),
       providesTags: ['Attributes'],
     }),
     addCategory: builder.mutation<string, string>({

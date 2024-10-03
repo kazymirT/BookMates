@@ -26,12 +26,11 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
 
   const { filter, price: priceChecked } = useAppSelector(queryAllData);
 
-  const { categories, language, price } = updateFilterParams(
+  const { categories, language, price, years } = updateFilterParams(
     filter,
     priceChecked,
     attributes
   );
-
   return (
     <>
       <Filter
@@ -44,6 +43,13 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
         title={t('catalog.filter.language')}
         filterType="language"
         categories={language}
+        isDefaultOpen
+      />
+      <Filter
+        title={t('catalog.filter.years')}
+        filterType="years"
+        categories={years.sort((a, b) => b.id - a.id)}
+        isScroll
         isDefaultOpen
       />
       <PriceFilter

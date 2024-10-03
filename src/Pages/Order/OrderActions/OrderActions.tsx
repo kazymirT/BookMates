@@ -25,7 +25,11 @@ const OrderActions = ({
   const cartItems = useAppSelector(goods);
   const dispatch = useAppDispatch();
   const totalPrice = cartItems.reduce(
-    (total, item) => total + Number(item.price) * item.quantity,
+    (total, item) =>
+      total +
+      (item.discount
+        ? Number(item.discountPrice) * item.quantity
+        : Number(item.price) * item.quantity),
     0
   );
   const openCart = () => dispatch(toggleOpenCart(true));

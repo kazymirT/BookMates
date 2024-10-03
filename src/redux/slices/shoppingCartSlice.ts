@@ -9,6 +9,8 @@ export type CartItem = {
   title: string;
   authors: string[];
   price: string;
+  discount: number;
+  discountPrice: number;
   quantity: number;
 };
 

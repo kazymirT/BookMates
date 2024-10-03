@@ -3,9 +3,8 @@ import { type OrderItemProps } from '../order.types';
 import Price from '@/components/Price/Price';
 
 const OrderItem = ({
-  data: { authors, quantity, img, price, title },
+  data: { authors, quantity, img, price, title, discount, discountPrice },
 }: OrderItemProps) => {
-  const discount = 100;
   return (
     <div className={styles.wrapper}>
       <div className={styles['img-box']}>
@@ -20,7 +19,7 @@ const OrderItem = ({
           <Price
             normalPrice={Number(price)}
             variant="order"
-            discountPrice={discount}
+            discountPrice={discount ? discountPrice : undefined}
           />
           <p className={styles.count}>{quantity}</p>
         </div>

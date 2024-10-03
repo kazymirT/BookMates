@@ -4,6 +4,7 @@ export const initializeQueryState = (attributes: AllAttributes) => {
   const params = new URLSearchParams(window.location.search);
   const categoryIds = params.get('categories')?.split('-').map(Number) || [];
   const languagesIds = params.get('language')?.split('-').map(Number) || [];
+  const yearsIds = params.get('years')?.split('-').map(Number) || [];
 
   const setAttributes = (attributes: Attributes[], attId: number[]) =>
     attributes.filter((att) => attId.includes(att.id));
@@ -13,6 +14,7 @@ export const initializeQueryState = (attributes: AllAttributes) => {
     filter: {
       categories: setAttributes(attributes.categories, categoryIds),
       language: setAttributes(attributes.languages, languagesIds),
+      years: setAttributes(attributes.years, yearsIds),
     },
     price: params.get('price')?.split('-') || [],
     search: params.get('search') || undefined,

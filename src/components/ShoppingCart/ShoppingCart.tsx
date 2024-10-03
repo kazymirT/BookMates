@@ -22,7 +22,11 @@ const ShoppingCart = () => {
   const isCartOpen = useAppSelector(isOpen);
   const cartItems = useAppSelector(goods);
   const totalPrice = cartItems.reduce(
-    (total, item) => total + Number(item.price) * item.quantity,
+    (total, item) =>
+      total +
+      (item.discount
+        ? Number(item.discountPrice) * item.quantity
+        : Number(item.price) * item.quantity),
     0
   );
   const dispatch = useAppDispatch();

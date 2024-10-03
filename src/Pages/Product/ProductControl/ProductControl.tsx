@@ -36,16 +36,17 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
         addGoods({
           id: book.id,
           price: String(book.price),
-          authors: book.authors,
+          authors: book.authors.map((author) => author.name),
           img: book.imageUrl,
           title: book.title,
+          discount: book.discount,
+          discountPrice: book.discountPrice,
         })
       );
       dispatch(toggleShowCartNotification(true));
     }
   };
   const handleOpenCart = () => dispatch(toggleOpenCart(true));
-  const discount = 300;
   return (
     <div className={styles.control}>
       {book && book.price ? (
@@ -53,7 +54,7 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
           <Price
             normalPrice={book.price}
             variant="product"
-            discountPrice={discount}
+            discountPrice={book.discount ? book.discountPrice : undefined}
           />
           <div className={styles.btns}>
             <ButtonLink

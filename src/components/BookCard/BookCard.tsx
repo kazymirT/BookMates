@@ -26,11 +26,11 @@ const BookCard = ({ data }: Props) => {
   const dispatch = useAppDispatch();
   const goobs = useAppSelector(goods);
   const isBookInCard = goobs.some((goob) => goob.id === data?.id);
-
   const handleAddToCard = (event: React.MouseEvent) => {
     event.preventDefault();
     console.log(`додати до кошика товар ${data?.id}`);
     if (data) {
+      console.log(data.authors);
       dispatch(
         addGoods({
           authors: data.authors,
@@ -38,6 +38,8 @@ const BookCard = ({ data }: Props) => {
           img: data.imageUrl,
           price: String(data.price),
           title: data.title,
+          discount: data.discount,
+          discountPrice: data.discountPrice,
         })
       );
       dispatch(toggleShowCartNotification(true));
@@ -54,7 +56,6 @@ const BookCard = ({ data }: Props) => {
     handleAddToCard(event);
     dispatch(toggleOpenCart(true));
   };
-  const discount = 100;
   return (
     <Link to={data ? `/product/${data.id}` : ''} className={styles.card}>
       <div className={styles['img-box']}>
@@ -99,7 +100,9 @@ const BookCard = ({ data }: Props) => {
                   <h3>{data.title}</h3>
                   <Price
                     normalPrice={data.price}
-                    discountPrice={discount}
+                    discountPrice={
+                      data.discount ? data.discountPrice : undefined
+                    }
                     variant="bookCard"
                   />
                 </>

@@ -20,7 +20,7 @@ import {
 const FilterClear = () => {
   const { t } = useTranslation();
   const {
-    filter: { categories, language },
+    filter: { categories, language, years },
     search,
     price,
   } = useAppSelector(queryAllData);
@@ -46,10 +46,10 @@ const FilterClear = () => {
       filterName: 'language' as const,
       value: lang,
     })),
-    // ...years.map((year) => ({
-    //   filterName: 'years' as const,
-    //   value: year,
-    // })),
+    ...years.map((year) => ({
+      filterName: 'years' as const,
+      value: year,
+    })),
   ];
   const priceFilter = price.join(' - ');
   return (

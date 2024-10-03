@@ -36,15 +36,15 @@ const EditBookForm: FC<EditBookProps> = ({
     formState: { errors },
   } = useForm<AddBookValues>({
     defaultValues: {
-      authorsNames: book.authors,
+      authorsNames: book.authors.map((author) => author.name),
       description: book.description,
       price: String(book.price),
       totalQuantity: String(book.totalQuantity),
       title: book.title,
-      year: String(book.year),
+      year: String(book.year[0].name),
       picture: undefined,
       discountPrice: String(book.discount ?? 0),
-      languageNames: book.languages,
+      languageNames: book.languages.map((language) => language.name),
       expected: book.expected,
       categoryNames: book.categories.map((category) => category.name),
     },

@@ -38,7 +38,6 @@ const Result = ({
     handleOnClose();
     clearValue();
   };
-  const discount = 305;
   return (
     <>
       {isOpen && books?.content && (
@@ -78,7 +77,9 @@ const Result = ({
                           <h3>{book.title}</h3>
                           <Price
                             normalPrice={book.price}
-                            discountPrice={discount}
+                            discountPrice={
+                              book.discount ? book.discountPrice : undefined
+                            }
                             variant="search"
                           />
                         </div>
