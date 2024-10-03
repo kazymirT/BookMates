@@ -39,6 +39,8 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
           authors: book.authors.map((author) => author.name),
           img: book.imageUrl,
           title: book.title,
+          discount: book.discount,
+          discountPrice: book.discountPrice,
         })
       );
       dispatch(toggleShowCartNotification(true));
