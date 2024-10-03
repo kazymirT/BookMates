@@ -104,7 +104,7 @@ const CartNotification = () => {
                 {cartItemsCount === 1 ? (
                   <>{t('cart.notification.count-one')}</>
                 ) : (
-                  <>{t('cart.notification.count-one', { cartItemsCount })}</>
+                  <>{t('cart.notification.count-more', { cartItemsCount })}</>
                 )}
               </p>
               <p>{t('cart.notification.price', { totalPrice })}</p>
