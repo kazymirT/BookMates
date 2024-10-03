@@ -18,6 +18,7 @@ import {
   useDeleteAuthorByIdMutation,
   useDeleteCategoryByIdMutation,
   useDeleteLanguageByIdMutation,
+  useEditCategoryMutation,
 } from '@/redux/services/attributes';
 import { attributes } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -35,6 +36,7 @@ const EditCategory = () => {
   const [deleteCategoryById] = useDeleteCategoryByIdMutation();
   const [deleteAuthorById] = useDeleteAuthorByIdMutation();
   const [deleteLanguageById] = useDeleteLanguageByIdMutation();
+  const [editCategory] = useEditCategoryMutation();
 
   const {
     register,
@@ -61,7 +63,26 @@ const EditCategory = () => {
   }, [watchedValues, editAttributes?.item?.name]);
 
   const onSubmit = async (data: AddAttributesValues) => {
-    console.log(data);
+    if (editAttributes?.item) {
+      const editActions = {
+        category: editCategory,
+        authors: undefined,
+        language: undefined,
+      };
+      const editAction = editActions[editAttributes.name];
+      if (editAction) {
+        try {
+          const response = await editAction({
+            id: editAttributes.item.id,
+            name: data.attributes.trim(),
+          }).unwrap();
+          notify('success', response);
+        } catch (error) {
+          const { data } = error as { data: string };
+          notify('error', data);
+        }
+      }
+    }
     dispatch(toggleModal({ openedModalType: null }));
   };
   const notify = (type: TypeOptions, text: string) => toast(text, { type });

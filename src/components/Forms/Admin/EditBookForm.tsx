@@ -122,7 +122,7 @@ const EditBookForm: FC<EditBookProps> = ({
         />
         <InputAdmin
           {...register('discountPrice')}
-          placeholder="Вартість із знижкою"
+          placeholder="Відсоток знижки %"
           type="text"
           errorMessage={errors.discountPrice?.message}
         />
