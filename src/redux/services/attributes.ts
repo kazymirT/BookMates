@@ -19,6 +19,14 @@ export const AttributesApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Category', 'Attributes'],
     }),
+    editCategory: builder.mutation<string, { name: string; id: number }>({
+      query: ({ id, name }) => ({
+        url: `admin/category/edit/${id}?name=${name}`,
+        method: 'PATCH',
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ['Category', 'Attributes'],
+    }),
     deleteCategoryById: builder.mutation<string, number>({
       query: (categoryId) => ({
         url: `admin/category/delete/${categoryId}`,
@@ -68,6 +76,7 @@ export const {
   useAddCategoryMutation,
   useAddAuthorMutation,
   useAddLanguageMutation,
+  useEditCategoryMutation,
   useDeleteCategoryByIdMutation,
   useDeleteAuthorByIdMutation,
   useDeleteLanguageByIdMutation,

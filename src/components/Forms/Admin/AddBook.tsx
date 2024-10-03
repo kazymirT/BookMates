@@ -69,7 +69,7 @@ const AddBook = () => {
       formData.append('description', description);
       formData.append('expected', String(expected));
       formData.append('price', price);
-      formData.append('discountPrice', discountPrice);
+      formData.append('discount', discountPrice);
 
       formData.append('year', year);
       formData.append('totalQuantity', totalQuantity);
@@ -107,12 +107,6 @@ const AddBook = () => {
           type="text"
           errorMessage={errors.title?.message}
         />
-        {/* <InputAdmin
-          {...register('authorsNames')}
-          placeholder="Автори книги"
-          type="text"
-          errorMessage={errors.authorsNames?.message}
-        /> */}
         <Controller
           control={control}
           name="authorsNames"
@@ -160,7 +154,7 @@ const AddBook = () => {
           />
           <InputAdmin
             {...register('discountPrice')}
-            placeholder="Вартість із знижкою"
+            placeholder="Відсоток знижки %"
             type="text"
             errorMessage={errors.discountPrice?.message}
           />

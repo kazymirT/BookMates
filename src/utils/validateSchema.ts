@@ -182,7 +182,7 @@ export const addBookSchema = z.object({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
     })
-    .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
+    .regex(/^\d{1,2}?$/, 'Введіть коректний відсоток знижки'),
   year: z
     .string({
       required_error: 'Це поле є обов`язковим.',
