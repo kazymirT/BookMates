@@ -7,8 +7,7 @@
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 
 3. Screenshot:
-4. Start work 28.08.2023 / done 31.08.2023
-5. Deploy: [link](https://github.com/)
+4. Start work 03.10.2024 / done 03.10.2024
 6. Checklist:
-
-- [x] Application is divided to logical modules / layers. (110/110)
+- [ ] one
+- [ ] two
