@@ -4,4 +4,5 @@ export interface InputFileProps extends InputAdminProps {
   onReset?: () => void;
   onClean?: () => void;
   baseImages?: string;
+  isShowImage?: boolean;
 }

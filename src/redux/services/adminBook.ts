@@ -9,14 +9,14 @@ export const AdminBookApi = baseApi.injectEndpoints({
         method: 'POST',
         body: body,
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Books', 'Attributes'],
     }),
     deleteBookById: builder.mutation<string, number>({
       query: (id) => ({
         url: `admin/book/delete-book/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Books', 'Attributes'],
     }),
     changeImage: builder.mutation<string, ChangeImage>({
       query: ({ id, body }) => ({

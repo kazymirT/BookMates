@@ -152,7 +152,7 @@ export type OrderValues = z.infer<ReturnType<typeof getOrderSchema>>;
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_FILE_TYPES = ['image/png'];
 
-export const addBookSchema = z.object({
+export const editBookSchema = z.object({
   title: z
     .string({
       required_error: 'Це поле є обов`язковим.',
@@ -195,6 +195,11 @@ export const addBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
+  expected: acceptB,
+});
+export type EditBookValues = z.infer<typeof editBookSchema>;
+
+export const pictureSchema = z.object({
   picture: z
     .instanceof(FileList)
     .optional()
@@ -204,9 +209,13 @@ export const addBookSchema = z.object({
     .refine((file) => {
       return file?.length ? ACCEPTED_FILE_TYPES.includes(file[0].type) : false;
     }, 'File must be a PNG'),
-  expected: acceptB,
 });
 
+export type PictureValues = z.infer<typeof pictureSchema>;
+
+export const addBookSchema = editBookSchema.extend({
+  picture: pictureSchema,
+});
 export type AddBookValues = z.infer<typeof addBookSchema>;
 
 export const addAttributesSchema = z.object({

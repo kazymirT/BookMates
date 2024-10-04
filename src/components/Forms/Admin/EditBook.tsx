@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { toast, TypeOptions } from 'react-toastify';
 
 import styles from './Form.module.scss';
+import PicturesEdit from './PictureEdit';
 import DeletePopup from '@/components/DeletePopup/DeletePopup';
 import EditBookForm from '@/components/Forms/Admin/EditBookForm';
 import { Icon } from '@/components/ui-components/Icons';
@@ -56,12 +57,14 @@ const EditBook = () => {
         <h2>Редагувати</h2>
       </div>
       {id && book && (
-        <EditBookForm
-          id={id}
-          handleClose={handleClose}
-          book={book}
-          handleOpenPopup={handleOpenPopup}
-        />
+        <>
+          <EditBookForm
+            handleClose={handleClose}
+            book={book}
+            handleOpenPopup={handleOpenPopup}
+          />
+          <PicturesEdit book={book} />
+        </>
       )}
     </section>
   );

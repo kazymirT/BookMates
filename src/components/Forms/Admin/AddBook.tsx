@@ -37,7 +37,7 @@ const AddBook = () => {
     formState: { isValid, errors, isSubmitting },
   } = useForm<AddBookValues>({
     defaultValues: {
-      picture: undefined,
+      picture: { picture: undefined },
       expected: true,
       authorsNames: [],
       languageNames: [],
@@ -64,7 +64,7 @@ const AddBook = () => {
         year,
       } = data;
       const formData = new FormData();
-      picture && formData.append('photo', picture[0]);
+      picture.picture && formData.append('photo', picture.picture[0]);
       formData.append('title', title);
       formData.append('description', description);
       formData.append('expected', String(expected));
@@ -191,11 +191,11 @@ const AddBook = () => {
         />
         <div className={styles['input-container']}>
           <InputFile
-            {...register('picture')}
+            {...register('picture.picture')}
             placeholder="Додати фото"
-            errorMessage={errors.picture?.message}
+            errorMessage={errors.picture?.picture?.message}
             onReset={() => resetField('picture')}
-            onClean={() => setValue('picture', undefined)}
+            onClean={() => setValue('picture', { picture: undefined })}
           />
         </div>
         <Checkbox {...register('expected')} type="checkbox" variant="primary">
