@@ -20,6 +20,7 @@ const NotAuthenticated = lazy(
 const NotAuthorized = lazy(
   () => import('../Pages/NotAuthorized/NotAuthorized')
 );
+const Ui = lazy(() => import('../Pages/Ui/Ui'));
 
 import HistoryWrapper from './HistoryWrapper';
 import Layout from '@/Layout/Layout/Layout';
@@ -39,6 +40,7 @@ const route = createBrowserRouter(
       <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
       <Route path={'/product/:productId?'} element={<Product />} />
       <Route path={'/order'} element={<Order />} />
+      <Route path={'/ui'} element={<Ui />} />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route
         path={ROUTE_PATH.NOTAUTHENTICATED}
