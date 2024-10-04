@@ -1,0 +1,18 @@
+@import '@/styles';
+
+.content {
+  display: flex;
+  flex-flow: row wrap;
+
+  width: 100%;
+  max-width: 1019px;
+  margin: 0 auto;
+
+  &__category {
+    gap: 45px;
+  }
+
+  &__authors {
+    gap: 29px;
+  }
+}
