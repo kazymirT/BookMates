@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ChangeEvent, forwardRef, useId, useState } from 'react';
+import { ChangeEvent, forwardRef, useEffect, useId, useState } from 'react';
 
 import styles from './InputFile.module.scss';
 import { InputFileProps } from './InputFile.types';
@@ -7,7 +7,15 @@ import { Icon } from '../Icons';
 
 const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
   (
-    { errorMessage, placeholder, baseImages, onReset, onClean, ...rest },
+    {
+      errorMessage,
+      placeholder,
+      baseImages,
+      onReset,
+      onClean,
+      isShowImage,
+      ...rest
+    },
     ref
   ) => {
     const [imagePreview, setImagePreview] = useState<string | undefined>(
@@ -34,7 +42,9 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
         handleCancelImage();
       }
     };
-
+    useEffect(() => {
+      !isShowImage && setImagePreview(undefined);
+    }, [isShowImage]);
     return (
       <div className={styles['input-box']}>
         {!imagePreview ? (

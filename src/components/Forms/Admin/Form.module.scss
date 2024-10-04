@@ -96,6 +96,21 @@ form {
     width: 100%;
   }
 
+  .picture-container {
+    display: flex;
+    gap: 32px;
+    align-items: end;
+    justify-content: space-around;
+
+    width: 100%;
+
+    .picture-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
   .image-preview {
     display: flex;
     justify-content: center;

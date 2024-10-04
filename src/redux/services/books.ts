@@ -27,6 +27,7 @@ export const booksApi = baseApi.injectEndpoints({
       query: (id) => ({
         url: `/open/book/${id}`,
       }),
+      providesTags: ['Books'],
       transformResponse: (response: BookByIdResponse) => ({
         ...response,
         year: [{ id: response.year, name: String(response.year) }],

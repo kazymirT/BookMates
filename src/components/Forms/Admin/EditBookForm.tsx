@@ -12,29 +12,22 @@ import {
 } from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
-import InputFile from '@/components/ui-components/InputFile/InputFile';
 import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
 import { useAttributesOptions } from '@/hooks/useAttributesOptions';
-import { useChangeImageMutation } from '@/redux/services/adminBook';
-import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
+import { EditBookValues, editBookSchema } from '@/utils/validateSchema';
 
 const EditBookForm: FC<EditBookProps> = ({
-  id,
   handleClose,
   book,
   handleOpenPopup,
 }) => {
-  const [changeImage] = useChangeImageMutation();
-
   const {
     register,
     handleSubmit,
-    resetField,
-    setValue,
     control,
-    formState: { errors },
-  } = useForm<AddBookValues>({
+    formState: { errors, isValid },
+  } = useForm<EditBookValues>({
     defaultValues: {
       authorsNames: book.authors.map((author) => author.name),
       description: book.description,
@@ -42,27 +35,18 @@ const EditBookForm: FC<EditBookProps> = ({
       totalQuantity: String(book.totalQuantity),
       title: book.title,
       year: String(book.year[0].name),
-      picture: undefined,
       discountPrice: String(book.discount ?? 0),
       languageNames: book.languages.map((language) => language.name),
       expected: book.expected,
       categoryNames: book.categories.map((category) => category.name),
     },
-    resolver: zodResolver(addBookSchema),
+    resolver: zodResolver(editBookSchema),
     mode: 'onTouched',
   });
 
-  const onSubmit = async (data: AddBookValues) => {
-    try {
-      const { picture } = data;
-      const formData = new FormData();
-      picture && formData.append('photo', picture[0]);
-      changeImage({ body: formData, id }).unwrap();
-    } catch (error) {
-      console.error(error);
-    } finally {
-      handleClose();
-    }
+  const onSubmit = async (data: EditBookValues) => {
+    console.log(data, book.id, `edit book by id ${book.id}`);
+    handleClose();
   };
   const { categoriesOptions, authorsOptions, languagesOptions } =
     useAttributesOptions();
@@ -157,16 +141,6 @@ const EditBookForm: FC<EditBookProps> = ({
           />
         )}
       />
-      <div className={styles['input-container']}>
-        <InputFile
-          {...register('picture')}
-          placeholder="Додати фото"
-          baseImages={book.imageUrl}
-          errorMessage={errors.picture?.message}
-          onReset={() => resetField('picture')}
-          onClean={() => setValue('picture', undefined)}
-        />
-      </div>
       <Checkbox {...register('expected')} type="checkbox" variant="primary">
         <p>Hемає в наявності</p>
       </Checkbox>
@@ -176,6 +150,7 @@ const EditBookForm: FC<EditBookProps> = ({
           size={Sizes.Full}
           variant={Variant.Basic}
           text="Зберегти"
+          disabled={!isValid}
         />
         <Button
           buttonType={ButtonType.Button}
