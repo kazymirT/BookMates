@@ -6,6 +6,7 @@ export enum Sizes {
   ExtraLarge = 'extra_l',
   FullS = 'full-s',
   Full = 'full',
+  RedS = 'red-s',
 }
 
 export enum Variant {
@@ -15,6 +16,7 @@ export enum Variant {
   Delete = 'delete',
   LabelX = 'label-x',
   Accent = 'accent',
+  White = 'white',
 }
 
 export enum ButtonType {
