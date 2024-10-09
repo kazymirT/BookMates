@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 
 import styles from './SectionTitle.module.scss';
@@ -11,13 +12,22 @@ import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 export interface SectionTitleProps {
   title: string;
   btnText: string;
+  isIcon?: boolean;
   btnLink: string;
 }
 
-const SectionTitle: FC<SectionTitleProps> = ({ btnLink, btnText, title }) => {
+const SectionTitle: FC<SectionTitleProps> = ({
+  btnLink,
+  btnText,
+  title,
+  isIcon = false,
+}) => {
+  const titleClassName = classNames({
+    [styles.fire]: isIcon,
+  });
   return (
     <div className={styles.title}>
-      <h3>{title}</h3>
+      <h3 className={titleClassName}>{title}</h3>
       <ButtonLink
         buttonType={ButtonType.Button}
         size={Sizes.Large}

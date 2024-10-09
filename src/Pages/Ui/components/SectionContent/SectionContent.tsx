@@ -11,7 +11,7 @@ export interface CategoryCardProps {
 
 export interface SectionContentProps {
   children: ReactNode;
-  variant: 'authors' | 'category';
+  variant: 'authors' | 'category' | 'product' | 'test';
 }
 const SectionContent: FC<SectionContentProps> = ({ children, variant }) => {
   const contentClassNames = classNames(styles.content, {
