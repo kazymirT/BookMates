@@ -3,6 +3,7 @@ import Banner from './modules/Banner/Banner';
 import Category from './modules/Category/Category';
 import Newness from './modules/Newness/Newness';
 import Sale from './modules/Sale/Sale';
+import Subscription from './modules/Subscription/Subscription';
 import styles from './Ui.module.scss';
 
 const Ui = () => {
@@ -14,6 +15,7 @@ const Ui = () => {
         <Sale />
         <Category />
         <Authors />
+        <Subscription />
       </div>
     </>
   );

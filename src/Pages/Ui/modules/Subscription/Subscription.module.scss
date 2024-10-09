@@ -1,0 +1,49 @@
+@import '@/styles';
+
+.subscription {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
+    width: calc(100% / 2);
+    padding: 0 18px;
+
+    h3 {
+      font-family: $third-family;
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 140%;
+      color: $icon-active;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    p {
+      width: 100%;
+      max-width: 534px;
+
+      font-family: $font7;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 140%;
+      color: $icon-active;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+  }
+
+  .form {
+    width: calc(100% / 2);
+  }
+}
