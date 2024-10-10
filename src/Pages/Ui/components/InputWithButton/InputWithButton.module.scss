@@ -32,7 +32,7 @@
       font-size: 22px;
       font-weight: 400;
       line-height: 140%;
-      color: $icon-active;
+      color: $icon-default;
     }
   }
 
@@ -45,6 +45,14 @@
       &::placeholder {
         color: $accent-red;
       }
+    }
+  }
+
+  &__search {
+    padding: 4.2px;
+
+    input {
+      width: 90%;
     }
   }
 }

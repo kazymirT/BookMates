@@ -6,12 +6,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 import CartNotification from '@/components/CartNotification/CartNotification';
 import Modal from '@/components/Modal/Modal';
 import Profile from '@/components/Profile/Profile';
 import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
 import StatusScreen from '@/components/StatusScreen/StatusScreen';
+import Header from '@/Pages/Ui/modules/Header/Header';
 
 const Layout = () => {
   return (

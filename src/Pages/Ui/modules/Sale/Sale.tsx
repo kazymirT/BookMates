@@ -13,7 +13,7 @@ const Sale = () => {
       <>
         <SectionTitle
           btnLink="/catalog"
-          btnText="Усі новинки"
+          btnText="Більше книжок"
           title="Розпродаж"
           isIcon
         />

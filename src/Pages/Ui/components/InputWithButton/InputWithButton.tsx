@@ -5,10 +5,11 @@ import styles from './InputWithButton.module.scss';
 import { InputProps } from './InputWithButton.types';
 
 const InputWithButton = forwardRef<HTMLInputElement, InputProps>(
-  ({ errorMessage, children, ...rest }, ref) => {
+  ({ errorMessage, children, variant, ...rest }, ref) => {
     const inputClassName = classNames(styles.input);
     const boxClassName = classNames(styles.box, {
       [styles['box__error']]: errorMessage,
+      [styles[`box__${variant}`]]: variant,
     });
     return (
       <div className={boxClassName}>

@@ -1,31 +1,26 @@
 @import '@/styles';
 
 .wrapper {
+  @include flex-center;
+
   position: relative;
   width: 100%;
   max-width: 566px;
-  margin-bottom: 6px;
 
   .search {
     display: flex;
     width: 100%;
 
-    input {
-      width: 100%;
-      padding: 8.4px 16px;
-      border: 0.5px solid $icon-default;
-      border-radius: 8px 0 0 8px;
-    }
-
-    button {
+    button.btn {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      width: 62px;
+      width: 60px;
+      height: 36px;
 
       background: $button-default;
-      border-radius: 0 8px 8px 0;
+      border-radius: 8px;
     }
   }
 }

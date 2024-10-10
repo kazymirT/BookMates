@@ -57,7 +57,11 @@ const Header = () => {
               {user && id ? (
                 <UserButton {...user} />
               ) : (
-                <DropDown options={<Menu />} control={<Icon.Account />} />
+                <DropDown
+                  options={<Menu />}
+                  control={<Icon.Account />}
+                  variant="menu"
+                />
               )}
               <button
                 className={styles['cart-btn']}
