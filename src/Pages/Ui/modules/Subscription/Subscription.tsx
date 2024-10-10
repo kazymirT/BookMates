@@ -50,6 +50,7 @@ const Subscription = () => {
             type="email"
             errorMessage={errors.email?.message}
             placeholder="Email"
+            variant="email"
           >
             <Button
               buttonType={ButtonType.Submit}
