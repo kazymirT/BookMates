@@ -14,6 +14,7 @@ export enum IconInstanceName {
   PROFILE = 'Profile',
   PLUS = 'Plus',
   REMOVE = 'Remove',
+  DROP = 'Drop',
 }
 
 export enum IconAppName {
@@ -29,4 +30,5 @@ export enum IconAppName {
   PROFILE = 'Profile',
   PLUS = 'Plus',
   REMOVE = 'Remove',
+  DROP = 'Drop',
 }

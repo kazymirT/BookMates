@@ -7,6 +7,8 @@ export enum Sizes {
   FullS = 'full-s',
   Full = 'full',
   RedS = 'red-s',
+  Link = 'link',
+  Drop = 'drop',
 }
 
 export enum Variant {
@@ -17,6 +19,8 @@ export enum Variant {
   LabelX = 'label-x',
   Accent = 'accent',
   White = 'white',
+  Link = 'link',
+  Drop = 'drop',
 }
 
 export enum ButtonType {

@@ -70,4 +70,9 @@ export const Icon: Icon = {
     height: '18',
     viewBox: '0 0 19 18',
   }),
+  [IconAppName.DROP]: makeIcon(IconInstance.Drop, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
 };
