@@ -17,7 +17,7 @@ const DropDown = ({ control, options, variant }: DropdownProps) => {
   const listRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleOpen = () => {
-    setIsOpen(true);
+    isOpen ? setIsOpen(false) : setIsOpen(true);
   };
 
   const handleClose = () => {
