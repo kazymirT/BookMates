@@ -4,15 +4,22 @@
   position: relative;
 
   width: 100%;
-  max-width: 1018px;
+  max-width: 1040px;
   margin: 0 auto;
 
   border-radius: 8px;
 
-  .swiper {
+  .slider {
     overflow: clip visible;
+    width: 100%;
+    max-width: 1040px;
+  }
+
+  .swiper {
+    overflow: visible;
 
     width: 100%;
+    max-width: 1018px;
     height: auto;
 
     border-radius: 8px;

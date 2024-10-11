@@ -9,6 +9,7 @@ export enum Sizes {
   RedS = 'red-s',
   Link = 'link',
   Drop = 'drop',
+  Card = 'card',
 }
 
 export enum Variant {
@@ -21,6 +22,7 @@ export enum Variant {
   White = 'white',
   Link = 'link',
   Drop = 'drop',
+  Card = 'card',
 }
 
 export enum ButtonType {

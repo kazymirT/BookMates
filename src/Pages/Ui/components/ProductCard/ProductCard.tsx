@@ -16,11 +16,16 @@ export interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({
   data: { authors, title, imageUrl, price, discount, discountPrice },
 }) => {
-  const wrapperClassNames = classNames(styles.wrapper, {
-    [styles['wrapper__discount']]: !!discount,
+  const cardClassNames = classNames(styles.card, {
+    [styles['card__discount']]: !!discount,
+    [styles['card__overlay']]: title.length > 22,
   });
+  const wrapperClassNames = classNames(styles.wrapper, {
+    [styles['wrapper__shadow']]: title.length > 22,
+  });
+  //23
   return (
-    <div className={styles.card}>
+    <div className={cardClassNames}>
       <img src={imageUrl} alt={title} width={204} height={271} />
       <div className={wrapperClassNames}>
         <div className={styles.content}>
@@ -44,8 +49,8 @@ const ProductCard: FC<ProductCardProps> = ({
         </div>
         <Button
           buttonType={ButtonType.Button}
-          size={Sizes.FullS}
-          variant={Variant.Basic}
+          size={Sizes.Card}
+          variant={Variant.Card}
           text="Купити"
         />
       </div>

@@ -21,26 +21,28 @@ const ProductSlider: FC<ProductSliderProps> = ({ data }) => {
   };
   return (
     <div className={styles['product-slider']}>
-      <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className={styles.swiper}
-        spaceBetween={46}
-        navigation
-        slidesPerView={4}
-        loop={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: true,
-        // }}
-        modules={[Navigation, Autoplay]}
-      >
-        {data &&
-          data.content.map((banner) => (
-            <SwiperSlide key={banner.id}>
-              <ProductCard data={banner} />
-            </SwiperSlide>
-          ))}
-      </Swiper>
+      <div className={styles.slider}>
+        <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          className={styles.swiper}
+          spaceBetween={46}
+          navigation
+          slidesPerView={4}
+          loop={true}
+          // autoplay={{
+          //   delay: 2500,
+          //   disableOnInteraction: true,
+          // }}
+          modules={[Navigation, Autoplay]}
+        >
+          {data &&
+            data.content.map((banner) => (
+              <SwiperSlide key={banner.id}>
+                <ProductCard data={banner} />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </div>
       <SliderButton onNext={handleNext} onPrev={handlePrev} variant="section" />
     </div>
   );
