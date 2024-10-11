@@ -24,9 +24,7 @@ const Banner = () => {
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         className={styles.swiper}
-        pagination={{
-          clickable: true,
-        }}
+        pagination={{}}
         spaceBetween={25}
         navigation
         initialSlide={1}
