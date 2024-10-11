@@ -6,7 +6,7 @@ import { useGetBooksQuery } from '@/redux/services/books';
 
 const Newness = () => {
   const { data: books } = useGetBooksQuery({
-    size: '8',
+    size: '9',
   });
   return (
     <Section>
@@ -17,7 +17,7 @@ const Newness = () => {
           title="Новинки"
         />
         <SectionContent variant="product">
-          {books && <ProductSlider data={books} slidesPerGroup={1} />}
+          {books && <ProductSlider data={books} slidesPerGroup={3} />}
         </SectionContent>
       </>
     </Section>
