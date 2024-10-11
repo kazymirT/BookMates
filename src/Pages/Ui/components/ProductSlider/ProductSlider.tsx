@@ -9,15 +9,15 @@ import 'swiper/css';
 import ProductCard from '../ProductCard/ProductCard';
 import { SliderButton } from '../SliderButton/SliderButton';
 
-const ProductSlider: FC<ProductSliderProps> = ({ data }) => {
+const ProductSlider: FC<ProductSliderProps> = ({ data, slidesPerGroup }) => {
   const swiperRef = useRef<SwiperCore | null>(null);
 
   const handleNext = () => {
-    swiperRef.current?.slideNext();
+    swiperRef.current?.slideNext(1500);
   };
 
   const handlePrev = () => {
-    swiperRef.current?.slidePrev();
+    swiperRef.current?.slidePrev(1500);
   };
   return (
     <div className={styles['product-slider']}>
@@ -28,11 +28,13 @@ const ProductSlider: FC<ProductSliderProps> = ({ data }) => {
           spaceBetween={46}
           navigation
           slidesPerView={4}
+          slidesPerGroup={slidesPerGroup}
           loop={true}
-          // autoplay={{
-          //   delay: 2500,
-          //   disableOnInteraction: true,
-          // }}
+          speed={1500}
+          autoplay={{
+            delay: 3000,
+            // disableOnInteraction: true,
+          }}
           modules={[Navigation, Autoplay]}
         >
           {data &&

@@ -17,7 +17,7 @@ const Newness = () => {
           title="Новинки"
         />
         <SectionContent variant="product">
-          {books && <ProductSlider data={books} />}
+          {books && <ProductSlider data={books} slidesPerGroup={1} />}
         </SectionContent>
       </>
     </Section>
