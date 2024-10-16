@@ -1,5 +1,6 @@
 import { skipToken } from '@reduxjs/toolkit/query/react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import CategoryItem from './Category/Category';
 import styles from '../Header.module.scss';
@@ -23,6 +24,7 @@ import { userId } from '@/redux/slices/userSlice';
 
 const Bottom = () => {
   const { data, isSuccess } = useGetAllAttributesQuery();
+  const { t } = useTranslation();
 
   const id = useAppSelector(userId);
   const dispatch = useAppDispatch();
@@ -45,7 +47,7 @@ const Bottom = () => {
                 buttonType={ButtonType.Button}
                 size={Sizes.Drop}
                 variant={Variant.Drop}
-                text="Каталог книг"
+                text={t('header.drop')}
                 icon={<Icon.Drop />}
                 iconPosition={Position.Left}
               />

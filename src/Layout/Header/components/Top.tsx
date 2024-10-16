@@ -31,7 +31,7 @@ const HeaderTop = () => {
           {NAVIGATION_LINKS &&
             NAVIGATION_LINKS.map(({ href, id, name }) => (
               <li key={id}>
-                <NavLink to={href}>{name}</NavLink>
+                <NavLink to={href}>{t(`header.links.${name}`)}</NavLink>
               </li>
             ))}
         </ul>

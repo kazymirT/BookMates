@@ -1,17 +1,17 @@
 export const NAVIGATION_LINKS = [
   {
     id: 1,
-    name: 'Акції',
+    name: 'special',
     href: '#',
   },
   {
     id: 2,
-    name: 'Хіт продажів',
+    name: 'best-sellers',
     href: '#',
   },
   {
     id: 3,
-    name: 'Автори',
+    name: 'authors',
     href: '#',
   },
 ];

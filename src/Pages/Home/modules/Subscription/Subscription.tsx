@@ -37,11 +37,8 @@ const Subscription = () => {
   return (
     <section className={styles.subscription}>
       <div className={styles.content}>
-        <h3>Підпишіться на розсилку</h3>
-        <p>
-          Ви будете першими дізнаватися про нові книжки та отримувати наші
-          рекомендації.
-        </p>
+        <h3>{t('home.subscribe.title')}</h3>
+        <p>{t('home.subscribe.description')}</p>
       </div>
       <div className={styles.form}>
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -56,7 +53,7 @@ const Subscription = () => {
               buttonType={ButtonType.Submit}
               size={Sizes.Medium}
               variant={Variant.Basic}
-              text="Підписатися"
+              text={t('home.subscribe.button')}
               disabled={!isValid || isSubmitting}
             />
           </InputWithButton>
