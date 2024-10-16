@@ -5,6 +5,7 @@ export const ukraine = {
       admin: 'Адмін',
       catalog: 'Каталог',
       children: 'Дитяча література',
+      support: 'Підтримка',
     },
     menu: {
       login: 'Логін',

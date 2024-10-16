@@ -1,0 +1,51 @@
+@import '@/styles';
+
+@mixin btn-position($top, $rot, $right: null, $left: null) {
+  @include icon-state($button-default);
+
+  position: absolute;
+  z-index: 10000;
+  top: $top;
+  right: $right;
+  left: $left;
+  transform: translateY(-$top) rotate($rot);
+
+  align-self: flex-end;
+
+  width: 44px;
+  height: 44px;
+  padding: 0.625rem;
+
+  font-size: 0;
+
+  border: 1px solid $button-default;
+  border-radius: 50%;
+
+  transition: border-color 0.3s;
+}
+
+.btn-next {
+  &__section {
+    @include btn-position(45%, -90deg, -57px);
+  }
+
+  &__banner {
+    @include btn-position(50%, -90deg, -19px);
+
+    background: $accent-white;
+    border: none;
+  }
+}
+
+.btn-prev {
+  &__section {
+    @include btn-position(45%, 90deg, 0, -60px);
+  }
+
+  &__banner {
+    @include btn-position(50%, 90deg, 0, -19px);
+
+    background: $accent-white;
+    border: none;
+  }
+}

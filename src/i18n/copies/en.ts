@@ -5,6 +5,7 @@ export const english = {
       admin: 'Admin',
       catalog: 'Catalog',
       children: "Children's literature",
+      support: 'Support',
     },
     menu: {
       login: 'Sign In',
