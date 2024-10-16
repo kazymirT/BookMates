@@ -17,7 +17,7 @@ const Breadcrumbs = ({ options, activeLastLink = false }: Props) => {
       </li>
       {options.map((option, index) => (
         <li key={index}>
-          <span>/</span>
+          <span className={styles.separation}>&#8594;</span>
           {index !== options.length - 1 ? (
             <Link to={option.to}>{option.name}</Link>
           ) : activeLastLink ? (
