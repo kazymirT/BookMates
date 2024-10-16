@@ -3,7 +3,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.75em;
+  gap: 24px;
 
   width: fit-content;
   padding: 2em 3.9375em 2em 1.9375em;
@@ -23,8 +23,6 @@
     letter-spacing: 0.07em;
 
     &:hover {
-      padding-right: 0.1903em;
-      font-weight: 500;
       color: #6d4d41;
     }
   }

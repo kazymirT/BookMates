@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Result from './Result';
 import styles from './Search.module.scss';
-import InputWithButton from '../InputWithButton/InputWithButton';
+import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import search from '@/assets/icons/search.svg';
 import useClickOutside from '@/hooks/useClickOutside';
 import { useAppDispatch } from '@/redux/hooks';

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import styles from './Subscription.module.scss';
-import InputWithButton from '../../../../components/InputWithButton/InputWithButton';
+import InputWithButton from '../../../../components/ui-components/InputWithButton/InputWithButton';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
   ButtonType,
