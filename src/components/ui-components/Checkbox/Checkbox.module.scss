@@ -1,5 +1,4 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
+@import '@/styles';
 
 .checkbox-container {
   display: flex;
@@ -20,18 +19,18 @@
     width: fit-content;
   }
 
-  &.secondary {
+  &__secondary {
     gap: 10px;
     align-items: center;
 
     .input {
       width: 16px;
       height: 16px;
-      border: 0.1em solid colors.$grey-500;
+      border: 0.1em solid $grey-500;
 
       &:checked {
         position: relative;
-        background-color: colors.$accent-white;
+        background-color: $accent-white;
 
         &::before {
           content: '\2714';
@@ -41,7 +40,7 @@
           right: 1.5px;
 
           font-size: 0.8em;
-          color: colors.$grey-500;
+          color: $grey-500;
         }
       }
     }
@@ -49,23 +48,23 @@
     .label {
       padding-left: 2px;
 
-      font-family: fonts.$font-family;
+      font-family: $font-family;
       font-size: 16px;
       line-height: 1.25;
-      color: colors.$grey-300;
+      color: $grey-300;
       letter-spacing: 0.05em;
     }
   }
 
-  &.primary {
+  &__primary {
     .input {
       width: 1.042em;
       height: 1.042em;
-      border: 0.1em solid colors.$grey-500;
+      border: 0.1em solid $grey-500;
 
       &:checked {
         position: relative;
-        background-color: colors.$accent-white;
+        background-color: $accent-white;
 
         &::before {
           content: '\2714';
@@ -75,16 +74,53 @@
           right: 1.5px;
 
           font-size: 0.8em;
-          color: colors.$grey-500;
+          color: $grey-500;
         }
       }
     }
 
     .label {
-      font-family: fonts.$font-family;
+      font-family: $font-family;
       font-size: 0.875rem;
       line-height: 1.43;
-      color: colors.$grey-500;
+      color: $grey-500;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  &__secondary {
+    gap: 10px;
+    align-items: center;
+
+    .input {
+      width: 16px;
+      height: 16px;
+      border: 0.1em solid $button-default;
+
+      &:checked {
+        position: relative;
+        background-color: $accent-white;
+
+        &::before {
+          content: '\2714';
+
+          position: absolute;
+          top: -2px;
+          right: 1.5px;
+
+          font-size: 0.8em;
+          color: $button-default;
+        }
+      }
+    }
+
+    .label {
+      padding-left: 2px;
+
+      font-family: $font-family;
+      font-size: 16px;
+      line-height: 1.25;
+      color: $grey-300;
       letter-spacing: 0.05em;
     }
   }

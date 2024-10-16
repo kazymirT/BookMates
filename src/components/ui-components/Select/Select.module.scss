@@ -16,7 +16,7 @@ div.container {
 
   padding: 0.78rem 1rem 0 0.78rem;
 
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.188rem;
   color: colors.$quartz;
   letter-spacing: 0.01em;
@@ -36,8 +36,8 @@ div.container {
 
     .control {
       display: flex;
-      gap: 0.5rem;
-      align-self: flex-end;
+      gap: 8px;
+      padding: 1px 8px 4px 12px;
     }
 
     .menu {

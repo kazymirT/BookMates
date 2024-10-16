@@ -10,7 +10,7 @@ interface InputProps extends ComponentPropsWithoutRef<'input'> {
   value?: string;
   type: 'checkbox' | 'radio';
   children?: JSX.Element;
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'green';
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -31,8 +31,7 @@ const Checkbox = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const id = useId();
     const checkboxClassNames = classNames(styles['checkbox-container'], {
-      [styles['primary']]: variant === 'primary',
-      [styles['secondary']]: variant === 'secondary',
+      [styles[`checkbox-container__${variant}`]]: variant,
     });
     return (
       <div className={checkboxClassNames}>
