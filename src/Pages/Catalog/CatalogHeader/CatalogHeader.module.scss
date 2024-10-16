@@ -5,14 +5,15 @@
   position: relative;
   display: flex;
   justify-content: space-between;
+  padding-top: 3px;
 
   h2 {
     font-family: fonts.$third-family;
     font-size: 2rem;
     font-weight: 700;
-    line-height: 0.907;
+    line-height: 1.594;
     color: colors.$grey-300;
-    letter-spacing: 0.08em;
+    letter-spacing: 0;
   }
 
   .sort {
@@ -21,15 +22,8 @@
     top: 0;
     right: 0;
 
-    background-color: colors.$accent-white;
-    border-radius: 0.75rem;
-  }
-
-  .size {
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    right: 500px;
+    width: 100%;
+    max-width: 200px;
 
     background-color: colors.$accent-white;
     border-radius: 0.75rem;
