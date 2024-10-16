@@ -11,7 +11,7 @@
 .swiper {
   position: relative;
 
-  // overflow-y: visible;
+  overflow: clip visible;
   display: flex;
   flex-direction: column-reverse;
   gap: 1.125rem;

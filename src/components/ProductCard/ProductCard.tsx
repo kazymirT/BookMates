@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './ProductCard.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -14,7 +15,7 @@ export interface ProductCardProps {
   data: BooksData;
 }
 const ProductCard: FC<ProductCardProps> = ({
-  data: { authors, title, imageUrl, price, discount, discountPrice },
+  data: { authors, id, title, imageUrl, price, discount, discountPrice },
 }) => {
   const cardClassNames = classNames(styles.card, {
     [styles['card__discount']]: !!discount,
@@ -25,7 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({
   });
   //23
   return (
-    <div className={cardClassNames}>
+    <Link to={`/product/${id}`} className={cardClassNames}>
       <img src={imageUrl} alt={title} width={204} height={271} />
       <div className={styles.transparent}>
         <div className={wrapperClassNames}>
@@ -62,7 +63,7 @@ const ProductCard: FC<ProductCardProps> = ({
           <span>-{discount}%</span>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 

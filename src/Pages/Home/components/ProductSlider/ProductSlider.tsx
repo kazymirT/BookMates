@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import styles from './ProductSlider.module.scss';
 import { ProductSliderProps } from './types';
 import 'swiper/css';
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { SliderButton } from '../SliderButton/SliderButton';
 
 const ProductSlider: FC<ProductSliderProps> = ({ data, slidesPerGroup }) => {
