@@ -15,7 +15,7 @@ const Newness = () => {
     <Section>
       <>
         <SectionTitle
-          btnLink="/catalog"
+          btnLink="/catalog?sort=id-desc"
           btnText={t('home.new-arrivals.button')}
           title={t('home.new-arrivals.title')}
         />

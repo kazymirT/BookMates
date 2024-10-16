@@ -5,7 +5,7 @@ export const ukraine = {
       special: 'Акції',
       'best-sellers': 'Хіт продажів',
       authors: 'Автори',
-      support: 'Підтримка',
+      support: 'Допомога',
     },
     drop: 'Каталог книг',
     menu: {
