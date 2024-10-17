@@ -165,7 +165,7 @@ export const editBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .min(1, 'Це поле є обов`язковим.'),
-  authorsNames: z.string().array().nonempty({ message: 'Мінімум один автор' }),
+  authorNames: z.string().array().nonempty({ message: 'Мінімум один автор' }),
   categoryNames: z
     .string()
     .array()
@@ -177,7 +177,7 @@ export const editBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .regex(/^\d{1,5}(,\d{2})?$/, 'Введіть коректну ціну'),
-  discountPrice: z
+  discount: z
     .string({
       required_error: 'Це поле є обов`язковим.',
       invalid_type_error: 'Це поле є обов`язковим.',
@@ -195,7 +195,7 @@ export const editBookSchema = z.object({
       invalid_type_error: 'Це поле є обов`язковим.',
     })
     .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
-  expected: acceptB,
+  isExpected: acceptB,
 });
 export type EditBookValues = z.infer<typeof editBookSchema>;
 

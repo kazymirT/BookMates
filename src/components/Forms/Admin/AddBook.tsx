@@ -38,8 +38,8 @@ const AddBook = () => {
   } = useForm<AddBookValues>({
     defaultValues: {
       picture: { picture: undefined },
-      expected: true,
-      authorsNames: [],
+      isExpected: true,
+      authorNames: [],
       languageNames: [],
       categoryNames: [],
     },
@@ -52,11 +52,11 @@ const AddBook = () => {
     try {
       const {
         picture,
-        authorsNames,
+        authorNames,
         categoryNames,
         description,
-        discountPrice,
-        expected,
+        discount,
+        isExpected,
         languageNames,
         price,
         totalQuantity,
@@ -67,16 +67,16 @@ const AddBook = () => {
       picture.picture && formData.append('photo', picture.picture[0]);
       formData.append('title', title);
       formData.append('description', description);
-      formData.append('expected', String(expected));
+      formData.append('expected', String(isExpected));
       formData.append('price', price);
-      formData.append('discount', discountPrice);
+      formData.append('discount', discount);
 
       formData.append('year', year);
       formData.append('totalQuantity', totalQuantity);
 
       formData.append('categoryNames', categoryNames.join(', '));
       formData.append('languageNames', languageNames.join(', '));
-      formData.append('authorNames', authorsNames.join(', '));
+      formData.append('authorNames', authorNames.join(', '));
       const response = await AddBook(formData).unwrap();
       notify('success', `Додано книгу з id ${response}`);
     } catch (error) {
@@ -109,7 +109,7 @@ const AddBook = () => {
         />
         <Controller
           control={control}
-          name="authorsNames"
+          name="authorNames"
           render={({ field, fieldState }) => (
             <SelectMulti
               placeholder="Автори книги"
@@ -153,10 +153,10 @@ const AddBook = () => {
             errorMessage={errors.price?.message}
           />
           <InputAdmin
-            {...register('discountPrice')}
+            {...register('discount')}
             placeholder="Відсоток знижки %"
             type="text"
-            errorMessage={errors.discountPrice?.message}
+            errorMessage={errors.discount?.message}
           />
         </div>
         <div className={styles['input-container']}>
@@ -198,7 +198,7 @@ const AddBook = () => {
             onClean={() => setValue('picture', { picture: undefined })}
           />
         </div>
-        <Checkbox {...register('expected')} type="checkbox" variant="primary">
+        <Checkbox {...register('isExpected')} type="checkbox" variant="primary">
           <p>Hемає в наявності</p>
         </Checkbox>
         <Button

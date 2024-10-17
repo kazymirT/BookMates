@@ -1,6 +1,10 @@
 import { baseApi } from './baseApi';
 import { type ChangeImage } from './services.types';
-
+import { EditBookValues } from '@/utils/validateSchema';
+export interface EditBook {
+  book: EditBookValues;
+  id: number;
+}
 export const AdminBookApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addBook: builder.mutation<string, FormData>({
@@ -26,6 +30,15 @@ export const AdminBookApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Books'],
     }),
+    editBookById: builder.mutation<string, EditBook>({
+      query: ({ book, id }) => ({
+        url: `admin/${id}`,
+        method: 'PUT',
+        body: book,
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ['Books'],
+    }),
   }),
   overrideExisting: false,
 });
@@ -34,4 +47,5 @@ export const {
   useAddBookMutation,
   useDeleteBookByIdMutation,
   useChangeImageMutation,
+  useEditBookByIdMutation,
 } = AdminBookApi;
