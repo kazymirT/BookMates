@@ -16,10 +16,12 @@ const Catalog = () => {
       <div className="container">
         <div className={styles['catalog-container']}>
           <Breadcrumbs options={breadcrumbs} />
-          <CatalogHeader />
-          <div className={styles.main}>
-            <Filters />
-            <Products />
+          <div className={styles['catalog-wrapper']}>
+            <CatalogHeader />
+            <div className={styles.main}>
+              <Filters />
+              <Products />
+            </div>
           </div>
         </div>
       </div>

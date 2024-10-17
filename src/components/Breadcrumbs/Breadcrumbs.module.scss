@@ -2,11 +2,13 @@
 
 .breadcrumbs {
   display: flex;
-  gap: 5px;
+  gap: 12px;
+  align-items: center;
 
   li {
     display: flex;
-    gap: 5px;
+    gap: 12px;
+    align-items: center;
 
     font-family: $font-family;
     font-size: 1rem;
@@ -17,6 +19,12 @@
 
     a {
       width: max-content;
+    }
+
+    .separation {
+      align-self: flex-start;
+      width: 14px;
+      height: 7px;
     }
   }
 }

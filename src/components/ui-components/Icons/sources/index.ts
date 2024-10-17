@@ -3,6 +3,7 @@ import { Arrow } from './Arrow';
 import { Arrow_1 } from './Arrow_1';
 import { Cart } from './Cart';
 import { Close } from './Close';
+import { Drop } from './Drop';
 import { Edit } from './Edit';
 import { Logout } from './Logout';
 import { Plus } from './Plus';
@@ -30,4 +31,5 @@ export const IconInstance: IconInstance = {
   Profile,
   Plus,
   Remove,
+  Drop,
 };

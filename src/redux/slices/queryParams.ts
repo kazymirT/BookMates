@@ -78,7 +78,10 @@ export const queryParamsSlice = createSlice({
 
       const filterArray = state.filter[filterName];
 
-      if (filterArray && !filterArray.includes(attributes)) {
+      if (
+        filterArray &&
+        !filterArray.some((attr) => attr.id === attributes.id)
+      ) {
         filterArray.push(attributes);
       }
 

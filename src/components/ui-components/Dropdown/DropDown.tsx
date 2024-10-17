@@ -2,76 +2,53 @@ import classNames from 'classnames';
 import React from 'react';
 
 import styles from './DropDown.module.scss';
+import useClickOutside from '@/hooks/useClickOutside';
 
 type DropdownProps = {
-  options: React.ReactNode;
+  options: React.ReactNode[] | React.ReactNode;
   control: React.ReactNode;
+  variant: 'menu' | 'category';
 };
 
-const DropDown = ({ control, options }: DropdownProps) => {
+const DropDown = ({ control, options, variant }: DropdownProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const dropDownRef = React.useRef<HTMLDivElement | null>(null);
   const listRef = React.useRef<HTMLDivElement | null>(null);
-  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
-
-  // React.useEffect(() => {
-  //   let positionLeft: boolean;
-  //   const displayWidth = window.innerWidth;
-  //   if (dropDownRef.current) {
-  //     const dropdownPosition = dropDownRef.current.getBoundingClientRect();
-  //     const center = dropdownPosition.x + dropdownPosition.width / 2;
-  //     positionLeft = displayWidth / 2 < center;
-  //     if (listRef.current) {
-  //       const listWidth = listRef.current.offsetWidth;
-  //       if (positionLeft) {
-  //         const shift = Math.min(
-  //           displayWidth - dropdownPosition.right,
-  //           listWidth / 6
-  //         );
-  //         listRef.current.style.right = `-${shift}px`;
-  //       } else {
-  //         const shift = Math.min(listWidth / 6, dropdownPosition.left);
-  //         listRef.current.style.left = `-${shift}px`;
-  //       }
-  //     }
-  //   }
-  // }, []);
-
-  const containerClName = classNames(styles.container, {
-    [styles['open']]: isOpen,
-    [styles['closed']]: !isOpen,
-  });
 
   const handleOpen = () => {
-    setIsOpen(true);
+    isOpen ? setIsOpen(false) : setIsOpen(true);
   };
 
   const handleClose = () => {
-    const closeTimer = setTimeout(() => setIsOpen(false), 200);
-    timerRef.current = closeTimer;
+    setIsOpen(false);
   };
 
-  const handleCancelTimer = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-  };
+  useClickOutside(dropDownRef, handleClose);
+
+  const containerClName = classNames(styles['dropdown-container'], {
+    [styles['open']]: isOpen,
+    [styles['closed']]: !isOpen,
+    [styles[`dropdown-container__${variant}`]]: variant,
+  });
 
   return (
     <div ref={dropDownRef} className={styles.dropdown}>
-      <div
-        className={styles.icon}
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
-      >
+      <div className={styles.icon} onClick={handleOpen}>
         {control}
       </div>
-      <div
-        ref={listRef}
-        className={containerClName}
-        onMouseEnter={handleCancelTimer}
-        onMouseLeave={handleClose}
-      >
-        {options}
+      <div ref={listRef} className={containerClName}>
+        {Array.isArray(options) ? (
+          <ul className={styles.list}>
+            {options.map((o, index) => (
+              <li onClick={handleClose} key={index}>
+                {o}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          options
+        )}
       </div>
     </div>
   );

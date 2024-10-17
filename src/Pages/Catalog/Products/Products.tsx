@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 
 import FilterClear from './FilterClear';
 import styles from './Products.module.scss';
-import BookCard from '@/components/BookCard/BookCard';
 import Pagination from '@/components/Pagination/Pagination';
+import ProductCard from '@/components/ProductCard/ProductCard';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { queryAllData } from '@/redux/slices/queryParams';
@@ -43,9 +43,10 @@ const Products = () => {
       {(books && books.content.length) || isFetching || isLoading ? (
         <>
           <div className={booksClassName}>
-            {books?.content.map((book) => (
-              <BookCard key={book.id} data={!isLoading ? book : undefined} />
-            ))}
+            {books &&
+              books.content.map((book) => (
+                <ProductCard data={book} key={book.id} />
+              ))}
           </div>
           {books && books.totalElements > 9 && (
             <Pagination

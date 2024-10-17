@@ -7,13 +7,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 40px;
 
   .books {
     z-index: 2;
+
     display: grid;
-    grid-gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 40px 63px;
+
+    padding: 40px 24px;
+
+    border: 2px solid $button-default;
+    border-radius: 8px;
 
     &.disabled {
       opacity: 0.5;

@@ -16,13 +16,13 @@
 
     position: absolute;
     top: 50%;
-    left: -7px;
-    transform: translateY(-45%);
+    left: -8px;
+    transform: translateY(-50%);
 
     width: 2px;
     height: 24px;
 
-    background-color: colors.$icon-active;
+    background-color: #ccc;
   }
 
   &:hover {
@@ -60,7 +60,7 @@
 
 .radio-button__label {
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.6;
   text-transform: capitalize;
 }

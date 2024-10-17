@@ -6,6 +6,10 @@ export enum Sizes {
   ExtraLarge = 'extra_l',
   FullS = 'full-s',
   Full = 'full',
+  RedS = 'red-s',
+  Link = 'link',
+  Drop = 'drop',
+  Card = 'card',
 }
 
 export enum Variant {
@@ -15,6 +19,10 @@ export enum Variant {
   Delete = 'delete',
   LabelX = 'label-x',
   Accent = 'accent',
+  White = 'white',
+  Link = 'link',
+  Drop = 'drop',
+  Card = 'card',
 }
 
 export enum ButtonType {

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import Result from './Result';
 import styles from './Search.module.scss';
+import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import search from '@/assets/icons/search.svg';
 import useClickOutside from '@/hooks/useClickOutside';
 import { useAppDispatch } from '@/redux/hooks';
@@ -39,17 +40,19 @@ const Search = () => {
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
       <div className={styles.search}>
-        <input
+        <InputWithButton
           type="text"
           placeholder={t('header.search.placeholder')}
-          value={value}
-          onChange={handleOnChange}
           onFocus={() => setIsOpen(true)}
           onKeyDown={handleKeyDown}
-        />
-        <button type="button" onClick={handleOnSearch}>
-          <img src={search} width={24} height={24} alt="search icon" />
-        </button>
+          value={value}
+          onChange={handleOnChange}
+          variant="search"
+        >
+          <button className={styles.btn} type="button" onClick={handleOnSearch}>
+            <img src={search} width={24} height={24} alt="search icon" />
+          </button>
+        </InputWithButton>
       </div>
       <Result
         isOpen={isOpen && value.length >= 3}

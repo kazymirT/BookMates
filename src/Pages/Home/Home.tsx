@@ -1,17 +1,24 @@
-import Banner from './Banner/Banner';
-import Collage from './Collage/Collage';
-import HitProducts from './HitProducts/HitProducts';
-import SaleProducts from './SaleProducts/SaleProducts';
+import styles from './Home.module.scss';
+import Authors from './modules/Authors/Authors';
+import Banner from './modules/Banner/Banner';
+import Category from './modules/Category/Category';
+import Newness from './modules/Newness/Newness';
+import Sale from './modules/Sale/Sale';
+import Subscription from './modules/Subscription/Subscription';
 
-const Home = () => {
+const Ui = () => {
   return (
     <>
       <Banner />
-      <HitProducts />
-      <Collage />
-      <SaleProducts />
+      <div className={styles.home}>
+        <Newness />
+        <Sale />
+        <Category />
+        <Authors />
+        <Subscription />
+      </div>
     </>
   );
 };
 
-export default Home;
+export default Ui;

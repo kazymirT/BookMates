@@ -1,93 +1,102 @@
-@use '@/styles/colors.scss';
-@use '@/styles/mixin.scss';
+@import '@/styles';
 
 .header {
-  @include mixin.container1280;
+  background: $accent-white;
 
-  display: flex;
-  flex-flow: column;
-  gap: 14px;
-  align-items: center;
-  justify-content: space-between;
-
-  margin-top: 24px;
-
-  color: #252525;
-
-  background-color: #fff;
-
-  &_top {
-    display: flex;
-    gap: 89px;
-    align-items: center;
-
-    box-sizing: border-box;
+  .container {
     width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
 
-    .row-1 {
+    .header-inner {
       display: flex;
-      gap: 186px;
-      align-items: center;
-      width: 100%;
+      flex-direction: column;
+
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 24px 0;
+        padding-right: 77px;
+
+        .logo {
+          font-size: 0;
+        }
+
+        ul,
+        nav {
+          display: flex;
+          gap: 77px;
+          align-items: baseline;
+
+          li {
+            height: 27px;
+
+            a {
+              font-family: $font-family;
+              font-size: 22px;
+              font-weight: 400;
+              line-height: 1.4;
+              color: #0c0d0f;
+              text-align: center;
+              letter-spacing: 0.04em;
+            }
+          }
+        }
+      }
+
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 45px 24px 19px;
+
+        .wrapper {
+          display: flex;
+          gap: 101px;
+          align-items: center;
+          width: 100%;
+        }
+
+        .icons {
+          display: flex;
+          gap: 44px;
+          align-items: center;
+
+          .cart {
+            &-btn {
+              position: relative;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              padding: 0;
+            }
+
+            &-counter {
+              position: absolute;
+              top: 0;
+              left: 100%;
+              transform: translate(-70%, -50%);
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              width: 16px;
+              height: 16px;
+
+              font-size: 0.7em;
+              color: $accent-white;
+
+              background-color: $button-default;
+              border-radius: 50%;
+            }
+          }
+        }
+      }
     }
-  }
-
-  ul {
-    display: flex;
-    gap: 2rem;
-  }
-
-  nav ul {
-    display: flex;
-    gap: 10rem;
-
-    padding: 12px 24px;
-
-    font-size: 20px;
-    letter-spacing: 0.03em;
-  }
-}
-
-.btns {
-  display: flex;
-  gap: 48px;
-  align-items: center;
-
-  .icons {
-    display: flex;
-    gap: 1.5em;
-    align-items: center;
-  }
-}
-
-.cart {
-  &-btn {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0;
-  }
-
-  &-counter {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    transform: translate(-70%, -50%);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 16px;
-    height: 16px;
-
-    font-size: 0.7em;
-    color: colors.$accent-white;
-
-    background-color: colors.$button-default;
-    border-radius: 50%;
   }
 }

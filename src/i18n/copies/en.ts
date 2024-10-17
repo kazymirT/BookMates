@@ -2,10 +2,12 @@ export const english = {
   lang: 'English',
   header: {
     links: {
-      admin: 'Admin',
-      catalog: 'Catalog',
-      children: "Children's literature",
+      special: 'Special Offers',
+      'best-sellers': 'Best Sellers',
+      authors: 'Authors',
+      support: 'Support',
     },
+    drop: 'Book Catalog',
     menu: {
       login: 'Sign In',
       register: 'Sign Up',
@@ -29,24 +31,27 @@ export const english = {
     copyright: 'Bookmate 2024. All rights reserved',
   },
   home: {
-    banner: {
-      h1: 'Explore Limitless Pages',
-      description: `Find Your Next Adventure 
-in Our Online Bookstore!`,
-      button: 'to catalog',
+    'new-arrivals': {
+      title: 'New Arrivals',
+      button: 'All New Arrivals',
     },
-    'best-sellers': {
-      title: 'Best sellers',
-      button: 'More',
-    },
-    collage: {
-      title: 'The largest bookstore in your area',
-      description: `Join our community of book lovers: Create your account and immerse yourself in endless reading pleasure!`,
-      button: 'Create Account',
-    },
-    sales: {
+    sale: {
       title: 'Special offers',
-      sale: '{{value}} Discount',
+      button: 'More Books',
+    },
+    'book-collections': {
+      title: 'Book Collections',
+      button: 'More Collections',
+    },
+    authors: {
+      title: 'Authors',
+      button: 'All Authors',
+    },
+    subscribe: {
+      title: 'Subscribe to the Newsletter',
+      description:
+        'Be the first to hear about new books and receive our recommendations.',
+      button: 'Subscribe',
     },
   },
   catalog: {
