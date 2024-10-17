@@ -43,6 +43,14 @@ export const AttributesApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['Language', 'Attributes'],
     }),
+    editLanguage: builder.mutation<string, { name: string; id: number }>({
+      query: ({ id, name }) => ({
+        url: `admin/language/edit/${id}?name=${name}`,
+        method: 'PATCH',
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ['Category', 'Attributes'],
+    }),
     deleteLanguageById: builder.mutation<string, number>({
       query: (categoryId) => ({
         url: `admin/language/delete/${categoryId}`,
@@ -58,6 +66,14 @@ export const AttributesApi = baseApi.injectEndpoints({
         responseHandler: (response) => response.text(),
       }),
       invalidatesTags: ['Author', 'Attributes'],
+    }),
+    editAuthor: builder.mutation<string, { name: string; id: number }>({
+      query: ({ id, name }) => ({
+        url: `admin/author/edit/${id}?name=${name}`,
+        method: 'PATCH',
+        responseHandler: (response) => response.text(),
+      }),
+      invalidatesTags: ['Category', 'Attributes'],
     }),
     deleteAuthorById: builder.mutation<string, number>({
       query: (categoryId) => ({
@@ -77,6 +93,8 @@ export const {
   useAddAuthorMutation,
   useAddLanguageMutation,
   useEditCategoryMutation,
+  useEditAuthorMutation,
+  useEditLanguageMutation,
   useDeleteCategoryByIdMutation,
   useDeleteAuthorByIdMutation,
   useDeleteLanguageByIdMutation,

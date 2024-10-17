@@ -18,7 +18,9 @@ import {
   useDeleteAuthorByIdMutation,
   useDeleteCategoryByIdMutation,
   useDeleteLanguageByIdMutation,
+  useEditAuthorMutation,
   useEditCategoryMutation,
+  useEditLanguageMutation,
 } from '@/redux/services/attributes';
 import { attributes } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
@@ -37,6 +39,8 @@ const EditCategory = () => {
   const [deleteAuthorById] = useDeleteAuthorByIdMutation();
   const [deleteLanguageById] = useDeleteLanguageByIdMutation();
   const [editCategory] = useEditCategoryMutation();
+  const [editAuthor] = useEditAuthorMutation();
+  const [editLanguage] = useEditLanguageMutation();
 
   const {
     register,
@@ -66,8 +70,8 @@ const EditCategory = () => {
     if (editAttributes?.item) {
       const editActions = {
         category: editCategory,
-        authors: undefined,
-        language: undefined,
+        authors: editAuthor,
+        language: editLanguage,
       };
       const editAction = editActions[editAttributes.name];
       if (editAction) {

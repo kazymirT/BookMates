@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { toast, TypeOptions } from 'react-toastify';
 
 import styles from './Form.module.scss';
 import { type EditBookProps } from './types';
@@ -15,6 +16,7 @@ import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
 import TextArea from '@/components/ui-components/TextArea/Textarea';
 import { useAttributesOptions } from '@/hooks/useAttributesOptions';
+import { useEditBookByIdMutation } from '@/redux/services/adminBook';
 import { EditBookValues, editBookSchema } from '@/utils/validateSchema';
 
 const EditBookForm: FC<EditBookProps> = ({
@@ -22,6 +24,7 @@ const EditBookForm: FC<EditBookProps> = ({
   book,
   handleOpenPopup,
 }) => {
+  const [editBookById] = useEditBookByIdMutation();
   const {
     register,
     handleSubmit,
@@ -29,23 +32,30 @@ const EditBookForm: FC<EditBookProps> = ({
     formState: { errors, isValid },
   } = useForm<EditBookValues>({
     defaultValues: {
-      authorsNames: book.authors.map((author) => author.name),
+      title: book.title,
       description: book.description,
+      year: String(book.year[0].name),
       price: String(book.price),
       totalQuantity: String(book.totalQuantity),
-      title: book.title,
-      year: String(book.year[0].name),
-      discountPrice: String(book.discount ?? 0),
+      isExpected: book.expected,
+      authorNames: book.authors.map((author) => author.name),
       languageNames: book.languages.map((language) => language.name),
-      expected: book.expected,
       categoryNames: book.categories.map((category) => category.name),
+      discount: String(book.discount ?? 0),
     },
     resolver: zodResolver(editBookSchema),
     mode: 'onTouched',
   });
+  const notify = (type: TypeOptions, text: string) => toast(text, { type });
 
   const onSubmit = async (data: EditBookValues) => {
-    console.log(data, book.id, `edit book by id ${book.id}`);
+    try {
+      const response = await editBookById({ id: book.id, book: data }).unwrap();
+      notify('success', response);
+    } catch (error) {
+      const { data } = error as { data: string };
+      notify('error', data);
+    }
     handleClose();
   };
   const { categoriesOptions, authorsOptions, languagesOptions } =
@@ -61,7 +71,7 @@ const EditBookForm: FC<EditBookProps> = ({
       />
       <Controller
         control={control}
-        name="authorsNames"
+        name="authorNames"
         render={({ field, fieldState }) => (
           <SelectMulti
             placeholder="Автори книги"
@@ -105,10 +115,10 @@ const EditBookForm: FC<EditBookProps> = ({
           errorMessage={errors.price?.message}
         />
         <InputAdmin
-          {...register('discountPrice')}
+          {...register('discount')}
           placeholder="Відсоток знижки %"
           type="text"
-          errorMessage={errors.discountPrice?.message}
+          errorMessage={errors.discount?.message}
         />
       </div>
       <div className={styles['input-container']}>
@@ -141,7 +151,7 @@ const EditBookForm: FC<EditBookProps> = ({
           />
         )}
       />
-      <Checkbox {...register('expected')} type="checkbox" variant="primary">
+      <Checkbox {...register('isExpected')} type="checkbox" variant="primary">
         <p>Hемає в наявності</p>
       </Checkbox>
       <div className={styles.btns}>
