@@ -1,0 +1,48 @@
+@import url('@/styles');
+
+.banner-container {
+  width: 100%;
+  max-width: 1006px;
+  height: 488px;
+  margin: 0 auto;
+  padding: 49px 0 94px;
+
+  .banner {
+    .slick-list {
+      overflow: visible;
+    }
+
+    .slick-dots {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      display: flex !important;
+      gap: 8px;
+      justify-content: center;
+
+      li {
+        width: 13px;
+        height: 13px;
+
+        font-size: 0;
+
+        opacity: 1;
+        background: #d9d9d9;
+        border-radius: 100%;
+
+        button::before {
+          content: '';
+        }
+
+        &.slick-active {
+          width: 13px;
+          height: 13px;
+          background: #878787;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+}

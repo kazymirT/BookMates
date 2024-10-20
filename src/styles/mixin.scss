@@ -84,7 +84,6 @@
 }
 
 @mixin price {
-
   @include priceAfter;
 
   padding: 0;
@@ -93,4 +92,26 @@
   font-weight: 600;
   color: $button-default;
   letter-spacing: 0.01em;
+}
+
+@mixin btn-position($top, $rot, $right: null, $left: null) {
+  position: absolute;
+  z-index: 10000;
+  top: $top;
+  right: $right;
+  left: $left;
+  transform: translateY(-$top) rotate($rot);
+
+  align-self: flex-end;
+
+  width: 44px;
+  height: 44px;
+  padding: 0.625rem;
+
+  font-size: 0;
+
+  border: 1px solid $button-default;
+  border-radius: 50%;
+
+  transition: border-color 0.3s;
 }

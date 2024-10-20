@@ -1,55 +1,59 @@
 @import '@/styles';
 
-.slider {
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
+.slider-container {
+  padding: 0 12.5px;
 
-  width: 100%;
-  max-width: 981px;
-  height: 344px;
-  padding: 41px 50px;
-
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  .text {
+  .slider {
     display: flex;
     flex-direction: column;
-    gap: 22px;
-    max-width: 471px;
+    gap: 34px;
 
-    h3 {
-      font-family: $font-family;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 168%;
-      color: $button-default;
-      letter-spacing: 0.02em;
+    width: 100%;
+    // max-width: 981px;
+    height: 344px;
+    padding: 41px 50px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      max-width: 471px;
+
+      h3 {
+        font-family: $font-family;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 168%;
+        color: $button-default;
+        letter-spacing: 0.02em;
+      }
+
+      p {
+        font-family: $font-family;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 138%;
+        color: $button-default;
+        letter-spacing: 0.01em;
+      }
     }
 
-    p {
+    button {
+      align-self: flex-start;
+
+      padding: 12.5px 39.5px 13.5px 47.5px;
+
       font-family: $font-family;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 138%;
-      color: $button-default;
-      letter-spacing: 0.01em;
+      font-size: 15px;
+      font-weight: 500;
+      color: $grey-500;
+      letter-spacing: 0.05em;
+
+      background: $accent-white;
+      border-radius: 4px;
     }
-  }
-
-  button {
-    align-self: flex-start;
-
-    padding: 12.5px 39.5px 13.5px 47.5px;
-
-    font-family: $font-family;
-    font-size: 15px;
-    font-weight: 500;
-    color: $grey-500;
-    letter-spacing: 0.05em;
-
-    background: $accent-white;
-    border-radius: 4px;
   }
 }

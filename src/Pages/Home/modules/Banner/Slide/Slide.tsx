@@ -7,17 +7,19 @@ const Slide: FC<SlideProps> = ({
   slide: { button, description, img, title },
 }) => {
   return (
-    <div
-      className={styles.slider}
-      style={{
-        backgroundImage: img ? `url(${img})` : undefined,
-      }}
-    >
-      <div className={styles.text}>
-        <h3>{title}</h3>
-        <p>{description}</p>
+    <div className={styles['slider-container']}>
+      <div
+        className={styles.slider}
+        style={{
+          backgroundImage: img ? `url(${img})` : undefined,
+        }}
+      >
+        <div className={styles.text}>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </div>
+        <button type="button">{button}</button>
       </div>
-      <button type="button">{button}</button>
     </div>
   );
 };

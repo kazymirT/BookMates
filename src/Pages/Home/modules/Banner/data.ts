@@ -24,11 +24,4 @@ export const BANNER_DATA = [
     button: 'Детальніше',
     img: img03,
   },
-  {
-    id: 4,
-    title: 'Занурюйся в пригоди разом із Містером Пігвіном 2',
-    description: 'знижки до 35% до 15 листопада  ',
-    button: 'Детальніше',
-    img: img02,
-  },
 ];
