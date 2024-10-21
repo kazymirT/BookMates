@@ -8,7 +8,7 @@ export type CartItem = {
   img: string;
   title: string;
   authors: string[];
-  price: string;
+  price: number;
   discount: number;
   discountPrice: number;
   quantity: number;

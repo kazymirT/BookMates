@@ -15,6 +15,7 @@ export enum IconInstanceName {
   PLUS = 'Plus',
   REMOVE = 'Remove',
   DROP = 'Drop',
+  CARTNEW = 'CartNew',
 }
 
 export enum IconAppName {
@@ -31,4 +32,5 @@ export enum IconAppName {
   PLUS = 'Plus',
   REMOVE = 'Remove',
   DROP = 'Drop',
+  CARTNEW = 'CartNew',
 }

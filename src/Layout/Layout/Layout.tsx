@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import CartInformer from '@/components/CartInformer/CartInformer';
 import CartNotification from '@/components/CartNotification/CartNotification';
 import Modal from '@/components/Modal/Modal';
 import Profile from '@/components/Profile/Profile';
@@ -37,6 +38,7 @@ const Layout = () => {
       <CartNotification />
       <ScrollRestoration />
       <ShoppingCart />
+      <CartInformer />
     </>
   );
 };
