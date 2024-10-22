@@ -10,18 +10,21 @@ import {
   Variant,
 } from '@/components/ui-components/Button/constants';
 import useFlyToCart from '@/hooks/useFlyToCart';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { BooksData } from '@/redux/services/services.types';
-import { addGoods } from '@/redux/slices/shoppingCartSlice';
+import { addGoods, isFly } from '@/redux/slices/shoppingCartSlice';
 
 export interface ProductCardProps {
   data: BooksData;
 }
 const ProductCard: FC<ProductCardProps> = ({ data }) => {
-  const { authors, discount, discountPrice, id, imageUrl, price, title } = data;
   const dispatch = useAppDispatch();
-  const imgRef = useRef<HTMLImageElement | null>(null);
+  const isFlyBook = useAppSelector(isFly);
   const { flyToCart } = useFlyToCart();
+
+  const { authors, discount, discountPrice, id, imageUrl, price, title } = data;
+  const imgRef = useRef<HTMLImageElement | null>(null);
+
   const addItemToCart = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(
@@ -39,6 +42,7 @@ const ProductCard: FC<ProductCardProps> = ({ data }) => {
       flyToCart(imgRef.current);
     }
   };
+
   const cardClassNames = classNames(styles.card, {
     [styles['card__discount']]: !!discount,
     [styles['card__overlay']]: title.length > 22,
@@ -76,6 +80,7 @@ const ProductCard: FC<ProductCardProps> = ({ data }) => {
             size={Sizes.Card}
             variant={Variant.Card}
             text="Купити"
+            disabled={isFlyBook}
             onClick={addItemToCart}
           />
         </div>

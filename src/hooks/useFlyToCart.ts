@@ -1,6 +1,15 @@
+import { useDispatch } from 'react-redux';
+
+import { useAppSelector } from '@/redux/hooks';
+import { goods, toggleFlyCart } from '@/redux/slices/shoppingCartSlice';
+
 const useFlyToCart = () => {
+  const items = useAppSelector(goods);
+  const dispatch = useDispatch();
   const cartRef = document.querySelector('#cart-informer');
+
   const flyToCart = (imgRef: HTMLImageElement) => {
+    dispatch(toggleFlyCart(true));
     if (!cartRef || !imgRef) return;
 
     const imgClone = imgRef.cloneNode(true) as HTMLImageElement;
@@ -20,7 +29,10 @@ const useFlyToCart = () => {
 
     imgClone.style.left = `${imgStartX}px`;
     imgClone.style.top = `${imgStartY}px`;
-
+    const translateX = items.length
+      ? cartEndX - imgStartX - 70
+      : cartEndX - imgStartX - 195;
+    const translateY = cartEndY - imgStartY - 105;
     const animation = imgClone.animate(
       [
         {
@@ -28,24 +40,23 @@ const useFlyToCart = () => {
           opacity: 1,
         },
         {
-          transform: `translate(${cartEndX - imgStartX - 75}px, ${
-            cartEndY - imgStartY - 100
-          }px) scale(0.2)`,
+          transform: `translate(${translateX}px, ${translateY}px) scale(0.23)`,
           opacity: 0.7,
         },
       ],
       {
-        duration: 800,
-        easing: 'ease-in-out',
+        delay: items.length ? 0 : 150,
+        duration: 1500,
+        easing: 'cubic-bezier(0.4, 0.5, 0.7, 1)',
         fill: 'forwards',
       }
     );
 
     animation.onfinish = () => {
       document.body.removeChild(imgClone);
+      dispatch(toggleFlyCart(false));
     };
   };
-
   return { flyToCart };
 };
 
