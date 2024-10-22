@@ -35,7 +35,7 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
       dispatch(
         addGoods({
           id: book.id,
-          price: String(book.price),
+          price: book.price,
           authors: book.authors.map((author) => author.name),
           img: book.imageUrl,
           title: book.title,
