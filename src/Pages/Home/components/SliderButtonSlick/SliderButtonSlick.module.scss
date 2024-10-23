@@ -36,6 +36,10 @@
 
       border: 1px solid $button-default;
     }
+
+    &__product {
+      @include btn-position(-15%, -90deg, 0);
+    }
   }
 
   &__prev {
@@ -51,6 +55,10 @@
       @include btn-position(45%, 90deg, 0, -49px);
 
       border: 1px solid $button-default;
+    }
+
+    &__product {
+      @include btn-position(-15%, 90deg, 60px);
     }
   }
 }

@@ -5,7 +5,7 @@ import styles from './SliderButtonSlick.module.scss';
 import { Icon } from '@/components/ui-components/Icons';
 
 export interface SliderButtonProps {
-  variant: 'banner' | 'section';
+  variant: 'banner' | 'section' | 'product';
   arrow: 'next' | 'prev';
   onClick?: () => void;
   style?: CSSProperties;
