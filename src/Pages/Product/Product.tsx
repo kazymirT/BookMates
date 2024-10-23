@@ -6,14 +6,15 @@ import { useParams } from 'react-router-dom';
 import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
-import Slider from './Slider/Slider';
+import ProductSlider from '../Home/components/ProductSlider/ProductSlider';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
-import { useGetBookByIdQuery } from '@/redux/services/books';
+import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
+  const { data: books } = useGetBooksQuery({ size: '8' });
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
@@ -47,7 +48,14 @@ const Product = () => {
         }
         <section className={styles.likes}>
           <h3>{t('product.offers')}</h3>
-          <Slider />
+          {books && (
+            <ProductSlider
+              data={books}
+              sliderCL="slider-product"
+              variant="product"
+              slidesToScroll={2}
+            />
+          )}
         </section>
       </div>
     </div>
