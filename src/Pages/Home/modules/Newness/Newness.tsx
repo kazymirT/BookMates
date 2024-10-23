@@ -10,6 +10,7 @@ const Newness = () => {
   const { t } = useTranslation();
   const { data: books } = useGetBooksQuery({
     size: '9',
+    sort: ['id,desc'],
   });
   return (
     <Section>

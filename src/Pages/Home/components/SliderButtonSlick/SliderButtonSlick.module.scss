@@ -30,6 +30,12 @@
     &__banner {
       @include btn-position(50%, -90deg, -7px);
     }
+
+    &__section {
+      @include btn-position(45%, -90deg, -49px);
+
+      border: 1px solid $button-default;
+    }
   }
 
   &__prev {
@@ -39,6 +45,12 @@
 
     &__banner {
       @include btn-position(50%, 90deg, 0, -6px);
+    }
+
+    &__section {
+      @include btn-position(45%, 90deg, 0, -49px);
+
+      border: 1px solid $button-default;
     }
   }
 }

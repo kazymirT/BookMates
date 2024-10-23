@@ -13,6 +13,7 @@ const Banner = () => {
     autoplaySpeed: 6000,
     autoplay: true,
     pauseOnDotsHover: true,
+    variableWidth: true,
     initialSlide: 1,
     slidesToShow: 1,
     slidesToScroll: 1,
