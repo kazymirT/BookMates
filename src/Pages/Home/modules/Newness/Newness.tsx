@@ -21,7 +21,7 @@ const Newness = () => {
           title={t('home.new-arrivals.title')}
         />
         <SectionContent variant="product">
-          {books && <ProductSlider data={books} slidesPerGroup={3} />}
+          {books && <ProductSlider data={books} sliderCL="slider-section" />}
         </SectionContent>
       </>
     </Section>

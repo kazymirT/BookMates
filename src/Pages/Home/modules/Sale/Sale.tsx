@@ -22,7 +22,7 @@ const Sale = () => {
           isIcon
         />
         <SectionContent variant="product">
-          {books && <ProductSlider data={books} slidesPerGroup={3} />}
+          {books && <ProductSlider data={books} sliderCL="slider-section" />}
         </SectionContent>
       </>
     </Section>

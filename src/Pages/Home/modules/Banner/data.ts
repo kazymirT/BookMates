@@ -1,8 +1,14 @@
 import img01 from './image/01.png';
 import img02 from './image/02.png';
 import img03 from './image/03.png';
-
-export const BANNER_DATA = [
+export interface BannerData {
+  id: number;
+  title: string;
+  description: string;
+  button: string;
+  img: string;
+}
+export const BANNER_DATA: BannerData[] = [
   {
     id: 1,
     title: 'Хіти осінні! Навчайтесь із нами!',
