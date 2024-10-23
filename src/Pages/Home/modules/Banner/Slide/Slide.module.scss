@@ -6,12 +6,13 @@
   gap: 34px;
 
   width: 100%;
-  max-width: 981px;
+  // max-width: 981px;
   height: 344px;
   padding: 41px 50px;
 
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 8px;
 
   .text {
     display: flex;

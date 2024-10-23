@@ -1,54 +1,32 @@
-import { useRef } from 'react';
-import SwiperCore from 'swiper';
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Slider from 'react-slick';
 
-import styles from './Banner.module.scss';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import './Banner.scss';
 import { BANNER_DATA } from './data';
 import Slide from './Slide/Slide';
-import { SliderButton } from '../../components/SliderButton/SliderButton';
+import { SliderButtonSlick } from '../../components/SliderButtonSlick/SliderButtonSlick';
 
 const Banner = () => {
-  const swiperRef = useRef<SwiperCore | null>(null);
-  const handleNext = () => {
-    swiperRef.current?.slideNext();
-  };
-
-  const handlePrev = () => {
-    swiperRef.current?.slidePrev();
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1500,
+    autoplaySpeed: 6000,
+    autoplay: true,
+    pauseOnDotsHover: true,
+    variableWidth: true,
+    initialSlide: 1,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SliderButtonSlick arrow="next" variant="banner" />,
+    prevArrow: <SliderButtonSlick arrow="prev" variant="banner" />,
+    className: 'banner',
   };
   return (
-    <div className={styles.banner}>
-      <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className={styles.swiper}
-        pagination={{}}
-        spaceBetween={25}
-        navigation
-        initialSlide={1}
-        slidesPerView={'auto'}
-        loopAdditionalSlides={1}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: true,
-        }}
-        modules={[Pagination, Navigation, Autoplay]}
-      >
+    <div className="banner-container">
+      <Slider {...settings}>
         {BANNER_DATA &&
-          BANNER_DATA.map((banner) => (
-            <SwiperSlide key={banner.id}>
-              <Slide slide={banner} />
-            </SwiperSlide>
-          ))}
-        <SliderButton
-          onNext={handleNext}
-          onPrev={handlePrev}
-          variant="banner"
-        />
-      </Swiper>
+          BANNER_DATA.map((banner) => <Slide key={banner.id} slide={banner} />)}
+      </Slider>
     </div>
   );
 };

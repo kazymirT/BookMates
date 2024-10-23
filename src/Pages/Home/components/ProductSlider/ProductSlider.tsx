@@ -1,51 +1,43 @@
-import { FC, useRef } from 'react';
-import SwiperCore from 'swiper';
-import { Navigation, Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { type FC } from 'react';
+import Slider from 'react-slick';
 
-import styles from './ProductSlider.module.scss';
+import './ProductSlider.scss';
 import { ProductSliderProps } from './types';
-import 'swiper/css';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-import { SliderButton } from '../SliderButton/SliderButton';
+import { SliderButtonSlick } from '../SliderButtonSlick/SliderButtonSlick';
 
-const ProductSlider: FC<ProductSliderProps> = ({ data, slidesPerGroup }) => {
-  const swiperRef = useRef<SwiperCore | null>(null);
-
-  const handleNext = () => {
-    swiperRef.current?.slideNext(1500);
-  };
-
-  const handlePrev = () => {
-    swiperRef.current?.slidePrev(1500);
+const ProductSlider: FC<ProductSliderProps> = ({
+  data,
+  sliderCL,
+  variant = 'section',
+  slidesToScroll = 3,
+}) => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1500,
+    autoplaySpeed: 4000,
+    autoplay: true,
+    pauseOnHover: true,
+    slidesToShow: 4,
+    slidesToScroll,
+    variableWidth: true,
+    prevArrow: <SliderButtonSlick arrow="prev" variant={variant} />,
+    nextArrow: <SliderButtonSlick arrow="next" variant={variant} />,
+    className: sliderCL,
   };
   return (
-    <div className={styles['product-slider']}>
-      <div className={styles.slider}>
-        <Swiper
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          className={styles.swiper}
-          spaceBetween={46}
-          navigation
-          slidesPerView={4}
-          slidesPerGroup={slidesPerGroup}
-          loop={true}
-          speed={1500}
-          autoplay={{
-            delay: 3000,
-            // disableOnInteraction: true,
-          }}
-          modules={[Navigation, Autoplay]}
-        >
+    <div className={`product-slider product-slider__${variant}`}>
+      <div className={'slider'}>
+        <Slider {...settings}>
           {data &&
-            data.content.map((banner) => (
-              <SwiperSlide key={banner.id}>
-                <ProductCard data={banner} />
-              </SwiperSlide>
+            data.content.map((item) => (
+              <div key={item.id} className="slide-wrapper">
+                <ProductCard data={item} />
+              </div>
             ))}
-        </Swiper>
+        </Slider>
       </div>
-      <SliderButton onNext={handleNext} onPrev={handlePrev} variant="section" />
     </div>
   );
 };

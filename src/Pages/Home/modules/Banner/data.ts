@@ -1,8 +1,14 @@
 import img01 from './image/01.png';
 import img02 from './image/02.png';
 import img03 from './image/03.png';
-
-export const BANNER_DATA = [
+export interface BannerData {
+  id: number;
+  title: string;
+  description: string;
+  button: string;
+  img: string;
+}
+export const BANNER_DATA: BannerData[] = [
   {
     id: 1,
     title: 'Хіти осінні! Навчайтесь із нами!',
@@ -23,12 +29,5 @@ export const BANNER_DATA = [
     description: 'знижки до 55% до 10 листопада',
     button: 'Детальніше',
     img: img03,
-  },
-  {
-    id: 4,
-    title: 'Занурюйся в пригоди разом із Містером Пігвіном 2',
-    description: 'знижки до 35% до 15 листопада  ',
-    button: 'Детальніше',
-    img: img02,
   },
 ];

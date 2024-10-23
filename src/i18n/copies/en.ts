@@ -3,7 +3,7 @@ export const english = {
   header: {
     links: {
       special: 'Special Offers',
-      'best-sellers': 'Best Sellers',
+      'best-sellers': 'Bestsellers',
       authors: 'Authors',
       support: 'Support',
     },

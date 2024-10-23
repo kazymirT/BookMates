@@ -2,5 +2,7 @@ import { BooksListResponse } from '@/redux/services/services.types';
 
 export interface ProductSliderProps {
   data: BooksListResponse;
-  slidesPerGroup: number;
+  sliderCL: string;
+  variant?: 'banner' | 'product' | 'section';
+  slidesToScroll?: number;
 }

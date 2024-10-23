@@ -1,0 +1,58 @@
+/* stylelint-disable */
+@import '@/styles';
+/* stylelint-enable */
+
+.product-slider {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 8px;
+
+  &__banner {
+  }
+
+  &__section {
+    max-width: 1040px;
+  }
+
+  &__product {
+    max-width: 1200px;
+  }
+
+  .slider {
+    overflow: clip visible;
+    width: 100%;
+
+    .slider-section {
+      max-width: 1018px;
+      margin: 0 auto;
+
+      .slick-list {
+        overflow: visible;
+        width: 100%;
+        height: auto;
+
+        .slick-track {
+          display: flex;
+          gap: 46px;
+        }
+      }
+    }
+
+    .slider-product {
+      max-width: 1200px;
+      margin: 0 auto;
+
+      .slick-list {
+        overflow: visible;
+        width: 100%;
+        height: auto;
+
+        .slick-track {
+          display: flex;
+          gap: 60px;
+        }
+      }
+    }
+  }
+}
