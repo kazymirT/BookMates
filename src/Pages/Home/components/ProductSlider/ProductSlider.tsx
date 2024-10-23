@@ -6,7 +6,12 @@ import { ProductSliderProps } from './types';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { SliderButtonSlick } from '../SliderButtonSlick/SliderButtonSlick';
 
-const ProductSlider: FC<ProductSliderProps> = ({ data }) => {
+const ProductSlider: FC<ProductSliderProps> = ({
+  data,
+  sliderCL,
+  variant = 'section',
+  slidesToScroll = 3,
+}) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -15,20 +20,20 @@ const ProductSlider: FC<ProductSliderProps> = ({ data }) => {
     autoplay: true,
     pauseOnHover: true,
     slidesToShow: 4,
-    slidesToScroll: 3,
+    slidesToScroll,
     variableWidth: true,
-    prevArrow: <SliderButtonSlick arrow="prev" variant="section" />,
-    nextArrow: <SliderButtonSlick arrow="next" variant="section" />,
-    className: 'slider-section',
+    prevArrow: <SliderButtonSlick arrow="prev" variant={variant} />,
+    nextArrow: <SliderButtonSlick arrow="next" variant={variant} />,
+    className: sliderCL,
   };
   return (
-    <div className={'product-slider'}>
+    <div className={`product-slider product-slider__${variant}`}>
       <div className={'slider'}>
         <Slider {...settings}>
           {data &&
-            data.content.map((banner) => (
-              <div key={banner.id} className="slide-wrapper">
-                <ProductCard data={banner} />
+            data.content.map((item) => (
+              <div key={item.id} className="slide-wrapper">
+                <ProductCard data={item} />
               </div>
             ))}
         </Slider>
