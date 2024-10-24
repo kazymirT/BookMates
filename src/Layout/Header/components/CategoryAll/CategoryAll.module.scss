@@ -1,10 +1,11 @@
 @import '@/styles';
 
-.category {
+.list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 
+  width: 266px;
   padding: 15px;
 
   background: $accent-white;
@@ -13,7 +14,6 @@
   li {
     width: 100%;
     width: 236px;
-    padding: 8px;
 
     font-family: $font-family;
     font-size: 16px;
@@ -33,6 +33,7 @@
     a {
       display: inline-block;
       width: 100%;
+      padding: 8px;
     }
   }
 }
