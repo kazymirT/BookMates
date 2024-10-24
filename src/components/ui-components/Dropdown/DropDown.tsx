@@ -1,23 +1,18 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './DropDown.module.scss';
+import { type DropdownProps } from './types';
 import useClickOutside from '@/hooks/useClickOutside';
 
-type DropdownProps = {
-  options: React.ReactNode[] | React.ReactNode;
-  control: React.ReactNode;
-  variant: 'menu' | 'category';
-};
-
-const DropDown = ({ control, options, variant }: DropdownProps) => {
+const DropDown = ({ control, options, variant, tagName }: DropdownProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const dropDownRef = React.useRef<HTMLDivElement | null>(null);
   const listRef = React.useRef<HTMLDivElement | null>(null);
 
   const handleOpen = () => {
-    isOpen ? setIsOpen(false) : setIsOpen(true);
+    setIsOpen(!isOpen);
   };
 
   const handleClose = () => {
@@ -25,6 +20,26 @@ const DropDown = ({ control, options, variant }: DropdownProps) => {
   };
 
   useClickOutside(dropDownRef, handleClose);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === tagName) {
+        handleClose();
+      }
+    };
+
+    const listContainer = listRef.current;
+    if (listContainer) {
+      listContainer.addEventListener('click', handleClick);
+    }
+
+    return () => {
+      if (listContainer) {
+        listContainer.removeEventListener('click', handleClick);
+      }
+    };
+  }, [tagName]);
 
   const containerClName = classNames(styles['dropdown-container'], {
     [styles['open']]: isOpen,
@@ -38,17 +53,7 @@ const DropDown = ({ control, options, variant }: DropdownProps) => {
         {control}
       </div>
       <div ref={listRef} className={containerClName}>
-        {Array.isArray(options) ? (
-          <ul className={styles.list}>
-            {options.map((o, index) => (
-              <li onClick={handleClose} key={index}>
-                {o}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          options
-        )}
+        {options}
       </div>
     </div>
   );
