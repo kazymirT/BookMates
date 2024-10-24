@@ -2,7 +2,7 @@ import { skipToken } from '@reduxjs/toolkit/query/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import CategoryItem from './Category/Category';
+import CategoryAll from './CategoryAll/CategoryAll';
 import styles from '../Header.module.scss';
 import Search from '@/components/Search/Search';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -17,13 +17,11 @@ import { Icon } from '@/components/ui-components/Icons';
 import Menu from '@/Layout/Header/Menu/Menu';
 import UserButton from '@/Layout/Header/UserButton/UserButton';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useGetAllAttributesQuery } from '@/redux/services/attributes';
 import { useGetUserQuery } from '@/redux/services/user';
 import { goods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
 import { userId } from '@/redux/slices/userSlice';
 
 const Bottom = () => {
-  const { data, isSuccess } = useGetAllAttributesQuery();
   const { t } = useTranslation();
 
   const id = useAppSelector(userId);
@@ -40,7 +38,7 @@ const Bottom = () => {
   return (
     <div className={styles.bottom}>
       <div className={styles.wrapper}>
-        {isSuccess && (
+        {
           <DropDown
             control={
               <Button
@@ -52,16 +50,11 @@ const Bottom = () => {
                 iconPosition={Position.Left}
               />
             }
-            options={
-              data?.categories.length
-                ? data.categories.map(({ id, name }) => (
-                    <CategoryItem key={id} id={id} name={name} />
-                  ))
-                : []
-            }
+            tagName="A"
+            options={<CategoryAll />}
             variant="category"
           />
-        )}
+        }
         <Search />
       </div>
       <div className={styles.icons}>
@@ -72,6 +65,7 @@ const Bottom = () => {
             options={<Menu />}
             control={<Icon.Account height="38px" width="38px" />}
             variant="menu"
+            tagName="LI"
           />
         )}
         <button
