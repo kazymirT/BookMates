@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import classNames from 'classnames';
+import { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast, TypeOptions } from 'react-toastify';
 
@@ -23,6 +24,7 @@ import { toggleModal } from '@/redux/slices/modalSlice';
 import { AddBookValues, addBookSchema } from '@/utils/validateSchema';
 
 const AddBook = () => {
+  const formRef = useRef<HTMLFormElement | null>(null);
   const dispatch = useAppDispatch();
   const [AddBook] = useAddBookMutation();
   const { authorsOptions, categoriesOptions, languagesOptions } =
@@ -88,6 +90,22 @@ const AddBook = () => {
   };
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter' && formRef && formRef.current) {
+      e.preventDefault();
+
+      const inputs = Array.from(
+        formRef.current.querySelectorAll('input, select, textarea')
+      ) as HTMLElement[];
+
+      const currentIndex = inputs.indexOf(e.target as HTMLElement);
+
+      if (currentIndex > -1 && currentIndex < inputs.length - 1) {
+        inputs[currentIndex + 1].focus();
+      }
+    }
+  };
+
   const sectionClassName = classNames(
     styles['form-container'],
     styles['form-container__add-book']
@@ -100,11 +118,16 @@ const AddBook = () => {
         </button>
         <h2>Додати книгу</h2>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        ref={formRef}
+        onKeyDown={handleKeyDown}
+      >
         <InputAdmin
           {...register('title')}
           placeholder="Назва книги"
           type="text"
+          autoFocus
           errorMessage={errors.title?.message}
         />
         <Controller
