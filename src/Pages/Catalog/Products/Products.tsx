@@ -23,6 +23,7 @@ const Products = () => {
     isLoading,
   } = useGetBooksQuery({
     page,
+    size: '16',
     sort: [sort.replace('-', ',')],
     search,
     categories: categories.map((c) => c.name),
@@ -45,10 +46,10 @@ const Products = () => {
           <div className={booksClassName}>
             {books &&
               books.content.map((book) => (
-                <ProductCard data={book} key={book.id} />
+                <ProductCard data={book} key={book.id} variant="catalog" />
               ))}
           </div>
-          {books && books.totalElements > 9 && (
+          {books && books.totalElements > 16 && (
             <Pagination
               totalPages={books?.totalPages}
               currentPage={books?.pageable.pageNumber}
