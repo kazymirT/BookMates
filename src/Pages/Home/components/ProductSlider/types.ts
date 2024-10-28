@@ -1,8 +1,11 @@
-import { BooksListResponse } from '@/redux/services/services.types';
+import { ReactNode } from 'react';
 
 export interface ProductSliderProps {
-  data: BooksListResponse;
   sliderCL: string;
-  variant?: 'banner' | 'product' | 'section';
+  variant?: 'banner' | 'product' | 'section' | 'hit';
   slidesToScroll?: number;
+  slidesToShow?: number;
+  children: ReactNode;
+  isArrow?: boolean;
+  isDots?: boolean;
 }
