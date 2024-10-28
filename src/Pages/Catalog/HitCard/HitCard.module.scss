@@ -1,0 +1,114 @@
+@import '@/styles';
+
+.card {
+  overflow-y: visible;
+  display: flex;
+  gap: 13px;
+  align-items: flex-end;
+
+  width: 370px;
+  height: 146px;
+  padding: 6px;
+
+  background: #efefef;
+  border-radius: 8px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 125px;
+    padding-top: 0;
+
+    h3 {
+      overflow: hidden;
+      display: block;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+
+      font-family: $font-family;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: $grey-500;
+      text-overflow: ellipsis;
+      letter-spacing: 0.01em;
+
+      transition: 0.3s ease-in-out;
+
+      -webkit-line-clamp: 2;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      h4 {
+        font-family: $font-family;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.182;
+        color: $icon-default;
+        letter-spacing: 0.01em;
+      }
+
+      .price {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        align-items: end;
+
+        width: fit-content;
+
+        .normal-price {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          justify-content: space-between;
+
+          width: 100%;
+
+          line-height: 1.25;
+
+          .price {
+            font-family: $font-family;
+            font-size: 12px;
+            font-weight: 400;
+            color: $grey-400;
+            text-decoration: line-through;
+            letter-spacing: 0.01em;
+          }
+
+          .discount {
+            padding: 0 4px;
+
+            font-family: $font-family;
+            font-size: 12px;
+            font-weight: 400;
+            color: $accent-white;
+            letter-spacing: 0.01em;
+
+            background: #ff9f68;
+            border-radius: 4px;
+          }
+        }
+
+        .discount-price {
+          font-family: $font-family;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.2;
+          color: $accent-red;
+          letter-spacing: 0.01em;
+        }
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    max-width: 129px;
+  }
+}
