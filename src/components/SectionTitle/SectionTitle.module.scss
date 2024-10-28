@@ -1,0 +1,59 @@
+@import '@/styles';
+
+@mixin fire($width, $height, $ml, $left) {
+  position: relative;
+  margin-left: $ml;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: $left;
+    transform: translateY(-50%);
+
+    width: $width;
+    height: $height;
+
+    background: url('../../assets/icons/fire.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .title {
+    font-weight: 400;
+    letter-spacing: 0.06em;
+
+    &__catalog {
+      font-family: $third-family;
+      font-size: 24px;
+      line-height: 1.5835;
+      color: $grey-500;
+      letter-spacing: 0.05em;
+
+      &__fire {
+        @include fire(30px, 30px, 34px, -34px);
+      }
+    }
+
+    &__home {
+      font-family: $font4;
+      font-size: 40px;
+      line-height: 1.6;
+      color: $grey-400;
+      letter-spacing: 0.06em;
+
+      &__fire {
+        @include fire(40px, 40px, 42px, -44px);
+      }
+    }
+  }
+}
