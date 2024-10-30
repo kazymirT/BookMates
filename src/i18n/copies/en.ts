@@ -58,9 +58,11 @@ export const english = {
     title: 'Catalog',
     filter: {
       categories: 'Categories',
+      price: 'Price ({{price1}} - {{price2}})',
+      languageWithCount: 'Language ({{count}})',
       language: 'Language',
-      price: 'Price',
       years: 'Years',
+      yearsWithCount: 'Years ({{count}})',
     },
     'clear-filter': 'Clean up',
     sort: 'en',

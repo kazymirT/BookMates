@@ -5,10 +5,10 @@ import styles from './HitCard.module.scss';
 import { HitCardProps } from './types';
 
 const HitCard: FC<HitCardProps> = ({
-  data: { authors, title, imageUrl, discount, discountPrice, price },
+  data: { authors, title, id, imageUrl, discount, discountPrice, price },
 }) => {
   return (
-    <Link to={''} className={styles.card}>
+    <Link to={`/product/${id}`} className={styles.card}>
       <img src={imageUrl} alt={title} width={129} height={160} />
       <div className={styles.wrapper}>
         <h3>{title}</h3>

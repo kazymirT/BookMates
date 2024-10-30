@@ -58,11 +58,13 @@ export const ukraine = {
     title: 'Каталог',
     filter: {
       categories: 'Категорії',
+      price: 'Ціна ({{price1}} - {{price2}})',
       language: 'Мова',
-      price: 'Ціна',
+      languageWithCount: 'Мова ({{count}})',
       years: 'Рік видання',
+      yearsWithCount: 'Рік видання ({{count}})',
     },
-    'clear-filter': 'Очистити',
+    'clear-filter': 'Скинути фільтр',
     sort: 'ua',
   },
   product: {
