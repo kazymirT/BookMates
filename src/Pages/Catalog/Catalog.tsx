@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import BookCategory from './BookCategory/BookCategory';
 import styles from './Catalog.module.scss';
 // import CatalogHeader from './CatalogHeader/CatalogHeader';
 // import Filters from './Filters/Filters';
@@ -18,6 +19,7 @@ const Catalog = () => {
         <div className={styles['catalog-wrapper']}>
           <Breadcrumbs options={breadcrumbs} />
           <HitOffers />
+          <BookCategory />
           <Products />
         </div>
       </div>
