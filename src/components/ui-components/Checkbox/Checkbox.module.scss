@@ -26,21 +26,27 @@
     .input {
       width: 16px;
       height: 16px;
-      border: 0.1em solid $grey-500;
+      background-color: rgba($button-default, 0.55);
+      border-radius: 2px;
 
       &:checked {
         position: relative;
-        background-color: $accent-white;
+        background-color: $button-default;
 
         &::before {
-          content: '\2714';
+          content: '';
 
           position: absolute;
-          top: -2px;
-          right: 1.5px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
 
-          font-size: 0.8em;
-          color: $grey-500;
+          width: 16px;
+          height: 16px;
+
+          background-image: url('../../../assets/icons/checked.svg');
+          background-repeat: no-repeat;
+          background-size: cover;
         }
       }
     }
@@ -84,43 +90,6 @@
       font-size: 0.875rem;
       line-height: 1.43;
       color: $grey-500;
-      letter-spacing: 0.05em;
-    }
-  }
-
-  &__secondary {
-    gap: 10px;
-    align-items: center;
-
-    .input {
-      width: 16px;
-      height: 16px;
-      border: 0.1em solid $button-default;
-
-      &:checked {
-        position: relative;
-        background-color: $accent-white;
-
-        &::before {
-          content: '\2714';
-
-          position: absolute;
-          top: -2px;
-          right: 1.5px;
-
-          font-size: 0.8em;
-          color: $button-default;
-        }
-      }
-    }
-
-    .label {
-      padding-left: 2px;
-
-      font-family: $font-family;
-      font-size: 16px;
-      line-height: 1.25;
-      color: $grey-300;
       letter-spacing: 0.05em;
     }
   }
