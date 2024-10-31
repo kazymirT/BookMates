@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
 import styles from './Products.module.scss';
 import Pagination from '@/components/Pagination/Pagination';
@@ -18,7 +18,7 @@ const Products = () => {
   } = useAppSelector(queryAllData);
   const {
     data: books,
-    currentData,
+    // currentData,
     isFetching,
     isLoading,
   } = useGetBooksQuery({
@@ -32,21 +32,15 @@ const Products = () => {
     years: years.map((y) => y.name),
   });
 
-  const sectionRef = useRef<HTMLDivElement>(null);
-
   const booksClassName = classNames(styles.books, {
     [styles.disabled]: isFetching && !isLoading,
   });
 
   useEffect(() => {
-    if (sectionRef.current && books !== currentData) {
-      const sectionTop =
-        sectionRef.current.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: sectionTop - 130, behavior: 'smooth' });
-    }
-  }, [books, currentData]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [books]);
   return (
-    <section ref={sectionRef} className={styles.box}>
+    <section className={styles.box}>
       {(books && books.content.length) || isFetching || isLoading ? (
         <>
           <div className={booksClassName}>
