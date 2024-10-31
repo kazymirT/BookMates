@@ -46,10 +46,13 @@ const DropDown = ({ control, options, variant, tagName }: DropdownProps) => {
     [styles['closed']]: !isOpen,
     [styles[`dropdown-container__${variant}`]]: variant,
   });
-
+  const iconClName = classNames(styles.icon, {
+    [styles[`icon__${variant}`]]: variant,
+    [styles[`icon__${variant}__open`]]: variant && isOpen,
+  });
   return (
     <div ref={dropDownRef} className={styles.dropdown}>
-      <div className={styles.icon} onClick={handleOpen}>
+      <div className={iconClName} onClick={handleOpen}>
         {control}
       </div>
       <div ref={listRef} className={containerClName}>
