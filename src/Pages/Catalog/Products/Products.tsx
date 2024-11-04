@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useEffect } from 'react';
 
-import FilterClear from './FilterClear';
 import styles from './Products.module.scss';
 import Pagination from '@/components/Pagination/Pagination';
 import ProductCard from '@/components/ProductCard/ProductCard';
@@ -19,10 +18,12 @@ const Products = () => {
   } = useAppSelector(queryAllData);
   const {
     data: books,
+    // currentData,
     isFetching,
     isLoading,
   } = useGetBooksQuery({
     page,
+    size: '16',
     sort: [sort.replace('-', ',')],
     search,
     categories: categories.map((c) => c.name),
@@ -30,25 +31,25 @@ const Products = () => {
     language: language.map((l) => l.name),
     years: years.map((y) => y.name),
   });
+
   const booksClassName = classNames(styles.books, {
     [styles.disabled]: isFetching && !isLoading,
   });
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
+  }, [books]);
   return (
     <section className={styles.box}>
-      <FilterClear />
       {(books && books.content.length) || isFetching || isLoading ? (
         <>
           <div className={booksClassName}>
             {books &&
               books.content.map((book) => (
-                <ProductCard data={book} key={book.id} />
+                <ProductCard data={book} key={book.id} variant="catalog" />
               ))}
           </div>
-          {books && books.totalElements > 9 && (
+          {books && books.totalElements > 16 && (
             <Pagination
               totalPages={books?.totalPages}
               currentPage={books?.pageable.pageNumber}

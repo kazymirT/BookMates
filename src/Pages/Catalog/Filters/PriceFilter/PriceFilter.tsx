@@ -5,19 +5,12 @@ import ReactSlider from 'react-slider';
 import 'nouislider/distribute/nouislider.css';
 import styles from './PriceFilter.module.scss';
 import { type PriceFilterProps } from '../../Catalog.types';
-import arrow from '@/assets/icons/ArrowDown.svg';
-import { useToggleOpen } from '@/hooks/useToggleOpen';
+import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPrice } from '@/redux/slices/queryParams';
 
-const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
+const PriceFilter = ({ title, price }: PriceFilterProps) => {
   const dispatch = useAppDispatch();
-  const { contentRef, handleToggleOpen, isOpen } =
-    useToggleOpen<HTMLDivElement>({
-      initialState: isDefaultOpen,
-      initialHeight: 70,
-    });
-
   const [value, setValue] = useState<number[]>(price);
   const [isError, setIsError] = useState(false);
 
@@ -40,55 +33,55 @@ const PriceFilter = ({ title, price, isDefaultOpen }: PriceFilterProps) => {
   const onSubmit = () => {
     dispatch(setPrice([String(value[0]), String(value[1])]));
   };
-  const arrowClassNames = classNames(styles.arrow, {
-    [styles['arrow_open']]: !isOpen,
-  });
   const controlClassNames = classNames(styles.control, {
-    [styles.open]: isOpen,
+    [styles.open]: true,
   });
   const inputClassNames = classNames(styles.input, {
     [styles['input__error']]: isError,
   });
   return (
     <div className={styles.filter}>
-      <div className={styles.box} onClick={handleToggleOpen}>
-        <h3>{title}</h3>
-        <img src={arrow} className={arrowClassNames} alt="arrow icon" />
-      </div>
-      <div className={controlClassNames} ref={contentRef}>
-        <ReactSlider
-          value={value[1] >= value[0] ? value : undefined}
-          max={1000}
-          min={0}
-          minDistance={0}
-          onChange={(value) => {
-            setValue(value);
-            setIsError(false);
-          }}
-          className={styles['range-slider']}
-          thumbClassName={styles['range-slider__thumb']}
-        />
-        <div className={styles['price-control']} onSubmit={onSubmit}>
-          <div className={styles.inputs}>
-            <input
-              className={inputClassNames}
-              type="text"
-              value={value[0]}
-              onChange={handlerLowerBound}
+      <DropDown
+        tagName="BUTTON"
+        variant="filter"
+        control={<h3 className={styles.title}>{title}</h3>}
+        options={
+          <div className={controlClassNames}>
+            <ReactSlider
+              value={value[1] >= value[0] ? value : undefined}
+              max={10000}
+              min={0}
+              minDistance={0}
+              onChange={(value) => {
+                setValue(value);
+                setIsError(false);
+              }}
+              className={styles['range-slider']}
+              thumbClassName={styles['range-slider__thumb']}
             />
-            <span></span>
-            <input
-              className={inputClassNames}
-              type="text"
-              value={value[1]}
-              onChange={handlerUpperBound}
-            />
+            <div className={styles['price-control']} onSubmit={onSubmit}>
+              <div className={styles.inputs}>
+                <input
+                  className={inputClassNames}
+                  type="text"
+                  value={value[0]}
+                  onChange={handlerLowerBound}
+                />
+                <span></span>
+                <input
+                  className={inputClassNames}
+                  type="text"
+                  value={value[1]}
+                  onChange={handlerUpperBound}
+                />
+              </div>
+              <button type="button" onClick={onSubmit} disabled={isError}>
+                ok
+              </button>
+            </div>
           </div>
-          <button type="button" onClick={onSubmit} disabled={isError}>
-            ok
-          </button>
-        </div>
-      </div>
+        }
+      />
     </div>
   );
 };

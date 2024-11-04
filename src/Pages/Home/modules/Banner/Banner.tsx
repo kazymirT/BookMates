@@ -23,10 +23,14 @@ const Banner = () => {
   };
   return (
     <div className="banner-container">
-      <Slider {...settings}>
-        {BANNER_DATA &&
-          BANNER_DATA.map((banner) => <Slide key={banner.id} slide={banner} />)}
-      </Slider>
+      <div className="wrapper">
+        <Slider {...settings}>
+          {BANNER_DATA &&
+            BANNER_DATA.map((banner) => (
+              <Slide key={banner.id} slide={banner} />
+            ))}
+        </Slider>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import ProductSlider from '../../components/ProductSlider/ProductSlider';
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
-import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import ProductCard from '@/components/ProductCard/ProductCard';
+import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import { useGetBooksQuery } from '@/redux/services/books';
 
 const Sale = () => {
@@ -22,7 +23,14 @@ const Sale = () => {
           isIcon
         />
         <SectionContent variant="product">
-          {books && <ProductSlider data={books} sliderCL="slider-section" />}
+          {books && (
+            <ProductSlider sliderCL="slider-section" isArrow>
+              {books &&
+                books.content.map((item) => (
+                  <ProductCard key={item.id} data={item} variant="slider" />
+                ))}
+            </ProductSlider>
+          )}
         </SectionContent>
       </>
     </Section>

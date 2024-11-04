@@ -3,23 +3,22 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './ProductCard.module.scss';
+import { ProductCardProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
   ButtonType,
   Sizes,
   Variant,
 } from '@/components/ui-components/Button/constants';
-import { BooksData } from '@/redux/services/services.types';
 
-export interface ProductCardProps {
-  data: BooksData;
-}
 const ProductCard: FC<ProductCardProps> = ({
   data: { authors, id, title, imageUrl, price, discount, discountPrice },
+  variant,
 }) => {
   const cardClassNames = classNames(styles.card, {
     [styles['card__discount']]: !!discount,
     [styles['card__overlay']]: title.length > 22,
+    [styles[`card__${variant}`]]: variant,
   });
   const wrapperClassNames = classNames(styles.wrapper, {
     [styles['wrapper__shadow']]: title.length > 22,

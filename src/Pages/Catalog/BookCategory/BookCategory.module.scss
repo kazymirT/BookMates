@@ -1,0 +1,48 @@
+@import '@/styles';
+
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .title {
+    padding-top: 2px;
+
+    font-family: $third-family;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.594;
+    color: $grey-500;
+    letter-spacing: 0.055em;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc((100% - 3 * 24px) / 4), 1fr));
+    gap: 20px 24px;
+    width: 100%;
+
+    .link {
+      padding: 16px 35px;
+
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.088;
+      color: $grey-500;
+      text-align: center;
+      letter-spacing: 0.01em;
+
+      border: 0.5px solid $grey-300;
+      border-radius: 8px;
+
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: $accent-white;
+        background: $button-default;
+        border-color: $button-default;
+      }
+    }
+  }
+}

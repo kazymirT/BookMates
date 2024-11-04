@@ -4,7 +4,7 @@ import { category } from './data';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
-import SectionTitle from '../../components/SectionTitle/SectionTitle';
+import SectionTitle from '@/components/SectionTitle/SectionTitle';
 
 const Category = () => {
   const { t } = useTranslation();

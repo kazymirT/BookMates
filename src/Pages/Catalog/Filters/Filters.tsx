@@ -6,6 +6,7 @@ import { useGetAllAttributesQuery } from '@/redux/services/attributes';
 
 const Filters: FC = () => {
   const { data: attributes, isSuccess } = useGetAllAttributesQuery();
+
   return (
     <aside className={styles.filters}>
       {isSuccess && <FilterContent attributes={attributes} />}

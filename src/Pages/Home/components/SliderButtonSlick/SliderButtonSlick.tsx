@@ -1,16 +1,10 @@
 import classNames from 'classnames';
-import { CSSProperties, FC } from 'react';
+import { FC } from 'react';
 
 import styles from './SliderButtonSlick.module.scss';
+import { SliderButtonProps } from './types';
 import { Icon } from '@/components/ui-components/Icons';
 
-export interface SliderButtonProps {
-  variant: 'banner' | 'section' | 'product';
-  arrow: 'next' | 'prev';
-  onClick?: () => void;
-  style?: CSSProperties;
-  className?: string;
-}
 export const SliderButtonSlick: FC<SliderButtonProps> = ({
   variant,
   arrow,

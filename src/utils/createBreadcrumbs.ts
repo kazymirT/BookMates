@@ -7,17 +7,18 @@ interface Breadcrumb {
 
 interface Category {
   name: string;
+  id: number;
 }
 
 export const createBreadcrumbs = (page: string, categoryId?: Category) => {
   const breadcrumbs: Breadcrumb[] = [BASE_CRUMBS[page]];
-  // if (categoryId) {
-  //   breadcrumbs.push({
-  //     name: categoryId.name,
-  //     to: `/catalog/?categories=${SORT_OPTIONS_URL[categoryId.name]}`,
-  //   });
-  // }
-  console.log(categoryId);
+
+  if (categoryId) {
+    breadcrumbs.push({
+      name: categoryId.name,
+      to: `/catalog?categories=${categoryId.id}&page=1`,
+    });
+  }
 
   return breadcrumbs;
 };

@@ -8,6 +8,7 @@ import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
 import ProductSlider from '../Home/components/ProductSlider/ProductSlider';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
+import ProductCard from '@/components/ProductCard/ProductCard';
 import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
@@ -50,11 +51,16 @@ const Product = () => {
           <h3>{t('product.offers')}</h3>
           {books && (
             <ProductSlider
-              data={books}
               sliderCL="slider-product"
               variant="product"
               slidesToScroll={2}
-            />
+              isArrow
+            >
+              {books &&
+                books.content.map((item) => (
+                  <ProductCard key={item.id} data={item} variant="slider" />
+                ))}
+            </ProductSlider>
           )}
         </section>
       </div>

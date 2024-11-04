@@ -13,12 +13,12 @@
     z-index: 2;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 40px 63px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 40px;
 
-    padding: 40px 24px;
+    padding: 34px 32px;
 
-    border: 2px solid $button-default;
+    background: $accent-white;
     border-radius: 8px;
 
     &.disabled {
