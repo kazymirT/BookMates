@@ -141,6 +141,7 @@ const EditCategory = () => {
               {...register('attributes')}
               placeholder={Attributes[editAttributes.name].inputName}
               type="text"
+              autoFocus
               errorMessage={errors.attributes?.message}
             />
             <div className={styles.btns}>

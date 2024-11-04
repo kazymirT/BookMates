@@ -82,6 +82,7 @@ const AddAttributes = () => {
           {...register('attributes')}
           placeholder={Attributes[attributes ?? ''].inputName}
           type="text"
+          autoFocus
           errorMessage={errors.attributes?.message}
         />
         <Button
