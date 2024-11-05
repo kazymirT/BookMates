@@ -28,7 +28,7 @@ const Author = () => {
             descriptions={author.descriptions}
           />
           <AuthorBook authorName={author.name} />
-          <Subscription />
+          <Subscription variant="author" />
         </div>
       </div>
     </section>
