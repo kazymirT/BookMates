@@ -1,4 +1,4 @@
 export interface CategoryIntroProps {
   title: string;
-  descriptions: string[];
+  descriptions: string;
 }
