@@ -1,0 +1,21 @@
+@import '@/styles';
+
+.author {
+  .author-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    padding-top: 67px;
+    padding-bottom: 126px;
+
+    .name {
+      font-family: $font-family;
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.219;
+      color: $grey-500;
+      letter-spacing: 0.05em;
+    }
+  }
+}
