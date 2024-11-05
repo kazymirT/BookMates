@@ -1,0 +1,85 @@
+@import '@/styles';
+
+.content {
+  display: grid;
+  grid-template-columns: 306px 1fr;
+  gap: 26px;
+
+  .avatar {
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .descriptions {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+
+      margin-bottom: 21px;
+      padding: 20px;
+
+      background: $accent-white;
+      border-radius: 8px;
+    }
+  }
+
+  .description {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: $grey-500;
+    letter-spacing: 0.04em;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-top: 16px;
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+
+      h4 {
+        font-weight: 600;
+        letter-spacing: 0.035em;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        padding-left: 24px;
+
+        li {
+          line-height: 1;
+          letter-spacing: 0.045em;
+          list-style-type: disc;
+
+          a {
+            border-bottom: $brown-400;
+            border-bottom-style: solid;
+            border-bottom-width: 2px;
+            transition: all 0.3s;
+
+            &:hover {
+              border-color: $button-default;
+            }
+          }
+        }
+      }
+    }
+  }
+}
