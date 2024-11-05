@@ -22,11 +22,11 @@ export const BASE_CRUMBS: Record<
 > = {
   authors: {
     name: 'Authors',
-    to: '/author',
+    to: '/authors',
   },
   автори: {
-    name: 'Автори',
-    to: '/author',
+    name: 'Всі автори',
+    to: '/authors',
   },
   catalog: {
     name: 'Catalog',
