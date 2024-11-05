@@ -5,18 +5,13 @@ interface Breadcrumb {
   to: string;
 }
 
-interface Category {
-  name: string;
-  id: number;
-}
-
-export const createBreadcrumbs = (page: string, categoryId?: Category) => {
+export const createBreadcrumbs = (page: string, crumbs?: Breadcrumb) => {
   const breadcrumbs: Breadcrumb[] = [BASE_CRUMBS[page]];
 
-  if (categoryId) {
+  if (crumbs) {
     breadcrumbs.push({
-      name: categoryId.name,
-      to: `/catalog?categories=${categoryId.id}&page=1`,
+      name: crumbs.name,
+      to: crumbs.to,
     });
   }
 

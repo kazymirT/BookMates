@@ -195,7 +195,8 @@ export const ukraine = {
   breadcrumbs: {
     home: 'Головна',
     catalog: 'каталог',
-    order: 'оформити замовлення',
+    order: 'Оформити замовлення',
+    authors: 'автори',
   },
   'forms-error': {
     email: {

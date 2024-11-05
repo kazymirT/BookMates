@@ -20,6 +20,14 @@ export const BASE_CRUMBS: Record<
     to: string;
   }
 > = {
+  authors: {
+    name: 'Authors',
+    to: '/author',
+  },
+  автори: {
+    name: 'Автори',
+    to: '/author',
+  },
   catalog: {
     name: 'Catalog',
     to: '/catalog',
