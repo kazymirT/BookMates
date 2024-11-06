@@ -13,7 +13,7 @@ const Category = () => {
     <Section>
       <>
         <SectionTitle
-          btnLink="/catalog"
+          btnLink="/collections"
           btnText={t('home.book-collections.button')}
           title={t('home.book-collections.title')}
         />
