@@ -1,0 +1,49 @@
+@import '@/styles';
+
+.card {
+  overflow-y: visible;
+  display: flex;
+  gap: 13px;
+  align-items: flex-end;
+
+  width: 100%;
+  height: 176px;
+  padding: 6px;
+  padding-right: 25px;
+
+  background: #fff;
+  border-radius: 8px;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    width: 100%;
+    height: 176px;
+    padding-top: 17px;
+
+    h3 {
+      overflow: hidden;
+      display: block;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+
+      font-family: $third-family;
+      font-size: 30px;
+      font-weight: 400;
+      color: $grey-500;
+      text-overflow: ellipsis;
+      letter-spacing: 0.03em;
+
+      transition: 0.3s ease-in-out;
+
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  img {
+    width: 100%;
+    max-width: 221px;
+  }
+}
