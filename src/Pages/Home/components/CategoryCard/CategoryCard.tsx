@@ -6,7 +6,7 @@ import { CategoryCardProps } from '../SectionContent/SectionContent';
 
 const CategoryCard: FC<CategoryCardProps> = ({ id, img, title }) => {
   return (
-    <Link to={`${id}`} className={styles.card}>
+    <Link to={`/catalog?categories=${id}&page=1`} className={styles.card}>
       <img src={img} alt={title} width={220} height={200} />
       <div>
         <h4>{title}</h4>
