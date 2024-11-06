@@ -203,6 +203,7 @@ export const english = {
     catalog: 'catalog',
     order: 'make an order',
     authors: 'authors',
+    collections: 'collections',
   },
   'forms-error': {
     email: {
@@ -237,5 +238,8 @@ export const english = {
       upper: 'The last name must start with a capital letter',
     },
     city: 'This field is required',
+  },
+  collections: {
+    title: 'Book Collections',
   },
 };

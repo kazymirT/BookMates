@@ -202,6 +202,7 @@ export const ukraine = {
     catalog: 'каталог',
     order: 'Оформити замовлення',
     authors: 'автори',
+    collections: 'колекція',
   },
   'forms-error': {
     email: {
@@ -236,5 +237,8 @@ export const ukraine = {
       upper: 'Прізвище має починатись з великої літери',
     },
     city: 'Це поле є обов`язковим.',
+  },
+  collections: {
+    title: 'Книжкові колекції',
   },
 };
