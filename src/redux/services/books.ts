@@ -18,8 +18,9 @@ export const booksApi = baseApi.injectEndpoints({
         language = [],
         categories = [],
         years = [],
+        authors = [],
       }) => ({
-        url: `/open/book/list?page=${page}&size=${size}&sort=${sort}&title=${search}&price=${price.join(',')}&language=${language.join(',')}&year=${years.join(',')}&category=${categories.join(',')}`,
+        url: `/open/book/list?page=${page}&size=${size}&sort=${sort}&title=${search}&price=${price.join(',')}&language=${language.join(',')}&year=${years.join(',')}&category=${categories.join(',')}&author=${authors.join(',')}`,
       }),
       providesTags: ['Books'],
     }),

@@ -17,9 +17,15 @@ const Catalog = () => {
   const {
     filter: { categories },
   } = useAppSelector(queryAllData);
+
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
-    categories[0]
+    categories && categories.length > 0 && categories[0].name
+      ? {
+          name: categories[0].name,
+          to: `/catalog?categories=${categories[0].id}&page=1`,
+        }
+      : undefined
   );
 
   return (

@@ -142,6 +142,7 @@ export type BooksArgs = {
   years?: string[];
   language?: string[];
   categories?: string[];
+  authors?: string[];
 };
 
 export type CategoryAll = {

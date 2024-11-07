@@ -20,6 +20,7 @@ const NotAuthenticated = lazy(
 const NotAuthorized = lazy(
   () => import('../Pages/NotAuthorized/NotAuthorized')
 );
+const Author = lazy(() => import('../Pages/Author/Author'));
 
 import HistoryWrapper from './HistoryWrapper';
 import Layout from '@/Layout/Layout/Layout';
@@ -38,6 +39,7 @@ const route = createBrowserRouter(
       <Route path={ROUTE_PATH.HOME} element={<Home />} />
       <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
       <Route path={'/product/:productId?'} element={<Product />} />
+      <Route path={'/author/:authorId'} element={<Author />} />
       <Route path={'/order'} element={<Order />} />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route

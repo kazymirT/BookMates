@@ -197,6 +197,7 @@ export const english = {
     home: 'Home',
     catalog: 'catalog',
     order: 'make an order',
+    authors: 'authors',
   },
   'forms-error': {
     email: {

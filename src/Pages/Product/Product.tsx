@@ -19,7 +19,10 @@ const Product = () => {
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
-    book?.categories[0]
+    book && {
+      name: book.categories[0].name,
+      to: `/catalog?categories=${book.categories[0].id}&page=1`,
+    }
   );
   return (
     <div className={styles.product}>
