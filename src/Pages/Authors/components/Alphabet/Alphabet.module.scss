@@ -1,0 +1,11 @@
+@import '@/styles';
+
+.alphabet {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 20px 23px;
+
+  background: $accent-white;
+  border-radius: 8px;
+}

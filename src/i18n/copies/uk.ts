@@ -67,6 +67,11 @@ export const ukraine = {
     'clear-filter': 'Скинути фільтр',
     sort: 'ua',
   },
+  authors: {
+    title: 'Автори',
+    alphabet: 'ukr',
+    search: 'Пошук у списку',
+  },
   product: {
     categories: 'Категорія',
     years: 'Рік видання',

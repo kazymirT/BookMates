@@ -15,7 +15,7 @@ const Ui = () => {
         <Sale />
         <Category />
         <Authors />
-        <Subscription />
+        <Subscription variant="home" />
       </div>
     </>
   );

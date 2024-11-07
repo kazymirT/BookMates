@@ -1,8 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import classNames from 'classnames';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import styles from './Subscription.module.scss';
+import { SubscriptionProps } from './types';
 import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
@@ -15,7 +18,7 @@ import {
   ResetPasswordValues,
 } from '@/utils/validateSchema';
 
-const Subscription = () => {
+const Subscription: FC<SubscriptionProps> = ({ variant }) => {
   const { t } = useTranslation();
   const {
     register,
@@ -34,8 +37,11 @@ const Subscription = () => {
     console.log(data);
     reset();
   };
+  const subscribeCN = classNames(styles.subscription, {
+    [styles[`subscription__${variant}`]]: variant,
+  });
   return (
-    <section className={styles.subscription}>
+    <section className={subscribeCN}>
       <div className={styles.content}>
         <h3>{t('home.subscribe.title')}</h3>
         <p>{t('home.subscribe.description')}</p>

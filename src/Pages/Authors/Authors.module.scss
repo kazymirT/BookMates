@@ -1,21 +1,19 @@
 @import '@/styles';
 
-.author {
-  .author-inner {
+.authors {
+  .authors__inner {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    padding: 67px 0 113px;
 
-    padding-top: 67px;
-    padding-bottom: 124px;
-
-    .name {
+    h3 {
       font-family: $font-family;
       font-size: 32px;
       font-weight: 500;
       line-height: 1.219;
       color: $grey-500;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.07em;
     }
   }
 }

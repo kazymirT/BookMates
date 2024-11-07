@@ -67,6 +67,11 @@ export const english = {
     'clear-filter': 'Clean up',
     sort: 'en',
   },
+  authors: {
+    title: 'Authors',
+    alphabet: 'en',
+    search: 'Search',
+  },
   product: {
     categories: 'Category',
     years: 'Year of publication',
