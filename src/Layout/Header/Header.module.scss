@@ -2,7 +2,7 @@
 
 .header {
   position: sticky;
-  z-index: 99;
+  z-index: 20;
   top: -96px;
   background: $accent-white;
 
@@ -47,7 +47,7 @@
 
     .bottom {
       position: sticky;
-      z-index: 99;
+      z-index: 20;
       top: 0;
 
       display: flex;

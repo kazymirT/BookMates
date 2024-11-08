@@ -96,7 +96,6 @@
 
 @mixin btn-position($top, $rot, $right: null, $left: null) {
   position: absolute;
-  z-index: 10000;
   top: $top;
   right: $right;
   left: $left;
