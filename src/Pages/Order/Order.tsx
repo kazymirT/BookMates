@@ -26,7 +26,7 @@ const Order = () => {
     <div className={styles.order}>
       <div className="container">
         <div className={styles['order-container']}>
-          <Breadcrumbs options={breadCrumbs} activeLastLink={false} />
+          <Breadcrumbs options={breadCrumbs} />
           <section className={styles.main}>
             <h2>{t('order.title')}</h2>
             <OrderForm />

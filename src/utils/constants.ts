@@ -48,7 +48,7 @@ export const BASE_CRUMBS: Record<
     name: 'Каталог',
     to: '/catalog',
   },
-  'оформити замовлення': {
+  'Оформити замовлення': {
     name: 'Оформити замовлення',
     to: '/order',
   },
