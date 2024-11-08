@@ -3,4 +3,5 @@ export type DropdownProps = {
   control: React.ReactNode;
   variant: 'menu' | 'category' | 'filter';
   tagName: string;
+  isOverflow?: boolean;
 };

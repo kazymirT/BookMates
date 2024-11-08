@@ -6,6 +6,7 @@ import { adminSlice } from './slices/adminSlice';
 import cartNotificationSlice from './slices/cartNotificationSlice';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
+import { overlaySlice } from './slices/overlay';
 import profileSlice from './slices/profileSlice';
 import { queryParamsSlice } from './slices/queryParams';
 import shoppingCartSlice from './slices/shoppingCartSlice';
@@ -22,6 +23,7 @@ export const rootReducer = combineReducers({
   locationHistory: locationHistorySlice,
   profile: profileSlice,
   status: statusSlice,
+  overlay: overlaySlice.reducer,
   cartNotification: cartNotificationSlice,
   shoppingCart: shoppingCartSlice,
 });
