@@ -104,7 +104,7 @@
     @include mixin.scrollBar(10px, 5px, colors.$background-color, colors.$background-color, colors.$grey-100);
 
     position: absolute;
-    z-index: 10;
+    z-index: 5;
     top: 70px;
     left: 0;
 

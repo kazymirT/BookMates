@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import CartNotification from '@/components/CartNotification/CartNotification';
 import Modal from '@/components/Modal/Modal';
+import Overlay from '@/components/Overlay/Overlay';
 import Profile from '@/components/Profile/Profile';
 import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
 import StatusScreen from '@/components/StatusScreen/StatusScreen';
@@ -18,6 +19,7 @@ const Layout = () => {
     <>
       <Header />
       <main className={styles.main}>
+        <Overlay />
         <SkeletonTheme
           baseColor="#d1d1d1"
           highlightColor="#6a6a6a"

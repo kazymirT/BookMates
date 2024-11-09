@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import search from '@/assets/icons/search.svg';
 import useClickOutside from '@/hooks/useClickOutside';
 import { useAppDispatch } from '@/redux/hooks';
+import { incrementOverlay, decrementOverlay } from '@/redux/slices/overlay';
 import { setSearch } from '@/redux/slices/queryParams';
 
 const Search = () => {
@@ -19,6 +20,11 @@ const Search = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    value.length >= 3 && isOpen
+      ? dispatch(incrementOverlay())
+      : dispatch(decrementOverlay());
+  }, [dispatch, isOpen, value.length]);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) =>
     setValue(event.target.value);

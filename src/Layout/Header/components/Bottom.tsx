@@ -40,6 +40,7 @@ const Bottom = () => {
       <div className={styles.wrapper}>
         {
           <DropDown
+            isOverflow
             control={
               <Button
                 buttonType={ButtonType.Button}
@@ -66,6 +67,7 @@ const Bottom = () => {
             control={<Icon.Account height="38px" width="38px" />}
             variant="menu"
             tagName="LI"
+            isOverflow
           />
         )}
         <button
