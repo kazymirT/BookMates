@@ -21,7 +21,6 @@
         position: absolute;
         top: 47%;
         right: 17px;
-        transform: scale(1.4);
         transform: translateY(-50%);
         transform: scale(1.4);
 
@@ -44,7 +43,6 @@
     &__open {
       h3::after {
         transform: scale(-1.4);
-        transform: scale(-1.4);
       }
     }
   }
@@ -54,13 +52,10 @@
   position: absolute;
   z-index: 1000;
   overflow: hidden;
-
-  // box-shadow: 2px 3px 37px 0 #00000040;
-
   transition: opacity 0.35s ease-out;
 
   &__menu {
-    top: 50px;
+    top: 73px;
     left: 50%;
     transform: translateX(-50%);
   }
