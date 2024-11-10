@@ -51,7 +51,7 @@ const Product = () => {
           </section>
         }
         <section className={styles.likes}>
-          <h3>{t('product.offers')}</h3>
+          <h3 className={styles.title}>{t('product.offers')}</h3>
           {books && (
             <ProductSlider
               sliderCL="slider-product"
