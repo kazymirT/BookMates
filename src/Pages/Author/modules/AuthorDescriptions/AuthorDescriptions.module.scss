@@ -71,10 +71,8 @@
           list-style-type: disc;
 
           a {
-            border-bottom: $brown-400;
-            border-bottom-style: solid;
-            border-bottom-width: 2px;
-            transition: all 0.3s;
+            text-decoration: solid underline $brown-400 2px;
+            text-underline-offset: 2px;
           }
         }
       }
