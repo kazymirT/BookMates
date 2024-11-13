@@ -26,7 +26,7 @@ const Layout = () => {
           borderRadius="0.5rem"
           duration={4}
         >
-          <Suspense fallback={<div>loading</div>}>
+          <Suspense fallback={<div className={styles.loading}>loading</div>}>
             <Outlet />
           </Suspense>
         </SkeletonTheme>
