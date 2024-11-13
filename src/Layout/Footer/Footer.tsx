@@ -26,8 +26,20 @@ const Footer = () => {
             <li onClick={handleOnSupport}>{t('footer.links.support')}</li>
           </ul>
           <div className={styles.btns}>
-            <img src={appstore} alt="app store" width={160} height={48} />
-            <img src={googleplay} alt="google play" width={160} height={48} />
+            <img
+              src={appstore}
+              alt="app store"
+              width={160}
+              height={48}
+              loading="lazy"
+            />
+            <img
+              src={googleplay}
+              alt="google play"
+              width={160}
+              height={48}
+              loading="lazy"
+            />
           </div>
         </nav>
         <div>

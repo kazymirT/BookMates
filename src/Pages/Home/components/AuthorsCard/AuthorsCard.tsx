@@ -13,7 +13,7 @@ import {
 const AuthorCard: FC<AuthorCardProps> = ({ id, img, title }) => {
   return (
     <Link to={`/author/${id}`} className={styles.card}>
-      <img src={img} alt={title} width={233} height={330} />
+      <img src={img} alt={title} width={233} height={330} loading="lazy" />
       <div className={styles.content}>
         <h4>{title}</h4>
         <Button

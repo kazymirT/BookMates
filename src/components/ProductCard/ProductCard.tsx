@@ -26,7 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({
   //23
   return (
     <Link to={`/product/${id}`} className={cardClassNames}>
-      <img src={imageUrl} alt={title} width={204} height={271} />
+      <img src={imageUrl} alt={title} width={204} height={271} loading="lazy" />
       <div className={styles.transparent}>
         <div className={wrapperClassNames}>
           <div className={styles.content}>
