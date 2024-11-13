@@ -150,7 +150,7 @@ export const getOrderSchema = (t: TFunction<'translation', undefined>) => {
 
 export type OrderValues = z.infer<ReturnType<typeof getOrderSchema>>;
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
-const ACCEPTED_FILE_TYPES = ['image/png'];
+const ACCEPTED_FILE_TYPES = ['image/png', 'image/webp'];
 
 export const editBookSchema = z.object({
   title: z
@@ -208,7 +208,7 @@ export const pictureSchema = z.object({
     }, 'File size must be less than 3MB')
     .refine((file) => {
       return file?.length ? ACCEPTED_FILE_TYPES.includes(file[0].type) : false;
-    }, 'File must be a PNG'),
+    }, 'File must be a PNG or WEBP'),
 });
 
 export type PictureValues = z.infer<typeof pictureSchema>;
