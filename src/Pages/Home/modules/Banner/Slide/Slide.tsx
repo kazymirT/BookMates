@@ -10,10 +10,17 @@ const Slide: FC<SlideProps> = ({
     <div className={styles['slider-container']}>
       <div
         className={styles.slider}
-        style={{
-          backgroundImage: img ? `url(${img})` : undefined,
-        }}
+        // style={{
+        //   backgroundImage: img ? `url(${img})` : undefined,
+        // }}
       >
+        <img
+          src={img}
+          alt="image for slide"
+          // loading="lazy"
+          width={981}
+          height={344}
+        />
         <div className={styles.text}>
           <h3>{title}</h3>
           <p>{description}</p>

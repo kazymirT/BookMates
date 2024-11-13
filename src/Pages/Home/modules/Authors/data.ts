@@ -1,7 +1,7 @@
-import authorImg1 from '@/assets/rep/authors/01.png';
-import authorImg2 from '@/assets/rep/authors/02.png';
-import authorImg3 from '@/assets/rep/authors/03.png';
-import authorImg4 from '@/assets/rep/authors/04.png';
+import authorImg1 from '@/assets/rep/authors/01.webp';
+import authorImg2 from '@/assets/rep/authors/02.webp';
+import authorImg3 from '@/assets/rep/authors/03.webp';
+import authorImg4 from '@/assets/rep/authors/04.webp';
 
 export const authors = [
   { id: 1, title: 'Алекс Т. Сміт', img: authorImg1 },
