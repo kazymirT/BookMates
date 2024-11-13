@@ -16,7 +16,12 @@ export const SliderButtonSlick: FC<SliderButtonProps> = ({
   });
   return (
     <>
-      <button type="button" onClick={onClick} className={btnNextClassName}>
+      <button
+        type="button"
+        onClick={onClick}
+        aria-label={`slide ${arrow}`}
+        className={btnNextClassName}
+      >
         <Icon.Arrow_1 />
       </button>
     </>
