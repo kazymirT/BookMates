@@ -27,45 +27,47 @@ const Product = () => {
   return (
     <div className={styles.product}>
       <div className="container">
-        {isLoading ? (
-          <Skeleton width={300} height={19} />
-        ) : (
-          <Breadcrumbs options={breadcrumbs} activeLastLink />
-        )}
-        {
-          <section className={styles['details-product']}>
-            <div className={styles['img-box']}>
-              {isLoading ? (
-                <Skeleton width={282} height={328} />
-              ) : (
-                <img
-                  src={book?.imageUrl}
-                  alt={book && book.title}
-                  width={282}
-                  height={328}
-                />
-              )}
-            </div>
-            <ProductDetails book={!isLoading ? book : undefined} />
-            <ProductControl book={book} />
-          </section>
-        }
-        <section className={styles.likes}>
-          <h3 className={styles.title}>{t('product.offers')}</h3>
-          {books && (
-            <ProductSlider
-              sliderCL="slider-product"
-              variant="product"
-              slidesToScroll={2}
-              isArrow
-            >
-              {books &&
-                books.content.map((item) => (
-                  <ProductCard key={item.id} data={item} variant="slider" />
-                ))}
-            </ProductSlider>
+        <div className={styles['product__inner']}>
+          {isLoading ? (
+            <Skeleton width={300} height={19} />
+          ) : (
+            <Breadcrumbs options={breadcrumbs} activeLastLink />
           )}
-        </section>
+          {
+            <section className={styles['details-product']}>
+              <div className={styles['img-box']}>
+                {isLoading ? (
+                  <Skeleton width={270} height={406} />
+                ) : (
+                  <img
+                    src={book?.imageUrl}
+                    alt={book && book.title}
+                    width={270}
+                    height={406}
+                  />
+                )}
+              </div>
+              <ProductDetails book={!isLoading ? book : undefined} />
+              <ProductControl book={book} />
+            </section>
+          }
+          <section className={styles.likes}>
+            <h3 className={styles.title}>{t('product.offers')}</h3>
+            {books && (
+              <ProductSlider
+                sliderCL="slider-product"
+                variant="product"
+                slidesToScroll={2}
+                isArrow
+              >
+                {books &&
+                  books.content.map((item) => (
+                    <ProductCard key={item.id} data={item} variant="slider" />
+                  ))}
+              </ProductSlider>
+            )}
+          </section>
+        </div>
       </div>
     </div>
   );

@@ -48,20 +48,22 @@
 }
 
 .product {
-  padding: 2.5rem 0;
   background: colors.$brown-100;
 
-  & > div {
+  .product__inner {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 40px;
+    padding-top: 69px;
   }
 
   .details-product {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: 270px 1fr 282px;
     gap: 24px;
     justify-content: center;
+
+    padding-left: 12px;
 
     .img-box {
       position: relative;
@@ -69,7 +71,7 @@
       overflow: hidden;
 
       width: 100%;
-      max-width: 282px;
+      max-width: 270px;
       height: fit-content;
 
       font-size: 0;
@@ -101,10 +103,15 @@
   .info {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 14px;
 
     h2 {
-      @include font-styles(700, 1.5rem, 1.21, colors.$grey-500);
+      font-family: $font-family;
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: $grey-500;
+      letter-spacing: 0.047em;
     }
 
     .authors {
@@ -112,7 +119,14 @@
       gap: 0.25rem;
 
       h2 {
-        @include font-styles(500, 1.5rem, 1.21, colors.$icon-default);
+        font-family: $font-family;
+        font-size: 20px;
+        font-weight: 500;
+        color: $icon-default;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+        text-underline-offset: 4px;
+        letter-spacing: 0.045em;
       }
     }
   }
@@ -120,60 +134,56 @@
   .details {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 24px;
 
-    .row {
+    padding: 20px;
+
+    background-color: $accent-white;
+    border-radius: 8px;
+
+    .list {
       display: flex;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 10px;
 
-      div {
+      li {
         display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
+        align-items: center;
+        justify-content: space-between;
 
-        h3 {
-          @include font-styles(500, 1rem, 1.21, colors.$grey-500);
-        }
+        padding-bottom: 2px;
 
-        .item {
-          @include item-style;
-        }
+        border-bottom: 1px solid $icon-default;
 
-        .categories {
+        div {
           display: flex;
-          flex-flow: row wrap;
-          gap: 0.75rem;
+          gap: 3px;
+          align-items: center;
+          max-height: 18px;
+        }
 
-          .item {
-            @include item-style;
+        span,
+        a {
+          font-family: $font-family;
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 1.2;
+          color: #000;
+          letter-spacing: 0.04em;
+        }
 
-            &:hover {
-              background-color: colors.$button-hover-seccondary;
-            }
-
-            &:active {
-              background-color: colors.$button-active-secondary;
-            }
-          }
+        a {
         }
       }
     }
-  }
 
-  .description {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-
-    h3 {
-      @include font-styles(500, 1rem, 1.187, colors.$grey-500);
-    }
-
-    p {
-      @include font-styles(400, 0.875rem, 1.5, colors.$icon-default);
-
-      max-width: 34.875rem;
-      letter-spacing: 0.025em;
+    .description {
+      font-family: $font-family;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 150%;
+      color: $icon-default;
+      letter-spacing: 0.04em;
     }
   }
 
