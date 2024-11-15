@@ -1,60 +1,15 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
-
 @import '@/styles';
 
-@mixin font-styles($font-weight, $font-size, $line-height, $color) {
-  font-family: fonts.$font-family;
-  font-size: $font-size;
-  font-weight: $font-weight;
-  line-height: $line-height;
-  color: $color;
-  letter-spacing: 0.01em;
-}
-
-@mixin item-style {
-  width: fit-content;
-  padding: 0.625rem 0.75rem;
-
-  line-height: 1.31;
-
-  background: colors.$accent-white;
-  border-radius: 0.5rem;
-}
-
-@mixin button-styles($bg-color, $hover-color, $active-color, $font-color) {
-  width: 100%;
-  padding: 0.75rem 0;
-
-  font-family: fonts.$font-family;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.25;
-  color: $font-color;
-  letter-spacing: 0.05em;
-
-  background: $bg-color;
-  border-radius: 0.25rem;
-
-  transition: all 0.3s;
-
-  &:hover {
-    background: $hover-color;
-  }
-
-  &:active {
-    background: $active-color;
-  }
-}
-
 .product {
-  background: colors.$brown-100;
+  background: $brown-100;
 
   .product__inner {
     display: flex;
     flex-direction: column;
     gap: 40px;
+
     padding-top: 69px;
+    padding-bottom: 150px;
   }
 
   .details-product {
@@ -116,9 +71,9 @@
 
     .authors {
       display: flex;
-      gap: 0.25rem;
+      gap: 8px;
 
-      h2 {
+      a {
         font-family: $font-family;
         font-size: 20px;
         font-weight: 500;
@@ -171,9 +126,6 @@
           color: #000;
           letter-spacing: 0.04em;
         }
-
-        a {
-        }
       }
     }
 
@@ -190,62 +142,23 @@
   .control {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 30px;
 
     box-sizing: border-box;
     width: 100%;
     max-width: 282px;
-    height: fit-content;
-    padding: 2.1875rem 2rem;
-
-    background: colors.$accent-white;
-    border-radius: 0.75rem;
 
     .price {
-      @include font-styles(500, 1.5rem, 1.2, colors.$button-default);
-
       display: flex;
-      width: fit-content;
-      letter-spacing: 0.1em;
+      flex-direction: column;
+      gap: 5px;
 
-      &::after {
-        content: 'грн';
-        margin-left: 5px;
-      }
-    }
-
-    .discount {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-
-      .discount-price {
+      .is {
         font-family: $font-family;
         font-size: 16px;
-        font-weight: 400;
+        font-weight: 500;
         color: $icon-default;
-        text-align: center;
-        text-decoration: line-through;
         letter-spacing: 0.01em;
-
-        &::after {
-          content: 'грн';
-          margin-left: 5px;
-        }
-      }
-
-      .normal-price {
-        @include font-styles(500, 1.5rem, 1.2, colors.$button-default);
-
-        display: flex;
-        width: fit-content;
-        letter-spacing: 0.1em;
-
-        &::after {
-          content: 'грн';
-          margin-left: 5px;
-        }
       }
     }
 
@@ -254,26 +167,29 @@
       flex-direction: column;
       gap: 16px;
 
-      .arrow {
-        stroke: $accent-white;
+      .product_in_card button {
+        padding: 12px 0;
       }
     }
   }
 
   .likes {
     position: relative;
+
     display: flex;
     flex-direction: column;
     gap: 25px;
 
+    padding-bottom: 25px;
+
     .title {
       padding: 0.46875rem 0;
 
-      font-family: fonts.$font-family;
+      font-family: $font-family;
       font-size: 1.5rem;
       font-weight: 500;
       line-height: 1.21;
-      color: colors.$grey-500;
+      color: $grey-500;
       letter-spacing: 0.05em;
     }
   }

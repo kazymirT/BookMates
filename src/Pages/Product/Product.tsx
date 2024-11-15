@@ -9,13 +9,14 @@ import ProductDetails from './ProductDetails/ProductDetails';
 import ProductSlider from '../Home/components/ProductSlider/ProductSlider';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import Subscription from '@/components/Subscription/Subscription';
 import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
-  const { data: books } = useGetBooksQuery({ size: '8' });
+  const { data: books } = useGetBooksQuery({ size: '9' });
   const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
@@ -54,12 +55,7 @@ const Product = () => {
           <section className={styles.likes}>
             <h3 className={styles.title}>{t('product.offers')}</h3>
             {books && (
-              <ProductSlider
-                sliderCL="slider-product"
-                variant="product"
-                slidesToScroll={2}
-                isArrow
-              >
+              <ProductSlider sliderCL="slider-section" isArrow>
                 {books &&
                   books.content.map((item) => (
                     <ProductCard key={item.id} data={item} variant="slider" />
@@ -67,6 +63,7 @@ const Product = () => {
               </ProductSlider>
             )}
           </section>
+          <Subscription variant={'author'} />
         </div>
       </div>
     </div>
