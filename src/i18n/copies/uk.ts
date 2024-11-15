@@ -77,7 +77,7 @@ export const ukraine = {
     years: 'Рік видання',
     language: 'Мова книги',
     description: 'Короткий опис',
-    offers: 'Вам може сподобатись',
+    offers: 'З цим товаром купують',
     'btn-buy': 'Купити зараз',
     'btn-basket': 'До кошика',
   },

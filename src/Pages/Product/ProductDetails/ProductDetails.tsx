@@ -22,13 +22,11 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
           <div className={styles.info}>
             <h2>{book ? book.title : <Skeleton />}</h2>
             <div className={styles.authors}>
-              <h2>
-                {book ? (
-                  book.authors.map((author) => author.name).join(', ')
-                ) : (
-                  <Skeleton containerClassName="flex-1" width={588} />
-                )}
-              </h2>
+              {book.authors.map(({ id, name }) => (
+                <Link to={`/author/${id}`} key={id}>
+                  {name}
+                </Link>
+              ))}
             </div>
           </div>
           <div className={styles.details}>

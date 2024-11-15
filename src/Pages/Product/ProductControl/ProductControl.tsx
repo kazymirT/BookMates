@@ -51,16 +51,19 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
     <div className={styles.control}>
       {book && book.price ? (
         <>
-          <Price
-            normalPrice={book.price}
-            variant="product"
-            discountPrice={book.discount ? book.discountPrice : undefined}
-          />
+          <div className={styles.price}>
+            <Price
+              normalPrice={book.price}
+              variant="product"
+              discountPrice={book.discount ? book.discountPrice : undefined}
+            />
+            <span className={styles.is}>Товар у наявності</span>
+          </div>
           <div className={styles.btns}>
             <ButtonLink
               url="/order"
               buttonType={ButtonType.Button}
-              size={Sizes.FullS}
+              size={Sizes.FullM}
               text={t('product.btn-buy')}
               variant={Variant.Basic}
               onClick={handleAddToCart}
@@ -71,20 +74,22 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
                 text={t('product.btn-basket')}
                 variant={Variant.Primary}
                 iconPosition={Position.Left}
-                size={Sizes.FullS}
+                size={Sizes.FullM}
                 onClick={handleAddToCart}
                 icon={<Icon.Cart />}
               />
             ) : (
-              <Button
-                buttonType={ButtonType.Button}
-                text="У кошику"
-                variant={Variant.Basic}
-                iconPosition={Position.Left}
-                size={Sizes.FullS}
-                onClick={handleOpenCart}
-                icon={<Icon.Arrow_1 className={styles.arrow} />}
-              />
+              <div className={styles['product_in_card']}>
+                <Button
+                  buttonType={ButtonType.Button}
+                  text="У кошику"
+                  variant={Variant.Basic}
+                  iconPosition={Position.Left}
+                  size={Sizes.FullM}
+                  onClick={handleOpenCart}
+                  icon={<Icon.Arrow_1 className={styles.arrow} />}
+                />
+              </div>
             )}
           </div>
         </>
