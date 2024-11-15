@@ -207,6 +207,12 @@
     padding: 16px 32px;
   }
 
+  &--full-m {
+    width: 100%;
+    max-width: 100%;
+    padding: 14.487px 32px;
+  }
+
   &--full-s {
     width: 100%;
     max-width: 100%;
@@ -218,6 +224,11 @@ button.button--primary.button--l,
 button.button--primary.button--full-s {
   padding-top: 9.2px;
   padding-bottom: 9.2px;
+}
+
+button.button--primary.button--full-m {
+  padding-top: 11.2px;
+  padding-bottom: 11.2px;
 }
 
 button.button--primary.button--m {

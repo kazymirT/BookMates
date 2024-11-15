@@ -5,6 +5,7 @@ export enum Sizes {
   Large = 'l',
   ExtraLarge = 'extra_l',
   FullS = 'full-s',
+  FullM = 'full-m',
   Full = 'full',
   RedS = 'red-s',
   Link = 'link',
