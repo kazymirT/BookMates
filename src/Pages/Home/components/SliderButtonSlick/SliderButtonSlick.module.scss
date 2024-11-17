@@ -32,7 +32,7 @@
     }
 
     &__section {
-      @include btn-position(45%, -90deg, -49px);
+      @include btn-position(38.7%, -90deg, -49px);
 
       border: 1px solid $button-default;
     }
@@ -52,7 +52,7 @@
     }
 
     &__section {
-      @include btn-position(45%, 90deg, 0, -49px);
+      @include btn-position(38.7%, 90deg, 0, -50px);
 
       border: 1px solid $button-default;
     }
