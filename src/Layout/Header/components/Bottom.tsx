@@ -1,8 +1,7 @@
 import { skipToken } from '@reduxjs/toolkit/query/react';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import CategoryAll from './CategoryAll/CategoryAll';
 import styles from '../Header.module.scss';
 import Search from '@/components/Search/Search';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -14,12 +13,14 @@ import {
 } from '@/components/ui-components/Button/constants';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { Icon } from '@/components/ui-components/Icons';
-import Menu from '@/Layout/Header/Menu/Menu';
 import UserButton from '@/Layout/Header/UserButton/UserButton';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
 import { goods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
 import { userId } from '@/redux/slices/userSlice';
+
+const CategoryAllLazy = React.lazy(() => import('./CategoryAll/CategoryAll'));
+const MenuLazy = React.lazy(() => import('../Menu/Menu'));
 
 const Bottom = () => {
   const { t } = useTranslation();
@@ -52,7 +53,11 @@ const Bottom = () => {
               />
             }
             tagName="A"
-            options={<CategoryAll />}
+            options={
+              <Suspense>
+                <CategoryAllLazy />
+              </Suspense>
+            }
             variant="category"
           />
         }
@@ -63,7 +68,11 @@ const Bottom = () => {
           <UserButton {...user} />
         ) : (
           <DropDown
-            options={<Menu />}
+            options={
+              <Suspense>
+                <MenuLazy />
+              </Suspense>
+            }
             control={<Icon.Account height="38px" width="38px" />}
             variant="menu"
             tagName="LI"

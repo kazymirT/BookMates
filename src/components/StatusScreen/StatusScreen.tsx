@@ -1,19 +1,24 @@
-import Loading from './Loading/Loading';
-import Succes from './Succes/Succes';
+import { lazy, Suspense } from 'react';
+
 import Portal from '../Portal/Portal';
 import { useAppSelector } from '@/redux/hooks';
 import { status } from '@/redux/slices/statusSlice';
+
+const LoadingLazy = lazy(() => import('./Loading/Loading'));
+const SuccesLazy = lazy(() => import('./Succes/Succes'));
 
 const StatusScreen = () => {
   const appStatus = useAppSelector(status);
 
   return (
     <Portal isOpen={appStatus !== 'idle'} placeContent={'center'}>
-      {appStatus === 'loading' ? (
-        <Loading />
-      ) : appStatus == 'succes' ? (
-        <Succes loop={false} />
-      ) : null}
+      <Suspense>
+        {appStatus === 'loading' ? (
+          <LoadingLazy />
+        ) : appStatus == 'succes' ? (
+          <SuccesLazy loop={false} />
+        ) : null}
+      </Suspense>
     </Portal>
   );
 };
