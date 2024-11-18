@@ -1,5 +1,4 @@
 import { Suspense, lazy } from 'react';
-import { SkeletonTheme } from 'react-loading-skeleton';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import styles from './Layout.module.scss';
@@ -24,17 +23,10 @@ const Layout = () => {
     <>
       <Header />
       <main className={styles.main}>
-        <SkeletonTheme
-          baseColor="#d1d1d1"
-          highlightColor="#6a6a6a"
-          borderRadius="0.5rem"
-          duration={4}
-        >
-          <Suspense fallback={<div className={styles.loading}>loading</div>}>
-            <OverlayLazy />
-            <Outlet />
-          </Suspense>
-        </SkeletonTheme>
+        <Suspense fallback={<div className={styles.loading}>loading</div>}>
+          <OverlayLazy />
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <ScrollRestoration />

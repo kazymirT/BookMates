@@ -1,17 +1,9 @@
-import { PropsWithChildren } from 'react';
 // import { useTranslation } from 'react-i18next';
-import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
 import SectionDescription from '../components/SectionDescription/SectionDescription';
 import styles from '../Product.module.scss';
 import { BookById } from '@/redux/services/services.types';
-
-export function InlineWrapperWithMargin({
-  children,
-}: PropsWithChildren<unknown>) {
-  return <span style={{ marginRight: '0.75rem' }}>{children}</span>;
-}
 
 const ProductDetails = ({ book }: { book?: BookById }) => {
   // const { t } = useTranslation();
@@ -20,7 +12,7 @@ const ProductDetails = ({ book }: { book?: BookById }) => {
       {book && (
         <>
           <div className={styles.info}>
-            <h2>{book ? book.title : <Skeleton />}</h2>
+            <h2>{book.title}</h2>
             <div className={styles.authors}>
               {book.authors.map(({ id, name }) => (
                 <Link to={`/author/${id}`} key={id}>

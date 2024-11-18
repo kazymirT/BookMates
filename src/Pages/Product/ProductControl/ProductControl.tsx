@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import Skeleton from 'react-loading-skeleton';
 
 import styles from '../Product.module.scss';
 import Price from '@/components/Price/Price';
@@ -22,7 +21,7 @@ import {
   toggleOpenCart,
 } from '@/redux/slices/shoppingCartSlice';
 
-const ProductControl = ({ book }: { book: BookById | undefined }) => {
+const ProductControl = ({ book }: { book: BookById }) => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
@@ -49,53 +48,49 @@ const ProductControl = ({ book }: { book: BookById | undefined }) => {
   const handleOpenCart = () => dispatch(toggleOpenCart(true));
   return (
     <div className={styles.control}>
-      {book && book.price ? (
-        <>
-          <div className={styles.price}>
-            <Price
-              normalPrice={book.price}
-              variant="product"
-              discountPrice={book.discount ? book.discountPrice : undefined}
-            />
-            <span className={styles.is}>Товар у наявності</span>
-          </div>
-          <div className={styles.btns}>
-            <ButtonLink
-              url="/order"
+      <>
+        <div className={styles.price}>
+          <Price
+            normalPrice={book.price}
+            variant="product"
+            discountPrice={book.discount ? book.discountPrice : undefined}
+          />
+          <span className={styles.is}>Товар у наявності</span>
+        </div>
+        <div className={styles.btns}>
+          <ButtonLink
+            url="/order"
+            buttonType={ButtonType.Button}
+            size={Sizes.FullM}
+            text={t('product.btn-buy')}
+            variant={Variant.Basic}
+            onClick={handleAddToCart}
+          />
+          {!isBookInCard ? (
+            <Button
               buttonType={ButtonType.Button}
+              text={t('product.btn-basket')}
+              variant={Variant.Primary}
+              iconPosition={Position.Left}
               size={Sizes.FullM}
-              text={t('product.btn-buy')}
-              variant={Variant.Basic}
               onClick={handleAddToCart}
+              icon={<Icon.Cart />}
             />
-            {!isBookInCard ? (
+          ) : (
+            <div className={styles['product_in_card']}>
               <Button
                 buttonType={ButtonType.Button}
-                text={t('product.btn-basket')}
-                variant={Variant.Primary}
+                text="У кошику"
+                variant={Variant.Basic}
                 iconPosition={Position.Left}
                 size={Sizes.FullM}
-                onClick={handleAddToCart}
-                icon={<Icon.Cart />}
+                onClick={handleOpenCart}
+                icon={<Icon.Arrow_1 className={styles.arrow} />}
               />
-            ) : (
-              <div className={styles['product_in_card']}>
-                <Button
-                  buttonType={ButtonType.Button}
-                  text="У кошику"
-                  variant={Variant.Basic}
-                  iconPosition={Position.Left}
-                  size={Sizes.FullM}
-                  onClick={handleOpenCart}
-                  icon={<Icon.Arrow_1 className={styles.arrow} />}
-                />
-              </div>
-            )}
-          </div>
-        </>
-      ) : (
-        <Skeleton width={218} height={48} count={3} />
-      )}
+            </div>
+          )}
+        </div>
+      </>
     </div>
   );
 };

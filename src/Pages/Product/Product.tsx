@@ -1,6 +1,5 @@
 import { skipToken } from '@reduxjs/toolkit/query';
 import { useTranslation } from 'react-i18next';
-import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router-dom';
 
 import styles from './Product.module.scss';
@@ -17,7 +16,7 @@ const Product = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
   const { data: books } = useGetBooksQuery({ size: '9' });
-  const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
+  const { data: book } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
     book && {
@@ -29,29 +28,23 @@ const Product = () => {
     <div className={styles.product}>
       <div className="container">
         <div className={styles['product__inner']}>
-          {isLoading ? (
-            <Skeleton width={300} height={19} />
-          ) : (
-            <Breadcrumbs options={breadcrumbs} activeLastLink />
-          )}
-          {
-            <section className={styles['details-product']}>
-              <div className={styles['img-box']}>
-                {isLoading ? (
-                  <Skeleton width={270} height={406} />
-                ) : (
+          <Breadcrumbs options={breadcrumbs} activeLastLink />
+          {book && (
+            <>
+              <section className={styles['details-product']}>
+                <div className={styles['img-box']}>
                   <img
-                    src={book?.imageUrl}
+                    src={book.imageUrl}
                     alt={book && book.title}
                     width={270}
                     height={406}
                   />
-                )}
-              </div>
-              <ProductDetails book={!isLoading ? book : undefined} />
-              <ProductControl book={book} />
-            </section>
-          }
+                </div>
+                <ProductDetails book={book} />
+                <ProductControl book={book} />
+              </section>
+            </>
+          )}
           <section className={styles.likes}>
             <h3 className={styles.title}>{t('product.offers')}</h3>
             {books && (
