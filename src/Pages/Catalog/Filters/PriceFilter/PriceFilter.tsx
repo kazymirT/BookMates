@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 
-import 'nouislider/distribute/nouislider.css';
 import styles from './PriceFilter.module.scss';
 import { type PriceFilterProps } from '../../Catalog.types';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
