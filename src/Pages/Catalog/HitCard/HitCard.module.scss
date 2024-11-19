@@ -38,6 +38,7 @@
       transition: 0.3s ease-in-out;
 
       -webkit-line-clamp: 2;
+      line-clamp: 2;
     }
 
     .content {
@@ -90,7 +91,7 @@
             color: $accent-white;
             letter-spacing: 0.01em;
 
-            background: #ff9f68;
+            background: #c42700;
             border-radius: 4px;
           }
         }
@@ -100,7 +101,7 @@
           font-size: 20px;
           font-weight: 600;
           line-height: 1.2;
-          color: $accent-red;
+          color: #b34c00;
           letter-spacing: 0.01em;
         }
       }
