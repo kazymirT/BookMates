@@ -73,7 +73,7 @@ const Bottom = () => {
                 <MenuLazy />
               </Suspense>
             }
-            control={<Icon.Account height="38px" width="38px" />}
+            control={<Icon.Account height="28px" width="28px" />}
             variant="menu"
             tagName="LI"
             isOverflow
@@ -84,7 +84,7 @@ const Bottom = () => {
           onClick={openCart}
           aria-label="Open cart"
         >
-          <Icon.Cart height="38px" width="38px" />
+          <Icon.Cart height="28px" width="28px" />
           {cartItemsCount > 0 && (
             <div className={styles['cart-counter']}>
               <span>{cartItemsCount}</span>
