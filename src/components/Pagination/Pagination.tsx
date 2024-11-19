@@ -1,44 +1,45 @@
-import './Pagination.scss';
+import { FC, useMemo } from 'react';
 
-import ReactPaginate from 'react-paginate';
-
-import { Icon } from '../ui-components/Icons';
+import PaginationArrow from './components/PaginationArrow';
+import PaginationButton from './components/PaginationButton';
+import styles from './Pagination.module.scss';
+import { PaginationProps } from './types';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPage } from '@/redux/slices/queryParams';
 
-type Props = {
-  totalPages: number;
-  currentPage: number;
-};
-
-const Pagination = ({ totalPages, currentPage }: Props) => {
+const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
   const dispatch = useAppDispatch();
-  const handlePageClick = (selectedItem: { selected: number }) => {
-    const newPage = String(selectedItem.selected + 1);
-    dispatch(setPage(newPage));
+
+  const handlePageClick = (page: number) => {
+    dispatch(setPage(String(page)));
   };
 
+  const pageArray = useMemo(
+    () => Array.from({ length: totalPages }, (_, index) => index + 1),
+    [totalPages]
+  );
+
   return (
-    <>
-      <ReactPaginate
-        nextLabel={<Icon.Arrow_1 />}
-        onPageChange={handlePageClick}
-        breakLabel="..."
-        pageRangeDisplayed={2}
-        marginPagesDisplayed={1}
-        pageCount={totalPages}
-        previousLabel={<Icon.Arrow_1 />}
-        renderOnZeroPageCount={null}
-        forcePage={currentPage}
-        className={'pagination'}
-        pageLinkClassName={'item'}
-        activeLinkClassName={'active'}
-        nextLinkClassName={'next'}
-        previousLinkClassName={'previous'}
-        disabledLinkClassName={'disabled-link'}
-        breakLinkClassName={'item break'}
+    <ul className={styles.pagination}>
+      <PaginationArrow
+        direction="prev"
+        isDisabled={currentPage === 0}
+        onClick={() => handlePageClick(currentPage)}
       />
-    </>
+      {pageArray.map((page) => (
+        <PaginationButton
+          key={page}
+          page={page}
+          isActive={currentPage + 1 === page}
+          onClick={() => handlePageClick(page)}
+        />
+      ))}
+      <PaginationArrow
+        direction="next"
+        isDisabled={currentPage + 1 === totalPages}
+        onClick={() => handlePageClick(currentPage + 2)}
+      />
+    </ul>
   );
 };
 
