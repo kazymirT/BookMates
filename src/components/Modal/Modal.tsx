@@ -1,19 +1,30 @@
-import FeedbackSuccess from './FeedbackSuccess/FeedbackSuccess';
-import OrderSuccess from './OrderSuccess/OrderSuccess';
-import ResetPassword from './ResetPassword/ResetPassword';
-import UserInfo from './UserInfo/UserInfo';
-import UserNotAuthorizedInfo from './UserNotAuthorizedInfo/UserNotAuthorizedInfo';
-import AddCategory from '../Forms/Admin/AddAttributes';
-import AddBook from '../Forms/Admin/AddBook';
-import EditCategory from '../Forms/Admin/EditAttributes';
-import EditBook from '../Forms/Admin/EditBook';
-import OrderEdit from '../Forms/Admin/OrderEdit';
-import FeedBackForm from '../Forms/FeedbackForm/FeedBackForm';
-import LoginForm from '../Forms/LoginForm/LoginForm';
-import RegisterForm from '../Forms/RegisterForm/RegisterForm';
+import { Suspense, lazy } from 'react';
+
 import Portal from '../Portal/Portal';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { modalType, toggleModal } from '@/redux/slices/modalSlice';
+const UserInfoLazy = lazy(() => import('./UserInfo/UserInfo'));
+const UserNotAuthorizedInfoLazy = lazy(
+  () => import('./UserNotAuthorizedInfo/UserNotAuthorizedInfo')
+);
+const AddCategoryLazy = lazy(() => import('../Forms/Admin/AddAttributes'));
+const EditCategoryLazy = lazy(() => import('../Forms/Admin/EditAttributes'));
+const AddBookLazy = lazy(() => import('../Forms/Admin/AddBook'));
+const EditBookLazy = lazy(() => import('../Forms/Admin/EditBook'));
+const OrderEditLazy = lazy(() => import('../Forms/Admin/OrderEdit'));
+
+const FeedbackSuccessLazy = lazy(
+  () => import('./FeedbackSuccess/FeedbackSuccess')
+);
+const OrderSuccessLazy = lazy(() => import('./OrderSuccess/OrderSuccess'));
+const FeedBackFormLazy = lazy(
+  () => import('../Forms/FeedbackForm/FeedBackForm')
+);
+const RegisterFormLazy = lazy(
+  () => import('../Forms/RegisterForm/RegisterForm')
+);
+const LoginFormLazy = lazy(() => import('../Forms/LoginForm/LoginForm'));
+const ResetPasswordLazy = lazy(() => import('./ResetPassword/ResetPassword'));
 
 const Modal = () => {
   const openedModalType = useAppSelector(modalType);
@@ -28,33 +39,35 @@ const Modal = () => {
       placeContent="center"
       onClickOutside={handleCloseModal}
     >
-      {openedModalType === 'login' ? (
-        <LoginForm />
-      ) : openedModalType === 'create-account' ? (
-        <RegisterForm />
-      ) : openedModalType === 'feedback' ? (
-        <FeedBackForm />
-      ) : openedModalType === 'feedback-success' ? (
-        <FeedbackSuccess />
-      ) : openedModalType === 'order-success' ? (
-        <OrderSuccess />
-      ) : openedModalType === 'reset-password' ? (
-        <ResetPassword />
-      ) : openedModalType === 'edit-book' ? (
-        <EditBook />
-      ) : openedModalType === 'add-book' ? (
-        <AddBook />
-      ) : openedModalType === 'add-attributes' ? (
-        <AddCategory />
-      ) : openedModalType === 'edit-attributes' ? (
-        <EditCategory />
-      ) : openedModalType === 'user-info' ? (
-        <UserInfo />
-      ) : openedModalType === 'userNotAuthorized-info' ? (
-        <UserNotAuthorizedInfo />
-      ) : openedModalType === 'edit-order' ? (
-        <OrderEdit />
-      ) : null}
+      <Suspense>
+        {openedModalType === 'login' ? (
+          <LoginFormLazy />
+        ) : openedModalType === 'create-account' ? (
+          <RegisterFormLazy />
+        ) : openedModalType === 'feedback' ? (
+          <FeedBackFormLazy />
+        ) : openedModalType === 'feedback-success' ? (
+          <FeedbackSuccessLazy />
+        ) : openedModalType === 'order-success' ? (
+          <OrderSuccessLazy />
+        ) : openedModalType === 'reset-password' ? (
+          <ResetPasswordLazy />
+        ) : openedModalType === 'edit-book' ? (
+          <EditBookLazy />
+        ) : openedModalType === 'add-book' ? (
+          <AddBookLazy />
+        ) : openedModalType === 'add-attributes' ? (
+          <AddCategoryLazy />
+        ) : openedModalType === 'edit-attributes' ? (
+          <EditCategoryLazy />
+        ) : openedModalType === 'user-info' ? (
+          <UserInfoLazy />
+        ) : openedModalType === 'userNotAuthorized-info' ? (
+          <UserNotAuthorizedInfoLazy />
+        ) : openedModalType === 'edit-order' ? (
+          <OrderEditLazy />
+        ) : null}
+      </Suspense>
     </Portal>
   );
 };

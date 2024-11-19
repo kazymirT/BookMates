@@ -1,4 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import styles from './Admin.module.scss';
 import AttributesPage from './component/AttributesPage';
@@ -7,11 +8,13 @@ import Client from './component/Client';
 import ClientNotAuthorized from './component/ClientNotAuthorized';
 import OrderA from './component/Order';
 import { ADMIN_LIST } from '@/utils/constants';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Admin = () => {
   const { adminId } = useParams();
   return (
     <div className={styles.admin}>
+      <ToastContainer />
       <aside>
         <ul>
           {ADMIN_LIST &&

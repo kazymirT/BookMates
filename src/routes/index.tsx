@@ -23,6 +23,7 @@ const NotAuthorized = lazy(
 const Author = lazy(() => import('../Pages/Author/Author'));
 const Authors = lazy(() => import('../Pages/Authors/Authors'));
 const Collections = lazy(() => import('../Pages/Collections/Collections'));
+
 import HistoryWrapper from './HistoryWrapper';
 import Layout from '@/Layout/Layout/Layout';
 import { ROUTE_PATH } from '@/utils/constants';
