@@ -25,6 +25,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
         direction="prev"
         isDisabled={currentPage === 0}
         onClick={() => handlePageClick(currentPage)}
+        aria="prev page"
       />
       {pageArray.map((page) => (
         <PaginationButton
@@ -38,6 +39,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
         direction="next"
         isDisabled={currentPage + 1 === totalPages}
         onClick={() => handlePageClick(currentPage + 2)}
+        aria="next page"
       />
     </ul>
   );

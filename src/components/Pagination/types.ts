@@ -7,6 +7,7 @@ export interface PaginationArrowProps {
   direction: 'prev' | 'next';
   isDisabled: boolean;
   onClick: () => void;
+  aria: string;
 }
 
 export interface PaginationButtonProps {

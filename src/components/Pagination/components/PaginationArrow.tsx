@@ -14,6 +14,7 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
   direction,
   isDisabled,
   onClick,
+  aria,
 }) => (
   <li className={direction === 'prev' ? styles.prev : styles.next}>
     <Button
@@ -22,6 +23,7 @@ const PaginationArrow: FC<PaginationArrowProps> = ({
       variant={Variant.Pagination}
       disabled={isDisabled}
       text=""
+      aria={aria}
       onClick={onClick}
       icon={<Icon.Arrow_1 width="24" height="24" />}
     />

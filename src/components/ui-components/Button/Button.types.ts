@@ -12,4 +12,5 @@ export interface ButtonProps {
   children?: ReactNode;
   icon?: ReactNode;
   iconPosition?: Position;
+  aria?: string;
 }
