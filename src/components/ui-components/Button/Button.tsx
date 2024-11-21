@@ -13,6 +13,7 @@ export const Button: FC<ButtonProps> = ({
   buttonType,
   iconPosition,
   icon,
+  aria,
 }) => {
   const buttonClassName = classNames(
     styles.button,
@@ -30,6 +31,7 @@ export const Button: FC<ButtonProps> = ({
       type={buttonType}
       disabled={disabled}
       onClick={onClick}
+      aria-label={aria}
     >
       {icon && <>{icon}</>}
       {text && <>{text}</>}

@@ -128,7 +128,7 @@
                 color: $accent-white;
                 letter-spacing: 0.01em;
 
-                background: #ff9f68;
+                background: #c42700;
                 border-radius: 4px;
               }
             }
@@ -138,7 +138,7 @@
               font-size: 20px;
               font-weight: 600;
               line-height: 1.2;
-              color: $accent-red;
+              color: #c25200;
               letter-spacing: 0.01em;
 
               &::after {
@@ -255,7 +255,7 @@
 
     padding: 3px 8px;
 
-    background: #ff7424;
+    background: #c42700;
     border-radius: 2px;
 
     span {
@@ -266,9 +266,7 @@
       letter-spacing: 0.01em;
     }
   }
-  // &__catalog {
-  //   width: 254px;
-  // }
+
   &__slider {
     width: 220px;
   }

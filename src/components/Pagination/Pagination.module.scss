@@ -1,0 +1,57 @@
+/* stylelint-disable */
+@import '@/styles';
+/* stylelint-enable */
+
+@mixin next-previous($rotate) {
+  @include flex-center;
+
+  transform: rotate($rotate);
+  border: 1px solid $button-default;
+  border-radius: 50%;
+
+  &:hover {
+    @include icon-state($icon-hover);
+
+    border-color: $button-hover;
+  }
+
+  &:active {
+    @include icon-state($icon-active);
+  }
+}
+
+.pagination {
+  display: flex;
+  gap: 1rem;
+  align-self: center;
+
+  li {
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+    &:has(button:disabled) {
+      border-color: $button-disabled;
+      button {
+        @include icon-state($button-disabled);
+      }
+    }
+  }
+  .active {
+    border-color: $button-active;
+  }
+  li.next {
+    @include next-previous(-90deg);
+
+    &:has(button:disabled) {
+      border-color: $button-disabled;
+    }
+  }
+
+  li.prev {
+    @include next-previous(90deg);
+
+    &:has(button:disabled) {
+      border-color: $button-disabled;
+    }
+  }
+}
