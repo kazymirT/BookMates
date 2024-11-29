@@ -1,7 +1,8 @@
+import { type ReactNode } from 'react';
+
 export type DropdownProps = {
-  options: React.ReactNode;
-  control: React.ReactNode;
+  options: (toggleOpen: () => void, isOpen: boolean) => ReactNode;
+  control: (toggleOpen: () => void, isOpen: boolean) => ReactNode;
   variant: 'menu' | 'category' | 'filter';
-  tagName: string;
   isOverflow?: boolean;
 };
