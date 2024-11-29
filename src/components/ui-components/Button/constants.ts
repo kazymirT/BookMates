@@ -12,6 +12,7 @@ export enum Sizes {
   Drop = 'drop',
   Card = 'card',
   Pagination = 'pagination',
+  IconS = 'icon-s',
 }
 
 export enum Variant {
@@ -26,6 +27,7 @@ export enum Variant {
   Drop = 'drop',
   Card = 'card',
   Pagination = 'pagination',
+  Icon = 'icon',
 }
 
 export enum ButtonType {
