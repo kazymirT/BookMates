@@ -209,6 +209,7 @@ export const english = {
     order: 'make an order',
     authors: 'authors',
     collections: 'collections',
+    delivery: 'delivery',
   },
   'forms-error': {
     email: {
