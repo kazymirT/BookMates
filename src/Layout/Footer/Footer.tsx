@@ -21,7 +21,7 @@ const Footer = () => {
               <Link to={'/'}>{t('footer.links.main')}</Link>
             </li>
             <li>
-              <Link to={'/'}>{t('footer.links.delivery')}</Link>
+              <Link to={'/delivery'}>{t('footer.links.delivery')}</Link>
             </li>
             <li onClick={handleOnSupport}>{t('footer.links.support')}</li>
           </ul>
