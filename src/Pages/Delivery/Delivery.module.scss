@@ -1,0 +1,224 @@
+@import '@/styles';
+
+.delivery_inner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding-top: 67px;
+  padding-bottom: 170px;
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-top: 21px;
+
+    h2 {
+      font-family: $font-family;
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 31px;
+      color: #000;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+
+    article {
+      p {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 27px;
+        color: #000;
+        letter-spacing: 0.035em;
+      }
+
+      p.footer {
+        padding-top: 25px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+    }
+  }
+
+  .delivery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h2 {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 33px;
+      color: #000;
+      text-align: center;
+      letter-spacing: 0.06em;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 26px;
+      color: #000;
+      letter-spacing: 0.03em;
+    }
+
+    .items {
+      padding-top: 8px;
+    }
+
+    .subtitle {
+      padding-top: 8px;
+
+      p:nth-child(2) {
+        padding-bottom: 2px;
+        text-decoration: underline;
+        text-underline-offset: 6px;
+      }
+
+      p:nth-child(3) {
+        letter-spacing: 0.039em;
+      }
+
+      p:nth-child(4) {
+        padding-top: 4.5px;
+        letter-spacing: 0.037em;
+      }
+    }
+
+    .last {
+      padding-top: 8px;
+      line-height: 27px;
+      letter-spacing: 0.037em;
+    }
+  }
+
+  .pay {
+    h2 {
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 31px;
+      color: #000;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 400;
+      color: #000;
+      letter-spacing: 0.03em;
+    }
+
+    .title {
+      padding-top: 2px;
+
+      p {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 26px;
+        color: #000;
+        text-align: center;
+        letter-spacing: 0.038em;
+      }
+    }
+
+    p.subtitle {
+      padding-top: 15px;
+    }
+
+    article {
+      h3 {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1;
+        color: #000;
+        text-decoration: underline;
+        text-underline-offset: 5px;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    .credit {
+      padding-top: 27px;
+
+      p {
+        line-height: 27.5px;
+        letter-spacing: 0.038em;
+      }
+    }
+
+    .return {
+      padding-top: 28px;
+
+      .items {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+        padding-top: 22px;
+        padding-left: 26px;
+
+        .item {
+          position: relative;
+          padding-left: 5px;
+
+          &::before {
+            content: '1';
+
+            position: absolute;
+            top: -2px;
+            left: -20px;
+
+            font-size: 24px;
+          }
+
+          .title {
+            padding-left: 2px;
+            font-weight: 600;
+          }
+
+          span {
+            font-size: 22px;
+            line-height: 28px;
+            color: #000;
+            letter-spacing: 0.036em;
+          }
+        }
+
+        .item:nth-child(2) {
+          &::before {
+            content: '2';
+            top: -4px;
+          }
+
+          span {
+            line-height: 26px;
+            letter-spacing: 0.02em;
+          }
+        }
+
+        .item:nth-child(3) {
+          &::before {
+            content: '3';
+            top: -5px;
+          }
+
+          span {
+            line-height: 26px;
+          }
+        }
+      }
+
+      .footer {
+        padding-top: 23px;
+      }
+    }
+  }
+}
