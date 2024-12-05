@@ -11,43 +11,16 @@ const DropDown = ({
   control,
   options,
   variant,
-  tagName,
   isOverflow = false,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const dispatch = useAppDispatch();
   const dropDownRef = React.useRef<HTMLDivElement | null>(null);
-  const listRef = React.useRef<HTMLDivElement | null>(null);
+  const dispatch = useAppDispatch();
 
-  const handleOpen = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+  const handleToggleOpen = () => setIsOpen(!isOpen);
+  const handleClose = () => setIsOpen(false);
 
   useClickOutside(dropDownRef, handleClose);
-
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === tagName) {
-        handleClose();
-      }
-    };
-
-    const listContainer = listRef.current;
-    if (listContainer) {
-      listContainer.addEventListener('click', handleClick);
-    }
-
-    return () => {
-      if (listContainer) {
-        listContainer.removeEventListener('click', handleClick);
-      }
-    };
-  }, [tagName]);
 
   useEffect(() => {
     isOverflow && isOpen
@@ -58,20 +31,15 @@ const DropDown = ({
   const containerClName = classNames(styles['dropdown-container'], {
     [styles['open']]: isOpen,
     [styles['closed']]: !isOpen,
-    [styles[`dropdown-container__${variant}`]]: variant,
+    [styles[`dropdown-container--${variant}`]]: variant,
   });
-  const iconClName = classNames(styles.icon, {
-    [styles[`icon__${variant}`]]: variant,
-    [styles[`icon__${variant}__open`]]: variant && isOpen,
-  });
+
   return (
     <div ref={dropDownRef} className={styles.dropdown}>
-      <div className={iconClName} onClick={handleOpen}>
-        {control}
-      </div>
-      <div ref={listRef} className={containerClName}>
+      <div className={styles.icon}>{control(handleToggleOpen, isOpen)}</div>
+      <div className={containerClName}>
         <div className={styles.overlay}></div>
-        {options}
+        {options(handleToggleOpen, isOpen)}
       </div>
     </div>
   );

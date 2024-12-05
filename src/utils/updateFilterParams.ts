@@ -44,7 +44,7 @@ export const updateFilterParams = (
 
   return {
     price: newPrice,
-    years: { items: newYears, count: yearsCount },
+    years: { items: newYears.sort((a, b) => b.id - a.id), count: yearsCount },
     categories: { items: newCategories, count: categoriesCount },
     language: { items: newLanguage, count: languageCount },
   };

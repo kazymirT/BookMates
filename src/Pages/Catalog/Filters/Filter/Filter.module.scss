@@ -1,44 +1,21 @@
 @import '@/styles';
 
-.filter {
-  background: transparent;
+.lists {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-  .title {
-    cursor: pointer;
+  width: 282px;
+  padding: 15px;
 
-    width: 100%;
-    width: 231px;
-    padding: 14px 15px;
+  background-color: $accent-white;
+  border: 0.5px solid rgb(0 0 0 / 30%);
+  border-radius: 8px;
 
-    font-family: $font-family;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 1.213;
-    color: $icon-active;
-    letter-spacing: 0.05em;
+  transition: all 0.3s;
 
-    background: #efefef;
-    border: 0.5px solid rgb(0 0 0 / 30%);
-    border-radius: 4px;
-  }
-
-  .lists {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    width: 282px;
-    padding: 15px;
-
-    background-color: $accent-white;
-    border: 0.5px solid rgb(0 0 0 / 30%);
-    border-radius: 8px;
-
-    transition: all 0.3s;
-
-    li {
-      width: fit-content;
-    }
+  li {
+    width: fit-content;
   }
 }

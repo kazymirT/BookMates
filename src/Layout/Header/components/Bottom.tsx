@@ -2,6 +2,7 @@ import { skipToken } from '@reduxjs/toolkit/query/react';
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import CategoryItem from './CategoryAll/CategoryItem';
 import styles from '../Header.module.scss';
 import Search from '@/components/Search/Search';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -42,22 +43,26 @@ const Bottom = () => {
         {
           <DropDown
             isOverflow
-            control={
+            control={(toggleOpen) => (
               <Button
                 buttonType={ButtonType.Button}
                 size={Sizes.Drop}
                 variant={Variant.Drop}
                 text={t('header.drop')}
                 icon={<Icon.Drop />}
+                onClick={toggleOpen}
                 iconPosition={Position.Left}
               />
-            }
-            tagName="A"
-            options={
+            )}
+            options={(toggleOpen) => (
               <Suspense>
-                <CategoryAllLazy />
+                <CategoryAllLazy>
+                  {(id, name) => (
+                    <CategoryItem id={id} name={name} onClose={toggleOpen} />
+                  )}
+                </CategoryAllLazy>
               </Suspense>
-            }
+            )}
             variant="category"
           />
         }
@@ -68,14 +73,22 @@ const Bottom = () => {
           <UserButton {...user} />
         ) : (
           <DropDown
-            options={
+            options={() => (
               <Suspense>
                 <MenuLazy />
               </Suspense>
-            }
-            control={<Icon.Account height="28px" width="28px" />}
+            )}
+            control={(toggleOpen) => (
+              <Button
+                buttonType={ButtonType.Button}
+                size={Sizes.IconS}
+                variant={Variant.Icon}
+                icon={<Icon.Account height="28px" width="28px" />}
+                onClick={toggleOpen}
+                iconPosition={Position.Left}
+              />
+            )}
             variant="menu"
-            tagName="LI"
             isOverflow
           />
         )}

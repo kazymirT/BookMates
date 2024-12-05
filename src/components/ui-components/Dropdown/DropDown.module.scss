@@ -8,44 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &__filter {
-    justify-content: space-between;
-
-    h3 {
-      position: relative;
-
-      &::after {
-        content: '';
-
-        position: absolute;
-        top: 47%;
-        right: 17px;
-        transform: translateY(-50%);
-        transform: scale(1.4);
-
-        width: 0;
-        height: 0;
-        margin-left: 30px;
-
-        border-color: #888 rgb(0 0 0 / 0%) rgb(0 0 0 / 0%) rgb(0 0 0 / 0%);
-        border-style: solid;
-        border-width: 5px 4px 0;
-
-        transition: -webkit-transform 0.5s;
-        transition: transform 0.5s;
-        transition:
-          transform 0.5s,
-          -webkit-transform 0.5s;
-      }
-    }
-
-    &__open {
-      h3::after {
-        transform: scale(-1.4);
-      }
-    }
-  }
 }
 
 .dropdown-container {
@@ -54,18 +16,18 @@
   overflow: hidden;
   transition: opacity 0.35s ease-out;
 
-  &__menu {
-    top: 73px;
+  &--menu {
+    top: 70px;
     left: 50%;
     transform: translateX(-50%);
   }
 
-  &__category {
+  &--category {
     top: 79px;
     left: 0%;
   }
 
-  &__filter {
+  &--filter {
     top: 55px;
     left: 0%;
   }

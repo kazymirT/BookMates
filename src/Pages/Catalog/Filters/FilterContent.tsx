@@ -5,6 +5,8 @@ import Filter from './Filter/Filter';
 import styles from './FilterContent.module.scss';
 import PriceFilter from './PriceFilter/PriceFilter';
 import Sort from './Sort/Sort';
+import Title from './Title/Title';
+import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { type AllAttributes } from '@/redux/services/services.types';
 import { clearFilters, initializeState } from '@/redux/slices/queryParams';
@@ -20,6 +22,7 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
 
   const dispatch = useAppDispatch();
   const clearFilter = () => dispatch(clearFilters());
+
   useEffect(() => {
     const newState = initializeQueryState(attributes);
     dispatch(initializeState(newState));
@@ -35,12 +38,6 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
   return (
     <div className={styles.content}>
       <div className={styles.filters}>
-        {/* <Filter
-        title={t('catalog.filter.categories')}
-        categories={categories}
-        filterType="categories"
-        isDefaultOpen
-      /> */}
         <Filter
           title={
             language.count !== 0
@@ -49,7 +46,6 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
           }
           filterType="language"
           categories={language.items}
-          isDefaultOpen
         />
         <Filter
           title={
@@ -58,17 +54,23 @@ const FilterContent: FC<FilterContentProps> = ({ attributes }) => {
               : t('catalog.filter.years')
           }
           filterType="years"
-          categories={years.items.sort((a, b) => b.id - a.id)}
-          isScroll
-          isDefaultOpen
+          categories={years.items}
         />
-        <PriceFilter
-          title={t('catalog.filter.price', {
-            price1: price[0],
-            price2: price[1],
-          })}
-          isDefaultOpen
-          price={price}
+        <DropDown
+          variant="filter"
+          control={(toggleOpen, isOpen) => (
+            <Title
+              text={t('catalog.filter.price', {
+                price1: price[0],
+                price2: price[1],
+              })}
+              isOpen={isOpen}
+              toggleOpen={toggleOpen}
+            />
+          )}
+          options={(toggleOpen) => (
+            <PriceFilter onClose={toggleOpen} price={price} />
+          )}
         />
         <Sort />
       </div>

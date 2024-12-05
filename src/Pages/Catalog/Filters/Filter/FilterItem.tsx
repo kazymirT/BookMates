@@ -11,8 +11,9 @@ import {
 export interface FilterItemProps {
   filter: { id: number; name: string; checked: boolean };
   filterType: keyof FilterType;
+  onClose: () => void;
 }
-const FilterItem: FC<FilterItemProps> = ({ filterType, filter }) => {
+const FilterItem: FC<FilterItemProps> = ({ filterType, filter, onClose }) => {
   const { checked, id, name } = filter;
 
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ const FilterItem: FC<FilterItemProps> = ({ filterType, filter }) => {
       : dispatch(
           removeFilterItem({ filterName: filterType, attributes: { id, name } })
         );
+    onClose();
   };
   return (
     <li>

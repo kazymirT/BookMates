@@ -72,17 +72,21 @@ export const queryParamsSlice = createSlice({
       action: PayloadAction<{
         filterName: keyof FilterType;
         attributes: { id: number; name: string };
+        isClean?: boolean;
       }>
     ) => {
-      const { filterName, attributes } = action.payload;
+      const { filterName, attributes, isClean } = action.payload;
 
       const filterArray = state.filter[filterName];
-
-      if (
-        filterArray &&
-        !filterArray.some((attr) => attr.id === attributes.id)
-      ) {
-        filterArray.push(attributes);
+      if (isClean) {
+        state.filter[filterName] = [attributes];
+      } else {
+        if (
+          filterArray &&
+          !filterArray.some((attr) => attr.id === attributes.id)
+        ) {
+          filterArray.push(attributes);
+        }
       }
 
       state.page = '1';
