@@ -4,6 +4,7 @@ import { Outlet, ScrollRestoration } from 'react-router-dom';
 import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import Loader from '@/components/ui-components/Loader/Loader';
 
 const OverlayLazy = lazy(() => import('../../components/Overlay/Overlay'));
 const ShoppingCartLazy = lazy(
@@ -23,7 +24,7 @@ const Layout = () => {
     <>
       <Header />
       <main className={styles.main}>
-        <Suspense fallback={<div className={styles.loading}>loading</div>}>
+        <Suspense fallback={<Loader />}>
           <OverlayLazy />
           <Outlet />
         </Suspense>
