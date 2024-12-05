@@ -49,7 +49,7 @@ export const BASE_CRUMBS: Record<
     to: '/catalog',
   },
   delivery: {
-    name: 'Delivery',
+    name: 'Delivery and payment',
     to: '/delivery',
   },
   доставка: {
