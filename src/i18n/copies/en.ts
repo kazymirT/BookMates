@@ -209,6 +209,7 @@ export const english = {
     order: 'make an order',
     authors: 'authors',
     collections: 'collections',
+    delivery: 'delivery',
   },
   'forms-error': {
     email: {
@@ -246,5 +247,62 @@ export const english = {
   },
   collections: {
     title: 'Book Collections',
+  },
+  delivery: {
+    welcome: {
+      title: 'Welcome to our website!',
+      description1:
+        'We are glad to welcome you to the world of books! Our goal is to make literature accessible to everyone. In our online store you will find a wide range of books of various genres: from classics to modern bestsellers, from science fiction to fantasy.',
+      description2: `We believe that books can change lives, inspire and open new horizons. That's why we strive to offer only the best publications from well-known authors and publishers.`,
+      description3:
+        'On our website, you can easily find the books you are interested in, as well as get acquainted with new products and promotions. Our team is always ready to provide convenient conditions for delivery, payment, and return of goods.',
+      footer:
+        'We work for you every day - 24/7. Despite the martial law, we make every effort to fulfill all orders on time.',
+    },
+    delivery: {
+      title: 'Delivery',
+      'delivery-title':
+        'We ship your books by Nova Post on weekdays every day:',
+      'delivery-item1':
+        '- orders placed on weekdays will be sent to you on the day of the order or the next day.',
+      'delivery-item2':
+        '- orders placed on weekends will be delivered to you on Monday or Tuesday.',
+      description1: `If you have any additional questions or clarifications, we will contact you before shipping.
+Delivery is possible to those settlements where there are Nova Posе offices or post offices.
+`,
+      subtitle: 'Delivery to a Nova Poshta branch',
+      description2:
+        'The cost of delivery is determined by the carrier. The order will be delivered to the pickup point within 1-3 business days. Nova Posе will inform you by SMS that the order is waiting at the Nova Posе branch.',
+      description3:
+        'We deliver all orders for the amount of UAH 599 or more to Nova Posе offices for free.',
+      description4:
+        'Please note: orders placed before 15:00 are delivered to the Nova Posе branch on the next business day (in remote locations - on 2-3 days). Orders placed after 15:00 will be shipped the next day. Orders can be stored at a Nova Posе branch for 6 business days free of charge. On the 7th day, the order is automatically sent back to the Sender. To receive the shipment, you need a passport, ID card or Nova Posе app.  ',
+    },
+    pay: {
+      title: 'Payment',
+      subtitle1: 'Important!',
+      subtitle2: 'Payment for goods is made only in UAH.',
+      header: 'When placing an order, you can choose the option',
+      subtitle3: 'Cashless payment:',
+      description: `At the customer's request, an employee of the online store issues an invoice and sends it to the customer via e-mail. On the basis of the invoice, the buyer makes a payment using the details specified in the invoice through a banking institution within 3 business days from the date of the invoice.`,
+      description1:
+        'After payment, you will receive a notification by e-mail: “Order paid” and the TTN number.',
+      subtitle4: 'Payment on receipt:',
+      description2:
+        'You can pay for the order upon receipt. Just choose this method during checkout.',
+      subtitle5: 'Returns:',
+      description3:
+        'If for some reason the book does not suit you, we offer a simple return procedure:',
+      'item-title1': 'Return period:',
+      'item-title2': 'Return conditions:',
+      'item-title3': 'Return process:',
+      'item-description1': 'You can return the item within 14 days of receipt.',
+      'item-description2':
+        'The book must be in new condition, without damage and in its original packaging. Please keep your receipt or proof of purchase.',
+      'item-description3': `To return an item, please contact our customer support team and we will provide you with return and refund instructions.`,
+      footer1: `If you have any additional questions, don't hesitate to contact us! We are always ready to help.`,
+      footer2:
+        'Join our book community - together we will create a world filled with knowledge and inspiration!',
+    },
   },
 };

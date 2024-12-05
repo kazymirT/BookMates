@@ -11,6 +11,7 @@ const Home = lazy(() => import('../Pages/Home/Home'));
 const Catalog = lazy(() => import('../Pages/Catalog/Catalog'));
 const Page404 = lazy(() => import('../Pages/Page404/Page404'));
 const Order = lazy(() => import('../Pages/Order/Order'));
+const Delivery = lazy(() => import('../Pages/Delivery/Delivery'));
 const Product = lazy(() => import('../Pages/Product/Product'));
 const Admin = lazy(() => import('../Pages/Admin/Admin'));
 const ErrorPage = lazy(() => import('../Pages/ErrorPage/ErrorPage'));
@@ -44,6 +45,7 @@ const route = createBrowserRouter(
       <Route path={'/author/:authorId'} element={<Author />} />
       <Route path={'/authors/'} element={<Authors />} />
       <Route path={'/order'} element={<Order />} />
+      <Route path={'/delivery'} element={<Delivery />} />
       <Route path={'/collections'} element={<Collections />} />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route

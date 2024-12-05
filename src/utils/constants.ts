@@ -48,6 +48,14 @@ export const BASE_CRUMBS: Record<
     name: 'Каталог',
     to: '/catalog',
   },
+  delivery: {
+    name: 'Delivery and payment',
+    to: '/delivery',
+  },
+  доставка: {
+    name: 'Доставка і оплата',
+    to: '/delivery',
+  },
   'Оформити замовлення': {
     name: 'Оформити замовлення',
     to: '/order',
