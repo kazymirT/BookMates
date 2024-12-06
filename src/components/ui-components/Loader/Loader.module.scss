@@ -1,7 +1,6 @@
 @import '@/styles';
-
+/* stylelint-disable */
 .wrapper {
-
   $i: 2;
 
   position: fixed;
@@ -15,127 +14,99 @@
   width: 100vw;
   height: 100vh;
 
-  background-color: #1c212e;
+  background-color: #f6f6f6;
 
   .loader {
-    --background: linear-gradient(135deg, #23c4f8, #275efe);
-    --shadow: #{rgba(#275efe, 0.28)};
+    --background: linear-gradient(315deg, #006f7e 0%, #09cee9 100%);
+    --shadow: #{rgba(#09cee9, 0.28)};
     --text: #6c7486;
     --page: #{rgba(#fff, 0.36)};
     --page-fold: #{rgba(#fff, 0.52)};
     --duration: 3s;
-
-    position: relative;
     width: 200px;
     height: 140px;
-
-    &::before,
-    &::after {
+    position: relative;
+    &:before,
+    &:after {
       --r: -6deg;
-
       content: '';
-
       position: absolute;
-      top: 80%;
       bottom: 8px;
-      transform: rotate(var(--r));
-
       width: 120px;
-
+      top: 80%;
       box-shadow: 0 16px 12px var(--shadow);
+      transform: rotate(var(--r));
     }
-
-    &::before {
+    &:before {
       left: 4px;
     }
-
-    &::after {
+    &:after {
       --r: 6deg;
-
       right: 4px;
     }
-
     div {
-      position: relative;
-      z-index: 1;
-
       width: 100%;
       height: 100%;
-
-      perspective: 600px;
-      background-image: var(--background);
       border-radius: 13px;
+      position: relative;
+      z-index: 1;
+      perspective: 600px;
       box-shadow: 0 4px 6px var(--shadow);
-
+      background-image: var(--background);
       ul {
-        position: relative;
         margin: 0;
         padding: 0;
         list-style: none;
-
+        position: relative;
         li {
-          $i: 2;
-
           --r: 180deg;
           --o: 0;
           --c: var(--page);
-
           position: absolute;
           top: 10px;
           left: 10px;
           transform-origin: 100% 50%;
-          transform: rotateY(var(--r));
-
           color: var(--c);
-
           opacity: var(--o);
-
+          transform: rotateY(var(--r));
           animation: var(--duration) ease infinite;
-
-          svg {
-            display: block;
-            width: 90px;
-            height: 120px;
-          }
-
-          &:first-child {
-            --r: 0deg;
-            --o: 1;
-          }
-
-          &:last-child {
-            --o: 1;
-          }
-
+          $i: 2;
           @while $i < 6 {
             &:nth-child(#{$i}) {
               --c: var(--page-fold);
-
               animation-name: page-#{$i};
             }
             $i: $i + 1;
           }
+          svg {
+            width: 90px;
+            height: 120px;
+            display: block;
+          }
+          &:first-child {
+            --r: 0deg;
+            --o: 1;
+          }
+          &:last-child {
+            --o: 1;
+          }
         }
       }
     }
-
-    span {
-      top: 100%;
-      right: 0;
-      left: 0;
-
+    p {
       display: block;
-
+      left: 0;
+      right: 0;
+      top: 100%;
       margin-top: 20px;
-
-      color: var(--text);
       text-align: center;
+      color: var(--text);
     }
   }
 
+  $i: 2;
   @while $i < 6 {
     $delay: $i * 15 - 30;
-
     @keyframes page-#{$i} {
       #{0 + $delay}% {
         transform: rotateY(180deg);
@@ -156,3 +127,5 @@
     $i: $i + 1;
   }
 }
+
+/* stylelint-enable */
