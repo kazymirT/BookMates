@@ -2,8 +2,6 @@
 @use '@/styles/fonts.scss';
 
 .order {
-  background-color: colors.$brown-100;
-
   .order-container {
     display: flex;
     flex-direction: column;

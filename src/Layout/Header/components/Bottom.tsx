@@ -73,9 +73,9 @@ const Bottom = () => {
           <UserButton {...user} />
         ) : (
           <DropDown
-            options={() => (
+            options={(toggleOpen) => (
               <Suspense>
-                <MenuLazy />
+                <MenuLazy onClose={toggleOpen} />
               </Suspense>
             )}
             control={(toggleOpen) => (

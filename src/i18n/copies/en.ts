@@ -305,4 +305,5 @@ Delivery is possible to those settlements where there are Nova Posе offices or 
         'Join our book community - together we will create a world filled with knowledge and inspiration!',
     },
   },
+  loader: 'Loading',
 };

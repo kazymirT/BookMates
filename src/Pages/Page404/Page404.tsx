@@ -1,9 +1,9 @@
-import styles from './Page404.module.scss';
+import Loader from '@/components/ui-components/Loader/Loader';
 
 const Page404 = () => {
   return (
     <>
-      <h2 className={styles.page404}>Page 404</h2>
+      <Loader />
     </>
   );
 };
