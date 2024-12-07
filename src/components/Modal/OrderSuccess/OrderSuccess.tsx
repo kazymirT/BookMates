@@ -3,11 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styles from '../../Forms/Form.module.scss';
 import thanks from '@/assets/images/thanks.png';
 import Salute from '@/components/StatusScreen/Salute/Salute';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
@@ -31,7 +27,7 @@ const OrderSuccess = () => {
         <p className={styles.success}>{t('order-success.description')}</p>
       </div>
       <ButtonLink
-        buttonType={ButtonType.Button}
+        type="button"
         size={Sizes.Full}
         variant={Variant.Basic}
         onClick={handleClose}

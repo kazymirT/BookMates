@@ -7,7 +7,6 @@ import styles from '../Header.module.scss';
 import Search from '@/components/Search/Search';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
-  ButtonType,
   Position,
   Sizes,
   Variant,
@@ -45,7 +44,7 @@ const Bottom = () => {
             isOverflow
             control={(toggleOpen) => (
               <Button
-                buttonType={ButtonType.Button}
+                type="button"
                 size={Sizes.Drop}
                 variant={Variant.Drop}
                 text={t('header.drop')}
@@ -80,7 +79,7 @@ const Bottom = () => {
             )}
             control={(toggleOpen) => (
               <Button
-                buttonType={ButtonType.Button}
+                type="button"
                 size={Sizes.IconS}
                 variant={Variant.Icon}
                 icon={<Icon.Account height="28px" width="28px" />}

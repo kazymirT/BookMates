@@ -6,11 +6,7 @@ import { useTranslation } from 'react-i18next';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
@@ -99,7 +95,7 @@ const LoginForm = () => {
           </button>
         )}
         <Button
-          buttonType={ButtonType.Submit}
+          type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text={t('login.btn-in')}

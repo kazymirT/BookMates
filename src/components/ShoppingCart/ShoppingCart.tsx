@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import CartItem from './CartItem/CartItem';
 import styles from './ShoppingCart.module.scss';
 import Portal from '../Portal/Portal';
-import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
+import { Sizes, Variant } from '../ui-components/Button/constants';
 import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
@@ -87,7 +87,7 @@ const ShoppingCart = () => {
             </div>
             <ButtonLink
               text={t('cart.btn')}
-              buttonType={ButtonType.Button}
+              type="button"
               size={Sizes.Full}
               url="/order"
               disabled={!totalPrice}

@@ -6,11 +6,7 @@ import styles from '../Header.module.scss';
 import logo from '@/assets/icons/BookMates.svg';
 import { RadioGroup } from '@/components/RadioGroup/RadioGroup';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
@@ -36,7 +32,7 @@ const HeaderTop = () => {
             ))}
         </ul>
         <Button
-          buttonType={ButtonType.Button}
+          type="button"
           size={Sizes.Link}
           variant={Variant.Link}
           text={t('header.links.support')}

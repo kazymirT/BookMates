@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import styles from './CartNotification.module.scss';
 import Portal from '../Portal/Portal';
-import { ButtonType, Sizes, Variant } from '../ui-components/Button/constants';
+import { Sizes, Variant } from '../ui-components/Button/constants';
 import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -112,7 +112,7 @@ const CartNotification = () => {
           </div>
           <ButtonLink
             text={t('cart.notification.btn')}
-            buttonType={ButtonType.Button}
+            type="button"
             size={Sizes.Full}
             url="/order"
             onClick={closeNotification}

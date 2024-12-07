@@ -8,11 +8,7 @@ import styles from './Subscription.module.scss';
 import { SubscriptionProps } from './types';
 import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import {
   getResetPasswordSchema,
   ResetPasswordValues,
@@ -56,7 +52,7 @@ const Subscription: FC<SubscriptionProps> = ({ variant }) => {
             variant="email"
           >
             <Button
-              buttonType={ButtonType.Submit}
+              type="submit"
               size={Sizes.Medium}
               variant={Variant.Basic}
               text={t('home.subscribe.button')}

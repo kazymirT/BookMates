@@ -5,7 +5,6 @@ import styles from './Components.module.scss';
 import { type AttributesPageProps } from '../types';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
-  ButtonType,
   Position,
   Sizes,
   Variant,
@@ -34,7 +33,7 @@ const AttributesPage: FC<AttributesPageProps> = ({
   return (
     <div className={styles.categories}>
       <Button
-        buttonType={ButtonType.Button}
+        type="button"
         size={Sizes.FullS}
         text={buttonName}
         variant={Variant.Primary}

@@ -5,11 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 import { ProductCardProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 
 const ProductCard: FC<ProductCardProps> = ({
   data: { authors, id, title, imageUrl, price, discount, discountPrice },
@@ -49,7 +45,7 @@ const ProductCard: FC<ProductCardProps> = ({
             </div>
           </div>
           <Button
-            buttonType={ButtonType.Button}
+            type="button"
             size={Sizes.Card}
             variant={Variant.Card}
             text="Купити"

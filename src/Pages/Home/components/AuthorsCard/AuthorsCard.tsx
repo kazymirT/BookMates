@@ -4,11 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './AuthorsCard.module.scss';
 import { AuthorCardProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 
 const AuthorCard: FC<AuthorCardProps> = ({ id, img, title }) => {
   return (
@@ -17,7 +13,7 @@ const AuthorCard: FC<AuthorCardProps> = ({ id, img, title }) => {
       <div className={styles.content}>
         <h4>{title}</h4>
         <Button
-          buttonType={ButtonType.Button}
+          type="button"
           size={Sizes.RedS}
           text="Книги автора"
           variant={Variant.White}

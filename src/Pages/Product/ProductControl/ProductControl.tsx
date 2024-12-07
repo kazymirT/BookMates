@@ -5,7 +5,6 @@ import styles from '../Product.module.scss';
 import Price from '@/components/Price/Price';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
-  ButtonType,
   Position,
   Sizes,
   Variant,
@@ -37,7 +36,7 @@ const ProductControl: FC<ProductControlProps> = ({ book }) => {
       <div className={styles.btns}>
         <ButtonLink
           url="/order"
-          buttonType={ButtonType.Button}
+          type="button"
           size={Sizes.FullM}
           text={t('product.btn-buy')}
           variant={Variant.Basic}
@@ -45,7 +44,7 @@ const ProductControl: FC<ProductControlProps> = ({ book }) => {
         />
         {!isBookInCart ? (
           <Button
-            buttonType={ButtonType.Button}
+            type="button"
             text={t('product.btn-basket')}
             variant={Variant.Primary}
             iconPosition={Position.Left}
@@ -56,7 +55,7 @@ const ProductControl: FC<ProductControlProps> = ({ book }) => {
         ) : (
           <div className={styles['product_in_card']}>
             <Button
-              buttonType={ButtonType.Button}
+              type="button"
               text={t('product.btn-in-basket')}
               variant={Variant.Basic}
               iconPosition={Position.Left}

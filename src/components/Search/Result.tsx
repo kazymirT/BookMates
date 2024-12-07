@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './Result.module.scss';
 import Price from '../Price/Price';
-import {
-  ButtonType,
-  Position,
-  Sizes,
-  Variant,
-} from '../ui-components/Button/constants';
+import { Position, Sizes, Variant } from '../ui-components/Button/constants';
 import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
 import { useAppDispatch } from '@/redux/hooks';
@@ -96,7 +91,7 @@ const Result = ({
           </div>
           {!!books?.content.length && (
             <ButtonLink
-              buttonType={ButtonType.Button}
+              type="button"
               icon={<Icon.Arrow />}
               iconPosition={Position.Right}
               size={Sizes.Small}
