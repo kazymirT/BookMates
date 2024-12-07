@@ -7,6 +7,7 @@ export const Drop: FC<IconProps> = ({
   viewBox = '0 0 24 24',
   width = '24',
   height = '24',
+  dataTestid,
 }) => {
   return (
     <svg
@@ -15,6 +16,7 @@ export const Drop: FC<IconProps> = ({
       height={height}
       viewBox={viewBox}
       className={className}
+      data-testid={dataTestid}
     >
       <path
         fillRule="evenodd"

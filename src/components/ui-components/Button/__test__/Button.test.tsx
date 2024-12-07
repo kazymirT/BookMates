@@ -89,7 +89,7 @@ describe('Button', async () => {
         variant={Variant.Icon}
         type="button"
         data-testid="button-id"
-        icon={<Icon.Plus testid="icon-id" />}
+        icon={<Icon.Plus dataTestid="icon-id" />}
       />
     );
     expect(getByTestId('icon-id')).toBeInTheDocument();
