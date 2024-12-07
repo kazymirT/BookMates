@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["@testing-library/jest-dom"],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -29,6 +30,6 @@
       "@i18n/*": ["./src/i18n"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "./vitest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
