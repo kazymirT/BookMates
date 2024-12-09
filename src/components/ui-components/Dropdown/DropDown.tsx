@@ -1,6 +1,11 @@
 import classNames from 'classnames';
 import React, { useEffect } from 'react';
 
+import {
+  DROPDOWN_CONTAINER,
+  DROPDOWN_CONTROL,
+  DROPDOWN_OPTIONS,
+} from './constants';
 import styles from './DropDown.module.scss';
 import { type DropdownProps } from './types';
 import useClickOutside from '@/hooks/useClickOutside';
@@ -35,10 +40,15 @@ const DropDown = ({
   });
 
   return (
-    <div ref={dropDownRef} className={styles.dropdown}>
-      <div className={styles.icon}>{control(handleToggleOpen, isOpen)}</div>
-      <div className={containerClName}>
-        <div className={styles.overlay}></div>
+    <div
+      ref={dropDownRef}
+      data-testid={DROPDOWN_CONTAINER}
+      className={styles.dropdown}
+    >
+      <div className={styles.icon} data-testid={DROPDOWN_CONTROL}>
+        {control(handleToggleOpen, isOpen)}
+      </div>
+      <div className={containerClName} data-testid={DROPDOWN_OPTIONS}>
         {options(handleToggleOpen, isOpen)}
       </div>
     </div>
