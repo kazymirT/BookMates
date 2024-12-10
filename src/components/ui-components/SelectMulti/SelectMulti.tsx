@@ -3,6 +3,7 @@ import { default as ReactSelect, DropdownIndicatorProps } from 'react-select';
 
 import { ClearIndicator } from './components/ClearIndicator';
 import { MultiValueRemove } from './components/MultiValueRemove';
+import { SELECT_DROP_INDICATOR } from './constants';
 import styles from './Select.module.scss';
 import { SelectProps, Option } from './SelectMulti.types';
 import arrowDown from '@/assets/icons/ArrowDown.svg';
@@ -12,7 +13,7 @@ const DropdownIndicator = (props: DropdownIndicatorProps<Option>) => {
     [styles['indicator_opened']]: props.selectProps.menuIsOpen,
   });
   return (
-    <div className={clName}>
+    <div className={clName} data-testid={SELECT_DROP_INDICATOR}>
       <img src={arrowDown} alt="" width={24} height={24} />
     </div>
   );
