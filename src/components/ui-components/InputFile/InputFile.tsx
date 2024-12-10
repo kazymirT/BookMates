@@ -1,6 +1,15 @@
 import classNames from 'classnames';
 import { ChangeEvent, forwardRef, useEffect, useId, useState } from 'react';
 
+import {
+  INPUT_FILE_BUTTON,
+  INPUT_FILE_CONTAINER,
+  INPUT_FILE_ERROR,
+  INPUT_FILE_IMG,
+  INPUT_FILE_INPUT,
+  INPUT_FILE_LABEL,
+  INPUT_FILE_PREVIEW,
+} from './constants';
 import styles from './InputFile.module.scss';
 import { InputFileProps } from './InputFile.types';
 import { Icon } from '../Icons';
@@ -24,8 +33,8 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
     const id = useId();
 
     const handleCancelImage = () => {
-      onClean && onClean();
-      onReset && onReset();
+      onClean?.();
+      onReset?.();
       setImagePreview(undefined);
     };
 
@@ -46,13 +55,14 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
       !isShowImage && setImagePreview(undefined);
     }, [isShowImage]);
     return (
-      <div className={styles['input-box']}>
+      <div className={styles['input-box']} data-testId={INPUT_FILE_CONTAINER}>
         {!imagePreview ? (
           <>
-            <label htmlFor={id}>
+            <label htmlFor={id} data-testId={INPUT_FILE_LABEL}>
               {placeholder}
               <input
                 id={id}
+                data-testId={INPUT_FILE_INPUT}
                 type="file"
                 accept="image/png"
                 {...rest}
@@ -65,18 +75,32 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
             </label>
           </>
         ) : (
-          <div className={styles['image-preview']}>
+          <div
+            className={styles['image-preview']}
+            data-testId={INPUT_FILE_PREVIEW}
+          >
             <button
               type="button"
               onClick={handleCancelImage}
+              data-testId={INPUT_FILE_BUTTON}
               className={styles.btn}
             >
               <Icon.Remove width="18" height="18" />
             </button>
-            <img src={imagePreview} alt="Preview" height={76} width={62} />
+            <img
+              src={imagePreview}
+              data-testId={INPUT_FILE_IMG}
+              alt="Preview"
+              height={76}
+              width={62}
+            />
           </div>
         )}
-        {!!errorMessage && <p className={styles.error}>{errorMessage}</p>}
+        {!!errorMessage && (
+          <p className={styles.error} data-testId={INPUT_FILE_ERROR}>
+            {errorMessage}
+          </p>
+        )}
       </div>
     );
   }
