@@ -6,6 +6,11 @@ import { AutoCompleteType } from './AutoComplete.types';
 import { ClearIndicator } from './components/ClearIndicator';
 import { DropdownIndicator } from './components/DropdownIndicator';
 import { MenuList } from './components/MenuList';
+import {
+  AUTOCOMPLETE_ERROR_ID,
+  AUTOCOMPLETE_REQUIRED_ID,
+  AUTOCOMPLETE_TEST_ID,
+} from './constants';
 
 export const SearchAutocomplete = ({
   data,
@@ -23,7 +28,11 @@ export const SearchAutocomplete = ({
   });
   return (
     <div className={styles.wrapper}>
-      {requiredMessage && <p className={styles.required}>{requiredMessage}</p>}
+      {requiredMessage && (
+        <p className={styles.required} data-testId={AUTOCOMPLETE_REQUIRED_ID}>
+          {requiredMessage}
+        </p>
+      )}
       <Select
         key={`my_unique_select_key__${keyChange}`}
         placeholder={placeholder}
@@ -38,6 +47,7 @@ export const SearchAutocomplete = ({
         openMenuOnClick
         openMenuOnFocus
         options={data}
+        data-testId={AUTOCOMPLETE_TEST_ID}
         components={{
           DropdownIndicator,
           IndicatorSeparator: null,
@@ -56,7 +66,12 @@ export const SearchAutocomplete = ({
         }}
       />
       {errorMessage && (
-        <p className={styles['message-error']}>{errorMessage}</p>
+        <p
+          className={styles['message-error']}
+          data-testId={AUTOCOMPLETE_ERROR_ID}
+        >
+          {errorMessage}
+        </p>
       )}
     </div>
   );
