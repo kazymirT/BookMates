@@ -2,6 +2,7 @@ import { InputMask } from '@react-input/mask';
 import classNames from 'classnames';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
+import { INPUT_PHONE_REQUIRED } from './constants';
 import styles from './Input.module.scss';
 import { type InputProps } from './Input.types';
 
@@ -34,9 +35,9 @@ const InputPhone = forwardRef<HTMLInputElement, InputProps>(
       if (onBlur) {
         onBlur(event);
       }
-      if (inputRef.current && inputRef.current.value.length === 0) {
-        setIsFocus(false);
-      }
+      // if (inputRef.current && inputRef.current.value.length === 0) {
+      //   setIsFocus(false);
+      // }
       if (!errorMessage) {
         setIsValid(true);
       }
@@ -81,7 +82,11 @@ const InputPhone = forwardRef<HTMLInputElement, InputProps>(
     });
     return (
       <div className={styles.box}>
-        {requiredMessage && <p className={styles.required}>{placeholder}</p>}
+        {requiredMessage && (
+          <p className={styles.required} data-testId={INPUT_PHONE_REQUIRED}>
+            {placeholder}
+          </p>
+        )}
 
         <div className={styles['input-group']}>
           <InputMask

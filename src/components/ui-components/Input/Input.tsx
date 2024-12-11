@@ -7,6 +7,13 @@ import {
   useState,
 } from 'react';
 
+import {
+  INPUT_ERROR_MESSAGE,
+  INPUT_PASSWORD_BUTTON,
+  INPUT_REQUIRED_MESSAGE,
+  INPUT_SPAN_ID,
+  INPUT_TEST_ID,
+} from './constants';
 import styles from './Input.module.scss';
 import { type InputProps } from './Input.types';
 
@@ -53,7 +60,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 
     const handleOnBlur = (event: React.FocusEvent<HTMLInputElement>) => {
       setIsAnimation(true);
-      onBlur && onBlur(event);
+      onBlur?.(event);
       if (inputRef.current && inputRef.current.value.length === 0) {
         setIsFocus(false);
       }
@@ -90,7 +97,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     });
     return (
       <div className={styles.box}>
-        {requiredMessage && <p className={styles.required}>{placeholder}</p>}
+        {requiredMessage && (
+          <p className={styles.required} data-testId={INPUT_REQUIRED_MESSAGE}>
+            {placeholder}
+          </p>
+        )}
         <div className={styles['input-group']}>
           <input
             {...rest}
@@ -100,19 +111,27 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onInput={handleOnInput}
+            data-testId={INPUT_TEST_ID}
           />
-          <span className={spanClassName} onClick={handleClickSpan}>
+          <span
+            className={spanClassName}
+            data-testId={INPUT_SPAN_ID}
+            onClick={handleClickSpan}
+          >
             {placeholder}
           </span>
           {rest.type === 'password' && (
             <button
               type="button"
               className={inputPasswordClass}
+              data-testId={INPUT_PASSWORD_BUTTON}
               onClick={handleShowPassword}
             ></button>
           )}
           {!!errorMessage && (
-            <span className={styles.error}>{errorMessage}</span>
+            <span className={styles.error} data-testId={INPUT_ERROR_MESSAGE}>
+              {errorMessage}
+            </span>
           )}
         </div>
       </div>
