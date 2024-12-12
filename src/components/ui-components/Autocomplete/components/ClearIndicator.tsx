@@ -14,7 +14,7 @@ export const ClearIndicator = (props: ClearIndicatorProps<Option, false>) => {
       {...restInnerProps}
       ref={ref}
       className={styles.clear}
-      data-testId={AUTOCOMPLETE_CLEAR_ID}
+      data-testid={AUTOCOMPLETE_CLEAR_ID}
     >
       <Icon.Close height="18" width="18" viewBox="0, 0, 24, 24" />
     </div>

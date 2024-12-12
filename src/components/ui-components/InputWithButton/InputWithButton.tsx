@@ -12,12 +12,12 @@ const InputWithButton = forwardRef<HTMLInputElement, InputWithButtonProps>(
       [styles[`box__${variant}`]]: variant,
     });
     return (
-      <div className={boxClassName} data-testId={INPUT_TEST_CONTAINER}>
+      <div className={boxClassName} data-testid={INPUT_TEST_CONTAINER}>
         <input
           {...rest}
           ref={ref}
           className={styles.input}
-          data-testId={INPUT_TEST_ID}
+          data-testid={INPUT_TEST_ID}
         />
         {children}
       </div>

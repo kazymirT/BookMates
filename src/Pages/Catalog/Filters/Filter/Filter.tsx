@@ -2,12 +2,12 @@ import styles from './Filter.module.scss';
 import FilterItem from './FilterItem';
 import { FilterProps } from '../../Catalog.types';
 import Title from '../Title/Title';
-import DropDownew from '@/components/ui-components/Dropdown/DropDown';
+import DropDow from '@/components/ui-components/Dropdown/DropDown';
 
 const Filter = ({ categories, title, filterType }: FilterProps) => {
   return (
     <div className={styles.filter}>
-      <DropDownew
+      <DropDow
         variant="filter"
         control={(toggleOpen, isOpen) => (
           <Title text={title} toggleOpen={toggleOpen} isOpen={isOpen} />

@@ -98,7 +98,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={styles.box}>
         {requiredMessage && (
-          <p className={styles.required} data-testId={INPUT_REQUIRED_MESSAGE}>
+          <p className={styles.required} data-testid={INPUT_REQUIRED_MESSAGE}>
             {placeholder}
           </p>
         )}
@@ -111,11 +111,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onInput={handleOnInput}
-            data-testId={INPUT_TEST_ID}
+            data-testid={INPUT_TEST_ID}
           />
           <span
             className={spanClassName}
-            data-testId={INPUT_SPAN_ID}
+            data-testid={INPUT_SPAN_ID}
             onClick={handleClickSpan}
           >
             {placeholder}
@@ -124,12 +124,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             <button
               type="button"
               className={inputPasswordClass}
-              data-testId={INPUT_PASSWORD_BUTTON}
+              data-testid={INPUT_PASSWORD_BUTTON}
               onClick={handleShowPassword}
             ></button>
           )}
           {!!errorMessage && (
-            <span className={styles.error} data-testId={INPUT_ERROR_MESSAGE}>
+            <span className={styles.error} data-testid={INPUT_ERROR_MESSAGE}>
               {errorMessage}
             </span>
           )}

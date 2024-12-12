@@ -55,14 +55,14 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
       !isShowImage && setImagePreview(undefined);
     }, [isShowImage]);
     return (
-      <div className={styles['input-box']} data-testId={INPUT_FILE_CONTAINER}>
+      <div className={styles['input-box']} data-testid={INPUT_FILE_CONTAINER}>
         {!imagePreview ? (
           <>
-            <label htmlFor={id} data-testId={INPUT_FILE_LABEL}>
+            <label htmlFor={id} data-testid={INPUT_FILE_LABEL}>
               {placeholder}
               <input
                 id={id}
-                data-testId={INPUT_FILE_INPUT}
+                data-testid={INPUT_FILE_INPUT}
                 type="file"
                 accept="image/png"
                 {...rest}
@@ -77,19 +77,19 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
         ) : (
           <div
             className={styles['image-preview']}
-            data-testId={INPUT_FILE_PREVIEW}
+            data-testid={INPUT_FILE_PREVIEW}
           >
             <button
               type="button"
               onClick={handleCancelImage}
-              data-testId={INPUT_FILE_BUTTON}
+              data-testid={INPUT_FILE_BUTTON}
               className={styles.btn}
             >
               <Icon.Remove width="18" height="18" />
             </button>
             <img
               src={imagePreview}
-              data-testId={INPUT_FILE_IMG}
+              data-testid={INPUT_FILE_IMG}
               alt="Preview"
               height={76}
               width={62}
@@ -97,7 +97,7 @@ const InputFile = forwardRef<HTMLInputElement, InputFileProps>(
           </div>
         )}
         {!!errorMessage && (
-          <p className={styles.error} data-testId={INPUT_FILE_ERROR}>
+          <p className={styles.error} data-testid={INPUT_FILE_ERROR}>
             {errorMessage}
           </p>
         )}

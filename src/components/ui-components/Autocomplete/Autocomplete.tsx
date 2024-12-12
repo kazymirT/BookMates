@@ -29,7 +29,7 @@ export const SearchAutocomplete = ({
   return (
     <div className={styles.wrapper}>
       {requiredMessage && (
-        <p className={styles.required} data-testId={AUTOCOMPLETE_REQUIRED_ID}>
+        <p className={styles.required} data-testid={AUTOCOMPLETE_REQUIRED_ID}>
           {requiredMessage}
         </p>
       )}
@@ -47,7 +47,7 @@ export const SearchAutocomplete = ({
         openMenuOnClick
         openMenuOnFocus
         options={data}
-        data-testId={AUTOCOMPLETE_TEST_ID}
+        data-testid={AUTOCOMPLETE_TEST_ID}
         components={{
           DropdownIndicator,
           IndicatorSeparator: null,
@@ -68,7 +68,7 @@ export const SearchAutocomplete = ({
       {errorMessage && (
         <p
           className={styles['message-error']}
-          data-testId={AUTOCOMPLETE_ERROR_ID}
+          data-testid={AUTOCOMPLETE_ERROR_ID}
         >
           {errorMessage}
         </p>

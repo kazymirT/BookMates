@@ -1,19 +1,19 @@
 import styles from './Home.module.scss';
 import Authors from './modules/Authors/Authors';
 import Banner from './modules/Banner/Banner';
-import Category from './modules/Category/Category';
+import Collections from './modules/Collections/Collections';
 import Newness from './modules/Newness/Newness';
 import Sale from './modules/Sale/Sale';
 import Subscription from '../../components/Subscription/Subscription';
 
-const Ui = () => {
+const Home = () => {
   return (
     <>
       <Banner />
       <div className={styles.home}>
         <Newness />
         <Sale />
-        <Category />
+        <Collections />
         <Authors />
         <Subscription variant="home" />
       </div>
@@ -21,4 +21,4 @@ const Ui = () => {
   );
 };
 
-export default Ui;
+export default Home;
