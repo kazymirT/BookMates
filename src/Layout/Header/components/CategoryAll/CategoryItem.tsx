@@ -20,7 +20,7 @@ const CategoryItem: FC<CategoryItemProps> = ({ id, name, onClose }) => {
     navigate(`/catalog?categories=${id}`);
     onClose();
   };
-  return <li onClick={handleFilterChange}>{name}</li>;
+  return <p onClick={handleFilterChange}>{name}</p>;
 };
 
 export default CategoryItem;
