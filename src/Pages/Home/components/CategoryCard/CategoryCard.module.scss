@@ -2,7 +2,11 @@
 
 .card {
   position: relative;
-  max-height: 200px;
+
+  width: 100%;
+  max-width: 221px;
+  height: 200px;
+
   border-radius: 8px;
 
   &:hover {
