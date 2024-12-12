@@ -25,7 +25,7 @@ const InputAdmin = forwardRef<HTMLInputElement, InputAdminProps>(
     });
     return (
       <div className={styles['input-box']} data-testid={INPUT_ADMIN_CONTAINER}>
-        <label htmlFor={id} data-testId={INPUT_ADMIN_LABEL}>
+        <label htmlFor={id} data-testid={INPUT_ADMIN_LABEL}>
           {placeholder}
           {placeholder === 'Номер телефону' ? (
             <InputMask
@@ -35,7 +35,7 @@ const InputAdmin = forwardRef<HTMLInputElement, InputAdminProps>(
               className={inputClassName}
               ref={ref}
               type="text"
-              data-testId={INPUT_ADMIN_PHONE}
+              data-testid={INPUT_ADMIN_PHONE}
               {...rest}
             />
           ) : (
@@ -44,13 +44,13 @@ const InputAdmin = forwardRef<HTMLInputElement, InputAdminProps>(
               id={id}
               ref={ref}
               onChange={onChange}
-              data-testId={INPUT_ADMIN_INPUT}
+              data-testid={INPUT_ADMIN_INPUT}
               className={inputClassName}
             />
           )}
         </label>
         {!!errorMessage && (
-          <span className={styles.error} data-testId={INPUT_ADMIN_ERROR}>
+          <span className={styles.error} data-testid={INPUT_ADMIN_ERROR}>
             {errorMessage}
           </span>
         )}

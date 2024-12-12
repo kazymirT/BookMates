@@ -9,7 +9,6 @@ describe('InputPhone Component', () => {
   afterEach(() => {
     cleanup();
   });
-
   it('renders the input with default props', () => {
     const placeholder = 'Enter your phone';
     const { getByText, getByRole } = render(

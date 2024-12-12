@@ -83,7 +83,7 @@ const InputPhone = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={styles.box}>
         {requiredMessage && (
-          <p className={styles.required} data-testId={INPUT_PHONE_REQUIRED}>
+          <p className={styles.required} data-testid={INPUT_PHONE_REQUIRED}>
             {placeholder}
           </p>
         )}
