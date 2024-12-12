@@ -31,9 +31,12 @@ const Sort = () => {
           />
         )}
         options={(toggleOpen) => (
-          <div className={styles.sort} onClick={toggleOpen}>
+          <div className={styles.sort}>
             <RadioForm
-              onChange={handleChangeSort}
+              onChange={(value: string) => {
+                handleChangeSort(value);
+                toggleOpen();
+              }}
               options={selectSortOptions[t('catalog.sort')]}
               defaultValue={SORT_OPTIONS_URL[t('catalog.sort')][sortValue]}
             />

@@ -7,7 +7,7 @@ import { type PriceFilterProps } from '../../Catalog.types';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPrice } from '@/redux/slices/queryParams';
 
-const PriceFilter = ({ price }: PriceFilterProps) => {
+const PriceFilter = ({ price, onClose }: PriceFilterProps) => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<number[]>(price);
   const [isError, setIsError] = useState(false);
@@ -30,6 +30,7 @@ const PriceFilter = ({ price }: PriceFilterProps) => {
 
   const onSubmit = () => {
     dispatch(setPrice([String(value[0]), String(value[1])]));
+    onClose();
   };
 
   const inputClassNames = classNames(styles.input, {
