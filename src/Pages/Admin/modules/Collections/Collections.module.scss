@@ -1,0 +1,76 @@
+@import '@/styles';
+
+.collection {
+  @include scrollBar(5px, 5px, $background-color, $grey-100, $grey-200);
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+
+  table,
+  th,
+  tr,
+  td {
+    text-align: center;
+    border: 2px solid $grey-100;
+  }
+
+  thead,
+  th {
+    height: fit-content !important;
+    padding: 14px 0;
+    line-height: 19px;
+  }
+
+  tbody tr {
+    cursor: pointer;
+    height: 108px !important;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: $brown-200;
+    }
+  }
+
+  td.img {
+    width: 100px;
+    height: 108px;
+    padding: 8px 14px 12px;
+    font-size: 0;
+  }
+
+  td {
+    max-width: 250px;
+    height: 108px;
+  }
+
+  .description {
+    width: 405px;
+    padding: 0 10px;
+
+    div {
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      height: 94px;
+
+      p {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: start;
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+
+  .title {
+    width: 263px;
+  }
+
+  .count-books {
+    width: 104px;
+  }
+}
