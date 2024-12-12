@@ -40,13 +40,12 @@ const EditBook = () => {
       handleClose();
     }
   };
+  const sectionCN = classNames(
+    styles['form-container'],
+    styles['form-container__edit-book']
+  );
   return (
-    <section
-      className={classNames(
-        styles['form-container'],
-        styles['form-container__edit-book']
-      )}
-    >
+    <section className={sectionCN}>
       {isPopupOpen && (
         <DeletePopup onClose={handleClosePopup} onDelete={handleDeleteBook} />
       )}
@@ -63,7 +62,7 @@ const EditBook = () => {
             book={book}
             handleOpenPopup={handleOpenPopup}
           />
-          <PicturesEdit book={book} />
+          <PicturesEdit id={id} img={book.imageUrl} name="book" />
         </>
       )}
     </section>

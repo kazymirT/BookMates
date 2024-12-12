@@ -166,16 +166,6 @@ export const SORT_OPTIONS_URL: Record<string, Record<string, string>> = {
   en: SORT_OPTIONS_URL_EN,
 };
 
-export const ADMIN_LIST = [
-  { id: 1, name: 'Введення книжок', url: '/admin/books' },
-  { id: 2, name: 'Введення категорій', url: '/admin/categories' },
-  { id: 6, name: 'Введення авторів', url: '/admin/authors' },
-  { id: 7, name: 'Введення мов', url: '/admin/language' },
-  { id: 3, name: 'Клієнти зареєстровані', url: '/admin/client' },
-  { id: 4, name: 'Клієнти не зареєстровані', url: '/admin/clientN' },
-  { id: 5, name: 'Замовлення', url: '/admin/order' },
-];
-
 export const Attributes: Record<string, { inputName: string; title: string }> =
   {
     category: {

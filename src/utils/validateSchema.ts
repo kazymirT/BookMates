@@ -316,3 +316,30 @@ export const orderListSchema = z.object({
 });
 
 export type OrderListValues = z.infer<typeof orderListSchema>;
+
+export const editCollectionsSchema = z.object({
+  title: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  description: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .min(1, 'Це поле є обов`язковим.'),
+  booksOfNumber: z
+    .string({
+      required_error: 'Це поле є обов`язковим.',
+      invalid_type_error: 'Це поле є обов`язковим.',
+    })
+    .regex(/^\d{1,5}$/, 'Введіть коректну кількісь'),
+});
+export type EditCollectionsValues = z.infer<typeof editCollectionsSchema>;
+
+export const addCollectionsSchema = editCollectionsSchema.extend({
+  picture: pictureSchema,
+});
+export type AddCollectionsValues = z.infer<typeof addCollectionsSchema>;

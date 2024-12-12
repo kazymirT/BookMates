@@ -15,6 +15,7 @@ type AdminState = {
   attributesName: AttributesName | null;
   clientId: number | null;
   orderId: string | null;
+  collectionId: number | null;
 };
 
 const initialState: AdminState = {
@@ -23,6 +24,7 @@ const initialState: AdminState = {
   attributesName: null,
   clientId: null,
   orderId: null,
+  collectionId: null,
 };
 
 export const adminSlice = createSlice({
@@ -30,6 +32,7 @@ export const adminSlice = createSlice({
   initialState,
   selectors: {
     bookId: (state) => state.bookId,
+    collectionId: (state) => state.collectionId,
     attributesName: (state) => state.attributesName,
     clientId: (state) => state.clientId,
     orderId: (state) => state.orderId,
@@ -38,6 +41,9 @@ export const adminSlice = createSlice({
   reducers: {
     setBookId: (state, action: PayloadAction<number | null>) => {
       state.bookId = action.payload;
+    },
+    setCollectionId: (state, action: PayloadAction<number | null>) => {
+      state.collectionId = action.payload;
     },
     setAttributesName: (
       state,
@@ -63,8 +69,15 @@ export const {
   setClientId,
   setOrderId,
   setAttributes,
+  setCollectionId,
 } = adminSlice.actions;
-export const { bookId, attributesName, clientId, orderId, attributes } =
-  adminSlice.selectors;
+export const {
+  bookId,
+  collectionId,
+  attributesName,
+  clientId,
+  orderId,
+  attributes,
+} = adminSlice.selectors;
 export const userData = (state: RootState) => state.user;
 export default adminSlice.reducer;

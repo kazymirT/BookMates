@@ -19,6 +19,8 @@ type ModalState = {
     | 'user-info'
     | 'userNotAuthorized-info'
     | 'order-info'
+    | 'add-collection'
+    | 'edit-collection'
     | null;
   redirect: string;
 };

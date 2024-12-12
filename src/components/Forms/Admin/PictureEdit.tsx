@@ -4,14 +4,19 @@ import { useForm } from 'react-hook-form';
 import { toast, TypeOptions } from 'react-toastify';
 
 import styles from './Form.module.scss';
-import { EditBookProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import InputFile from '@/components/ui-components/InputFile/InputFile';
 import { useChangeImageMutation } from '@/redux/services/adminBook';
 import { pictureSchema, PictureValues } from '@/utils/validateSchema';
 
-const PicturesEdit: FC<Pick<EditBookProps, 'book'>> = ({ book }) => {
+export interface PicturesEditProps {
+  id: number;
+  img: string;
+  name: 'book' | 'collection';
+}
+
+const PicturesEdit: FC<PicturesEditProps> = ({ id, img, name }) => {
   const notify = (type: TypeOptions, text: string) => toast(text, { type });
   const [changeImage] = useChangeImageMutation();
   const {
@@ -28,42 +33,60 @@ const PicturesEdit: FC<Pick<EditBookProps, 'book'>> = ({ book }) => {
     mode: 'onTouched',
   });
   const onSubmit = async ({ picture }: PictureValues) => {
-    try {
-      const formData = new FormData();
-      picture && formData.append('photo', picture[0]);
-      const response = await changeImage({
-        body: formData,
-        id: book.id,
-      }).unwrap();
-      notify('success', response);
-      resetField('picture');
-    } catch (error) {
-      const { data } = error as { data: string };
-      notify('error', data);
+    if (name) {
+      const editActions = {
+        book: changeImage,
+        collection: undefined,
+      };
+      const editAction = editActions[name];
+      if (editAction) {
+        try {
+          const formData = new FormData();
+          picture && formData.append('photo', picture[0]);
+          const response = await editAction({
+            body: formData,
+            id,
+          }).unwrap();
+          notify('success', response);
+          resetField('picture');
+        } catch (error) {
+          const { data } = error as { data: string };
+          notify('error', data);
+        }
+      }
     }
   };
   const handleDeletePictures = async () => {
-    try {
-      const formData = new FormData();
-      const response = await changeImage({
-        body: formData,
-        id: book.id,
-      }).unwrap();
-      notify('success', response);
-    } catch (error) {
-      const { data } = error as { data: string };
-      notify('error', data);
-    } finally {
+    if (name) {
+      const editActions = {
+        book: changeImage,
+        collection: undefined,
+      };
+      const editAction = editActions[name];
+      if (editAction) {
+        try {
+          const formData = new FormData();
+          const response = await editAction({
+            body: formData,
+            id: id,
+          }).unwrap();
+          notify('success', response);
+        } catch (error) {
+          const { data } = error as { data: string };
+          notify('error', data);
+        } finally {
+        }
+      }
     }
   };
-  const isImage = !book.imageUrl.endsWith('.com/');
+  const isImage = !img.endsWith('.com/');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles['picture-container']}>
         <InputFile
           {...register('picture')}
           placeholder="Додати фото"
-          baseImages={book.imageUrl}
+          baseImages={img}
           isShowImage={isImage}
           errorMessage={errors.picture?.message}
           onReset={() => resetField('picture')}
