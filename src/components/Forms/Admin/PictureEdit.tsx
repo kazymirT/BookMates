@@ -6,11 +6,7 @@ import { toast, TypeOptions } from 'react-toastify';
 import styles from './Form.module.scss';
 import { EditBookProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import InputFile from '@/components/ui-components/InputFile/InputFile';
 import { useChangeImageMutation } from '@/redux/services/adminBook';
 import { pictureSchema, PictureValues } from '@/utils/validateSchema';
@@ -75,7 +71,7 @@ const PicturesEdit: FC<Pick<EditBookProps, 'book'>> = ({ book }) => {
         />
         <div className={styles['picture-btn']}>
           <Button
-            buttonType={ButtonType.Button}
+            type="button"
             size={Sizes.Large}
             text="Видалити фото"
             variant={Variant.Accent}
@@ -83,7 +79,7 @@ const PicturesEdit: FC<Pick<EditBookProps, 'book'>> = ({ book }) => {
             disabled={!isImage}
           />
           <Button
-            buttonType={ButtonType.Submit}
+            type="submit"
             size={Sizes.FullS}
             text="Додати фото"
             variant={Variant.Basic}

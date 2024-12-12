@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import type { FC } from 'react';
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LINK_TEST_ID } from './constants';
 import styles from './Link.module.scss';
-import { LinkProps } from './Link.types';
+import { type LinkProps } from './Link.types';
 
 export const LinkComponent: FC<LinkProps> = ({
   url,
@@ -18,7 +19,7 @@ export const LinkComponent: FC<LinkProps> = ({
 
   if (isMailLink) {
     return (
-      <a className={linkClass} href={url}>
+      <a className={linkClass} href={url} data-testid={LINK_TEST_ID}>
         {text}
       </a>
     );
@@ -30,6 +31,7 @@ export const LinkComponent: FC<LinkProps> = ({
         <a
           className={linkClass}
           href={url}
+          data-testid={LINK_TEST_ID}
           target={isInNewTab ? '_blank' : '_self'}
           rel={isInNewTab ? 'noopener noreferrer' : undefined}
         >
@@ -39,6 +41,7 @@ export const LinkComponent: FC<LinkProps> = ({
         <Link
           className={linkClass}
           to={url}
+          data-testid={LINK_TEST_ID}
           target={isInNewTab ? '_blank' : '_self'}
         >
           {text}

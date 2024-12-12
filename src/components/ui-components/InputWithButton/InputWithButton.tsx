@@ -1,19 +1,24 @@
 import classNames from 'classnames';
 import { forwardRef } from 'react';
 
+import { INPUT_TEST_CONTAINER, INPUT_TEST_ID } from './constants';
 import styles from './InputWithButton.module.scss';
-import { InputProps } from './InputWithButton.types';
+import { InputWithButtonProps } from './InputWithButton.types';
 
-const InputWithButton = forwardRef<HTMLInputElement, InputProps>(
+const InputWithButton = forwardRef<HTMLInputElement, InputWithButtonProps>(
   ({ errorMessage, children, variant, ...rest }, ref) => {
-    const inputClassName = classNames(styles.input);
     const boxClassName = classNames(styles.box, {
       [styles['box__error']]: errorMessage,
       [styles[`box__${variant}`]]: variant,
     });
     return (
-      <div className={boxClassName}>
-        <input {...rest} ref={ref} className={inputClassName} />
+      <div className={boxClassName} data-testId={INPUT_TEST_CONTAINER}>
+        <input
+          {...rest}
+          ref={ref}
+          className={styles.input}
+          data-testId={INPUT_TEST_ID}
+        />
         {children}
       </div>
     );

@@ -10,10 +10,9 @@ export const Button: FC<ButtonProps> = ({
   text,
   disabled,
   onClick,
-  buttonType,
   iconPosition,
   icon,
-  aria,
+  ...props
 }) => {
   const buttonClassName = classNames(
     styles.button,
@@ -27,11 +26,10 @@ export const Button: FC<ButtonProps> = ({
   );
   return (
     <button
+      {...props}
       className={buttonClassName}
-      type={buttonType}
       disabled={disabled}
       onClick={onClick}
-      aria-label={aria}
     >
       {icon && <>{icon}</>}
       {text && <>{text}</>}

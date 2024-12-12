@@ -2,11 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './FilterClear.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   clearFilters,
@@ -58,7 +54,7 @@ const FilterClear = () => {
         <div className={styles.clear}>
           {(!!filters.length || priceFilter || search) && (
             <Button
-              buttonType={ButtonType.Button}
+              type="button"
               size={Sizes.ExtraSmall}
               text={t('catalog.clear-filter')}
               variant={Variant.Label}
@@ -69,7 +65,7 @@ const FilterClear = () => {
             filters.map((filter) => (
               <Button
                 key={filter.filterName + filter.value}
-                buttonType={ButtonType.Button}
+                type="button"
                 size={Sizes.ExtraSmall}
                 text={filter.value.name}
                 variant={Variant.LabelX}
@@ -79,7 +75,7 @@ const FilterClear = () => {
           {priceFilter && (
             <Button
               key={priceFilter}
-              buttonType={ButtonType.Button}
+              type="button"
               size={Sizes.ExtraSmall}
               text={priceFilter}
               variant={Variant.LabelX}
@@ -89,7 +85,7 @@ const FilterClear = () => {
           {search && (
             <Button
               key={search}
-              buttonType={ButtonType.Button}
+              type="button"
               size={Sizes.ExtraSmall}
               text={search}
               variant={Variant.LabelX}

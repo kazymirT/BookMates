@@ -3,11 +3,7 @@ import { FC } from 'react';
 
 import styles from './SectionTitle.module.scss';
 import { SectionTitleProps } from './types';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 
 const SectionTitle: FC<SectionTitleProps> = ({
@@ -26,7 +22,7 @@ const SectionTitle: FC<SectionTitleProps> = ({
       <h3 className={titleClassName}>{title}</h3>
       {btnText && btnLink && (
         <ButtonLink
-          buttonType={ButtonType.Button}
+          type="button"
           size={Sizes.Large}
           text={btnText}
           url={btnLink}

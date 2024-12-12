@@ -5,11 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import Select from '@/components/ui-components/Select/Select';
@@ -102,7 +98,7 @@ const FeedBackForm = () => {
           </div>
         </div>
         <Button
-          buttonType={ButtonType.Submit}
+          type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text={t('support.btn-send')}

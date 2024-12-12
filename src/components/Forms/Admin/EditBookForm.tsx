@@ -6,11 +6,7 @@ import { toast, TypeOptions } from 'react-toastify';
 import styles from './Form.module.scss';
 import { type EditBookProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import SelectMulti from '@/components/ui-components/SelectMulti/SelectMulti';
@@ -156,14 +152,14 @@ const EditBookForm: FC<EditBookProps> = ({
       </Checkbox>
       <div className={styles.btns}>
         <Button
-          buttonType={ButtonType.Submit}
+          type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text="Зберегти"
           disabled={!isValid}
         />
         <Button
-          buttonType={ButtonType.Button}
+          type="button"
           size={Sizes.Full}
           onClick={handleOpenPopup}
           variant={Variant.Delete}

@@ -7,6 +7,7 @@ export const Settings: FC<IconProps> = ({
   viewBox = '0 0 24 24',
   width = '24',
   height = '24',
+  dataTestid,
 }) => {
   return (
     <svg
@@ -15,6 +16,7 @@ export const Settings: FC<IconProps> = ({
       height={height}
       viewBox={viewBox}
       className={className}
+      data-testid={dataTestid}
     >
       <path
         d="M12 15C13.657 15 15 13.657 15 12C15 10.343 13.657 9 12 9C10.343 9 9 10.343 9 12C9 13.657 10.343 15 12 15ZM12 10C13.103 10 14 10.897 14 12C14 13.103 13.103 14 12 14C10.897 14 10 13.103 10 12C10 10.897 10.897 10 12 10Z"

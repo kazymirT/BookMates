@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
 import path from 'path';
 
 import react from '@vitejs/plugin-react';
@@ -8,6 +10,29 @@ export default defineConfig({
   plugins: [react()],
   build: {
     sourcemap: true,
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    css: {
+      modules: {
+        classNameStrategy: 'non-scoped',
+      },
+    },
+    setupFiles: ['./vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+      include: ['src/components/ui-components/**/*.tsx'],
+      exclude: [
+        'node_modules/',
+        '**/*.d.ts',
+        'src/**/*.test.*',
+        'src/**/*.stories.*',
+      ],
+      all: true,
+      reporter: ['text', 'html'],
+      reportsDirectory: './coverage',
+    },
   },
   resolve: {
     alias: {

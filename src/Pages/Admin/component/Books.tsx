@@ -1,7 +1,6 @@
 import styles from './Components.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
-  ButtonType,
   Position,
   Sizes,
   Variant,
@@ -29,7 +28,7 @@ const Books = () => {
   return (
     <div className={styles.books}>
       <Button
-        buttonType={ButtonType.Button}
+        type="button"
         size={Sizes.FullS}
         text="Додати книгу"
         variant={Variant.Primary}

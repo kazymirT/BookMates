@@ -4,11 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import styles from './Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import { useAppSelector } from '@/redux/hooks';
 import { clientId } from '@/redux/slices/adminSlice';
@@ -84,7 +80,7 @@ const UserInfoForm: FC<{ onClose: () => void }> = ({ onClose }) => {
         errorMessage={errors.email?.message}
       />
       <Button
-        buttonType={ButtonType.Submit}
+        type="submit"
         size={Sizes.Full}
         variant={Variant.Basic}
         text="Зберегти"

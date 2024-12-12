@@ -6,11 +6,7 @@ import { toast, TypeOptions } from 'react-toastify';
 import styles from './Form.module.scss';
 import DeletePopup from '@/components/DeletePopup/DeletePopup';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -146,14 +142,14 @@ const EditCategory = () => {
             />
             <div className={styles.btns}>
               <Button
-                buttonType={ButtonType.Submit}
+                type="submit"
                 size={Sizes.Full}
                 variant={Variant.Basic}
                 text="Зберегти"
                 disabled={!isValid || isSubmitting || !hasChanged}
               />
               <Button
-                buttonType={ButtonType.Button}
+                type="button"
                 size={Sizes.Full}
                 onClick={handleOpenPopup}
                 variant={Variant.Delete}

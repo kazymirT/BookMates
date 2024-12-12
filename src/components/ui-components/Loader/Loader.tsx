@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { LOADER_TEST_ID } from './constants';
 import styles from './Loader.module.scss';
 
 const Loader = () => {
@@ -9,7 +10,7 @@ const Loader = () => {
   ];
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid={LOADER_TEST_ID}>
       <div className={styles.loader}>
         <div>
           <ul>

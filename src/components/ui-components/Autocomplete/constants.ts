@@ -26,3 +26,9 @@ export const CITY_DEFAULT: Option[] = [
   { label: 'м. Черкаси, Черкаська обл.', value: 'Черкаси' },
   { label: 'м. Чернігів, Чернігівська обл.', value: 'Чернігів' },
 ];
+
+export const AUTOCOMPLETE_ERROR_ID = 'autocomplete error id';
+export const AUTOCOMPLETE_REQUIRED_ID = 'autocomplete required id';
+export const AUTOCOMPLETE_TEST_ID = 'autocomplete test id';
+
+export const AUTOCOMPLETE_CLEAR_ID = 'clear test id';

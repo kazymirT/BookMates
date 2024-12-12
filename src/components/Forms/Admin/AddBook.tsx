@@ -6,11 +6,7 @@ import { toast, TypeOptions } from 'react-toastify';
 
 import styles from './Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import { Icon } from '@/components/ui-components/Icons';
 import InputAdmin from '@/components/ui-components/InputAdmin/InputAdmin';
@@ -225,7 +221,7 @@ const AddBook = () => {
           <p>Hемає в наявності</p>
         </Checkbox>
         <Button
-          buttonType={ButtonType.Submit}
+          type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text="Додати"

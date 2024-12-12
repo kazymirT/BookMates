@@ -4,11 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from '../../Forms/Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import { useFormActions } from '@/hooks/useFormActions';
@@ -66,7 +62,7 @@ const ResetPassword = () => {
           />
         </div>
         <Button
-          buttonType={ButtonType.Submit}
+          type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text={t('reset-password.btn-in')}

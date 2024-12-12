@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "lint-styles": "stylelint --max-warnings 0 \"**/*.scss\"",
-    "lint-styles:fix": "stylelint --fix \"**/*.scss\""
+    "lint-styles:fix": "stylelint --fix \"**/*.scss\"",
+    "test": "vitest",
+     "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -39,15 +41,20 @@
     "zod": "^3.23.6"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-input-mask": "^3.0.5",
     "@types/react-lottie": "^1.2.10",
     "@types/react-slick": "^0.23.13",
     "@types/react-slider": "^1.3.6",
+    "@types/testing-library__jest-dom": "^6.0.0",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^2.1.8",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.0",
@@ -56,6 +63,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "husky": "^8.0.3",
+    "jsdom": "^25.0.1",
     "lint-staged": "^15.2.2",
     "prettier": "^3.1.0",
     "sass": "^1.75.0",
@@ -65,7 +73,8 @@
     "stylelint-config-recommended-scss": "^14.0.0",
     "stylelint-config-standard": "^36.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vitest": "^2.1.8"
   },
   "lint-staged": {
     "*.{tsx,ts,scss,module.scss}": "prettier --write",

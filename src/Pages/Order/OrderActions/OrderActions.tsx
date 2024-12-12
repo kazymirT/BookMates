@@ -5,11 +5,7 @@ import styles from './OrderActions.module.scss';
 import { type OrderActionsProps } from '../order.types';
 import OrderItem from '../OrderItem/OrderItem';
 import { Button } from '@/components/ui-components/Button/Button';
-import {
-  ButtonType,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -97,7 +93,7 @@ const OrderActions = ({
       </div>
       <div className={styles['order-actions']}>
         <Button
-          buttonType={ButtonType.Submit}
+          type="submit"
           size={Sizes.Full}
           text={t('order.aside.btn-order')}
           variant={Variant.Basic}
