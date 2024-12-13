@@ -93,7 +93,7 @@ export type BookById = {
 
 export type BooksData = {
   id: number;
-  title: 'string';
+  title: string;
   year: number;
   price: number;
   totalQuantity: number;
