@@ -10,7 +10,10 @@ const CategoryAll: FC<CategoryAllProps> = ({ children }) => {
 
   return (
     <ul className={styles.list}>
-      {isSuccess && data.categories.map(({ id, name }) => children(id, name))}
+      {isSuccess &&
+        data.categories.map(({ id, name }) => (
+          <li key={id}>{children(id, name)}</li>
+        ))}
     </ul>
   );
 };

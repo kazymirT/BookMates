@@ -1,58 +1,59 @@
 @import '@/styles';
 
 .admin {
-  display: flex;
-  gap: 46px;
+  .admin-inner {
+    display: grid;
+    grid-template-columns: 282px 1fr;
+    gap: 46px;
 
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 40px;
-
-  aside {
     width: 100%;
-    max-width: 282px;
+    padding-top: 67px;
 
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    aside {
+      width: 100%;
+      max-width: 282px;
 
-      padding: 24px 16px;
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
 
-      background: $accent-white;
-      border-radius: 12px;
+        padding: 24px 16px;
 
-      li {
-        a {
-          display: block;
+        background: $accent-white;
+        border-radius: 12px;
 
-          padding: 14.5px 19px 14.5px 28px;
+        li {
+          a {
+            display: block;
 
-          font-family: $font-family;
-          line-height: 1.19;
-          color: $grey-300;
-          letter-spacing: 0.04em;
+            padding: 14.5px 19px 14.5px 28px;
 
-          border-radius: 4px;
+            font-family: $font-family;
+            line-height: 1.19;
+            color: $grey-300;
+            letter-spacing: 0.04em;
 
-          transition: all 0.3s;
+            border-radius: 4px;
 
-          &:hover {
-            background: $background-color;
-          }
+            transition: all 0.3s;
 
-          &.active {
-            color: $accent-white;
-            background: $brown-200;
+            &:hover {
+              background: $background-color;
+            }
+
+            &.active {
+              color: $accent-white;
+              background: $brown-200;
+            }
           }
         }
       }
     }
-  }
 
-  main {
-    width: 100%;
-    max-width: 872px;
+    main {
+      width: 100%;
+      max-width: 872px;
+    }
   }
 }

@@ -9,8 +9,16 @@ const UserNotAuthorizedInfoLazy = lazy(
 );
 const AddCategoryLazy = lazy(() => import('../Forms/Admin/AddAttributes'));
 const EditCategoryLazy = lazy(() => import('../Forms/Admin/EditAttributes'));
+const AddCollectionLazy = lazy(
+  () => import('../../Pages/Admin/modules/Collections/components/AddCollection')
+);
+const EditCollectionLazy = lazy(
+  () =>
+    import('../../Pages/Admin/modules/Collections/components/EditCollection')
+);
 const AddBookLazy = lazy(() => import('../Forms/Admin/AddBook'));
 const EditBookLazy = lazy(() => import('../Forms/Admin/EditBook'));
+
 const OrderEditLazy = lazy(() => import('../Forms/Admin/OrderEdit'));
 
 const FeedbackSuccessLazy = lazy(
@@ -66,6 +74,10 @@ const Modal = () => {
           <UserNotAuthorizedInfoLazy />
         ) : openedModalType === 'edit-order' ? (
           <OrderEditLazy />
+        ) : openedModalType === 'add-collection' ? (
+          <AddCollectionLazy />
+        ) : openedModalType === 'edit-collection' ? (
+          <EditCollectionLazy />
         ) : null}
       </Suspense>
     </Portal>
