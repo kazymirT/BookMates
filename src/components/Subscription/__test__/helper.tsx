@@ -10,7 +10,6 @@ export const setup = (props?: Partial<SubscriptionProps>) => {
     variant: props?.variant ?? 'author',
     ...props,
   };
-
   return render(
     <I18nextProvider i18n={i18n}>
       <Subscription {...defaultProps} />
