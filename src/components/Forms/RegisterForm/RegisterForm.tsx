@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { BUTTON_CLOSE_ID } from './constants';
 import {
   RegisterValues,
   getRegisterSchema,
@@ -56,7 +57,12 @@ const RegisterForm = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>{t('register.title')}</h2>
-        <button className={styles.close} type="button" onClick={handleClose}>
+        <button
+          className={styles.close}
+          type="button"
+          onClick={handleClose}
+          data-testid={BUTTON_CLOSE_ID}
+        >
           <Icon.Close />
         </button>
       </div>
