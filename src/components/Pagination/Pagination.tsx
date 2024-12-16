@@ -2,6 +2,7 @@ import { FC, useMemo } from 'react';
 
 import PaginationArrow from './components/PaginationArrow';
 import PaginationButton from './components/PaginationButton';
+import { NEXT_BUTTON_ID, PREV_BUTTON_ID } from './constants';
 import styles from './Pagination.module.scss';
 import { PaginationProps } from './types';
 import { useAppDispatch } from '@/redux/hooks';
@@ -26,6 +27,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
         isDisabled={currentPage === 0}
         onClick={() => handlePageClick(currentPage)}
         aria="prev page"
+        testid={PREV_BUTTON_ID}
       />
       {pageArray.map((page) => (
         <PaginationButton
@@ -40,6 +42,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
         isDisabled={currentPage + 1 === totalPages}
         onClick={() => handlePageClick(currentPage + 2)}
         aria="next page"
+        testid={NEXT_BUTTON_ID}
       />
     </ul>
   );

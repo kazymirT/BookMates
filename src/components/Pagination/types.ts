@@ -8,6 +8,7 @@ export interface PaginationArrowProps {
   isDisabled: boolean;
   onClick: () => void;
   aria: string;
+  testid: string;
 }
 
 export interface PaginationButtonProps {
