@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { BUTTON_CLOSE_ID } from './constants';
 import styles from '../../Forms/Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
@@ -47,7 +48,12 @@ const ResetPassword = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>{t('reset-password.title')}</h2>
-        <button type="button" className={styles.close} onClick={handleClose}>
+        <button
+          type="button"
+          className={styles.close}
+          onClick={handleClose}
+          data-testid={BUTTON_CLOSE_ID}
+        >
           <Icon.Close />
         </button>
       </div>
