@@ -3,9 +3,10 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
+import { PORTAL_TEST_ID } from './constants';
 import styles from './Portal.module.scss';
 
-type PortalProps = {
+export type PortalProps = {
   isOpen: boolean;
   placeContent: 'center' | 'right';
   onClickOutside?: () => void;
@@ -60,6 +61,7 @@ const Portal = ({
             ref={nodeRef}
             className={wrapperClName}
             onClick={handleCloseModal}
+            data-testid={PORTAL_TEST_ID}
           >
             {children}
           </div>
