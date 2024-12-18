@@ -6,7 +6,7 @@ import { PORTAL_TEST_ID } from '../constants';
 
 describe('Portal component', () => {
   it('should render portal content when open', () => {
-    const { getByText } = setupPortal({ isOpen: true });
+    const { getByText } = setupPortal();
 
     expect(getByText('Portal Content')).toBeInTheDocument();
   });
