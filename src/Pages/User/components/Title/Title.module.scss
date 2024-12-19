@@ -1,0 +1,39 @@
+@import '@/styles';
+
+.title {
+  display: flex;
+  padding: 11px 0;
+  border: 1px solid $button-default;
+  border-radius: 8px;
+
+  &__s {
+    width: 276px;
+    max-width: 276px;
+  }
+
+  &__m {
+    width: 326px;
+    max-width: 326px;
+  }
+
+  &__full {
+    width: 100%;
+  }
+
+  &__left {
+    justify-content: start;
+    padding-left: 47px;
+  }
+
+  &__center {
+    justify-content: center;
+  }
+
+  h3 {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    color: $button-default;
+  }
+}
