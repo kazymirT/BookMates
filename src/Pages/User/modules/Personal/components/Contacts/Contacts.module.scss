@@ -1,0 +1,45 @@
+@import '@/styles';
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 276px;
+  padding-right: 0;
+  padding-left: 8px;
+
+  li {
+    display: flex;
+    // width: 100%;
+    gap: 24px;
+
+    span {
+      font-family: $font-family;
+      font-size: 16px;
+      line-height: 19px;
+      color: $grey-300;
+    }
+
+    .item {
+      width: 80px;
+      font-weight: 400;
+      letter-spacing: 0.035em;
+    }
+
+    .data {
+      font-weight: 600;
+      text-align: left;
+      letter-spacing: 0.07em;
+
+      &:nth-child(2) {
+        letter-spacing: 0.07em;
+      }
+
+      &:nth-child(3) {
+        letter-spacing: 0;
+      }
+    }
+  }
+}
