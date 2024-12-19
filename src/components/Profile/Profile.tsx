@@ -13,6 +13,7 @@ const Profile = () => {
   const isProfileOpen = useAppSelector(isOpen);
   const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
+
   const handleClose = () => {
     dispatch(toggleOpenProfile(false));
   };

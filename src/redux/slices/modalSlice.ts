@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 
-type ModalState = {
+export type ModalState = {
   openedModalType:
     | 'login'
     | 'create-account'
