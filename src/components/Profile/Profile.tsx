@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
@@ -53,18 +54,30 @@ const Profile = () => {
             <nav className={styles.nav}>
               <ul>
                 <li>
-                  <Icon.Cart />
-                  <span>{t('profile.links.order')}</span>
+                  <NavLink
+                    to={'/user/orders'}
+                    className={styles.link}
+                    onClick={handleClose}
+                  >
+                    <Icon.Cart />
+                    <span>{t('profile.links.order')}</span>
+                  </NavLink>
                 </li>
                 <li>
-                  <Icon.Settings />
-                  <span>{t('profile.links.settings')}</span>
+                  <NavLink
+                    to={'/user/settings'}
+                    className={styles.link}
+                    onClick={handleClose}
+                  >
+                    <Icon.Settings />
+                    <span>{t('profile.links.settings')}</span>
+                  </NavLink>
                 </li>
-                <li onClick={onClickSupport}>
+                <li onClick={onClickSupport} className={styles.link}>
                   <Icon.Support />
                   <span>{t('profile.links.support')}</span>
                 </li>
-                <li onClick={onLogout}>
+                <li onClick={onLogout} className={styles.link}>
                   <Icon.Logout />
                   <span>{t('profile.links.logout')}</span>
                 </li>
