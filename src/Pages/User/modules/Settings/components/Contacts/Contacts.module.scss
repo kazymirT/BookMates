@@ -1,0 +1,13 @@
+@import '@/styles';
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-left: 10px;
+
+  .change {
+    display: flex;
+    gap: 75px;
+  }
+}
