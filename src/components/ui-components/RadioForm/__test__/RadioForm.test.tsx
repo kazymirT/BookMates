@@ -8,7 +8,7 @@ describe('RadioForm', () => {
   const setup = (props?: Partial<RadioFormProps>) => {
     const defaultProps: RadioFormProps = {
       options: ['Option 1', 'Option 2', 'Option 3'],
-      defaultValue: '',
+      value: '',
       onChange: vi.fn(),
       ...props,
     };
@@ -25,7 +25,7 @@ describe('RadioForm', () => {
   });
 
   it('sets the default selected value', () => {
-    const { getByLabelText } = setup({ defaultValue: 'Option 2' });
+    const { getByLabelText } = setup({ value: 'Option 2' });
 
     const option2 = getByLabelText('Option 2') as HTMLInputElement;
 
@@ -41,22 +41,6 @@ describe('RadioForm', () => {
     fireEvent.click(option3);
 
     expect(mockOnChange).toHaveBeenCalledWith('Option 3');
-  });
-
-  it('updates the selected value on user interaction', () => {
-    const mockOnChange = vi.fn();
-    const { getByLabelText } = setup({ onChange: mockOnChange });
-
-    const option1 = getByLabelText('Option 1') as HTMLInputElement;
-    const option2 = getByLabelText('Option 2') as HTMLInputElement;
-
-    fireEvent.click(option1);
-    expect(option1.checked).toBe(true);
-    expect(option2.checked).toBe(false);
-
-    fireEvent.click(option2);
-    expect(option2.checked).toBe(true);
-    expect(option1.checked).toBe(false);
   });
 
   it('handles no default value gracefully', () => {

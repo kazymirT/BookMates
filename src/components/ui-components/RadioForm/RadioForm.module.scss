@@ -61,4 +61,18 @@
       }
     }
   }
+
+  &__user {
+    gap: 4px;
+
+    padding: 0;
+    padding-left: 15px;
+
+    background-color: transparent;
+    border: none;
+
+    label input {
+      border: 1px solid black;
+    }
+  }
 }
