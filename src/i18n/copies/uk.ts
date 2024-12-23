@@ -209,6 +209,7 @@ export const ukraine = {
     authors: 'автори',
     collections: 'колекція',
     delivery: 'доставка',
+    user: 'користувач',
   },
   'forms-error': {
     email: {

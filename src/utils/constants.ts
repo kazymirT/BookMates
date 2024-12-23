@@ -60,6 +60,14 @@ export const BASE_CRUMBS: Record<
     name: 'Оформити замовлення',
     to: '/order',
   },
+  user: {
+    name: 'Personal office',
+    to: '/user',
+  },
+  користувач: {
+    name: 'Особистий кабінет',
+    to: '/user',
+  },
 };
 
 export enum TOPICS {

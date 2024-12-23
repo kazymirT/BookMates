@@ -210,6 +210,7 @@ export const english = {
     authors: 'authors',
     collections: 'collections',
     delivery: 'delivery',
+    user: 'user',
   },
   'forms-error': {
     email: {

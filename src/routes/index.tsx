@@ -22,6 +22,7 @@ const NotAuthorized = lazy(
   () => import('../Pages/NotAuthorized/NotAuthorized')
 );
 const Author = lazy(() => import('../Pages/Author/Author'));
+const User = lazy(() => import('../Pages/User/User'));
 const Authors = lazy(() => import('../Pages/Authors/Authors'));
 const Collections = lazy(() => import('../Pages/Collections/Collections'));
 
@@ -45,6 +46,7 @@ const route = createBrowserRouter(
       <Route path={'/author/:authorId'} element={<Author />} />
       <Route path={'/authors/'} element={<Authors />} />
       <Route path={'/order'} element={<Order />} />
+      <Route path={'/user/:userId?'} element={<User />} />
       <Route path={'/delivery'} element={<Delivery />} />
       <Route path={'/collections'} element={<Collections />} />
       <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
