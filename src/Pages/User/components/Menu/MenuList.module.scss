@@ -1,0 +1,24 @@
+@import '@/styles';
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding-top: 0;
+  padding-left: 47px;
+
+  .navItem {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: $grey-300;
+    letter-spacing: 0.03em;
+
+    &.active {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+  }
+}
