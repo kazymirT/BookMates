@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from '../Filter/Filter.module.scss';
@@ -19,6 +20,9 @@ const Sort = () => {
   const handleChangeSort = (value: string) => {
     dispatch(setSort(SORT_OPTIONS_STATE[value]));
   };
+  const [value, setValue] = useState(
+    SORT_OPTIONS_URL[t('catalog.sort')][sortValue]
+  );
   return (
     <div className={styles.filter}>
       <DropDownew
@@ -35,10 +39,11 @@ const Sort = () => {
             <RadioForm
               onChange={(value: string) => {
                 handleChangeSort(value);
+                setValue(value);
                 toggleOpen();
               }}
               options={selectSortOptions[t('catalog.sort')]}
-              defaultValue={SORT_OPTIONS_URL[t('catalog.sort')][sortValue]}
+              value={value}
             />
           </div>
         )}

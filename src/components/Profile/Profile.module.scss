@@ -1,5 +1,3 @@
-@use '@/styles/colors.scss';
-
 @import '@/styles';
 
 .profile {
@@ -10,7 +8,7 @@
   min-width: 352px;
   height: 100%;
 
-  color: colors.$raisin-black;
+  color: $raisin-black;
 
   background-color: #fff;
 }
@@ -22,7 +20,7 @@
 
   padding: 1em 1em 0.75em;
 
-  border-bottom: 2px solid colors.$isabelline;
+  border-bottom: 2px solid $isabelline;
 
   &-info {
     display: flex;
