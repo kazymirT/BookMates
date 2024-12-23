@@ -93,4 +93,56 @@
       letter-spacing: 0.05em;
     }
   }
+
+  &__green {
+    gap: 5px;
+    align-items: center;
+
+    label {
+      cursor: pointer;
+
+      display: flex;
+      gap: 9px;
+      align-items: center;
+
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 400;
+      color: $grey-300;
+      letter-spacing: 0.033em;
+    }
+
+    input {
+      cursor: pointer;
+
+      position: relative;
+
+      width: 18px;
+      height: 18px;
+
+      appearance: none;
+      border: 1px solid black;
+      border-radius: 50% !important;
+
+      transition: all 0.3s ease-in;
+
+      &:checked,
+      &:hover {
+        &::before {
+          content: '';
+
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          width: 10px;
+          height: 10px;
+
+          background-color: $button-default;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 }
