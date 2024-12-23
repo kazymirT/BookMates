@@ -13,6 +13,7 @@ export enum Sizes {
   Card = 'card',
   Pagination = 'pagination',
   IconS = 'icon-s',
+  UserS = 'user-s',
 }
 
 export enum Variant {
@@ -28,6 +29,9 @@ export enum Variant {
   Card = 'card',
   Pagination = 'pagination',
   Icon = 'icon',
+  UserEdit = 'user-edit',
+  UserSave = 'user-save',
+  UserCancel = 'user-cancel',
 }
 
 export enum ButtonType {
