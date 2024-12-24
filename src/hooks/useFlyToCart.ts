@@ -46,7 +46,7 @@ const useFlyToCart = () => {
       ],
       {
         delay: items.length ? 0 : 150,
-        duration: 1500,
+        duration: 900,
         easing: 'cubic-bezier(0.4, 0.5, 0.7, 1)',
         fill: 'forwards',
       }
