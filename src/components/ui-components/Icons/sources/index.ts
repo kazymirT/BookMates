@@ -2,6 +2,7 @@ import { Account } from './Account';
 import { Arrow } from './Arrow';
 import { Arrow_1 } from './Arrow_1';
 import { Cart } from './Cart';
+import { CartNew } from './CartNew';
 import { Close } from './Close';
 import { Drop } from './Drop';
 import { Edit } from './Edit';
@@ -32,4 +33,5 @@ export const IconInstance: IconInstance = {
   Plus,
   Remove,
   Drop,
+  CartNew,
 };

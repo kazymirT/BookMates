@@ -8,20 +8,20 @@ export type CartItem = {
   img: string;
   title: string;
   authors: string[];
-  price: string;
+  price: number;
   discount: number;
   discountPrice: number;
   quantity: number;
 };
 
 type ShoppingCartState = {
-  //isPending: boolean;
+  isFly: boolean;
   isOpenCart: boolean;
   goods: CartItem[];
 };
 
 const initialState: ShoppingCartState = {
-  //isPending: false,
+  isFly: false,
   isOpenCart: false,
   goods: [],
 };
@@ -30,9 +30,9 @@ export const shoppingCart = createSlice({
   name: 'shoppingCart',
   initialState,
   reducers: {
-    // togglePendingCart: (state, action: PayloadAction<boolean>) => {
-    //   state.isPending = action.payload;
-    // },
+    toggleFlyCart: (state, action: PayloadAction<boolean>) => {
+      state.isFly = action.payload;
+    },
     toggleOpenCart: (state, action: PayloadAction<boolean>) => {
       state.isOpenCart = action.payload;
     },
@@ -70,7 +70,7 @@ export const shoppingCart = createSlice({
 });
 
 export const {
-  //togglePendingCart,
+  toggleFlyCart,
   toggleOpenCart,
   addGoods,
   increaseQuantity,
@@ -80,5 +80,5 @@ export const {
 } = shoppingCart.actions;
 export const isOpen = (state: RootState) => state.shoppingCart.isOpenCart;
 export const goods = (state: RootState) => state.shoppingCart.goods;
-//export const isPending = (state: RootState) => state.shoppingCart.isPending;
+export const isFly = (state: RootState) => state.shoppingCart.isFly;
 export default shoppingCart.reducer;

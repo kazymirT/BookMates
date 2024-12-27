@@ -13,13 +13,13 @@ import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
 import { useProductControlLogic } from '@/hooks/useProductControlLogic';
 import { BookById } from '@/redux/services/services.types';
-
 interface ProductControlProps {
   book: BookById;
 }
 
 const ProductControl: FC<ProductControlProps> = ({ book }) => {
   const { t } = useTranslation();
+
   const { isBookInCart, handleAddToCart, handleOpenCart } =
     useProductControlLogic(book);
 

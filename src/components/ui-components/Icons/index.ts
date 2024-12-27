@@ -75,4 +75,9 @@ export const Icon: Icon = {
     height: '24',
     viewBox: '0 0 24 24',
   }),
+  [IconAppName.CARTNEW]: makeIcon(IconInstance.CartNew, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
 };
