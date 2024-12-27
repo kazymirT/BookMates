@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import Portal from '../Portal/Portal';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { modalType, toggleModal } from '@/redux/slices/modalSlice';
+
 const UserInfoLazy = lazy(() => import('./UserInfo/UserInfo'));
 const UserNotAuthorizedInfoLazy = lazy(
   () => import('./UserNotAuthorizedInfo/UserNotAuthorizedInfo')
@@ -20,7 +21,12 @@ const AddBookLazy = lazy(() => import('../Forms/Admin/AddBook'));
 const EditBookLazy = lazy(() => import('../Forms/Admin/EditBook'));
 
 const OrderEditLazy = lazy(() => import('../Forms/Admin/OrderEdit'));
-
+const SubscriptionErrorLazy = lazy(
+  () => import('./Subscription/SubscriptionError')
+);
+const SubscriptionSuccessLazy = lazy(
+  () => import('./Subscription/SubscriptionSuccess')
+);
 const FeedbackSuccessLazy = lazy(
   () => import('./FeedbackSuccess/FeedbackSuccess')
 );
@@ -76,6 +82,10 @@ const Modal = () => {
           <OrderEditLazy />
         ) : openedModalType === 'add-collection' ? (
           <AddCollectionLazy />
+        ) : openedModalType === 'subscription-success' ? (
+          <SubscriptionSuccessLazy />
+        ) : openedModalType === 'subscription-error' ? (
+          <SubscriptionErrorLazy />
         ) : openedModalType === 'edit-collection' ? (
           <EditCollectionLazy />
         ) : null}

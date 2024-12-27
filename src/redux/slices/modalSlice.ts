@@ -21,6 +21,8 @@ type ModalState = {
     | 'order-info'
     | 'add-collection'
     | 'edit-collection'
+    | 'subscription-success'
+    | 'subscription-error'
     | null;
   redirect: string;
 };

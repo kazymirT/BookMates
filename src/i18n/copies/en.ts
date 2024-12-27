@@ -52,6 +52,14 @@ export const english = {
       description:
         'Be the first to hear about new books and receive our recommendations.',
       button: 'Subscribe',
+      placeholder: 'Email',
+      success: {
+        title: 'Thank you!',
+        description:
+          'Now you will receive only fresh information about new arrivals',
+        button: 'Ok',
+      },
+      error: 'Thank you, but you are already subscribed and we are very happy!',
     },
   },
   catalog: {
