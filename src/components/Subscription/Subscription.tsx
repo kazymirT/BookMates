@@ -9,6 +9,8 @@ import { SubscriptionProps } from './types';
 import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
+import { useAppDispatch } from '@/redux/hooks';
+import { toggleModal } from '@/redux/slices/modalSlice';
 import {
   getResetPasswordSchema,
   ResetPasswordValues,
@@ -16,6 +18,7 @@ import {
 
 const Subscription: FC<SubscriptionProps> = ({ variant }) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const {
     register,
     reset,
@@ -31,6 +34,7 @@ const Subscription: FC<SubscriptionProps> = ({ variant }) => {
   const onSubmit = async (data: ResetPasswordValues) => {
     // eslint-disable-next-line no-console
     console.log(data);
+    dispatch(toggleModal({ openedModalType: 'subscription-success' }));
     reset();
   };
   const subscribeCN = classNames(styles.subscription, {
@@ -48,7 +52,7 @@ const Subscription: FC<SubscriptionProps> = ({ variant }) => {
             {...register('email')}
             type="email"
             errorMessage={errors.email?.message}
-            placeholder="Email"
+            placeholder={t('home.subscribe.placeholder')}
             variant="email"
           >
             <Button

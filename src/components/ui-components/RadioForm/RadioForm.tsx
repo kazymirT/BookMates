@@ -1,30 +1,37 @@
-import { FC, useState } from 'react';
+import classNames from 'classnames';
+import { FC } from 'react';
 
 import styles from './RadioForm.module.scss';
 import { RadioFormProps } from './types';
 
-const RadioForm: FC<RadioFormProps> = ({ options, defaultValue, onChange }) => {
-  const [selected, setSelected] = useState(defaultValue || '');
-
+const RadioForm: FC<RadioFormProps> = ({
+  options,
+  value,
+  onChange,
+  variant = 'sort',
+}) => {
   const radioOptions = options.map((option) => ({
     label: option,
     value: option,
   }));
 
   const handleChange = (value: string) => {
-    setSelected(value);
     onChange(value);
   };
 
+  const formCN = classNames(styles.form, {
+    [styles[`form__${variant}`]]: variant,
+  });
+
   return (
-    <form className={styles.form}>
+    <form className={formCN}>
       {radioOptions.map((option) => (
         <label key={option.value}>
           <input
             type="radio"
             name="customRadio"
             value={option.value}
-            checked={selected === option.value}
+            checked={value === option.value}
             onChange={() => handleChange(option.value)}
           />
           {option.label}

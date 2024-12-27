@@ -1,5 +1,6 @@
 export interface RadioFormProps {
   options: string[];
-  defaultValue?: string;
+  value?: string;
   onChange: (value: string) => void;
+  variant?: 'user' | 'sort';
 }

@@ -149,6 +149,16 @@ export const getOrderSchema = (t: TFunction<'translation', undefined>) => {
 };
 
 export type OrderValues = z.infer<ReturnType<typeof getOrderSchema>>;
+
+export const getChangeSchema = (t: TFunction<'translation', undefined>) => {
+  return z.object({
+    phone: getPhone(t).optional(),
+    email: getEmail(t).optional(),
+  });
+};
+
+export type GetChangeValues = z.infer<ReturnType<typeof getChangeSchema>>;
+
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 const ACCEPTED_FILE_TYPES = ['image/png', 'image/webp'];
 

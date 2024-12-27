@@ -1,0 +1,47 @@
+@import '@/styles';
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .input {
+    padding: 7px;
+    border: 1px solid $grey-100;
+    border-radius: 4px;
+
+    &::placeholder {
+      letter-spacing: 0.04em;
+    }
+  }
+
+  .error {
+    position: absolute;
+    bottom: -25px;
+    left: 10px;
+
+    font-size: 14px;
+    color: $accent-red;
+  }
+
+  &__phone {
+    input {
+      width: 165px;
+    }
+
+    .error {
+      width: 250px;
+    }
+  }
+
+  &__email {
+    input {
+      width: 264px;
+    }
+
+    .error {
+      width: 280px;
+    }
+  }
+}

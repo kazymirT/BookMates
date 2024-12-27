@@ -177,6 +177,27 @@
     background-color: $accent-red;
   }
 
+  &--user-edit {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: $grey-300;
+  }
+
+  &--user-save {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: $button-default;
+  }
+
+  &--user-cancel {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    color: #c42700;
+  }
+
   &--red-s {
     padding: 8px 12px;
   }
@@ -190,6 +211,10 @@
 
   &--s {
     padding: 12.5px 23px;
+  }
+
+  &--user-s {
+    padding: 0;
   }
 
   &--m {
