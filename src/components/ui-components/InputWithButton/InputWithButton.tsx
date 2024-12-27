@@ -19,6 +19,7 @@ const InputWithButton = forwardRef<HTMLInputElement, InputWithButtonProps>(
           className={styles.input}
           data-testid={INPUT_TEST_ID}
         />
+        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
         {children}
       </div>
     );
