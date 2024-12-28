@@ -21,11 +21,15 @@ const Profile = () => {
 
   const handleCloseProfile = () => dispatch(toggleOpenProfile(false));
 
-  const closeProfile = () => setShow(false);
+  const closeProfile = () => {
+    setShow(false);
+    handleCloseProfile();
+  };
 
   const onLogout = () => {
     dispatch(logout());
     closeProfile();
+    handleCloseProfile();
   };
 
   const onClickSupport = () => {
