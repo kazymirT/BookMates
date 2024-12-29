@@ -343,7 +343,7 @@ export const ukraine = {
       title: 'Мої налаштування',
       phone: 'Номер телефону',
       email: 'Електронна пошта',
-      subacribe: 'Моя підписка',
+      subscribe: 'Моя підписка',
       theme: 'Вигляд:',
       language: 'Мова:',
       btnEdit: 'Змінити',
