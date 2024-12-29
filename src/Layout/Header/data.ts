@@ -12,6 +12,6 @@ export const NAVIGATION_LINKS = [
   {
     id: 3,
     name: 'authors',
-    href: '#',
+    href: '/authors',
   },
 ];
