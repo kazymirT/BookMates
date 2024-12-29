@@ -4,19 +4,11 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import styles from './Input.module.scss';
+import { InputProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import UserInput from '@/components/ui-components/UserInput/UserInput';
 import { getChangeSchema, GetChangeValues } from '@/utils/validateSchema';
-
-export interface InputProps {
-  title: string;
-  variant: 'phone' | 'email';
-  defaultValues: {
-    email?: string;
-    phone?: string;
-  };
-}
 
 const Input: FC<InputProps> = ({ title, variant, defaultValues }) => {
   const { t } = useTranslation();
@@ -68,27 +60,25 @@ const Input: FC<InputProps> = ({ title, variant, defaultValues }) => {
               type="submit"
               size={Sizes.UserS}
               variant={Variant.UserSave}
-              text="Зберегти"
+              text={t('user.settings.btnSave')}
               disabled={!isValid || isSubmitting}
             />
             <Button
               type="button"
               size={Sizes.UserS}
               variant={Variant.UserCancel}
-              text="Скасувати"
+              text={t('user.settings.btnCancel')}
               onClick={handleCancel}
             />
           </div>
         ) : (
-          <>
-            <Button
-              type="button"
-              size={Sizes.UserS}
-              variant={Variant.UserEdit}
-              onClick={handleEdit}
-              text="Змінити"
-            />
-          </>
+          <Button
+            type="button"
+            size={Sizes.UserS}
+            variant={Variant.UserEdit}
+            text={t('user.settings.btnEdit')}
+            onClick={handleEdit}
+          />
         )}
       </form>
     </div>
