@@ -27,9 +27,8 @@ const Profile = () => {
   };
 
   const onLogout = () => {
-    dispatch(logout());
-    closeProfile();
     handleCloseProfile();
+    dispatch(logout());
   };
 
   const onClickSupport = () => {
