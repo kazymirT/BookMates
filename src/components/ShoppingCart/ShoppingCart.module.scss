@@ -39,18 +39,33 @@
 
 .appear {
   transform: translateY(-100%);
-
-  &-active {
-    transform: translateY(0%);
-  }
+  opacity: 0;
 }
 
-.exit-done {
-  transform: translateY(-100%);
+.appear-active {
+  transform: translateY(0%);
+  opacity: 1;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+.exit {
+  transform: translateY(0%);
+  opacity: 1;
 }
 
 .exit-active {
   transform: translateY(-100%);
+  opacity: 0;
+  transition:
+    transform 500ms ease,
+    opacity 500ms ease;
+}
+
+.exit-done {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 .empty {

@@ -5,7 +5,6 @@ import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import CartInformer from '@/components/CartInformer/CartInformer';
-import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
 import Loader from '@/components/ui-components/Loader/Loader';
 
 const OverlayLazy = lazy(() => import('../../components/Overlay/Overlay'));
@@ -33,7 +32,6 @@ const Layout = () => {
       </main>
       <Footer />
       <ScrollRestoration />
-      <ShoppingCart />
       <CartInformer />
 
       <Suspense>

@@ -4,10 +4,9 @@ export enum ACCOUNT_PAGE {
 }
 
 export const MENU_LINKS = [
-  { id: 1, name: 'Персональна інформація', link: '/user' },
-  { id: 2, name: 'Замовлення', link: '/user/orders' },
-  { id: 3, name: 'Налаштування', link: '/user/settings' },
-  { id: 4, name: 'Вихід', link: '/' },
+  { id: 1, name: 'info', link: '/user' },
+  { id: 2, name: 'orders', link: '/user/orders' },
+  { id: 3, name: 'settings', link: '/user/settings' },
 ];
 
 export const FACE_USER = {

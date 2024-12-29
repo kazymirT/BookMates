@@ -31,7 +31,13 @@ const User = () => {
           <Greeting />
           <div className={style.wrapper}>
             <Menu
-              title={<Title text="Меню" size="s" textPosition="left" />}
+              title={
+                <Title
+                  text={t('user.menu.title')}
+                  size="s"
+                  textPosition="left"
+                />
+              }
               body={<MenuList />}
             />
             {userId === ACCOUNT_PAGE.Settings ? (

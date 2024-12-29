@@ -1,5 +1,7 @@
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
@@ -14,76 +16,101 @@ const Profile = () => {
   const isProfileOpen = useAppSelector(isOpen);
   const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
-  const handleClose = () => {
-    dispatch(toggleOpenProfile(false));
+  const asideRef = useRef<HTMLElement | null>(null);
+  const [show, setShow] = useState(true);
+
+  const handleCloseProfile = () => dispatch(toggleOpenProfile(false));
+
+  const closeProfile = () => {
+    setShow(false);
+    handleCloseProfile();
   };
+
   const onLogout = () => {
+    handleCloseProfile();
     dispatch(logout());
-    handleClose();
   };
+
   const onClickSupport = () => {
-    handleClose();
+    closeProfile();
     dispatch(toggleModal({ openedModalType: 'feedback' }));
   };
+
   return (
     <>
       {user && (
         <Portal
           isOpen={isProfileOpen}
           placeContent="right"
-          onClickOutside={handleClose}
+          onClickOutside={closeProfile}
         >
-          <aside className={styles.profile}>
-            <div className={styles.head}>
-              <div className={styles['head-info']}>
-                <h2>{t('profile.title')}</h2>
-                <button onClick={handleClose}>
-                  <Icon.Close />
-                </button>
-              </div>
-              <div className={styles.user}>
-                <div className={styles.icon}>
-                  <Icon.Profile />
+          <CSSTransition
+            in={show}
+            nodeRef={asideRef}
+            timeout={300}
+            classNames={{
+              appear: styles['appear'],
+              appearActive: styles['appear-active'],
+              exit: styles['exit'],
+              exitActive: styles['exit-active'],
+              exitDone: styles['exit-done'],
+            }}
+            appear
+            onExiting={handleCloseProfile}
+            onExited={() => setShow(true)}
+          >
+            <aside className={styles.profile} ref={asideRef}>
+              <div className={styles.head}>
+                <div className={styles['head-info']}>
+                  <h2>{t('profile.title')}</h2>
+                  <button onClick={closeProfile}>
+                    <Icon.Close />
+                  </button>
                 </div>
-                <div className={styles['user-info']}>
-                  <p>{`${user.firstName} ${user.lastName}`}</p>
-                  <p>{user.email}</p>
+                <div className={styles.user}>
+                  <div className={styles.icon}>
+                    <Icon.Profile />
+                  </div>
+                  <div className={styles['user-info']}>
+                    <p>{`${user.firstName} ${user.lastName}`}</p>
+                    <p>{user.email}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <nav className={styles.nav}>
-              <ul>
-                <li>
-                  <NavLink
-                    to={'/user/orders'}
-                    className={styles.link}
-                    onClick={handleClose}
-                  >
-                    <Icon.Cart />
-                    <span>{t('profile.links.order')}</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={'/user/settings'}
-                    className={styles.link}
-                    onClick={handleClose}
-                  >
-                    <Icon.Settings />
-                    <span>{t('profile.links.settings')}</span>
-                  </NavLink>
-                </li>
-                <li onClick={onClickSupport} className={styles.link}>
-                  <Icon.Support />
-                  <span>{t('profile.links.support')}</span>
-                </li>
-                <li onClick={onLogout} className={styles.link}>
-                  <Icon.Logout />
-                  <span>{t('profile.links.logout')}</span>
-                </li>
-              </ul>
-            </nav>
-          </aside>
+              <nav className={styles.nav}>
+                <ul>
+                  <li>
+                    <NavLink
+                      to={'/user/orders'}
+                      className={styles.link}
+                      onClick={closeProfile}
+                    >
+                      <Icon.Cart />
+                      <span>{t('profile.links.order')}</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to={'/user/settings'}
+                      className={styles.link}
+                      onClick={closeProfile}
+                    >
+                      <Icon.Settings />
+                      <span>{t('profile.links.settings')}</span>
+                    </NavLink>
+                  </li>
+                  <li onClick={onClickSupport} className={styles.link}>
+                    <Icon.Support />
+                    <span>{t('profile.links.support')}</span>
+                  </li>
+                  <li onClick={onLogout} className={styles.link}>
+                    <Icon.Logout />
+                    <span>{t('profile.links.logout')}</span>
+                  </li>
+                </ul>
+              </nav>
+            </aside>
+          </CSSTransition>
         </Portal>
       )}
     </>

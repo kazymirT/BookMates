@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 
@@ -20,6 +20,7 @@ import {
 const ShoppingCart = () => {
   const { t } = useTranslation();
   const isCartOpen = useAppSelector(isOpen);
+  const asideRef = useRef<HTMLElement | null>(null);
   const cartItems = useAppSelector(goods);
   const totalPrice = cartItems.reduce(
     (total, item) =>
@@ -49,6 +50,7 @@ const ShoppingCart = () => {
     <Portal isOpen={isCartOpen} placeContent="right" onClickOutside={closeCart}>
       <CSSTransition
         in={show}
+        nodeRef={asideRef}
         timeout={300}
         classNames={{
           appear: styles['appear'],
@@ -60,7 +62,7 @@ const ShoppingCart = () => {
         onExiting={handleCloseCart}
         onExited={() => setShow(true)}
       >
-        <aside className={styles.container}>
+        <aside className={styles.container} ref={asideRef}>
           <div className={styles.head}>
             <h3>{t('cart.title')}</h3>
             <button onClick={closeCart}>

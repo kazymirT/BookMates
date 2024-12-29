@@ -1,27 +1,34 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './PersonalInfo.module.scss';
-import { FACE_USER } from '@/Pages/User/data';
+import { useAppSelector } from '@/redux/hooks';
+import { userData } from '@/redux/slices/userSlice';
 
 const PersonalInfo = () => {
+  const { t } = useTranslation();
+  const { user } = useAppSelector(userData);
   return (
     <>
-      {FACE_USER && (
+      {user && (
         <>
           <ul className={styles.list}>
             <li>
-              <span className={styles.item}>Прізвище:</span>
-              <span className={styles.data}>{FACE_USER.lastName}</span>
+              <span className={styles.item}>{t('user.info.lastName')}</span>
+              <span className={styles.data}>{user.lastName}</span>
             </li>
             <li>
-              <span className={styles.item}>Ім’я:</span>
-              <span className={styles.data}>{FACE_USER.firstName}</span>
+              <span className={styles.item}>{t('user.info.firstName')}</span>
+              <span className={styles.data}>{user.firstName}</span>
             </li>
             <li>
-              <span className={styles.item}>Дата народження:</span>
-              <span className={styles.data}>{FACE_USER.dataOfBorn}</span>
+              <span className={styles.item}>
+                {t('user.info.date-of-birth')}
+              </span>
+              <span className={styles.data}>-</span>
             </li>
             <li>
-              <span className={styles.item}>Стать:</span>
-              <span className={styles.data}>{FACE_USER.gender}</span>
+              <span className={styles.item}>{t('user.info.gender')}</span>
+              <span className={styles.data}>-</span>
             </li>
           </ul>
         </>
