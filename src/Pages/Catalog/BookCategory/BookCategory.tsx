@@ -1,3 +1,6 @@
+import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+
 import styles from './BookCategory.module.scss';
 import { useAppDispatch } from '@/redux/hooks';
 import { useGetAllAttributesQuery } from '@/redux/services/attributes';
@@ -8,8 +11,17 @@ const BookCategory = () => {
   const { data: category, isSuccess } = useGetAllAttributesQuery();
   const setCategory = (id: number, name: string) => {
     dispatch(
-      addFilterItem({ filterName: 'categories', attributes: { id, name } })
+      addFilterItem({
+        filterName: 'categories',
+        attributes: { id, name },
+        isClean: true,
+      })
     );
+  };
+  const linkClass = (id: number) => {
+    const isActive =
+      new URLSearchParams(location.search).get('categories') === String(id);
+    return classNames(styles.link, { [styles.active]: isActive });
   };
   return (
     <section className={styles.category}>
@@ -17,13 +29,14 @@ const BookCategory = () => {
       <div className={styles.content}>
         {isSuccess &&
           category.categories.slice(0, 12).map(({ id, name }) => (
-            <button
+            <NavLink
+              to={`/catalog?categories=${id}`}
               onClick={() => setCategory(id, name)}
               key={id}
-              className={styles.link}
+              className={() => linkClass(id)}
             >
               {name}
-            </button>
+            </NavLink>
           ))}
       </div>
     </section>
