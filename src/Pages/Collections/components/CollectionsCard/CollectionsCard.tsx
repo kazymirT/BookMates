@@ -6,7 +6,7 @@ import { CollectionsProps } from './types';
 
 const CollectionsCard: FC<CollectionsProps> = ({ id, title, img, books }) => {
   return (
-    <Link to={`/catalog?categories=${id}&page=1`} className={styles.card}>
+    <Link to={`/collection/${id}`} className={styles.card}>
       <img src={img} alt={title} width={221} height={168} />
       <div className={styles.wrapper}>
         <h3>{title}</h3>

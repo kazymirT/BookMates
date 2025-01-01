@@ -1,0 +1,13 @@
+@import '@/styles';
+
+.collection {
+  .collection-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    width: 100%;
+    padding-top: 68px;
+    padding-bottom: 225px;
+  }
+}
