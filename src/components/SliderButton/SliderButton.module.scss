@@ -1,0 +1,64 @@
+@import '@/styles';
+
+@mixin btn-position($top, $rot, $right: null, $left: null) {
+  top: $top;
+  right: $right;
+  left: $left;
+  transform: translateY(-$top) rotate($rot);
+}
+
+.btn {
+  position: absolute;
+  z-index: 2;
+
+  align-self: flex-end;
+
+  width: 44px;
+  height: 44px;
+  padding: 0.625rem;
+
+  font-size: 0;
+
+  background: $accent-white;
+  border-radius: 50%;
+
+  transition: border-color 0.3s;
+
+  &__next {
+    @include icon-state($button-default);
+
+    &__banner {
+      @include btn-position(50%, -90deg, -7px);
+    }
+
+    &__section {
+      @include btn-position(38.7%, -90deg, -49px);
+
+      border: 1px solid $button-default;
+    }
+
+    &__product {
+      @include btn-position(-15%, -90deg, 0);
+    }
+  }
+
+  &__prev {
+    @include icon-state($button-default);
+
+    transform: rotate(90deg);
+
+    &__banner {
+      @include btn-position(50%, 90deg, 0, -6px);
+    }
+
+    &__section {
+      @include btn-position(38.7%, 90deg, 0, -50px);
+
+      border: 1px solid $button-default;
+    }
+
+    &__product {
+      @include btn-position(-15%, 90deg, 60px);
+    }
+  }
+}
