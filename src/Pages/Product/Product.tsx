@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import styles from './Product.module.scss';
 import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
-import ProductSlider from '../Home/components/ProductSlider/ProductSlider';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import Slider from '@/components/Slider/Slider';
 import Subscription from '@/components/Subscription/Subscription';
 import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
@@ -48,12 +48,12 @@ const Product = () => {
           <section className={styles.likes}>
             <h3 className={styles.title}>{t('product.offers')}</h3>
             {books && (
-              <ProductSlider sliderCL="slider-section" isArrow>
+              <Slider sliderCL="slider-section" arrows>
                 {books &&
                   books.content.map((item) => (
                     <ProductCard key={item.id} data={item} variant="slider" />
                   ))}
-              </ProductSlider>
+              </Slider>
             )}
           </section>
           <Subscription variant={'author'} />
