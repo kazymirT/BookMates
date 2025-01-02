@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
 
 import styles from './BookCategory.module.scss';
 import { useAppDispatch } from '@/redux/hooks';
@@ -29,14 +28,14 @@ const BookCategory = () => {
       <div className={styles.content}>
         {isSuccess &&
           category.categories.slice(0, 12).map(({ id, name }) => (
-            <NavLink
-              to={`/catalog?categories=${id}`}
+            <button
+              type="button"
               onClick={() => setCategory(id, name)}
               key={id}
-              className={() => linkClass(id)}
+              className={linkClass(id)}
             >
               {name}
-            </NavLink>
+            </button>
           ))}
       </div>
     </section>
