@@ -3,28 +3,27 @@ export const updateSearchParams = (
   paramValue: number[] | string[]
 ) => {
   const params = new URLSearchParams(window.location.search);
-  if (paramName === 'page') {
-    params.set(paramName, paramValue.join(''));
-  } else if (
-    paramName === 'sort' ||
-    paramName === 'language' ||
-    paramName === 'categories'
-  ) {
-    params.set(paramName, paramValue.join('-'));
-    params.set('page', '1');
-  } else {
-    params.set(paramName, paramValue.join('-'));
-    params.set('page', '1');
-  }
-  if (!paramValue.join().length) {
+
+  if (paramValue.length === 0) {
     params.delete(paramName);
+  } else {
+    const joinedValue = Array.isArray(paramValue)
+      ? paramValue.join('-')
+      : paramValue;
+    params.set(paramName, joinedValue);
+
+    if (paramName !== 'page') {
+      params.set('page', '1');
+    }
   }
+
   const newUrl = params.toString()
     ? `${window.location.pathname}?${params}`
     : window.location.pathname;
 
   window.history.pushState({}, '', newUrl);
 };
+
 export const deleteSearchParams = () => {
   window.history.pushState({}, '', window.location.pathname);
 };

@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
 export interface SliderButtonProps {
   variant: 'banner' | 'section' | 'product' | 'hit';

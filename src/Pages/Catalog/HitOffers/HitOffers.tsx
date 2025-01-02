@@ -1,7 +1,7 @@
 import styles from './HitOffers.module.scss';
 import HitCard from '../HitCard/HitCard';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
-import ProductSlider from '@/Pages/Home/components/ProductSlider/ProductSlider';
+import Slider from '@/components/Slider/Slider';
 import { useGetBooksQuery } from '@/redux/services/books';
 
 const HitOffers = () => {
@@ -12,18 +12,18 @@ const HitOffers = () => {
       <SectionTitle title="Гарячі пропозиції" isIcon variant="catalog" />
       <div>
         {books && (
-          <ProductSlider
+          <Slider
             sliderCL="slider-hit"
             variant="hit"
             slidesToScroll={2}
             slidesToShow={3}
-            isDots
+            dots
           >
             {books &&
               books.content.map((item) => (
                 <HitCard key={item.id} data={item} />
               ))}
-          </ProductSlider>
+          </Slider>
         )}
       </div>
     </section>

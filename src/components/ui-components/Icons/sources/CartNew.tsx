@@ -7,6 +7,7 @@ export const CartNew: FC<IconProps> = ({
   viewBox = '0 0 16 16',
   width = '16',
   height = '16',
+  dataTestid,
 }) => {
   return (
     <svg
@@ -14,6 +15,7 @@ export const CartNew: FC<IconProps> = ({
       width={width}
       height={height}
       viewBox={viewBox}
+      data-testid={dataTestid}
       className={className}
     >
       <path

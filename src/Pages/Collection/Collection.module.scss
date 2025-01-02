@@ -1,5 +1,7 @@
-.catalog {
-  .catalog-wrapper {
+@import '@/styles';
+
+.collection {
+  .collection-wrapper {
     display: flex;
     flex-direction: column;
     gap: 40px;

@@ -43,6 +43,12 @@
         background: $button-default;
         border-color: $button-default;
       }
+
+      &.active {
+        color: $accent-white;
+        background: $button-default;
+        border-color: $button-default;
+      }
     }
   }
 }
