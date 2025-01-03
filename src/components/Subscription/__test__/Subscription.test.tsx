@@ -2,7 +2,8 @@ import { cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { setup } from './helper';
+import Subscription from '../Subscription';
+import { renderWithProviders } from '@/utils/test-utils';
 
 describe('Subscription Component', () => {
   const title = 'Subscribe to the Newsletter';
@@ -17,7 +18,9 @@ describe('Subscription Component', () => {
   });
 
   it('should render all elements correctly', () => {
-    const { getByRole, getByText, getByPlaceholderText } = setup();
+    const { getByRole, getByText, getByPlaceholderText } = renderWithProviders(
+      <Subscription variant="author" />
+    );
 
     expect(getByRole('heading', { level: 3 })).toHaveTextContent(title);
     expect(getByText(description)).toBeInTheDocument();
@@ -27,7 +30,9 @@ describe('Subscription Component', () => {
 
   it('should validate email input and enable submit button', async () => {
     const user = userEvent.setup();
-    const { getByRole, getByPlaceholderText } = setup();
+    const { getByRole, getByPlaceholderText } = renderWithProviders(
+      <Subscription variant="author" />
+    );
 
     const emailInput = getByPlaceholderText(placeholderText);
     const submitButton = getByRole('button', { name: buttonText });
@@ -42,7 +47,9 @@ describe('Subscription Component', () => {
 
   it('should submit the form and reset input value', async () => {
     const user = userEvent.setup();
-    const { getByRole, getByPlaceholderText } = setup({ variant: 'author' });
+    const { getByRole, getByPlaceholderText } = renderWithProviders(
+      <Subscription variant="author" />
+    );
 
     const emailInput = getByPlaceholderText(placeholderText);
     const submitButton = getByRole('button', { name: buttonText });
