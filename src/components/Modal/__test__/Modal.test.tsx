@@ -1,4 +1,4 @@
-import { cleanup } from '@testing-library/react';
+import { cleanup, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import Modal from '../Modal';
@@ -29,28 +29,34 @@ describe('Modal', () => {
     // { type: 'userNotAuthorized-info', expectedText: 'Reset Password' },
     // { type: 'edit-order', expectedText: 'Дані' },
     { type: 'add-collection', expectedText: 'Додати колекцію' },
-    // { type: 'edit-collection', expectedText: 'Reset Password' },
+    { type: 'edit-collection', expectedText: 'Редагувати колекцію' },
   ];
 
   describe.each(modalTypes)('Modal type: %s', ({ type, expectedText }) => {
     it(`renders correct content for ${type}`, async () => {
-      const { findByRole, store, queryByRole } = renderWithProviders(
-        <Modal />,
-        {
-          preloadedState: {
-            modal: { openedModalType: type, redirect: '' },
-          },
-        }
+      const { getByRole, store, queryByRole } = renderWithProviders(<Modal />, {
+        preloadedState: {
+          modal: { openedModalType: type, redirect: '' },
+        },
+      });
+
+      await waitFor(
+        () => {
+          expect(getByRole('heading', { level: 2 })).toHaveTextContent(
+            expectedText
+          );
+        },
+        { interval: 300, timeout: 3000 }
       );
 
-      expect(await findByRole('heading', { level: 2 })).toHaveTextContent(
-        expectedText
-      );
       await store.dispatch(toggleModal({ openedModalType: null }));
 
-      expect(
-        await queryByRole('heading', { level: 2 })
-      ).not.toBeInTheDocument();
+      await waitFor(
+        () => {
+          expect(queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
+        },
+        { interval: 300, timeout: 3000 }
+      );
     });
   });
 });
