@@ -12,9 +12,11 @@ dist
 coverage
 dist-ssr
 *.local
+.git_backup
 coverage
 
 # Editor directories and files
+.git_backup
 .vscode/*
 !.vscode/extensions.json
 .idea

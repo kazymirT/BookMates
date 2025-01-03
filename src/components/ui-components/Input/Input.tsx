@@ -111,6 +111,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onFocus={handleOnFocus}
             onBlur={handleOnBlur}
             onInput={handleOnInput}
+            aria-label={rest.name}
             data-testid={INPUT_TEST_ID}
           />
           <span

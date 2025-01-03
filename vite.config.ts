@@ -22,7 +22,7 @@ export default defineConfig({
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       provider: 'v8',
-      include: ['src/components/ui-components/**/*.tsx'],
+      include: ['src/components/**/*.tsx'],
       exclude: [
         'node_modules/',
         '**/*.d.ts',

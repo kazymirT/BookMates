@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { BUTTON_CLOSE_ID } from './constants';
 import Input from '../../ui-components/Input/Input';
 import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
@@ -50,7 +51,11 @@ const LoginForm = () => {
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
         <h2>{t('login.title')}</h2>
-        <button className={styles.close} onClick={handleClose}>
+        <button
+          className={styles.close}
+          onClick={handleClose}
+          data-testid={BUTTON_CLOSE_ID}
+        >
           <Icon.Close />
         </button>
       </div>

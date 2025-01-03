@@ -1,27 +1,33 @@
 import { FC } from 'react';
 
 import styles from './DeletePopup.module.scss';
-import { DeletePopupProps } from './DeletePopup.types';
+import { DeletePopupProps } from './types';
 import { Button } from '../ui-components/Button/Button';
 import { Sizes, Variant } from '../ui-components/Button/constants';
 
-const DeletePopup: FC<DeletePopupProps> = ({ onClose, onDelete }) => {
+const DeletePopup: FC<DeletePopupProps> = ({
+  onClose,
+  onDelete,
+  title = 'Ви впевнені?',
+  yes = 'Так',
+  not = 'Ні',
+}) => {
   return (
     <div className={styles.popup}>
       <div className={styles.content}>
-        <h3>Ви впевнені?</h3>
+        <h3>{title}</h3>
         <div className={styles.btns}>
           <Button
             type="button"
             size={Sizes.Medium}
-            text="Так"
+            text={yes}
             onClick={onDelete}
             variant={Variant.Accent}
           />
           <Button
             type="button"
             size={Sizes.Medium}
-            text="Ні"
+            text={not}
             onClick={onClose}
             variant={Variant.Basic}
           />
