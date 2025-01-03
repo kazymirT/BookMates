@@ -31,6 +31,7 @@ const CartInformer = () => {
         type="button"
         onClick={handleOpenCart}
         className={styles['cart_informer_view']}
+        aria-label="open cart"
       >
         <span className={styles['cart_informer_icon']}>
           <Icon.CartNew />
