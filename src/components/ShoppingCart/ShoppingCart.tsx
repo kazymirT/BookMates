@@ -15,7 +15,6 @@ import {
   toggleOpenCart,
   removePosition,
 } from '@/redux/slices/shoppingCartSlice';
-//import { useGetCartQuery } from '@/redux/services/cart';
 
 const ShoppingCart = () => {
   const { t } = useTranslation();
@@ -44,8 +43,6 @@ const ShoppingCart = () => {
       closeCart();
     }
   };
-  //const {data, error} = useGetCartQuery(undefined,{skip: !isCartOpen});
-
   return (
     <Portal isOpen={isCartOpen} placeContent="right" onClickOutside={closeCart}>
       <CSSTransition
@@ -65,7 +62,7 @@ const ShoppingCart = () => {
         <aside className={styles.container} ref={asideRef}>
           <div className={styles.head}>
             <h3>{t('cart.title')}</h3>
-            <button onClick={closeCart}>
+            <button onClick={closeCart} aria-label="close cart">
               <Icon.Close />
             </button>
           </div>
