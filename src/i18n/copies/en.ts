@@ -350,4 +350,8 @@ Delivery is possible to those settlements where there are Nova Posе offices or 
       subscribeDescription: 'Subscription to receive advertising letters',
     },
   },
+  'product-card': {
+    buy: 'Buy',
+    sale: 'Sale',
+  },
 };

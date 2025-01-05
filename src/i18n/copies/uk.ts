@@ -352,4 +352,8 @@ export const ukraine = {
       subscribeDescription: 'Підписка на отримання рекламних листів',
     },
   },
+  'product-card': {
+    buy: 'Купити',
+    sale: 'Акція',
+  },
 };

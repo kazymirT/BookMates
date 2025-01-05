@@ -1,4 +1,5 @@
 import { cleanup } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import ProductCard from '../ProductCard';
@@ -41,5 +42,31 @@ describe('ProductCard Component', () => {
     expect(getByText(mockBook.title)).toBeInTheDocument();
     expect(getByText(mockBook.price)).toBeInTheDocument();
     expect(queryByText(mockBook.discountPrice)).not.toBeInTheDocument();
+  });
+  it('adds an item to the cart and updates the state correctly when the "Buy" button is clicked', async () => {
+    const user = userEvent.setup();
+    const { getByText, getByRole, store } = renderWithProviders(
+      <ProductCard data={mockBook} variant="catalog" />,
+      {
+        preloadedState: {
+          shoppingCart: { goods: [], isFly: false, isOpenCart: false },
+        },
+      }
+    );
+    const addItemToCart = getByRole('button', { name: 'Buy' });
+
+    expect(getByText(mockBook.title)).toBeInTheDocument();
+    expect(getByText(mockBook.price)).toBeInTheDocument();
+    expect(getByText(mockBook.discountPrice)).toBeInTheDocument();
+    expect(addItemToCart).toBeInTheDocument();
+    expect(addItemToCart).toBeEnabled();
+    expect(store.getState().shoppingCart.goods).toHaveLength(0);
+    expect(store.getState().shoppingCart.isFly).toBe(false);
+
+    await user.click(addItemToCart);
+
+    expect(store.getState().shoppingCart.isFly).toBe(true);
+    expect(addItemToCart).toBeDisabled();
+    expect(store.getState().shoppingCart.goods).toHaveLength(1);
   });
 });
