@@ -60,3 +60,61 @@ describe('Subscription Component', () => {
     expect(emailInput).toHaveValue('');
   });
 });
+
+describe('Validation logic', () => {
+  it('should display required error for empty email', async () => {
+    const user = userEvent.setup();
+    const { getByPlaceholderText, queryByText } = renderWithProviders(
+      <Subscription variant="author" />
+    );
+
+    const emailInput = getByPlaceholderText('Email');
+
+    expect(emailInput).toBeInTheDocument();
+
+    await user.click(emailInput);
+
+    expect(emailInput).toHaveFocus();
+    expect(queryByText('This field is required')).not.toBeInTheDocument();
+
+    await user.tab();
+    expect(emailInput).not.toHaveFocus();
+    expect(queryByText('This field is required')).toBeInTheDocument();
+  });
+
+  it('should validate email format and max length', async () => {
+    const emailIncorrectError = 'Email format is incorrect';
+    const emailMaxError = 'The maximum number of characters is 30';
+    const emailCorrect = 'testEmail@gmail.com';
+    const emailIncorrect = 'testEmailgmail.com';
+    const user = userEvent.setup();
+    const { getByPlaceholderText, queryByText } = renderWithProviders(
+      <Subscription variant="author" />
+    );
+
+    const emailInput = getByPlaceholderText('Email');
+
+    expect(emailInput).toBeInTheDocument();
+
+    await user.click(emailInput);
+
+    expect(emailInput).toHaveFocus();
+    expect(queryByText(emailIncorrectError)).not.toBeInTheDocument();
+
+    await user.type(emailInput, emailIncorrect);
+    await user.tab();
+
+    expect(queryByText(emailIncorrectError)).toBeInTheDocument();
+    expect(emailInput.parentElement).toHaveClass('box__error');
+
+    await user.type(emailInput, 'wwewewewewe@dsds.comdddddddddddddddddddd');
+    expect(queryByText(emailMaxError)).toBeInTheDocument();
+
+    await user.clear(emailInput);
+    await user.type(emailInput, emailCorrect);
+    await user.tab();
+
+    expect(queryByText(emailIncorrectError)).not.toBeInTheDocument();
+    expect(emailInput.parentElement).not.toHaveClass('box__error');
+  });
+});
