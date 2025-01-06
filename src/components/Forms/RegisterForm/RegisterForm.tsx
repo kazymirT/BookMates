@@ -60,6 +60,7 @@ const RegisterForm = () => {
         <button
           className={styles.close}
           type="button"
+          aria-label="close modal"
           onClick={handleClose}
           data-testid={BUTTON_CLOSE_ID}
         >

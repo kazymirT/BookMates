@@ -61,7 +61,11 @@ const AddCollection = () => {
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
-        <button className={styles.close} onClick={handleClose}>
+        <button
+          className={styles.close}
+          onClick={handleClose}
+          aria-label="close modal"
+        >
           <Icon.Close />
         </button>
         <h2>Додати колекцію</h2>

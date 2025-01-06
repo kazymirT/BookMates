@@ -13,12 +13,13 @@ const SubscriptionSuccess = () => {
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   return (
     <section className={styles.success}>
-      <h3>{t('home.subscribe.success.title')}</h3>
+      <h2>{t('home.subscribe.success.title')}</h2>
       <p>{t('home.subscribe.success.description')}</p>
       <Button
         size={Sizes.Full}
         variant={Variant.Basic}
         onClick={handleClose}
+        aria-label="close modal"
         text={t('home.subscribe.success.button')}
       />
     </section>
