@@ -61,9 +61,9 @@ const Modal = () => {
         ) : openedModalType === 'feedback' ? (
           <FeedBackFormLazy />
         ) : openedModalType === 'feedback-success' ? (
-          <FeedbackSuccessLazy />
+          <FeedbackSuccessLazy /> // not test
         ) : openedModalType === 'order-success' ? (
-          <OrderSuccessLazy />
+          <OrderSuccessLazy /> // not test
         ) : openedModalType === 'reset-password' ? (
           <ResetPasswordLazy />
         ) : openedModalType === 'edit-book' ? (
@@ -75,11 +75,11 @@ const Modal = () => {
         ) : openedModalType === 'edit-attributes' ? (
           <EditCategoryLazy />
         ) : openedModalType === 'user-info' ? (
-          <UserInfoLazy />
+          <UserInfoLazy /> // no test
         ) : openedModalType === 'userNotAuthorized-info' ? (
-          <UserNotAuthorizedInfoLazy />
+          <UserNotAuthorizedInfoLazy /> // no test
         ) : openedModalType === 'edit-order' ? (
-          <OrderEditLazy />
+          <OrderEditLazy /> // no test
         ) : openedModalType === 'add-collection' ? (
           <AddCollectionLazy />
         ) : openedModalType === 'subscription-success' ? (

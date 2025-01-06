@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 type Category = { name: string; id: number } | null;
-type AttributesName = 'category' | 'language' | 'authors';
+export type AttributesName = 'category' | 'language' | 'authors';
 type Attributes = {
   item: Category;
   name: AttributesName;
