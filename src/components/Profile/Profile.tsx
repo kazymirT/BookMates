@@ -63,7 +63,7 @@ const Profile = () => {
               <div className={styles.head}>
                 <div className={styles['head-info']}>
                   <h2>{t('profile.title')}</h2>
-                  <button onClick={closeProfile}>
+                  <button onClick={closeProfile} aria-label="close profile">
                     <Icon.Close />
                   </button>
                 </div>
