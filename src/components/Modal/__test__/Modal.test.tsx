@@ -1,12 +1,11 @@
 import { cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ToastContainer } from 'react-toastify';
-import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import Modal from '../Modal';
 import { AttributesName } from '@/redux/slices/adminSlice';
 import { ModalState } from '@/redux/slices/modalSlice';
-import { renderWithProviders } from '@/utils/test-utils';
+import { renderWithProviders } from '@/test/test-utils';
 
 describe('Modal', () => {
   afterEach(() => {

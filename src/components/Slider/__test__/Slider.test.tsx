@@ -1,10 +1,9 @@
 import { afterEach } from 'node:test';
 
 import { cleanup, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
 
 import Slider from '../Slider';
-import { renderWithProviders } from '@/utils/test-utils';
+import { renderWithProviders } from '@/test/test-utils';
 
 vi.mock('react-slick', () => {
   return {

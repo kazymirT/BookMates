@@ -1,10 +1,9 @@
 import { cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import CartInformer from '../CartInformer';
 import { CartItem } from '@/redux/slices/shoppingCartSlice';
-import { renderWithProviders } from '@/utils/test-utils';
+import { renderWithProviders } from '@/test/test-utils';
 
 const mockGoods: CartItem[] = [
   {

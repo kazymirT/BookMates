@@ -1,10 +1,9 @@
 import { cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it } from 'vitest';
 
 import Profile from '../Profile';
 import { User } from '@/redux/slices/userSlice';
-import { renderWithProviders } from '@/utils/test-utils';
+import { renderWithProviders } from '@/test/test-utils';
 
 describe('Profile Component', () => {
   const mockUser: User = {

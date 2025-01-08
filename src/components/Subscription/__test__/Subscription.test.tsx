@@ -1,9 +1,8 @@
 import { cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it } from 'vitest';
 
 import Subscription from '../Subscription';
-import { renderWithProviders } from '@/utils/test-utils';
+import { renderWithProviders } from '@/test/test-utils';
 
 describe('Subscription Component', () => {
   const title = 'Subscribe to the Newsletter';

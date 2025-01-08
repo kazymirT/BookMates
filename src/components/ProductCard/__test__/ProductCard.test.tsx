@@ -1,9 +1,8 @@
 import { cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterEach, describe, expect, it } from 'vitest';
 
 import ProductCard from '../ProductCard';
-import { renderWithProviders } from '@/utils/test-utils';
+import { renderWithProviders } from '@/test/test-utils';
 
 export const mockBook = {
   authors: ['Автор тест1', 'Автор тест2'],
