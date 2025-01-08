@@ -29,7 +29,8 @@ describe('CartNotification Component', () => {
       <CartNotification />,
       {
         preloadedState: {
-          shoppingCart: { goods: mockGoods, isFly: false, isOpenCart: true },
+          shoppingCart: { goods: mockGoods },
+          shoppingCartUi: { isFly: false, isOpenCart: true },
           cartNotification: { isOpen: true },
         },
       }
@@ -62,6 +63,8 @@ describe('CartNotification Component', () => {
         preloadedState: {
           shoppingCart: {
             goods: mockGoodsWithOneItem,
+          },
+          shoppingCartUi: {
             isFly: false,
             isOpenCart: true,
           },
@@ -87,7 +90,8 @@ describe('CartNotification Component', () => {
       <CartNotification />,
       {
         preloadedState: {
-          shoppingCart: { goods: mockGoods, isFly: false, isOpenCart: true },
+          shoppingCart: { goods: mockGoods },
+          shoppingCartUi: { isFly: false, isOpenCart: true },
           cartNotification: { isOpen: true },
         },
       }
@@ -123,7 +127,8 @@ describe('CartNotification Component', () => {
       <CartNotification />,
       {
         preloadedState: {
-          shoppingCart: { goods: mockGoods, isFly: false, isOpenCart: true },
+          shoppingCart: { goods: mockGoods },
+          shoppingCartUi: { isFly: false, isOpenCart: true },
           cartNotification: { isOpen: true },
         },
       }

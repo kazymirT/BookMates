@@ -27,7 +27,8 @@ describe('ShoppingCart Component', () => {
   it('renders with items and calculates total price correctly', async () => {
     const { getByText, getByRole } = renderWithProviders(<ShoppingCart />, {
       preloadedState: {
-        shoppingCart: { goods: mockGoods, isFly: false, isOpenCart: true },
+        shoppingCart: { goods: mockGoods },
+        shoppingCartUi: { isFly: false, isOpenCart: true },
       },
     });
 
@@ -48,6 +49,8 @@ describe('ShoppingCart Component', () => {
       preloadedState: {
         shoppingCart: {
           goods: mockGoodsWithDiscount,
+        },
+        shoppingCartUi: {
           isFly: false,
           isOpenCart: true,
         },
@@ -65,7 +68,13 @@ describe('ShoppingCart Component', () => {
   it('renders empty cart and disables checkout button', async () => {
     const { getByText, getByRole } = renderWithProviders(<ShoppingCart />, {
       preloadedState: {
-        shoppingCart: { goods: [], isFly: false, isOpenCart: true },
+        shoppingCart: {
+          goods: [],
+        },
+        shoppingCartUi: {
+          isFly: false,
+          isOpenCart: true,
+        },
       },
     });
 
@@ -80,7 +89,8 @@ describe('ShoppingCart Component', () => {
       <ShoppingCart />,
       {
         preloadedState: {
-          shoppingCart: { goods: mockGoods, isFly: false, isOpenCart: true },
+          shoppingCart: { goods: mockGoods },
+          shoppingCartUi: { isFly: false, isOpenCart: true },
         },
       }
     );

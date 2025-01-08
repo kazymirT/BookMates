@@ -48,7 +48,8 @@ describe('ProductCard Component', () => {
       <ProductCard data={mockBook} variant="catalog" />,
       {
         preloadedState: {
-          shoppingCart: { goods: [], isFly: false, isOpenCart: false },
+          shoppingCart: { goods: [] },
+          shoppingCartUi: { isFly: false, isOpenCart: false },
         },
       }
     );
@@ -60,11 +61,11 @@ describe('ProductCard Component', () => {
     expect(addItemToCart).toBeInTheDocument();
     expect(addItemToCart).toBeEnabled();
     expect(store.getState().shoppingCart.goods).toHaveLength(0);
-    expect(store.getState().shoppingCart.isFly).toBe(false);
+    expect(store.getState().shoppingCartUi.isFly).toBe(false);
 
     await user.click(addItemToCart);
 
-    expect(store.getState().shoppingCart.isFly).toBe(true);
+    expect(store.getState().shoppingCartUi.isFly).toBe(true);
     expect(addItemToCart).toBeDisabled();
     expect(store.getState().shoppingCart.goods).toHaveLength(1);
   });

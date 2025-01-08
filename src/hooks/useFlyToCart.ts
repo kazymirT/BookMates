@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux';
 
 import { useAppSelector } from '@/redux/hooks';
-import { goods, toggleFlyCart } from '@/redux/slices/shoppingCartSlice';
+import { goods } from '@/redux/slices/shoppingCartSlice';
+import { toggleFlyCart } from '@/redux/slices/shoppingCartUiSlice';
 
 const useFlyToCart = () => {
   const items = useAppSelector(goods);

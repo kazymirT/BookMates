@@ -15,14 +15,10 @@ export type CartItem = {
 };
 
 type ShoppingCartState = {
-  isFly: boolean;
-  isOpenCart: boolean;
   goods: CartItem[];
 };
 
 const initialState: ShoppingCartState = {
-  isFly: false,
-  isOpenCart: false,
   goods: [],
 };
 
@@ -30,12 +26,6 @@ export const shoppingCart = createSlice({
   name: 'shoppingCart',
   initialState,
   reducers: {
-    toggleFlyCart: (state, action: PayloadAction<boolean>) => {
-      state.isFly = action.payload;
-    },
-    toggleOpenCart: (state, action: PayloadAction<boolean>) => {
-      state.isOpenCart = action.payload;
-    },
     addGoods: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
       const existedItem = state.goods.find(
         (item) => item.id === action.payload.id
@@ -70,15 +60,11 @@ export const shoppingCart = createSlice({
 });
 
 export const {
-  toggleFlyCart,
-  toggleOpenCart,
-  addGoods,
   increaseQuantity,
   decreaseQuantity,
   removePosition,
   clearCart,
+  addGoods,
 } = shoppingCart.actions;
-export const isOpen = (state: RootState) => state.shoppingCart.isOpenCart;
 export const goods = (state: RootState) => state.shoppingCart.goods;
-export const isFly = (state: RootState) => state.shoppingCart.isFly;
 export default shoppingCart.reducer;

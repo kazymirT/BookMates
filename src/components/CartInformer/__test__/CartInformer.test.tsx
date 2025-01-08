@@ -27,7 +27,8 @@ describe('CartInformer Component', () => {
   it('renders the CartInformer with regular prices', () => {
     const { getByText, getByRole } = renderWithProviders(<CartInformer />, {
       preloadedState: {
-        shoppingCart: { goods: mockGoods, isFly: false, isOpenCart: false },
+        shoppingCart: { goods: mockGoods },
+        shoppingCartUi: { isFly: false, isOpenCart: false },
       },
     });
 
@@ -45,9 +46,8 @@ describe('CartInformer Component', () => {
       preloadedState: {
         shoppingCart: {
           goods: mockGoodsWithDiscount,
-          isFly: false,
-          isOpenCart: false,
         },
+        shoppingCartUi: { isFly: false, isOpenCart: false },
       },
     });
 
@@ -62,15 +62,14 @@ describe('CartInformer Component', () => {
       preloadedState: {
         shoppingCart: {
           goods: mockGoods,
-          isFly: false,
-          isOpenCart: false,
         },
+        shoppingCartUi: { isFly: false, isOpenCart: false },
       },
     });
 
     const button = getByRole('button', { name: 'open cart' });
     await user.click(button);
 
-    expect(store.getState().shoppingCart.isOpenCart).toBe(true);
+    expect(store.getState().shoppingCartUi.isOpenCart).toBe(true);
   });
 });

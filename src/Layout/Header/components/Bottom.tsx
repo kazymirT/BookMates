@@ -16,7 +16,8 @@ import { Icon } from '@/components/ui-components/Icons';
 import UserButton from '@/Layout/Header/UserButton/UserButton';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
-import { goods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
+import { goods } from '@/redux/slices/shoppingCartSlice';
+import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 import { userId } from '@/redux/slices/userSlice';
 
 const CategoryAllLazy = React.lazy(() => import('./CategoryAll/CategoryAll'));

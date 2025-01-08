@@ -9,7 +9,8 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import useFlyToCart from '@/hooks/useFlyToCart';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addGoods, isFly } from '@/redux/slices/shoppingCartSlice';
+import { addGoods } from '@/redux/slices/shoppingCartSlice';
+import { isFly } from '@/redux/slices/shoppingCartUiSlice';
 
 const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
   const { t } = useTranslation();

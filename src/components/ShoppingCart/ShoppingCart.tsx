@@ -9,13 +9,8 @@ import { Sizes, Variant } from '../ui-components/Button/constants';
 import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import {
-  isOpen,
-  goods,
-  toggleOpenCart,
-  removePosition,
-} from '@/redux/slices/shoppingCartSlice';
-
+import { goods, removePosition } from '@/redux/slices/shoppingCartSlice';
+import { isOpen, toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 const ShoppingCart = () => {
   const { t } = useTranslation();
   const isCartOpen = useAppSelector(isOpen);
