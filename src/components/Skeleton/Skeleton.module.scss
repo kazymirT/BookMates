@@ -1,0 +1,36 @@
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 100%;
+  min-width: 220px;
+  max-width: 256px;
+  height: 456px;
+  padding: 11.2px 8px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .title {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        &:nth-child(1) {
+          margin-bottom: 12px;
+        }
+
+        &:nth-child(2) {
+          margin-bottom: 8px;
+        }
+
+        &:nth-child(3) {
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}
