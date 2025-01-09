@@ -50,6 +50,7 @@ const ResetPassword = () => {
         <h2>{t('reset-password.title')}</h2>
         <button
           type="button"
+          aria-label="close modal"
           className={styles.close}
           onClick={handleClose}
           data-testid={BUTTON_CLOSE_ID}

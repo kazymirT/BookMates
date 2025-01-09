@@ -91,7 +91,11 @@ const CartNotification = () => {
         >
           <div className={styles.head}>
             <p>{t('cart.notification.title')}</p>
-            <button type="button" onClick={closeNotification}>
+            <button
+              type="button"
+              onClick={closeNotification}
+              aria-label="close notification"
+            >
               <Icon.Close />
             </button>
           </div>

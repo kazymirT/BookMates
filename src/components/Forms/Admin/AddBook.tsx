@@ -109,7 +109,11 @@ const AddBook = () => {
   return (
     <section className={sectionClassName}>
       <div className={styles['title-container']}>
-        <button className={styles.close} onClick={handleClose}>
+        <button
+          className={styles.close}
+          onClick={handleClose}
+          aria-label="close modal"
+        >
           <Icon.Close />
         </button>
         <h2>Додати книгу</h2>

@@ -50,7 +50,11 @@ const EditCollection = () => {
         <DeletePopup onClose={handleClosePopup} onDelete={handleDeleteBook} />
       )}
       <div className={styles['title-container']}>
-        <button className={styles.close} onClick={handleClose}>
+        <button
+          className={styles.close}
+          onClick={handleClose}
+          aria-label="close modal"
+        >
           <Icon.Close />
         </button>
         <h2>Редагувати колекцію</h2>

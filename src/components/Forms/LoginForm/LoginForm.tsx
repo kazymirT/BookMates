@@ -54,6 +54,7 @@ const LoginForm = () => {
         <button
           className={styles.close}
           onClick={handleClose}
+          aria-label="close modal"
           data-testid={BUTTON_CLOSE_ID}
         >
           <Icon.Close />

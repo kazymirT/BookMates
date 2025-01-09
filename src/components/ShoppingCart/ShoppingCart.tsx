@@ -9,14 +9,8 @@ import { Sizes, Variant } from '../ui-components/Button/constants';
 import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
 import { Icon } from '../ui-components/Icons';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import {
-  isOpen,
-  goods,
-  toggleOpenCart,
-  removePosition,
-} from '@/redux/slices/shoppingCartSlice';
-//import { useGetCartQuery } from '@/redux/services/cart';
-
+import { goods, removePosition } from '@/redux/slices/shoppingCartSlice';
+import { isOpen, toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 const ShoppingCart = () => {
   const { t } = useTranslation();
   const isCartOpen = useAppSelector(isOpen);
@@ -44,8 +38,6 @@ const ShoppingCart = () => {
       closeCart();
     }
   };
-  //const {data, error} = useGetCartQuery(undefined,{skip: !isCartOpen});
-
   return (
     <Portal isOpen={isCartOpen} placeContent="right" onClickOutside={closeCart}>
       <CSSTransition
@@ -65,7 +57,7 @@ const ShoppingCart = () => {
         <aside className={styles.container} ref={asideRef}>
           <div className={styles.head}>
             <h3>{t('cart.title')}</h3>
-            <button onClick={closeCart}>
+            <button onClick={closeCart} aria-label="close cart">
               <Icon.Close />
             </button>
           </div>

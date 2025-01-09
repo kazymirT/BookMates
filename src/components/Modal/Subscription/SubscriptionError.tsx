@@ -12,7 +12,12 @@ const SubscriptionError = () => {
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   return (
     <div className={styles.error}>
-      <button type="button" className={styles.close} onClick={handleClose}>
+      <button
+        type="button"
+        className={styles.close}
+        aria-label="close modal"
+        onClick={handleClose}
+      >
         <Icon.Close />
       </button>
       <p>{t('home.subscribe.error')}</p>

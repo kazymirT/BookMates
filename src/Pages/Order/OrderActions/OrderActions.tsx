@@ -9,7 +9,8 @@ import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import Checkbox from '@/components/ui-components/Checkbox/Checkbox';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { goods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
+import { goods } from '@/redux/slices/shoppingCartSlice';
+import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 
 const OrderActions = ({
   register,

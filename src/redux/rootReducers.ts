@@ -10,6 +10,7 @@ import { overlaySlice } from './slices/overlay';
 import profileSlice from './slices/profileSlice';
 import { queryParamsSlice } from './slices/queryParams';
 import shoppingCartSlice from './slices/shoppingCartSlice';
+import shoppingCartUiSlice from './slices/shoppingCartUiSlice';
 import statusSlice from './slices/statusSlice';
 import userSlice from './slices/userSlice';
 
@@ -26,4 +27,5 @@ export const rootReducer = combineReducers({
   overlay: overlaySlice.reducer,
   cartNotification: cartNotificationSlice,
   shoppingCart: shoppingCartSlice,
+  shoppingCartUi: shoppingCartUiSlice,
 });

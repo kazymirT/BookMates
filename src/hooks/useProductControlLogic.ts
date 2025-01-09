@@ -1,12 +1,8 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { BookById } from '@/redux/services/services.types';
 import { toggleShowCartNotification } from '@/redux/slices/cartNotificationSlice';
-import {
-  addGoods,
-  goods,
-  toggleOpenCart,
-} from '@/redux/slices/shoppingCartSlice';
-
+import { addGoods, goods } from '@/redux/slices/shoppingCartSlice';
+import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 export const useProductControlLogic = (book: BookById) => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(goods);

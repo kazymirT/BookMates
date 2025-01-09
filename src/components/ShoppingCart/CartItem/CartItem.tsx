@@ -6,7 +6,6 @@ import {
   increaseQuantity,
   decreaseQuantity,
 } from '@/redux/slices/shoppingCartSlice';
-//import { useRemoveBookMutation } from '@/redux/services/cart';
 import { type CartItem as CartItemType } from '@/redux/slices/shoppingCartSlice';
 
 const CartItem = ({
@@ -16,7 +15,6 @@ const CartItem = ({
   item: CartItemType;
   handleDeleteItem: (id: number) => void;
 }) => {
-  //const [removeBook, {data}] = useRemoveBookMutation();
   const dispatch = useAppDispatch();
   const deleteBook = () => handleDeleteItem(id);
   return (
@@ -27,7 +25,11 @@ const CartItem = ({
       <div className={styles.info}>
         <div className={`${styles.row} ${styles['first-row']}`}>
           <p className={styles.title}>{title}</p>
-          <button className={styles.btn} onClick={deleteBook}>
+          <button
+            className={styles.btn}
+            onClick={deleteBook}
+            aria-label="delete book"
+          >
             <Icon.Remove width="18" height="18" />
           </button>
         </div>

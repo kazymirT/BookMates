@@ -127,7 +127,11 @@ const EditCategory = () => {
             />
           )}
           <div className={styles['title-container']}>
-            <button className={styles.close} onClick={handleClose}>
+            <button
+              className={styles.close}
+              onClick={handleClose}
+              aria-label="close modal"
+            >
               <Icon.Close />
             </button>
             <h2>Редагувати {Attributes[editAttributes.name].title}</h2>

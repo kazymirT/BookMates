@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { FC, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import styles from './ProductCard.module.scss';
@@ -8,9 +9,11 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import useFlyToCart from '@/hooks/useFlyToCart';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { addGoods, isFly } from '@/redux/slices/shoppingCartSlice';
+import { addGoods } from '@/redux/slices/shoppingCartSlice';
+import { isFly } from '@/redux/slices/shoppingCartUiSlice';
 
 const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const isFlyBook = useAppSelector(isFly);
   const { flyToCart } = useFlyToCart();
@@ -80,7 +83,7 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
             type="button"
             size={Sizes.Card}
             variant={Variant.Card}
-            text="Купити"
+            text={t('product-card.buy')}
             disabled={isFlyBook}
             onClick={addItemToCart}
           />
@@ -88,7 +91,7 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
       </div>
       {!!discount && (
         <div className={styles.sticker}>
-          <span>Акція</span>
+          <span>{t('product-card.sale')}</span>
           <span>-{discount}%</span>
         </div>
       )}

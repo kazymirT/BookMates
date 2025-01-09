@@ -4,7 +4,8 @@ import React from 'react';
 import styles from './CartInformer.module.scss';
 import { Icon } from '../ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { goods, toggleOpenCart } from '@/redux/slices/shoppingCartSlice';
+import { goods } from '@/redux/slices/shoppingCartSlice';
+import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 
 const CartInformer = () => {
   const dispatch = useAppDispatch();
@@ -31,6 +32,7 @@ const CartInformer = () => {
         type="button"
         onClick={handleOpenCart}
         className={styles['cart_informer_view']}
+        aria-label="open cart"
       >
         <span className={styles['cart_informer_icon']}>
           <Icon.CartNew />
