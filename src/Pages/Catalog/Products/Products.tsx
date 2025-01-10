@@ -4,9 +4,12 @@ import { useEffect } from 'react';
 import styles from './Products.module.scss';
 import Pagination from '@/components/Pagination/Pagination';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { queryAllData } from '@/redux/slices/queryParams';
+
+export const PRODUCT_OF_PAGE = 16;
 
 const Products = () => {
   const {
@@ -18,12 +21,11 @@ const Products = () => {
   } = useAppSelector(queryAllData);
   const {
     data: books,
-    // currentData,
     isFetching,
     isLoading,
   } = useGetBooksQuery({
     page,
-    size: '16',
+    size: `${PRODUCT_OF_PAGE}`,
     sort: [sort.replace('-', ',')],
     search,
     categories: categories.map((c) => c.name),
@@ -49,7 +51,7 @@ const Products = () => {
                 <ProductCard data={book} key={book.id} variant="catalog" />
               ))}
           </div>
-          {books && books.totalElements > 16 && (
+          {books && books.totalElements > PRODUCT_OF_PAGE && (
             <Pagination
               totalPages={books?.totalPages}
               currentPage={books?.pageable.pageNumber}
@@ -62,6 +64,11 @@ const Products = () => {
         </p>
       )}
       {isFetching && !isLoading && <div className={styles.fetching}></div>}
+      {isLoading && (
+        <div className={booksClassName}>
+          <SkeletonProductCard variant="catalog" cards={PRODUCT_OF_PAGE} />
+        </div>
+      )}
     </section>
   );
 };

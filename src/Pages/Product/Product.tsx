@@ -7,15 +7,19 @@ import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import Slider from '@/components/Slider/Slider';
 import Subscription from '@/components/Subscription/Subscription';
+import { PRODUCT_OF_SLIDER } from '@/constants/slider';
 import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
-  const { data: books } = useGetBooksQuery({ size: '9' });
+  const { data: books, isLoading } = useGetBooksQuery({
+    size: `${PRODUCT_OF_SLIDER}`,
+  });
   const { data: book } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
@@ -47,14 +51,17 @@ const Product = () => {
           )}
           <section className={styles.likes}>
             <h3 className={styles.title}>{t('product.offers')}</h3>
-            {books && (
-              <Slider sliderCL="slider-section" arrows>
-                {books &&
-                  books.content.map((item) => (
-                    <ProductCard key={item.id} data={item} variant="slider" />
-                  ))}
-              </Slider>
-            )}
+
+            <Slider sliderCL="slider-section" arrows>
+              {books &&
+                books.content.map((item) => (
+                  <ProductCard key={item.id} data={item} variant="slider" />
+                ))}
+              {isLoading &&
+                Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
+                  <SkeletonProductCard key={i} variant="slider" />
+                ))}
+            </Slider>
           </section>
           <Subscription variant={'author'} />
         </div>
