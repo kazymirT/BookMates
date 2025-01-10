@@ -1,13 +1,20 @@
-.productCard {
+.card {
   display: flex;
   flex-direction: column;
   gap: 20px;
 
-  width: 100%;
-  min-width: 220px;
-  max-width: 256px;
   height: 456px;
   padding: 11.2px 8px;
+
+  &__catalog {
+    width: 100%;
+    min-width: 220px;
+    max-width: 256px;
+  }
+
+  &__slider {
+    width: 220px;
+  }
 
   .wrapper {
     display: flex;
