@@ -1,3 +1,12 @@
 export interface SkeletonProps {
-  variant: 'img' | 'title' | 'subtitle' | 'button' | 'price';
+  variant:
+    | 'img'
+    | 'title'
+    | 'subtitle'
+    | 'button'
+    | 'price'
+    | 'title-b'
+    | 'title-c'
+    | 'subtitle-b'
+    | 'button-b';
 }
