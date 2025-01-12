@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import CategoryItem from './CategoryAll/CategoryItem';
 import styles from '../Header.module.scss';
+import { LoadingGroup } from '@/components/RadioGroup/LoadingGroup';
 import Search from '@/components/Search/Search';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
@@ -69,6 +70,7 @@ const Bottom = () => {
         <Search />
       </div>
       <div className={styles.icons}>
+        <LoadingGroup />
         {user && id ? (
           <UserButton {...user} />
         ) : (
