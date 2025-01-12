@@ -1,12 +1,15 @@
 import classNames from 'classnames';
 
 import styles from './BookCategory.module.scss';
-import { useAppDispatch } from '@/redux/hooks';
+import SkeletonCategory from '@/components/Skeleton/SkeletonCategories';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useGetAllAttributesQuery } from '@/redux/services/attributes';
 import { addFilterItem } from '@/redux/slices/queryParams';
+import { isLoading } from '@/redux/slices/skeletonSlice';
 
 const BookCategory = () => {
   const dispatch = useAppDispatch();
+  const isSkeleton = useAppSelector(isLoading);
   const { data: category, isSuccess } = useGetAllAttributesQuery();
   const setCategory = (id: number, name: string) => {
     dispatch(
@@ -27,6 +30,7 @@ const BookCategory = () => {
       <h3 className={styles.title}>Каталог книг</h3>
       <div className={styles.content}>
         {isSuccess &&
+          !isSkeleton &&
           category.categories.slice(0, 12).map(({ id, name }) => (
             <button
               type="button"
@@ -37,6 +41,7 @@ const BookCategory = () => {
               {name}
             </button>
           ))}
+        {isSkeleton && <SkeletonCategory />}
       </div>
     </section>
   );

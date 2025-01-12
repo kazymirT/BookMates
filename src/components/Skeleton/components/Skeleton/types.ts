@@ -8,5 +8,6 @@ export interface SkeletonProps {
     | 'title-b'
     | 'title-c'
     | 'subtitle-b'
+    | 'category'
     | 'button-b';
 }
