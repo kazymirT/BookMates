@@ -12,3 +12,7 @@ export interface SkeletonAuthorCardProps {
 export interface SkeletonCollectionCardProps {
   cards: number;
 }
+
+export interface SkeletonCategoryProps {
+  variant?: 'home' | 'catalog';
+}

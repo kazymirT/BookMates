@@ -93,12 +93,20 @@
 }
 
 .category {
-  width: 282px;
-  height: 51px;
-  padding: 16px;
-
   background-color: grey;
   border-radius: 8px;
+
+  &__catalog {
+    width: 282px;
+    height: 51px;
+    padding: 16px;
+  }
+
+  &__home {
+    width: 236px;
+    height: 36px;
+    padding: 8px;
+  }
 }
 
 .slider-card {
