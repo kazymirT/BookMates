@@ -100,3 +100,38 @@
   background-color: grey;
   border-radius: 8px;
 }
+
+.slider-card {
+  overflow-y: visible;
+  display: flex;
+  gap: 13px;
+  align-items: flex-end;
+
+  width: 370px;
+  height: 146px;
+  padding: 6px;
+
+  background-color: grey;
+  border-radius: 8px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 216px;
+    height: 125px;
+    padding-top: 0;
+
+    .title {
+      div:nth-child(1) {
+        margin-bottom: 15px;
+      }
+
+      div:nth-child(2) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
