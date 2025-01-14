@@ -8,10 +8,12 @@ import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { queryAllData } from '@/redux/slices/queryParams';
+import { isLoading } from '@/redux/slices/skeletonSlice';
 
 export const PRODUCT_OF_PAGE = 16;
 
 const Products = () => {
+  const isSkeleton = useAppSelector(isLoading);
   const {
     filter: { categories, language, years },
     page,
@@ -22,7 +24,7 @@ const Products = () => {
   const {
     data: books,
     isFetching,
-    isLoading,
+    isLoading: isLoadingBooks,
   } = useGetBooksQuery({
     page,
     size: `${PRODUCT_OF_PAGE}`,
@@ -35,7 +37,7 @@ const Products = () => {
   });
 
   const booksClassName = classNames(styles.books, {
-    [styles.disabled]: isFetching && !isLoading,
+    [styles.disabled]: isFetching && !isLoadingBooks,
   });
 
   useEffect(() => {
@@ -43,7 +45,9 @@ const Products = () => {
   }, [books]);
   return (
     <section className={styles.box}>
-      {(books && books.content.length) || isFetching || isLoading ? (
+      {(!isSkeleton && books && books.content.length) ||
+      isFetching ||
+      isLoadingBooks ? (
         <>
           <div className={booksClassName}>
             {books &&
@@ -59,12 +63,15 @@ const Products = () => {
           )}
         </>
       ) : (
+        <></>
+      )}
+      {!isSkeleton && books && !books.content.length && (
         <p className={styles['no-result']}>
           Результатів пошуку по вибраних значеннях фільтра не знайдено
         </p>
       )}
-      {isFetching && !isLoading && <div className={styles.fetching}></div>}
-      {isLoading && (
+      {isFetching && !isLoadingBooks && <div className={styles.fetching}></div>}
+      {isSkeleton && (
         <div className={booksClassName}>
           <SkeletonProductCard variant="catalog" cards={PRODUCT_OF_PAGE} />
         </div>
