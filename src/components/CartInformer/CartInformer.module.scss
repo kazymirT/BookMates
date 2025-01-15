@@ -30,7 +30,7 @@
     align-items: center;
     justify-content: center;
 
-    color: #fff;
+    color: $accent-white;
 
     .cart_informer_icon {
       @include icon-state($accent-white);
@@ -62,9 +62,9 @@
 
         font-size: 12px;
         font-weight: 700;
-        color: #fff;
+        color: $accent-white;
 
-        background: orangered;
+        background: #ff4500;
         border-radius: 50%;
       }
     }

@@ -1,4 +1,4 @@
-@use '@/styles/colors.scss';
+@import '@/styles';
 
 .item {
   display: flex;
@@ -8,7 +8,7 @@
   min-height: 131px;
   padding: 1.25em 0.75em;
 
-  background-color: colors.$brown-100;
+  background-color: $brown-100;
   border-radius: 0.5em;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .second-row {
-  color: colors.$grey-200;
+  color: $grey-200;
 }
 
 .third-row {
@@ -71,6 +71,6 @@
 .value {
   width: 1.5em;
   height: 1.5em;
-  background-color: #fff;
+  background-color: $accent-white;
   border-radius: 50%;
 }
