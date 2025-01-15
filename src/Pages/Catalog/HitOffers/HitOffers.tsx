@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import styles from './HitOffers.module.scss';
 import HitCard from '../HitCard/HitCard';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
@@ -12,26 +14,27 @@ const PRODUCT_OF_SLIDER = 6;
 const HitOffers = () => {
   const { data: books } = useGetBooksQuery({ size: `${PRODUCT_OF_SLIDER}` });
   const isSkeleton = useAppSelector(isLoading);
+  const hitCN = classNames(styles.hit, {
+    [styles['hit__skeleton']]: isSkeleton,
+  });
   return (
-    <section className={styles.hit}>
+    <section className={hitCN}>
       <SectionTitle title="Гарячі пропозиції" isIcon variant="catalog" />
-      <div>
-        <Slider
-          sliderCL="slider-hit"
-          variant="hit"
-          slidesToScroll={2}
-          slidesToShow={3}
-          dots
-        >
-          {!isSkeleton &&
-            books &&
-            books.content.map((item) => <HitCard key={item.id} data={item} />)}
-          {isSkeleton &&
-            Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
-              <SkeletonProductSlideCard key={i} />
-            ))}
-        </Slider>
-      </div>
+      <Slider
+        sliderCL="slider-hit"
+        variant="hit"
+        slidesToScroll={2}
+        slidesToShow={3}
+        dots
+      >
+        {!isSkeleton &&
+          books &&
+          books.content.map((item) => <HitCard key={item.id} data={item} />)}
+        {isSkeleton &&
+          Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
+            <SkeletonProductSlideCard key={i} />
+          ))}
+      </Slider>
     </section>
   );
 };
