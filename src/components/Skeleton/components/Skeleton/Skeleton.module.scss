@@ -1,8 +1,25 @@
 @import '@/styles';
 
 .skeleton {
-  background-color: $brown-200;
+  position: relative;
+  overflow: hidden;
+  background-color: $accent-white;
   border-radius: 0.25rem;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: -150%;
+
+    width: 100%;
+    height: 100%;
+
+    background: $skeleton-gradient;
+
+    animation: skeleton-loading 3s infinite;
+  }
 
   &__title {
     height: 19px;
@@ -99,12 +116,12 @@
   }
 }
 
-.animation-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+@keyframes skeleton-loading {
+  0% {
+    left: -150%;
+  }
 
-@keyframes pulse {
-  50% {
-    opacity: 0.5;
+  100% {
+    left: 150%;
   }
 }

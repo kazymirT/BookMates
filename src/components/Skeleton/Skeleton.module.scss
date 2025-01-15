@@ -8,7 +8,7 @@
   height: 456px;
   padding: 11.2px 8px;
 
-  background-color: grey;
+  background-color: $background-skeleton;
   border-radius: 8px;
 
   &__catalog {
@@ -56,7 +56,7 @@
   height: 344px;
   padding: 41px 50px;
 
-  background-color: grey;
+  background-color: $background-skeleton;
   border-radius: 8px;
 
   .text {
@@ -75,7 +75,7 @@
   height: 330px;
   padding: 20px;
 
-  background-color: grey;
+  background-color: $background-skeleton;
   border-radius: 8px;
 }
 
@@ -88,12 +88,12 @@
   height: 200px;
   padding: 10px;
 
-  background-color: grey;
+  background-color: $background-skeleton;
   border-radius: 8px;
 }
 
 .category {
-  background-color: grey;
+  background-color: $background-skeleton;
   border-radius: 8px;
 
   &__catalog {
@@ -119,7 +119,7 @@
   height: 146px;
   padding: 6px;
 
-  background-color: grey;
+  background-color: $background-skeleton;
   border-radius: 8px;
 
   .wrapper {
