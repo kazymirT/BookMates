@@ -3,6 +3,7 @@ export interface SkeletonProps {
     | 'img'
     | 'img-2'
     | 'img-3'
+    | 'img-4'
     | 'title'
     | 'subtitle'
     | 'button'

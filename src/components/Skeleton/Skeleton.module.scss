@@ -143,3 +143,25 @@
     }
   }
 }
+
+.collections {
+  display: flex;
+  gap: 24px;
+
+  width: 588px;
+  height: 174px;
+  padding: 6px;
+
+  background-color: $background-skeleton;
+  border-radius: 8px;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    width: 100%;
+    max-width: 331px;
+    padding: 50px 24px 50px 0;
+  }
+}
