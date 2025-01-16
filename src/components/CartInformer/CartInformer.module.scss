@@ -1,6 +1,6 @@
 @import '@/styles';
 
-.cart-informer {
+.cartInformer {
   user-select: none;
 
   position: fixed;
@@ -24,7 +24,7 @@
     transform: translateX(0%);
   }
 
-  .cart_informer_view {
+  .view {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +32,7 @@
 
     color: $accent-white;
 
-    .cart_informer_icon {
+    .icon {
       @include icon-state($accent-white);
 
       position: relative;
@@ -45,7 +45,7 @@
       width: 60px;
       height: 60px;
 
-      .cart_informer_counter {
+      .counter {
         user-select: none;
 
         position: absolute;
@@ -69,17 +69,18 @@
       }
     }
 
-    .cart_informer_wrap {
+    .wrap {
       display: flex;
       flex-direction: column;
+      min-width: 72px;
       padding: 0 15px 0 0;
 
-      .cart_informer_title {
+      .title {
         font-size: 13px;
         font-weight: 400;
       }
 
-      .cart_informer_total {
+      .total {
         font-size: 12px;
         font-weight: 700;
       }

@@ -1,49 +1,40 @@
 import classNames from 'classnames';
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './CartInformer.module.scss';
 import { Icon } from '../ui-components/Icons';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { goods } from '@/redux/slices/shoppingCartSlice';
+import { useCartCalculations } from '@/hooks/useCartCalculations';
+import { useAppDispatch } from '@/redux/hooks';
 import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 
 const CartInformer = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(goods);
-  const handleOpenCart = () => dispatch(toggleOpenCart(true));
-  const totalPrice = cartItems.reduce(
-    (total, item) =>
-      total +
-      (item.discount
-        ? Number(item.discountPrice) * item.quantity
-        : Number(item.price) * item.quantity),
-    0
-  );
-  const cartItemsCount = React.useMemo(
-    () => cartItems.reduce((acc, item) => (acc += item.quantity), 0),
-    [cartItems]
-  );
-  const cartWrapperCl = classNames(styles['cart-informer'], {
+  const { totalPrice, cartItemsCount } = useCartCalculations();
+
+  const handleCartAction = (action: boolean) =>
+    dispatch(toggleOpenCart(action));
+
+  const cartWrapperCl = classNames(styles.cartInformer, {
     [styles.active]: cartItemsCount,
   });
+
   return (
     <div className={cartWrapperCl} id="cart-informer">
       <button
         type="button"
-        onClick={handleOpenCart}
-        className={styles['cart_informer_view']}
+        onClick={() => handleCartAction(true)}
+        className={styles.view}
         aria-label="open cart"
       >
-        <span className={styles['cart_informer_icon']}>
+        <span className={styles.icon}>
           <Icon.CartNew />
-          <span className={styles['cart_informer_counter']}>
-            {cartItemsCount}
-          </span>
+          <span className={styles.counter}>{cartItemsCount}</span>
         </span>
-        <span className={styles['cart_informer_wrap']}>
-          <span className={styles['cart_informer_title']}>Кошик</span>
-          <span className={styles['cart_informer_total']}>
-            {totalPrice} грн
+        <span className={styles.wrap}>
+          <span className={styles.title}>{t('cart-informer.cart')}</span>
+          <span className={styles.total}>
+            {t('cart-informer.price', { totalPrice })}
           </span>
         </span>
       </button>

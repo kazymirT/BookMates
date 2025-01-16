@@ -124,7 +124,7 @@ export const english = {
       'promo-code': 'Discount code',
       'promo-code-placeholder': 'code',
       together: 'Total',
-      price: '{{price}} UAH',
+      price: '{{price}} $',
       'payment-by-details': 'Payment via bank details',
       'payment-upon-receipt': 'Payment upon receipt',
       'btn-order': 'Confirm the order',
@@ -134,7 +134,7 @@ export const english = {
   cart: {
     title: 'Cart',
     together: 'Total',
-    'total-price': '{{totalPrice}} UAH',
+    'total-price': '{{totalPrice}} $',
     btn: 'Check out',
     empty: 'Your cart is empty',
     notification: {
@@ -201,7 +201,7 @@ export const english = {
       'Thank you for your request. We are already working on it, and you will receive an answer soon. Bookmate team.',
   },
   'book-card': 'Buy Now',
-  price: '{{price}} UAH',
+  price: '{{price}} $',
   profile: {
     title: 'User profile',
     links: {
@@ -353,5 +353,9 @@ Delivery is possible to those settlements where there are Nova Posе offices or 
   'product-card': {
     buy: 'Buy',
     sale: 'Sale',
+  },
+  'cart-informer': {
+    cart: 'Cart',
+    price: '{{totalPrice}} $',
   },
 };
