@@ -54,7 +54,7 @@ const ShoppingCart = () => {
         onExiting={handleCloseCart}
         onExited={() => setShow(true)}
       >
-        <aside className={styles.container} ref={asideRef}>
+        <aside className={styles.wrapper} ref={asideRef}>
           <div className={styles.head}>
             <h3>{t('cart.title')}</h3>
             <button onClick={closeCart} aria-label="close cart">

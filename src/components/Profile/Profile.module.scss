@@ -10,7 +10,7 @@
 
   color: $raisin-black;
 
-  background-color: #fff;
+  background-color: $accent-white;
 }
 
 .head {
@@ -53,7 +53,7 @@
 
   .icon {
     @include flex-center;
-    @include icon-state(#fff);
+    @include icon-state($accent-white);
 
     background-color: $brown-200;
     border-radius: 50%;

@@ -84,7 +84,7 @@ const CartNotification = () => {
         onExited={openNotification}
       >
         <div
-          className={styles.container}
+          className={styles.wrapper}
           ref={nodeRef}
           onMouseEnter={handleStopTimer}
           onMouseLeave={handleClose}

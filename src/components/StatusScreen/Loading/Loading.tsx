@@ -11,7 +11,7 @@ const defaultOptions = {
 
 const Loading = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.wrapper}>
       <Lottie options={defaultOptions} height={150} width={150} />
     </div>
   );

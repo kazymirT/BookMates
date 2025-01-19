@@ -1,4 +1,4 @@
-@use '/src/styles/colors.scss';
+@import '@/styles';
 
 %text-block {
   display: flex;
@@ -14,7 +14,7 @@
   }
 }
 
-.container {
+.wrapper {
   display: flex;
   flex-direction: column;
 
@@ -23,7 +23,7 @@
   height: 100%;
   padding: 1.5em 1em;
 
-  background-color: #fff;
+  background-color: $accent-white;
 
   transition: all 300ms ease-in;
 }
@@ -95,12 +95,12 @@
   @extend %text-block;
 
   margin-bottom: 1.5em;
-  color: colors.$grey-500;
+  color: $grey-500;
 }
 
 .checkout-btn {
   width: 100%;
   padding: 1em 2em;
-  color: #fff;
-  background-color: colors.$button-default;
+  color: $accent-white;
+  background-color: $button-default;
 }

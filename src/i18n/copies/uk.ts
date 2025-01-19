@@ -356,4 +356,8 @@ export const ukraine = {
     buy: 'Купити',
     sale: 'Акція',
   },
+  'cart-informer': {
+    cart: 'Кошик',
+    price: '{{totalPrice}} грн',
+  },
 };

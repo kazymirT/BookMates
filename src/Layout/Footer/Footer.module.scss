@@ -1,9 +1,7 @@
-@use '@/styles/colors.scss';
-
 @import '@/styles';
 
 .footer {
-  background-color: #fff;
+  background-color: $accent-white;
 
   .container {
     width: 100%;
@@ -11,7 +9,7 @@
     margin: 0 auto;
     padding: 0;
 
-    color: colors.$raisin-black;
+    color: $raisin-black;
 
     nav {
       display: flex;
@@ -51,11 +49,11 @@
         letter-spacing: 0.05em;
 
         &:hover {
-          color: colors.$brown-300;
+          color: $brown-300;
         }
 
         &:active {
-          color: colors.$brown-400;
+          color: $brown-400;
         }
       }
 
