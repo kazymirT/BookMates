@@ -12,19 +12,16 @@ import SkeletonProductPage from '@/components/Skeleton/SkeletonProductPage';
 import Slider from '@/components/Slider/Slider';
 import Subscription from '@/components/Subscription/Subscription';
 import { PRODUCT_OF_SLIDER } from '@/constants/slider';
-import { useAppSelector } from '@/redux/hooks';
 import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
-import { isLoading } from '@/redux/slices/skeletonSlice';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
   const { t } = useTranslation();
-  const isSkeleton = useAppSelector(isLoading);
   const { productId } = useParams();
-  const { data: books } = useGetBooksQuery({
+  const { data: books, isLoading: isLoadingSlide } = useGetBooksQuery({
     size: `${PRODUCT_OF_SLIDER}`,
   });
-  const { data: book } = useGetBookByIdQuery(productId ?? skipToken);
+  const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
     book && {
@@ -37,7 +34,7 @@ const Product = () => {
       <div className="container">
         <div className={styles['product__inner']}>
           <Breadcrumbs options={breadcrumbs} activeLastLink />
-          {!isSkeleton && book && (
+          {book && (
             <section className={styles['details-product']}>
               <div className={styles['img-box']}>
                 <img
@@ -51,16 +48,15 @@ const Product = () => {
               <ProductControl book={book} />
             </section>
           )}
-          {isSkeleton && <SkeletonProductPage />}
+          {isLoading && <SkeletonProductPage />}
           <section className={styles.likes}>
             <h3 className={styles.title}>{t('product.offers')}</h3>
             <Slider sliderCL="slider-section" arrows>
-              {!isSkeleton &&
-                books &&
+              {books &&
                 books.content.map((item) => (
                   <ProductCard key={item.id} data={item} variant="slider" />
                 ))}
-              {isSkeleton &&
+              {isLoadingSlide &&
                 Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
                   <SkeletonProductCard key={i} variant="slider" />
                 ))}
