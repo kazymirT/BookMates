@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './Products.module.scss';
 import Pagination from '@/components/Pagination/Pagination';
@@ -8,12 +9,11 @@ import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { queryAllData } from '@/redux/slices/queryParams';
-import { isLoading } from '@/redux/slices/skeletonSlice';
 
 export const PRODUCT_OF_PAGE = 16;
 
 const Products = () => {
-  const isSkeleton = useAppSelector(isLoading);
+  const { t } = useTranslation();
   const {
     filter: { categories, language, years },
     page,
@@ -24,7 +24,7 @@ const Products = () => {
   const {
     data: books,
     isFetching,
-    isLoading: isLoadingBooks,
+    isLoading,
   } = useGetBooksQuery({
     page,
     size: `${PRODUCT_OF_PAGE}`,
@@ -37,41 +37,31 @@ const Products = () => {
   });
 
   const booksClassName = classNames(styles.books, {
-    [styles.disabled]: isFetching && !isLoadingBooks,
+    [styles.disabled]: isFetching && !isLoading,
   });
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [books]);
   return (
     <section className={styles.box}>
-      {(!isSkeleton && books && books.content.length) ||
-      isFetching ||
-      isLoadingBooks ? (
-        <>
+      {books &&
+        (!!books.content.length ? (
           <div className={booksClassName}>
-            {books &&
-              books.content.map((book) => (
-                <ProductCard data={book} key={book.id} variant="catalog" />
-              ))}
+            {books.content.map((book) => (
+              <ProductCard data={book} key={book.id} variant="catalog" />
+            ))}
           </div>
-          {books && books.totalElements > PRODUCT_OF_PAGE && (
-            <Pagination
-              totalPages={books?.totalPages}
-              currentPage={books?.pageable.pageNumber}
-            />
-          )}
-        </>
-      ) : (
-        <></>
+        ) : (
+          <p className={styles['no-result']}>{t('catalog.no-product')}</p>
+        ))}
+      {books && books.totalElements > PRODUCT_OF_PAGE && (
+        <Pagination
+          totalPages={books?.totalPages}
+          currentPage={books?.pageable.pageNumber}
+        />
       )}
-      {!isSkeleton && books && !books.content.length && (
-        <p className={styles['no-result']}>
-          Результатів пошуку по вибраних значеннях фільтра не знайдено
-        </p>
-      )}
-      {isFetching && !isLoadingBooks && <div className={styles.fetching}></div>}
-      {isSkeleton && (
+      {isFetching && !isLoading && <div className={styles.fetching}></div>}
+      {isLoading && (
         <div className={booksClassName}>
           <SkeletonProductCard variant="catalog" cards={PRODUCT_OF_PAGE} />
         </div>

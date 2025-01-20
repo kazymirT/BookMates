@@ -73,6 +73,8 @@ export const ukraine = {
       yearsWithCount: 'Рік видання ({{count}})',
     },
     'clear-filter': 'Скинути фільтр',
+    'no-product':
+      'Результатів пошуку по вибраних значеннях фільтра не знайдено',
     sort: 'ua',
   },
   authors: {

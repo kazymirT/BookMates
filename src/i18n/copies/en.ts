@@ -73,6 +73,7 @@ export const english = {
       yearsWithCount: 'Years ({{count}})',
     },
     'clear-filter': 'Clean up',
+    'no-product': 'No search results were found for the selected filter values',
     sort: 'en',
   },
   authors: {
