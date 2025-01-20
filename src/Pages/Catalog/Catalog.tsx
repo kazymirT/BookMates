@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import BookCategory from './BookCategory/BookCategory';
 import styles from './Catalog.module.scss';
-import Filters from './Filters/Filters';
-import HitOffers from './HitOffers/HitOffers';
-import Products from './Products/Products';
+import BookCategory from './modules/BookCategory/BookCategory';
+import Filters from './modules/Filters/Filters';
+import HitOffers from './modules/HitOffers/HitOffers';
+import Products from './modules/Products/Products';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { useAppSelector } from '@/redux/hooks';
 import { queryAllData } from '@/redux/slices/queryParams';

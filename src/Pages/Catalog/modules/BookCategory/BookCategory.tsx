@@ -1,16 +1,18 @@
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import styles from './BookCategory.module.scss';
+import { MAX_CATEGORY_LENGTH } from './constants';
 import SkeletonCategory from '@/components/Skeleton/SkeletonCategories';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { useGetAllAttributesQuery } from '@/redux/services/attributes';
 import { addFilterItem } from '@/redux/slices/queryParams';
-import { isLoading } from '@/redux/slices/skeletonSlice';
 
 const BookCategory = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const isSkeleton = useAppSelector(isLoading);
-  const { data: category, isSuccess } = useGetAllAttributesQuery();
+  const { data: category, isSuccess, isLoading } = useGetAllAttributesQuery();
+
   const setCategory = (id: number, name: string) => {
     dispatch(
       addFilterItem({
@@ -27,21 +29,22 @@ const BookCategory = () => {
   };
   return (
     <section className={styles.category}>
-      <h3 className={styles.title}>Каталог книг</h3>
+      <h3 className={styles.title}>{t('catalog.title-two')}</h3>
       <div className={styles.content}>
         {isSuccess &&
-          !isSkeleton &&
-          category.categories.slice(0, 12).map(({ id, name }) => (
-            <button
-              type="button"
-              onClick={() => setCategory(id, name)}
-              key={id}
-              className={linkClass(id)}
-            >
-              {name}
-            </button>
-          ))}
-        {isSkeleton && <SkeletonCategory />}
+          category.categories
+            .slice(0, MAX_CATEGORY_LENGTH)
+            .map(({ id, name }) => (
+              <button
+                type="button"
+                onClick={() => setCategory(id, name)}
+                key={id}
+                className={linkClass(id)}
+              >
+                {name}
+              </button>
+            ))}
+        {isLoading && <SkeletonCategory />}
       </div>
     </section>
   );

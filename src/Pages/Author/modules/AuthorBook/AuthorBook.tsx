@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import styles from './AuthorBook.module.scss';
 import { AuthorBookProps } from './types';
-import HitCard from '@/Pages/Catalog/HitCard/HitCard';
+import HitCard from '@/Pages/Catalog/modules/HitOffers/components/HitCard/HitCard';
 import { useGetBooksQuery } from '@/redux/services/books';
 
 const AuthorBook: FC<AuthorBookProps> = ({ authorName }) => {

@@ -29,7 +29,6 @@ const FilterClear = () => {
     dispatch(removeFilterItem({ filterName, attributes: value }));
   };
 
-  // Створення загального списку фільтрів для очищення
   const filters: {
     filterName: keyof FilterType;
     value: { id: number; name: string };

@@ -24,6 +24,7 @@ const Products = () => {
   const {
     data: books,
     isFetching,
+    isSuccess,
     isLoading,
   } = useGetBooksQuery({
     page,
@@ -54,12 +55,14 @@ const Products = () => {
         ) : (
           <p className={styles['no-result']}>{t('catalog.no-product')}</p>
         ))}
-      {books && books.totalElements > PRODUCT_OF_PAGE && (
-        <Pagination
-          totalPages={books?.totalPages}
-          currentPage={books?.pageable.pageNumber}
-        />
-      )}
+      {isSuccess &&
+        !!books.content.length &&
+        books.totalElements > PRODUCT_OF_PAGE && (
+          <Pagination
+            totalPages={books?.totalPages}
+            currentPage={books?.pageable.pageNumber}
+          />
+        )}
       {isFetching && !isLoading && <div className={styles.fetching}></div>}
       {isLoading && (
         <div className={booksClassName}>

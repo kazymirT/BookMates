@@ -64,6 +64,8 @@ export const ukraine = {
   },
   catalog: {
     title: 'Каталог',
+    'title-two': 'Каталог книг',
+    'hot-offers': 'Гарячі пропозиції',
     filter: {
       categories: 'Категорії',
       price: 'Ціна ({{price1}} - {{price2}})',
