@@ -7,14 +7,11 @@ import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import Slider from '@/components/Slider/Slider';
 import { PRODUCT_OF_SLIDER } from '@/constants/slider';
-import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
-import { isLoading } from '@/redux/slices/skeletonSlice';
 
 const Sale = () => {
   const { t } = useTranslation();
-  const isSkeleton = useAppSelector(isLoading);
-  const { data: books } = useGetBooksQuery({
+  const { data: books, isLoading } = useGetBooksQuery({
     size: `${PRODUCT_OF_SLIDER}`,
   });
 
@@ -29,11 +26,10 @@ const Sale = () => {
       <SectionContent variant="product">
         <Slider sliderCL="slider-section" arrows>
           {books &&
-            !isSkeleton &&
             books.content.map((item) => (
               <ProductCard key={item.id} data={item} variant="slider" />
             ))}
-          {isSkeleton &&
+          {isLoading &&
             Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
               <SkeletonProductCard key={i} variant="slider" />
             ))}

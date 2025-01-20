@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import CategoryIntro from './CategoryIntro/CategoryIntro';
 import styles from './Collection.module.scss';
-import Filters from '../Catalog/Filters/Filters';
-import Products from '../Catalog/Products/Products';
+import Filters from '../Catalog/modules/Filters/Filters';
+import Products from '../Catalog/modules/Products/Products';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 import { COLLECTION } from '@/utils/fake';

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { CARD_OF_AUTHORS } from './constants';
 import { authors } from './data';
 import AuthorsCard from '../../components/AuthorsCard/AuthorsCard';
 import Section from '../../components/Section/Section';
@@ -26,7 +27,7 @@ const Authors = () => {
             authors.map(({ id, img, title }) => (
               <AuthorsCard id={id} img={img} title={title} key={id} />
             ))}
-          {isSkeleton && <SkeletonAuthorCard cards={4} />}
+          {isSkeleton && <SkeletonAuthorCard cards={CARD_OF_AUTHORS} />}
         </SectionContent>
       </>
     </Section>

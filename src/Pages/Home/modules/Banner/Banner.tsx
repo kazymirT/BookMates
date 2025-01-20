@@ -1,4 +1,5 @@
 import styles from './Banner.module.scss';
+import { SLIDE_OF_SLIDER } from './constants';
 import { BANNER_DATA } from './data';
 import Slide from './Slide/Slide';
 import SkeletonBannerSlide from '@/components/Skeleton/SkeletonBannerSlide';
@@ -19,12 +20,13 @@ const Banner = () => {
         slidesToShow={1}
         dots
       >
-        {!isSkeleton &&
-          BANNER_DATA.map((banner) => <Slide slide={banner} key={banner.id} />)}
-        {isSkeleton &&
-          Array.from({ length: 3 }).map((_, i) => (
-            <SkeletonBannerSlide key={i} />
-          ))}
+        {isSkeleton
+          ? Array.from({ length: SLIDE_OF_SLIDER }).map((_, i) => (
+              <SkeletonBannerSlide key={i} />
+            ))
+          : BANNER_DATA.map((banner) => (
+              <Slide slide={banner} key={banner.id} />
+            ))}
       </Slider>
     </div>
   );

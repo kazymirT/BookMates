@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { CARD_OF_COLLECTIONS } from './constants';
 import { collections } from './data';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Section from '../../components/Section/Section';
@@ -21,12 +22,12 @@ const Collections = () => {
           title={t('home.book-collections.title')}
         />
         <SectionContent variant="category">
-          {collections &&
-            !isSkeleton &&
+          {!isSkeleton &&
+            collections &&
             collections.map(({ id, img, title }) => (
               <CategoryCard id={id} img={img} title={title} key={id} />
             ))}
-          {isSkeleton && <SkeletonCollectionCard cards={4} />}
+          {isSkeleton && <SkeletonCollectionCard cards={CARD_OF_COLLECTIONS} />}
         </SectionContent>
       </>
     </Section>
