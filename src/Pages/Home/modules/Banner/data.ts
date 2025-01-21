@@ -1,6 +1,7 @@
 import img01 from './image/01.webp';
 import img02 from './image/02.webp';
 import img03 from './image/03.webp';
+
 export interface BannerData {
   id: number;
   title: string;

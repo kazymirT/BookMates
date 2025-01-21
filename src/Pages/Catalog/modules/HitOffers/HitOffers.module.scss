@@ -9,4 +9,8 @@
 
   background: $accent-white;
   border-radius: 8px;
+
+  &__skeleton {
+    gap: 26px;
+  }
 }

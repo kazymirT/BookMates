@@ -11,6 +11,7 @@ import profileSlice from './slices/profileSlice';
 import { queryParamsSlice } from './slices/queryParams';
 import shoppingCartSlice from './slices/shoppingCartSlice';
 import shoppingCartUiSlice from './slices/shoppingCartUiSlice';
+import skeletonSlice from './slices/skeletonSlice';
 import statusSlice from './slices/statusSlice';
 import userSlice from './slices/userSlice';
 
@@ -28,4 +29,5 @@ export const rootReducer = combineReducers({
   cartNotification: cartNotificationSlice,
   shoppingCart: shoppingCartSlice,
   shoppingCartUi: shoppingCartUiSlice,
+  skeleton: skeletonSlice,
 });

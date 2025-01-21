@@ -26,5 +26,10 @@
       width: 14px;
       height: 7px;
     }
+
+    &:has(div) {
+      display: block;
+      width: 50%;
+    }
   }
 }

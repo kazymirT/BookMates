@@ -64,6 +64,8 @@ export const english = {
   },
   catalog: {
     title: 'Catalog',
+    'hot-offers': 'Hot offers',
+    'title-two': 'Catalog of books',
     filter: {
       categories: 'Categories',
       price: 'Price ({{price1}} - {{price2}})',
@@ -73,6 +75,7 @@ export const english = {
       yearsWithCount: 'Years ({{count}})',
     },
     'clear-filter': 'Clean up',
+    'no-product': 'No search results were found for the selected filter values',
     sort: 'en',
   },
   authors: {

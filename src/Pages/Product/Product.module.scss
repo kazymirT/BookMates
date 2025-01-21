@@ -82,6 +82,12 @@
         letter-spacing: 0.045em;
       }
     }
+
+    &:not(:has(h2)) {
+      div:nth-child(1) {
+        margin-bottom: 3.4px;
+      }
+    }
   }
 
   .details {

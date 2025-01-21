@@ -17,23 +17,28 @@ const Breadcrumbs: FC<BreadCrumbsProps> = ({
 
   return (
     <ul className={styles.breadcrumbs}>
-      <li>
-        <Link to={'/'}>{t('breadcrumbs.home')}</Link>
-      </li>
-      {options.map(({ name, to }, index) => (
-        <li key={index}>
-          <span className={styles.separation}>&#8594;</span>
-          {index !== options.length - 1 ? (
-            <Link to={to} onClick={to === '/catalog' ? clearFilter : undefined}>
-              {name}
-            </Link>
-          ) : activeLastLink ? (
-            <Link to={to}>{name}</Link>
-          ) : (
-            <span>{name}</span>
-          )}
+      <>
+        <li>
+          <Link to={'/'}>{t('breadcrumbs.home')}</Link>
         </li>
-      ))}
+        {options.map(({ name, to }, index) => (
+          <li key={index}>
+            <span className={styles.separation}>&#8594;</span>
+            {index !== options.length - 1 ? (
+              <Link
+                to={to}
+                onClick={to === '/catalog' ? clearFilter : undefined}
+              >
+                {name}
+              </Link>
+            ) : activeLastLink ? (
+              <Link to={to}>{name}</Link>
+            ) : (
+              <span>{name}</span>
+            )}
+          </li>
+        ))}
+      </>
     </ul>
   );
 };

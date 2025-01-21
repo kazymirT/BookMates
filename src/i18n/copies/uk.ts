@@ -64,6 +64,8 @@ export const ukraine = {
   },
   catalog: {
     title: 'Каталог',
+    'title-two': 'Каталог книг',
+    'hot-offers': 'Гарячі пропозиції',
     filter: {
       categories: 'Категорії',
       price: 'Ціна ({{price1}} - {{price2}})',
@@ -73,6 +75,8 @@ export const ukraine = {
       yearsWithCount: 'Рік видання ({{count}})',
     },
     'clear-filter': 'Скинути фільтр',
+    'no-product':
+      'Результатів пошуку по вибраних значеннях фільтра не знайдено',
     sort: 'ua',
   },
   authors: {

@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Filter from './Filter/Filter';
 import styles from './FilterContent.module.scss';
-import PriceFilter from './PriceFilter/PriceFilter';
-import Sort from './Sort/Sort';
-import Title from './Title/Title';
+import Filter from '../Filter/Filter';
+import PriceFilter from '../PriceFilter/PriceFilter';
+import Sort from '../Sort/Sort';
+import Title from '../Title/Title';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { type AllAttributes } from '@/redux/services/services.types';

@@ -7,16 +7,21 @@ import ProductControl from './ProductControl/ProductControl';
 import ProductDetails from './ProductDetails/ProductDetails';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
 import ProductCard from '@/components/ProductCard/ProductCard';
+import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
+import SkeletonProductPage from '@/components/Skeleton/SkeletonProductPage';
 import Slider from '@/components/Slider/Slider';
 import Subscription from '@/components/Subscription/Subscription';
+import { PRODUCT_OF_SLIDER } from '@/constants/slider';
 import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
   const { t } = useTranslation();
   const { productId } = useParams();
-  const { data: books } = useGetBooksQuery({ size: '9' });
-  const { data: book } = useGetBookByIdQuery(productId ?? skipToken);
+  const { data: books, isLoading: isLoadingSlide } = useGetBooksQuery({
+    size: `${PRODUCT_OF_SLIDER}`,
+  });
+  const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
     book && {
@@ -30,31 +35,32 @@ const Product = () => {
         <div className={styles['product__inner']}>
           <Breadcrumbs options={breadcrumbs} activeLastLink />
           {book && (
-            <>
-              <section className={styles['details-product']}>
-                <div className={styles['img-box']}>
-                  <img
-                    src={book.imageUrl}
-                    alt={book && book.title}
-                    width={270}
-                    height={406}
-                  />
-                </div>
-                <ProductDetails book={book} />
-                <ProductControl book={book} />
-              </section>
-            </>
+            <section className={styles['details-product']}>
+              <div className={styles['img-box']}>
+                <img
+                  src={book.imageUrl}
+                  alt={book && book.title}
+                  width={270}
+                  height={406}
+                />
+              </div>
+              <ProductDetails book={book} />
+              <ProductControl book={book} />
+            </section>
           )}
+          {isLoading && <SkeletonProductPage />}
           <section className={styles.likes}>
             <h3 className={styles.title}>{t('product.offers')}</h3>
-            {books && (
-              <Slider sliderCL="slider-section" arrows>
-                {books &&
-                  books.content.map((item) => (
-                    <ProductCard key={item.id} data={item} variant="slider" />
-                  ))}
-              </Slider>
-            )}
+            <Slider sliderCL="slider-section" arrows>
+              {books &&
+                books.content.map((item) => (
+                  <ProductCard key={item.id} data={item} variant="slider" />
+                ))}
+              {isLoadingSlide &&
+                Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
+                  <SkeletonProductCard key={i} variant="slider" />
+                ))}
+            </Slider>
           </section>
           <Subscription variant={'author'} />
         </div>

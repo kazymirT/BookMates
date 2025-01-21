@@ -5,4 +5,9 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 70px 24px;
   padding-top: 30px;
+
+  &__skeleton {
+    gap: 40px 24px;
+    padding-top: 0;
+  }
 }

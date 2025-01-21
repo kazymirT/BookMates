@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 
 import styles from './PriceFilter.module.scss';
-import { type PriceFilterProps } from '../../Catalog.types';
+import { type PriceFilterProps } from '@/Pages/Catalog/Catalog.types';
 import { useAppDispatch } from '@/redux/hooks';
 import { setPrice } from '@/redux/slices/queryParams';
 
