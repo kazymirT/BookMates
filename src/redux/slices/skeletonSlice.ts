@@ -7,7 +7,7 @@ type SkeletonState = {
 };
 
 const initialState: SkeletonState = {
-  isLoading: true,
+  isLoading: false,
 };
 
 export const skeletonSlice = createSlice({
