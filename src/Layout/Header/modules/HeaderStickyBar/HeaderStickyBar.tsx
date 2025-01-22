@@ -2,8 +2,8 @@ import { skipToken } from '@reduxjs/toolkit/query/react';
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import CategoryItem from './CategoryAll/CategoryItem';
-import styles from '../Header.module.scss';
+import CategoryItem from './components/CategoryAll/CategoryItem';
+import styles from './HeaderStickyBar.module.scss';
 import Search from '@/components/Search/Search';
 import { Button } from '@/components/ui-components/Button/Button';
 import {
@@ -13,17 +13,19 @@ import {
 } from '@/components/ui-components/Button/constants';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { Icon } from '@/components/ui-components/Icons';
-import UserButton from '@/Layout/Header/UserButton/UserButton';
+import UserButton from '@/Layout/Header/modules/HeaderStickyBar/components/UserButton/UserButton';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useGetUserQuery } from '@/redux/services/user';
 import { goods } from '@/redux/slices/shoppingCartSlice';
 import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
 import { userId } from '@/redux/slices/userSlice';
 
-const CategoryAllLazy = React.lazy(() => import('./CategoryAll/CategoryAll'));
-const MenuLazy = React.lazy(() => import('../Menu/Menu'));
+const CategoryAllLazy = React.lazy(
+  () => import('./components/CategoryAll/CategoryAll')
+);
+const MenuLazy = React.lazy(() => import('./components/Menu/Menu'));
 
-const Bottom = () => {
+const HeaderStickyBar = () => {
   const { t } = useTranslation();
 
   const id = useAppSelector(userId);
@@ -109,4 +111,4 @@ const Bottom = () => {
   );
 };
 
-export default Bottom;
+export default HeaderStickyBar;
