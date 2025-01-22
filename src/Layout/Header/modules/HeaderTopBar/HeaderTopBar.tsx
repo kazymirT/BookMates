@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
+import LanguageSwitcher from './components/LanguageSwitcher/LanguageSwitcher';
 import Navigation from './components/Navigation/Navigation';
 import styles from './HeaderTopBar.module.scss';
 import logo from '@/assets/icons/BookMates.svg';
-import { RadioGroup } from '@/components/RadioGroup/RadioGroup';
 
 const HeaderTopBar = () => {
   return (
@@ -18,7 +18,7 @@ const HeaderTopBar = () => {
         />
       </Link>
       <Navigation />
-      <RadioGroup />
+      <LanguageSwitcher />
     </div>
   );
 };
