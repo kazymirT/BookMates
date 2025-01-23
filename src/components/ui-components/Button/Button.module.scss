@@ -133,6 +133,29 @@
     border-radius: 8px;
   }
 
+  &--icon {
+    &:focus {
+      @include icon-state(lightblue);
+    }
+  }
+
+  &--user {
+    width: 50px;
+    height: 50px;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: $black;
+
+    background-color: $isabelline;
+    border-radius: 50%;
+
+    &:focus {
+      color: #c42700;
+    }
+  }
+
   &--label-x {
     gap: 5px;
 

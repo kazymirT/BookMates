@@ -29,6 +29,7 @@ export enum Variant {
   Card = 'card',
   Pagination = 'pagination',
   Icon = 'icon',
+  User = 'user',
   UserEdit = 'user-edit',
   UserSave = 'user-save',
   UserCancel = 'user-cancel',
