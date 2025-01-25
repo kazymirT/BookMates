@@ -1,111 +1,19 @@
-import { skipToken } from '@reduxjs/toolkit/query/react';
-import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-
-import CategoryItem from './components/CategoryAll/CategoryItem';
+import CartButton from './components/CartButton/CartButton';
 import styles from './HeaderStickyBar.module.scss';
+import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import UserActions from '../UserActions/UserActions';
 import Search from '@/components/Search/Search';
-import { Button } from '@/components/ui-components/Button/Button';
-import {
-  Position,
-  Sizes,
-  Variant,
-} from '@/components/ui-components/Button/constants';
-import DropDown from '@/components/ui-components/Dropdown/DropDown';
-import { Icon } from '@/components/ui-components/Icons';
-import UserButton from '@/Layout/Header/modules/HeaderStickyBar/components/UserButton/UserButton';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useGetUserQuery } from '@/redux/services/user';
-import { goods } from '@/redux/slices/shoppingCartSlice';
-import { toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
-import { userId } from '@/redux/slices/userSlice';
-
-const CategoryAllLazy = React.lazy(
-  () => import('./components/CategoryAll/CategoryAll')
-);
-const MenuLazy = React.lazy(() => import('./components/Menu/Menu'));
 
 const HeaderStickyBar = () => {
-  const { t } = useTranslation();
-
-  const id = useAppSelector(userId);
-  const dispatch = useAppDispatch();
-
-  const cartItems = useAppSelector(goods);
-  const openCart = () => dispatch(toggleOpenCart(true));
-  const { data: user } = useGetUserQuery(id ?? skipToken);
-
-  const cartItemsCount = React.useMemo(
-    () => cartItems.reduce((acc, item) => (acc += item.quantity), 0),
-    [cartItems]
-  );
   return (
     <div className={styles.bottom}>
       <div className={styles.wrapper}>
-        {
-          <DropDown
-            isOverflow
-            control={(toggleOpen) => (
-              <Button
-                type="button"
-                size={Sizes.Drop}
-                variant={Variant.Drop}
-                text={t('header.drop')}
-                icon={<Icon.Drop />}
-                onClick={toggleOpen}
-                iconPosition={Position.Left}
-              />
-            )}
-            options={(toggleOpen) => (
-              <Suspense>
-                <CategoryAllLazy>
-                  {(id, name) => (
-                    <CategoryItem id={id} name={name} onClose={toggleOpen} />
-                  )}
-                </CategoryAllLazy>
-              </Suspense>
-            )}
-            variant="category"
-          />
-        }
+        <CategoryDropdown />
         <Search />
       </div>
       <div className={styles.icons}>
-        {user && id ? (
-          <UserButton {...user} />
-        ) : (
-          <DropDown
-            options={(toggleOpen) => (
-              <Suspense>
-                <MenuLazy onClose={toggleOpen} />
-              </Suspense>
-            )}
-            control={(toggleOpen) => (
-              <Button
-                type="button"
-                size={Sizes.IconS}
-                variant={Variant.Icon}
-                icon={<Icon.Account height="28px" width="28px" />}
-                onClick={toggleOpen}
-                iconPosition={Position.Left}
-              />
-            )}
-            variant="menu"
-            isOverflow
-          />
-        )}
-        <button
-          className={styles['cart-btn']}
-          onClick={openCart}
-          aria-label="Open cart"
-        >
-          <Icon.Cart height="28px" width="28px" />
-          {cartItemsCount > 0 && (
-            <div className={styles['cart-counter']}>
-              <span>{cartItemsCount}</span>
-            </div>
-          )}
-        </button>
+        <UserActions />
+        <CartButton />
       </div>
     </div>
   );
