@@ -13,17 +13,21 @@ export const useSearch = () => {
   const dispatch = useAppDispatch();
 
   const [value, setValue] = useState('');
+  const [isFocus, setIsFocus] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    !isOpen && setValue('');
-    value.length > 2 && isOpen
-      ? dispatch(incrementOverlay())
-      : dispatch(decrementOverlay());
-  }, [dispatch, isOpen, value.length]);
+    isOpen ? dispatch(incrementOverlay()) : dispatch(decrementOverlay());
+  }, [dispatch, isOpen]);
 
+  useEffect(() => {
+    value.length > 2 && isFocus ? setIsOpen(true) : setIsOpen(false);
+  }, [isFocus, value.length]);
+
+  const clearValue = () => setValue('');
+  const setIsFocusTrue = () => setIsFocus(true);
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
 
@@ -34,8 +38,10 @@ export const useSearch = () => {
     clearValue();
   };
 
-  const handleOnClose = () => setIsOpen(false);
-  const clearValue = () => setValue('');
+  const handleOnClose = () => {
+    setIsFocus(false);
+    setIsOpen(false);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && value.length > 2) {
@@ -50,12 +56,12 @@ export const useSearch = () => {
     t,
     value,
     isOpen,
-    setIsOpen,
     handleOnChange,
     handleOnSearch,
     handleKeyDown,
     clearValue,
     handleOnClose,
+    setIsFocusTrue,
     wrapperRef,
   };
 };
