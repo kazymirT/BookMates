@@ -1,8 +1,8 @@
 import CartButton from './components/CartButton/CartButton';
 import styles from './HeaderStickyBar.module.scss';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
+import Search from '../Search/Search';
 import UserActions from '../UserActions/UserActions';
-import Search from '@/components/Search/Search';
 
 const HeaderStickyBar = () => {
   return (
