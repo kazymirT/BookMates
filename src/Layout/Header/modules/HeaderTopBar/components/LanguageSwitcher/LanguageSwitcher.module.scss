@@ -1,8 +1,8 @@
 @import '@/styles';
 
 .radioGroup {
-  display: flex;
+
+  @include flex-center;
+
   gap: 16px;
-  align-items: center;
-  justify-content: center;
 }
