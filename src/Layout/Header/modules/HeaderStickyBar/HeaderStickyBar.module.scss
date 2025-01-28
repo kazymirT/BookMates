@@ -1,0 +1,26 @@
+@import '@/styles';
+
+.bottom {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px 45px 24px 19px;
+
+  .wrapper {
+    display: flex;
+    gap: 101px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .icons {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+}

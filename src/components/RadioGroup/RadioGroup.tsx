@@ -1,12 +1,11 @@
+import { RadioButton } from '@ui_components/RadioButton/RadioButton';
+import RadioForm from '@ui_components/RadioForm/RadioForm';
 import i18next from 'i18next';
 import { FC, useState, useEffect } from 'react';
 
 import { radioButtons } from './constants';
-import { RadioButton } from './RadioButton/RadioButton';
 import styles from './RadioGroup.module.scss';
-import RadioForm from '../ui-components/RadioForm/RadioForm';
 import { Lang } from '@/i18n/constants';
-
 export interface RadioGroupProps {
   title?: string;
   variant?: 'title' | 'radio';

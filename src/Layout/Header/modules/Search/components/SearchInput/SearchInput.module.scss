@@ -1,0 +1,15 @@
+@import '@/styles';
+
+.search {
+  display: flex;
+  width: 100%;
+
+  button.btn {
+    @include flex-center;
+
+    width: 60px;
+    height: 36px;
+    background: $button-default;
+    border-radius: 8px;
+  }
+}

@@ -1,0 +1,8 @@
+@import '@/styles';
+
+.radioGroup {
+
+  @include flex-center;
+
+  gap: 16px;
+}

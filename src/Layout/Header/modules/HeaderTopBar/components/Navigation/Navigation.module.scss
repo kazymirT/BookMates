@@ -1,0 +1,29 @@
+@import '@/styles';
+
+@mixin flex {
+  display: flex;
+  gap: 77px;
+  align-items: baseline;
+}
+
+.navigation {
+  @include flex;
+
+  ul {
+    @include flex;
+
+    li {
+      height: 27px;
+
+      a {
+        font-family: $font-family;
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: $link-color;
+        text-align: center;
+        letter-spacing: 0.04em;
+      }
+    }
+  }
+}
