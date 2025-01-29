@@ -1,0 +1,21 @@
+@import '@/styles';
+
+.links {
+  display: flex;
+  gap: 57px;
+  align-items: center;
+  padding-bottom: 16px;
+
+  a,
+  button {
+    letter-spacing: 0.05em;
+
+    &:hover {
+      color: $brown-300;
+    }
+
+    &:active {
+      color: $brown-400;
+    }
+  }
+}
