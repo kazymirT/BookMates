@@ -6,7 +6,6 @@ const Copyright = () => {
   const { t } = useTranslation();
   return (
     <p className={styles.copyright}>
-      <span>&copy;</span>
       <span>{t('footer.copyright')}</span>
     </p>
   );
