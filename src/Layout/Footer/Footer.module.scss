@@ -3,12 +3,16 @@
 .footer {
   background-color: $accent-white;
 
-  .container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0;
+  &-inner {
 
-    color: $raisin-black;
+    @include media-min(xl) {
+      gap: 18px;
+      padding: 20px 40px;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    padding: 32px 0;
   }
 }

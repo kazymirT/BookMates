@@ -1,5 +1,36 @@
+@import '@/styles';
+
 .btns {
+
+  @include media-min(lg) {
+    padding-top: 3px;
+  }
+
   display: flex;
   gap: 11px;
   align-items: center;
+
+  padding-top: 6px;
+  padding-right: 1px;
+
+  li {
+    @include media-min(lg) {
+      &:nth-child(1),
+      &:nth-child(2) {
+        max-width: 160px;
+      }
+    }
+
+    &:nth-child(1) {
+      max-width: 123px;
+    }
+
+    &:nth-child(2) {
+      max-width: 115px;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
 }
