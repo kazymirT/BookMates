@@ -3,63 +3,15 @@
 .footer {
   background-color: $accent-white;
 
-  .container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0;
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+    padding: 32px 0;
 
-    color: $raisin-black;
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      padding: 1.5em 5em;
-    }
-
-    & > div {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-
-      width: 100%;
-      padding: 10px 0;
-
-      letter-spacing: 0.05em;
-
-      span:first-of-type {
-        font-size: 1.5em;
-      }
-    }
-
-    .btns {
-      display: flex;
-      gap: 11px;
-      align-items: center;
-    }
-
-    .links {
-      display: flex;
-      gap: 57px;
-      align-items: center;
-      padding-bottom: 16px;
-
-      a {
-        letter-spacing: 0.05em;
-
-        &:hover {
-          color: $brown-300;
-        }
-
-        &:active {
-          color: $brown-400;
-        }
-      }
-
-      li {
-        cursor: pointer;
-      }
+    @media (width >= 1200px) {
+      gap: 18px;
+      padding: 20px 40px;
     }
   }
 }

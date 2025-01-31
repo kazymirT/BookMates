@@ -5,7 +5,7 @@ export const ukraine = {
       special: 'Акції',
       'best-sellers': 'Хіт продажів',
       authors: 'Автори',
-      support: 'Допомога',
+      support: 'Підтримка',
     },
     drop: 'Каталог книг',
     menu: {
@@ -26,7 +26,7 @@ export const ukraine = {
     links: {
       main: 'Головна сторінка',
       delivery: 'Доставка та оплата',
-      support: 'Зворотній зв’язок',
+      support: 'Підтримка',
     },
     copyright: 'Bookmate 2024. Усі права захищено',
   },

@@ -1,0 +1,30 @@
+@import '@/styles';
+
+.links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  padding-bottom: 16px;
+
+  a,
+  button {
+    font-size: 14px;
+    letter-spacing: 0.035em;
+
+    &:hover {
+      color: $brown-300;
+    }
+
+    &:active {
+      color: $brown-400;
+    }
+
+    @media (width >= 992px) {
+      font-size: 16px;
+    }
+  }
+
+  @media (width >= 1200px) {
+    gap: 57px;
+  }
+}
