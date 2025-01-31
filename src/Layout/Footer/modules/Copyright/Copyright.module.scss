@@ -3,14 +3,6 @@
 .copyright {
   @include flex-center;
 
-  @include media-min(lg) {
-    padding: 12px 0;
-
-    span {
-      font-size: 16px;
-    }
-  }
-
   gap: 2px;
   width: 100%;
   padding: 10px 0;
@@ -18,5 +10,13 @@
 
   span {
     font-size: 12px;
+  }
+
+  @media (width >= 992px) {
+    padding: 12px 0;
+
+    span {
+      font-size: 16px;
+    }
   }
 }
