@@ -6,10 +6,10 @@ import { AuthResponse } from './services.types';
 import { login, logout } from '../slices/userSlice';
 import { RootState } from '../store';
 
+const baseURLApi = import.meta.env.VITE_API_BASE_URL;
+
 const baseQuery = fetchBaseQuery({
-  // baseUrl: 'https://teamchallenge.onrender.com/api/',
-  // baseUrl: 'http://3.73.128.44:8080/api/',
-  baseUrl: 'https://3.73.128.44.nip.io/api/',
+  baseUrl: baseURLApi,
 
   // credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
