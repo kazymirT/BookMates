@@ -142,10 +142,14 @@ export type Warehouses = {
   value: string;
   id: number;
 };
+
+const NOVA_POSHTA_URL = import.meta.env.VITE_API_NOVA_POSHTA_URL;
+const NOVA_POSHTA_API_KEY = import.meta.env.VITE_API_NOVA_POSHTA_API_KEY;
+
 export const novaApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.novaposhta.ua/v2.0/json/',
+    baseUrl: NOVA_POSHTA_URL,
   }),
   endpoints: (builder) => ({
     getSettlements: builder.query<Address[], string>({
@@ -153,7 +157,7 @@ export const novaApi = createApi({
         url: 'getSettlements',
         method: 'POST',
         body: JSON.stringify({
-          apiKey: 'b913390e02e341a6579515804dacddf2',
+          apiKey: NOVA_POSHTA_API_KEY,
           modelName: 'Address',
           calledMethod: 'searchSettlements',
           methodProperties: {
@@ -178,7 +182,7 @@ export const novaApi = createApi({
         url: 'getWarehouses',
         method: 'POST',
         body: JSON.stringify({
-          apiKey: 'b913390e02e341a6579515804dacddf2',
+          apiKey: NOVA_POSHTA_API_KEY,
           modelName: 'Address',
           calledMethod: 'getWarehouses',
           methodProperties: {
