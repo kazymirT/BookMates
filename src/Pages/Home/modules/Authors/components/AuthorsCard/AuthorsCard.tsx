@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './AuthorsCard.module.scss';
-import { AuthorCardProps } from './types';
+import { type AuthorCardProps } from './types';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 
