@@ -1,9 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { type FC } from 'react';
 
 import styles from './Section.module.scss';
-export interface SectionProps {
-  children: ReactNode;
-}
+import { type SectionProps } from './types';
+
 const Section: FC<SectionProps> = ({ children }) => {
   return (
     <section className={styles.section}>

@@ -3,12 +3,6 @@ import { FC, ReactNode } from 'react';
 
 import styles from './SectionContent.module.scss';
 
-export interface CategoryCardProps {
-  id: number;
-  title: string;
-  img: string;
-}
-
 export interface SectionContentProps {
   children: ReactNode;
   variant: 'authors' | 'category' | 'product' | 'test';

@@ -1,23 +1,18 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 
 import styles from './Slide.module.scss';
-import { SlideProps } from './types';
+import { type SlideProps } from './types';
 
 const Slide: FC<SlideProps> = ({
   slide: { button, description, img, title },
 }) => {
   return (
     <div className={styles['slider-container']}>
-      <div
-        className={styles.slider}
-        // style={{
-        //   backgroundImage: img ? `url(${img})` : undefined,
-        // }}
-      >
+      <div className={styles.slider}>
         <img
           src={img}
           alt="image for slide"
-          // loading="lazy"
+          loading="lazy"
           width={981}
           height={344}
         />

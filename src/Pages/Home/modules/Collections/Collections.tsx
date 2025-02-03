@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
+import CollectionCard from './components/CollectionCard/CollectionCard';
 import { CARD_OF_COLLECTIONS } from './constants';
 import { collections } from './data';
-import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
@@ -25,7 +25,7 @@ const Collections = () => {
           {!isSkeleton &&
             collections &&
             collections.map(({ id, img, title }) => (
-              <CategoryCard id={id} img={img} title={title} key={id} />
+              <CollectionCard id={id} img={img} title={title} key={id} />
             ))}
           {isSkeleton && <SkeletonCollectionCard cards={CARD_OF_COLLECTIONS} />}
         </SectionContent>

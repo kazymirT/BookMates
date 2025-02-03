@@ -15,7 +15,7 @@ const Banner = () => {
         arrows
         sliderCL="banner"
         variant="banner"
-        initialSlide={1}
+        initialSlide={0}
         slidesToScroll={1}
         slidesToShow={1}
         dots

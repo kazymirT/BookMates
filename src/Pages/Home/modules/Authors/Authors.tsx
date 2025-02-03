@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
+import AuthorsCard from './components/AuthorsCard/AuthorsCard';
 import { CARD_OF_AUTHORS } from './constants';
 import { authors } from './data';
-import AuthorsCard from '../../components/AuthorsCard/AuthorsCard';
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
