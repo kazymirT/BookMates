@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './CategoryCard.module.scss';
-import { CategoryCardProps } from '../SectionContent/SectionContent';
+import styles from './CollectionCard.module.scss';
+import { type CollectionCardProps } from './types';
 
-const CategoryCard: FC<CategoryCardProps> = ({ id, img, title }) => {
+const CollectionCard: FC<CollectionCardProps> = ({ id, img, title }) => {
   return (
     <Link to={`/collection/${id}`} className={styles.card}>
       <img
@@ -21,4 +21,4 @@ const CategoryCard: FC<CategoryCardProps> = ({ id, img, title }) => {
   );
 };
 
-export default CategoryCard;
+export default CollectionCard;
