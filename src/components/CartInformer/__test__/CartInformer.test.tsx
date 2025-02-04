@@ -33,10 +33,11 @@ describe('CartInformer Component', () => {
     });
 
     expect(getByRole('button', { name: 'open cart' })).toBeInTheDocument();
-    expect(getByText('Кошик')).toBeInTheDocument();
+    expect(getByText('Cart')).toBeInTheDocument();
     expect(getByText('3')).toBeInTheDocument();
-    expect(getByText('300 грн')).toBeInTheDocument();
+    expect(getByText('300 $')).toBeInTheDocument();
   });
+
   it('renders the CartInformer with discounted prices', () => {
     const mockGoodsWithDiscount: CartItem[] = [
       { ...mockGoods[0], discountPrice: 90, discount: 10 },
@@ -52,10 +53,11 @@ describe('CartInformer Component', () => {
     });
 
     expect(getByRole('button', { name: 'open cart' })).toBeInTheDocument();
-    expect(getByText('Кошик')).toBeInTheDocument();
+    expect(getByText('Cart')).toBeInTheDocument();
     expect(getByText('3')).toBeInTheDocument();
-    expect(getByText('270 грн')).toBeInTheDocument();
+    expect(getByText('270 $')).toBeInTheDocument();
   });
+
   it('dispatches toggleOpenCart with true on button click', async () => {
     const user = userEvent.setup();
     const { store, getByRole } = renderWithProviders(<CartInformer />, {
