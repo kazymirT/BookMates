@@ -1,0 +1,27 @@
+.icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  svg:nth-child(1),
+  svg:nth-child(2) {
+    padding-bottom: 1px;
+  }
+
+  button {
+    padding: 0;
+
+    &:nth-child(3) {
+      margin-left: 3px;
+      padding-top: 5px;
+    }
+  }
+
+  @media (width >= 768px) {
+    gap: 28px;
+  }
+
+  @media (width >= 992px) {
+    gap: 32px;
+  }
+}
