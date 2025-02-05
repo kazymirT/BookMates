@@ -1,15 +1,7 @@
 @import '@/styles';
 
 .bottom {
-  position: sticky;
-  z-index: 20;
-  top: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 24px 45px 24px 19px;
+  padding: 4px 0;
 
   .wrapper {
     display: flex;
@@ -18,9 +10,25 @@
     width: 100%;
   }
 
-  .icons {
+  @media (width >= 576px) {
+    margin: 0 auto;
+  }
+
+  @media (width >= 768px) {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+
     display: flex;
-    gap: 32px;
+    gap: 80px;
     align-items: center;
+    justify-content: space-between;
+
+    margin: 0;
+    padding: 14px 15px 15px 0;
+  }
+
+  @media (width >= 992px) {
+    padding: 24px 45px 24px 19px;
   }
 }

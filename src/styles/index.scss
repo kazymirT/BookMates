@@ -46,9 +46,14 @@ input {
 .container {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 20px;
+  max-width: 768px;
+
+  @media (min-width: 768px) {
+    max-width: 1280px;
+    padding: 0 40px;
+  }
 }
 
 .flex-1 {

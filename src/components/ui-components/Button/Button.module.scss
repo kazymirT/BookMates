@@ -189,11 +189,19 @@
     padding: 0;
 
     font-family: $font-family;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.1;
     color: $link-color;
     text-align: center;
+
+    @media (width >= 992px) {
+      font-size: 18px;
+    }
+
+    @media (width >= 1200px) {
+      font-size: 22px;
+    }
   }
 
   &--accent {
