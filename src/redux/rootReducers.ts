@@ -3,7 +3,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { baseApi } from './services/baseApi';
 import { novaApi } from './services/novaApi';
 import { adminSlice } from './slices/adminSlice';
-import { burgerMenu } from './slices/burgerMenuSlice';
+import burgerMenuSlice from './slices/burgerMenuSlice';
 import cartNotificationSlice from './slices/cartNotificationSlice';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
@@ -31,5 +31,5 @@ export const rootReducer = combineReducers({
   shoppingCart: shoppingCartSlice,
   shoppingCartUi: shoppingCartUiSlice,
   skeleton: skeletonSlice,
-  burgerMenu: burgerMenu.reducer,
+  burgerMenu: burgerMenuSlice,
 });

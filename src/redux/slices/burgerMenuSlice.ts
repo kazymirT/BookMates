@@ -11,7 +11,7 @@ const initialState: BurgerMenuState = {
   isOpen: false,
 };
 
-export const burgerMenu = createSlice({
+export const burgerMenuSlice = createSlice({
   name: 'burgerMenu',
   initialState,
   reducers: {
@@ -21,6 +21,6 @@ export const burgerMenu = createSlice({
   },
 });
 
-export const { toggleShowBurgerMenu } = burgerMenu.actions;
+export const { toggleShowBurgerMenu } = burgerMenuSlice.actions;
 export const isOpenBurgerMenu = (state: RootState) => state.burgerMenu.isOpen;
-export default burgerMenu.reducer;
+export default burgerMenuSlice.reducer;
