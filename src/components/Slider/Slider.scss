@@ -21,12 +21,19 @@
 
     div.slider {
       overflow: visible;
-
       width: 100%;
-      max-width: 1006px;
-      height: 488px;
       margin: 0 auto;
-      padding: 49px 0 94px;
+      padding: 13px 0 26px;
+
+      @media (width >= 768px) {
+        padding: 21px 0 60px;
+      }
+
+      @media (width >= 992px) {
+        max-width: 1006px;
+        height: 488px;
+        padding: 49px 0 94px;
+      }
     }
   }
 
@@ -126,7 +133,7 @@
       .slick-list {
         overflow: visible;
         width: 100%;
-        margin-inline: 12.5px;
+        margin-inline: 10px;
 
         .slick-track {
           display: flex;
@@ -135,7 +142,20 @@
 
           .slick-slide {
             width: 100%;
+            // max-width: clamp(22.063rem, 5.632rem + 66.893vw, 40.5rem);
+
+            @media (width >= 834px) {
+              max-width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
+            }
           }
+        }
+
+        @media (width >= 768px) {
+          margin-inline: 90px;
+        }
+
+        @media (width >= 992px) {
+          margin-inline: 12.5px;
         }
       }
     }
@@ -147,7 +167,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    display: flex !important;
+    display: none !important;
     gap: 15px;
     justify-content: center;
 
@@ -176,6 +196,10 @@
         background: #878787;
         border-radius: 100%;
       }
+    }
+
+    @media (width >= 768px) {
+      display: flex !important;
     }
   }
 }
