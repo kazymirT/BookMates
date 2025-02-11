@@ -238,6 +238,15 @@
     padding: 15px;
   }
 
+  &--section {
+    padding: 7px 15px;
+    line-height: 26px;
+
+    @media (width >= 768px) {
+      padding: 6px 22px;
+    }
+  }
+
   &--s {
     padding: 12.5px 23px;
   }

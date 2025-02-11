@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
+import { RESPONSE_SLIDER } from '../Newness/constants';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
@@ -24,7 +25,7 @@ const Sale = () => {
         isIcon
       />
       <SectionContent variant="product">
-        <Slider sliderCL="slider-section" arrows>
+        <Slider sliderCL="slider-section" arrows responsive={RESPONSE_SLIDER}>
           {books &&
             books.content.map((item) => (
               <ProductCard key={item.id} data={item} variant="slider" />

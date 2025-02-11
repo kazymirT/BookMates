@@ -269,5 +269,14 @@
 
   &__slider {
     width: 220px;
+
+    @media (width >= 834px) {
+      width: clamp(13.375rem, 2.95rem + 20vw, 15.75rem); //214
+      min-width: 200px;
+    }
+
+    @media (width >= 1024px) {
+      width: clamp(12.5rem, 7.5rem + 7.813vw, 13.75rem); //200 220
+    }
   }
 }

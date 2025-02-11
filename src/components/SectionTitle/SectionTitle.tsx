@@ -1,14 +1,14 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import styles from './SectionTitle.module.scss';
-import { SectionTitleProps } from './types';
-// import { Sizes, Variant } from '@/components/ui-components/Button/constants';
-// import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
+import type { SectionTitleProps } from './types';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 
 const SectionTitle: FC<SectionTitleProps> = ({
-  // btnLink,
-  // btnText,
+  btnLink,
+  btnText,
   title,
   isIcon = false,
   variant = 'home',
@@ -20,15 +20,15 @@ const SectionTitle: FC<SectionTitleProps> = ({
   return (
     <div className={styles.wrapper}>
       <h3 className={titleClassName}>{title}</h3>
-      {/* {btnText && btnLink && (
+      {btnText && btnLink && (
         <ButtonLink
           type="button"
-          size={Sizes.Large}
+          size={Sizes.Section}
           text={btnText}
           url={btnLink}
           variant={Variant.Primary}
         />
-      )} */}
+      )}
     </div>
   );
 };

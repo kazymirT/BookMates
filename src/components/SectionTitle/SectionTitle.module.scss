@@ -46,7 +46,7 @@
 
     &__home {
       font-family: $font4;
-      font-size: 40px;
+      font-size: 24px;
       line-height: 1.6;
       color: $grey-400;
       letter-spacing: 0.06em;
@@ -54,6 +54,25 @@
       &__fire {
         @include fire(40px, 40px, 42px, -44px);
       }
+
+      @media (width >= 768px) {
+        font-size: 32px;
+        letter-spacing: 0.07em;
+      }
+
+      @media (width >= 1024px) {
+        font-size: 40px;
+        letter-spacing: 0.06em;
+      }
+    }
+  }
+
+  button {
+    display: none;
+    margin-top: 13px;
+
+    @media (width >= 768px) {
+      display: block;
     }
   }
 }
