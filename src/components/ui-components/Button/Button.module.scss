@@ -77,7 +77,7 @@
 
   &--card {
     width: 100%;
-    padding: 12px 32px;
+    padding: 6.5px 32px;
 
     font-family: $third-family;
     font-size: 16px;
@@ -88,6 +88,10 @@
 
     background: $button-default;
     border-radius: 8px;
+
+    @media (width >= 834px) {
+      padding: 12px 32px;
+    }
   }
 
   &--basic {
