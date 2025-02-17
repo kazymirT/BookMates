@@ -23,7 +23,7 @@ const Slider: FC<SliderProps> = ({
     infinite: true,
     speed: 1500,
     autoplaySpeed: variant === 'banner' ? 6000 : 4000,
-    autoplay: true,
+    autoplay: false,
     pauseOnHover: true,
     pauseOnDotsHover: true,
     initialSlide,

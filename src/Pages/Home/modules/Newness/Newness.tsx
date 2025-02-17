@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { RESPONSE_SLIDER } from './constants';
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
 import ProductCard from '@/components/ProductCard/ProductCard';
@@ -24,7 +25,11 @@ const Newness = () => {
           title={t('home.new-arrivals.title')}
         />
         <SectionContent variant="product">
-          <Slider sliderCL="slider-section" arrows>
+          <Slider
+            sliderCL="slider-section"
+            arrows={true}
+            responsive={RESPONSE_SLIDER}
+          >
             {books &&
               books.content.map((item) => (
                 <ProductCard key={item.id} data={item} variant="slider" />

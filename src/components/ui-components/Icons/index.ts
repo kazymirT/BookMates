@@ -80,4 +80,9 @@ export const Icon: Icon = {
     height: '24',
     viewBox: '0 0 24 24',
   }),
+  [IconAppName.BURGER]: makeIcon(IconInstance.Burger, {
+    width: '24',
+    height: '24',
+    viewBox: '0 0 24 24',
+  }),
 };

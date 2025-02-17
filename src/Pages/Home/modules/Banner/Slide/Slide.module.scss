@@ -1,76 +1,145 @@
 @import '@/styles';
 
-.slider {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-
+.wrapper {
   width: 100%;
-  height: 344px;
-  padding: 41px 50px;
+  padding: 0 10px;
 
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 8px;
-
-  img {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-  }
-
-  .text {
+  .slider {
     position: relative;
-    z-index: 3;
 
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 11px;
 
-    max-width: 471px;
+    width: 100%;
+    height: clamp(7.625rem, 1.944rem + 23.129vw, 14rem);
+    padding: 14px 18px;
 
-    h3 {
-      font-family: $font-family;
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 168%;
-      color: $button-default;
-      letter-spacing: 0.02em;
+    border-radius: 8px;
+
+    img {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: fill;
+
+      @media (width >= 834px) {
+        width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
+        height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem);
+      }
+
+      @media (width >= 1280px) {
+        width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem); //648 - 981
+        height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem); // 224 - 344
+      }
     }
 
-    p {
+    .text {
+      position: relative;
+      z-index: 3;
+
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      max-width: clamp(11.25rem, 2.08rem + 37.333vw, 20rem);
+
+      h3 {
+        font-family: $font-family;
+        font-size: clamp(0.75rem, 0.16rem + 2.4vw, 1.313rem);
+        font-weight: 700;
+        line-height: 168%;
+        color: $button-default;
+        letter-spacing: 0;
+
+        @media (width >= 768px) {
+          letter-spacing: 0.02em;
+        }
+
+        @media (width >= 992px) {
+          font-size: clamp(1.313rem, -1.056rem + 3.819vw, 2rem); //21 - 32
+        }
+      }
+
+      p {
+        font-family: $font-family;
+        font-size: clamp(0.375rem, 0.047rem + 1.333vw, 0.688rem);
+        font-weight: 600;
+        line-height: 138%;
+        color: $button-default;
+        letter-spacing: 0.01em;
+
+        @media (width >= 992px) {
+          font-size: clamp(0.688rem, -0.389rem + 1.736vw, 1rem); //11 16
+        }
+      }
+
+      @media (width >= 768px) {
+        gap: 16px;
+      }
+
+      @media (width >= 992px) {
+        gap: 22px;
+        max-width: clamp(20rem, -12.507rem + 52.431vw, 29.438rem); //320 / 471
+      }
+    }
+
+    button {
+      position: relative;
+      z-index: 3;
+
+      align-self: flex-start;
+
+      padding: 3.5px 14px;
+
       font-family: $font-family;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 138%;
-      color: $button-default;
-      letter-spacing: 0.01em;
+      font-size: clamp(0.375rem, -0.018rem + 1.6vw, 0.75rem);
+      font-weight: 500;
+      color: $grey-500;
+      letter-spacing: 0.05em;
+
+      background: $accent-white;
+      border-radius: 4px;
+
+      @media (width >= 768px) {
+        padding: 6px 22px;
+      }
+
+      @media (width >= 992px) {
+        padding: clamp(0.375rem, -0.917rem + 2.083vw, 0.75rem) clamp(1.375rem, -2.069rem + 5.556vw, 2.375rem);
+        font-size: 15px;
+      }
+    }
+
+    @media (width >= 576px) {
+      gap: 16px;
+      padding: 20px 30px;
+    }
+
+    @media (width >= 768px) {
+      gap: 21px;
+      padding: 26px 35px;
+    }
+
+    @media (width >= 834px) {
+      width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
+      height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem);
+    }
+
+    @media (width >= 992px) {
+      gap: 34px;
+      padding: 41px 50px;
     }
   }
 
-  button {
-    position: relative;
-    z-index: 3;
-
-    align-self: flex-start;
-
-    padding: 12.5px 39.5px 13.5px 47.5px;
-
-    font-family: $font-family;
-    font-size: 15px;
-    font-weight: 500;
-    color: $grey-500;
-    letter-spacing: 0.05em;
-
-    background: $accent-white;
-    border-radius: 4px;
+  @media (width >= 768px) {
+    max-width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
+    height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem);
+    padding: 0;
   }
 }

@@ -1,20 +1,21 @@
-import CartButton from './components/CartButton/CartButton';
 import styles from './HeaderStickyBar.module.scss';
 import CategoryDropdown from '../CategoryDropdown/CategoryDropdown';
 import Search from '../Search/Search';
-import UserActions from '../UserActions/UserActions';
+import UserActionsIcon from '../UserActionsIcon/UserActionsIcon';
+import useResponsive from '@/hooks/useResponsive';
 
 const HeaderStickyBar = () => {
+  const screen = useResponsive();
   return (
     <div className={styles.bottom}>
-      <div className={styles.wrapper}>
-        <CategoryDropdown />
-        <Search />
-      </div>
-      <div className={styles.icons}>
-        <UserActions />
-        <CartButton />
-      </div>
+      {screen !== 'mobile' && (
+        <div className={styles.wrapper}>
+          <CategoryDropdown />
+          {screen === 'desktop' && <Search />}
+        </div>
+      )}
+      {screen === 'mobile' && <Search />}
+      {screen !== 'mobile' && <UserActionsIcon />}
     </div>
   );
 };

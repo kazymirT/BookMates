@@ -4,7 +4,7 @@ import Banner from './modules/Banner/Banner';
 import Collections from './modules/Collections/Collections';
 import Newness from './modules/Newness/Newness';
 import Sale from './modules/Sale/Sale';
-import Subscription from '../../components/Subscription/Subscription';
+// import Subscription from '../../components/Subscription/Subscription';
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
         <Sale />
         <Collections />
         <Authors />
-        <Subscription variant="home" />
+        {/* <Subscription variant="home" /> */}
       </div>
     </>
   );

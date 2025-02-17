@@ -60,10 +60,21 @@
   }
 
   &__search {
-    padding: 4.2px;
+    padding: 0 2px;
 
     input {
       width: 90%;
+      font-size: 18px;
+      line-height: 157%;
+
+      @media (width >= 768px) {
+        font-size: 22px;
+        line-height: 140%;
+      }
+    }
+
+    @media (width >= 768px) {
+      padding: 4.2px;
     }
   }
 }

@@ -4,6 +4,7 @@ import { Outlet, ScrollRestoration } from 'react-router-dom';
 import styles from './Layout.module.scss';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import BurgerMenu from '../Header/modules/BurgerMenu/BurgerMenu';
 import CartInformer from '@/components/CartInformer/CartInformer';
 import Loader from '@/components/ui-components/Loader/Loader';
 
@@ -33,6 +34,7 @@ const Layout = () => {
       <Footer />
       <ScrollRestoration />
       <CartInformer />
+      <BurgerMenu />
 
       <Suspense>
         <StatusScreenLazy />

@@ -5,7 +5,17 @@
   border-radius: 8px;
 
   &__section {
-    max-width: 1040px;
+    max-width: 240px;
+
+    @media (width >= 393px) {
+      // max-width: 313px;
+      // max-width: clamp(19.563rem, -2.181rem + 88.525vw, 29.688rem);
+      max-width: clamp(19.563rem, -2.327rem + 89.116vw, 44.125rem);
+    }
+
+    @media (width >= 834px) {
+      max-width: clamp(44.125rem, 5.09rem + 74.888vw, 65rem);
+    }
   }
 
   &__hit {
@@ -21,12 +31,21 @@
 
     div.slider {
       overflow: visible;
-
       width: 100%;
-      max-width: 1006px;
-      height: 488px;
       margin: 0 auto;
-      padding: 49px 0 94px;
+      padding: 13px 0 26px;
+
+      @media (width >= 768px) {
+        padding: 21px 0 60px;
+      }
+
+      @media (width >= 992px) {
+        padding: 49px 0 94px;
+      }
+    }
+
+    @media (width >= 992px) {
+      max-width: clamp(49.375rem, 2.875rem + 75vw, 62.875rem); //790 1006
     }
   }
 
@@ -45,7 +64,19 @@
 
         .slick-track {
           display: flex;
-          gap: 46px;
+          gap: clamp(0.938rem, -0.405rem + 5.464vw, 1.563rem);
+
+          @media (width >= 576px) {
+            gap: clamp(0.813rem, -1.56rem + 6.589vw, 1.875rem);
+          }
+
+          @media (width >= 834px) {
+            gap: clamp(2rem, -1.841rem + 7.368vw, 2.875rem);
+          }
+
+          @media (width >= 1024px) {
+            gap: clamp(1rem, -6.5rem + 11.719vw, 2.875rem);
+          }
         }
       }
     }
@@ -126,7 +157,7 @@
       .slick-list {
         overflow: visible;
         width: 100%;
-        margin-inline: 12.5px;
+        margin-inline: 10px;
 
         .slick-track {
           display: flex;
@@ -135,7 +166,23 @@
 
           .slick-slide {
             width: 100%;
+
+            @media (width >= 768px) {
+              max-width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
+            }
           }
+        }
+
+        @media (width >= 768px) {
+          margin-inline: clamp(3.75rem, -18.068rem + 45.455vw, 5.625rem);
+        }
+
+        @media (width >= 834px) {
+          margin-inline: clamp(5.625rem, -1.387rem + 13.453vw, 9.375rem); //90 - 150
+        }
+
+        @media (width >= 992px) {
+          margin-inline: 12.5px;
         }
       }
     }
@@ -147,7 +194,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    display: flex !important;
+    display: none !important;
     gap: 15px;
     justify-content: center;
 
@@ -176,6 +223,10 @@
         background: #878787;
         border-radius: 100%;
       }
+    }
+
+    @media (width >= 768px) {
+      display: flex !important;
     }
   }
 }

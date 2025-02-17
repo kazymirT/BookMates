@@ -6,11 +6,21 @@
   .section-inner {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
 
-    padding: 32px;
+    padding: 20px;
 
     background: $accent-white;
     border-radius: 8px;
+
+    @media (width >= 768px) {
+      gap: 28px;
+      padding: 26px 24px;
+    }
+
+    @media (width >= 992px) {
+      gap: 32px;
+      padding: 36px 32px;
+    }
   }
 }

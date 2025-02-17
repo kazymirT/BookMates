@@ -14,6 +14,7 @@ export enum Sizes {
   Pagination = 'pagination',
   IconS = 'icon-s',
   UserS = 'user-s',
+  Section = 'section',
 }
 
 export enum Variant {
@@ -33,6 +34,7 @@ export enum Variant {
   UserEdit = 'user-edit',
   UserSave = 'user-save',
   UserCancel = 'user-cancel',
+  Section = 'section',
 }
 
 export enum ButtonType {

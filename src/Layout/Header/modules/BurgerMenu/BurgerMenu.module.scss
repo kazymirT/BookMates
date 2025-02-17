@@ -1,0 +1,135 @@
+@import '@/styles';
+
+.burger-menu {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+
+  width: 393px;
+  padding: 26px;
+
+  background: $button-default;
+
+  & > button {
+    @include icon-state(#fffafa);
+
+    align-self: flex-end;
+    padding: 0;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    align-items: center;
+
+    .categories {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      li {
+        align-self: center;
+        height: 22px;
+
+        button {
+          padding: 0;
+
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 22px;
+          color: $accent-white;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 0.01em;
+        }
+      }
+    }
+
+    .links {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+
+      img {
+        position: absolute;
+        top: -9.5%;
+        left: 3%;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 25px;
+        padding-top: 21px;
+
+        ul {
+          flex-direction: column;
+          gap: 25px;
+        }
+
+        li,
+        button {
+          align-self: center;
+        }
+
+        a,
+        button {
+          padding: 0;
+
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 22px;
+          color: $accent-white;
+          text-align: center;
+          text-transform: uppercase;
+          letter-spacing: 0.01em;
+        }
+      }
+    }
+
+    div:has(div > input) {
+      margin-top: 23px;
+
+      label {
+        font-size: 24px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.appear {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.appear-active {
+  transform: translateX(0%);
+  opacity: 1;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+.exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition:
+    transform 500ms ease,
+    opacity 500ms ease;
+}
+
+.exit-done {
+  transform: translateX(100%);
+  opacity: 0;
+}

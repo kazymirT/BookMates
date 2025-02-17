@@ -77,7 +77,7 @@
 
   &--card {
     width: 100%;
-    padding: 12px 32px;
+    padding: 6.5px 32px;
 
     font-family: $third-family;
     font-size: 16px;
@@ -88,6 +88,10 @@
 
     background: $button-default;
     border-radius: 8px;
+
+    @media (width >= 834px) {
+      padding: 12px 32px;
+    }
   }
 
   &--basic {
@@ -189,11 +193,19 @@
     padding: 0;
 
     font-family: $font-family;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.1;
     color: $link-color;
     text-align: center;
+
+    @media (width >= 992px) {
+      font-size: 18px;
+    }
+
+    @media (width >= 1200px) {
+      font-size: 22px;
+    }
   }
 
   &--accent {
@@ -228,6 +240,15 @@
 
   &--xs {
     padding: 15px;
+  }
+
+  &--section {
+    padding: 7px 15px;
+    line-height: 26px;
+
+    @media (width >= 768px) {
+      padding: 6px 22px;
+    }
   }
 
   &--s {
