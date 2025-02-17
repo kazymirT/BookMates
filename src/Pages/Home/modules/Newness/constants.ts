@@ -14,9 +14,16 @@ export const RESPONSE_SLIDER = [
     },
   },
   {
-    breakpoint: 500,
+    breakpoint: 600,
     settings: {
       slidesToShow: 2,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 392,
+    settings: {
+      slidesToShow: 1,
       slidesToScroll: 1,
     },
   },

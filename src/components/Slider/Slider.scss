@@ -5,9 +5,12 @@
   border-radius: 8px;
 
   &__section {
-    max-width: 313px;
+    max-width: 240px;
 
-    @media (width >= 768px) {
+    @media (width >= 393px) {
+      // max-width: 313px;
+      // max-width: clamp(19.563rem, -2.181rem + 88.525vw, 29.688rem);
+      max-width: clamp(19.563rem, -2.327rem + 89.116vw, 44.125rem);
     }
 
     @media (width >= 834px) {
@@ -61,7 +64,11 @@
 
         .slick-track {
           display: flex;
-          gap: 15px;
+          gap: clamp(0.938rem, -0.405rem + 5.464vw, 1.563rem);
+
+          @media (width >= 576px) {
+            gap: clamp(0.813rem, -1.56rem + 6.589vw, 1.875rem);
+          }
 
           @media (width >= 834px) {
             gap: clamp(2rem, -1.841rem + 7.368vw, 2.875rem);
