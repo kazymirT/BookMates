@@ -2,7 +2,8 @@
 
 .subscription {
   display: flex;
-  gap: 60px;
+  flex-direction: column;
+  gap: 30px;
   align-items: center;
   justify-content: space-between;
 
@@ -16,38 +17,62 @@
     flex-direction: column;
     gap: 36px;
 
-    width: calc(100% / 2);
+    width: 100%;
     padding: 0 18px;
 
     h3 {
       font-family: $third-family;
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 400;
       line-height: 140%;
       color: $icon-active;
       text-align: center;
       letter-spacing: 0.04em;
+
+      @media (width >= 1024px) {
+        font-size: 36px;
+      }
     }
 
     p {
+      align-self: center;
+
       width: 100%;
       max-width: 534px;
 
       font-family: $font7;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 400;
       line-height: 140%;
       color: $icon-active;
       text-align: center;
       letter-spacing: 0.03em;
+
+      @media (width >= 1024px) {
+        font-size: 15px;
+      }
+    }
+
+    @media (width >= 1024px) {
+      width: calc(100% / 2);
     }
   }
 
   .form {
-    width: calc(100% / 2);
+    width: 100%;
+    max-width: 454px;
+
+    @media (width >= 1024px) {
+      width: calc(100% / 2);
+    }
   }
 
   &__author {
     padding: 30px 0 0;
+  }
+
+  @media (width >= 1024px) {
+    flex-direction: row;
+    gap: 60px;
   }
 }

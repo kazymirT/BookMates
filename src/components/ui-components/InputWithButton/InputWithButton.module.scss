@@ -77,4 +77,12 @@
       padding: 4.2px;
     }
   }
+
+  &__email {
+    padding: 2px 0;
+
+    input {
+      padding: 0 0 0 12px;
+    }
+  }
 }
