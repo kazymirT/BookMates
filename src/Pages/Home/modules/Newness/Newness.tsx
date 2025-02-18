@@ -7,6 +7,8 @@ import ProductCard from '@/components/ProductCard/ProductCard';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import Slider from '@/components/Slider/Slider';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { PRODUCT_OF_SLIDER } from '@/constants/slider';
 import { useGetBooksQuery } from '@/redux/services/books';
 
@@ -39,6 +41,13 @@ const Newness = () => {
                 <SkeletonProductCard key={i} variant="slider" />
               ))}
           </Slider>
+          <ButtonLink
+            type="button"
+            size={Sizes.Section}
+            text={t('home.new-arrivals.button')}
+            url="/catalog?sort=id-desc"
+            variant={Variant.Primary}
+          />
         </SectionContent>
       </>
     </Section>

@@ -1,6 +1,10 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: 90px;
+  gap: 57px;
   padding-bottom: 90px;
+
+  @media (width >= 992px) {
+    gap: 90px;
+  }
 }

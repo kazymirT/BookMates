@@ -14,7 +14,7 @@ export const RESPONSE_SLIDER = [
     },
   },
   {
-    breakpoint: 600,
+    breakpoint: 576,
     settings: {
       slidesToShow: 2,
       slidesToScroll: 1,

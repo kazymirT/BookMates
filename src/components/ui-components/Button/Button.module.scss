@@ -89,7 +89,7 @@
     background: $button-default;
     border-radius: 8px;
 
-    @media (width >= 834px) {
+    @media (width >= 768px) {
       padding: 12px 32px;
     }
   }
@@ -243,11 +243,16 @@
   }
 
   &--section {
-    padding: 7px 15px;
+    width: 139px;
+    padding: 7px 0;
     line-height: 26px;
 
     @media (width >= 768px) {
-      padding: 6px 22px;
+      padding: 6px 0;
+    }
+
+    @media (width >= 992px) {
+      width: 160px;
     }
   }
 

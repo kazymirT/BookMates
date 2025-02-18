@@ -52,7 +52,11 @@
       letter-spacing: 0.06em;
 
       &__fire {
-        @include fire(40px, 40px, 42px, -44px);
+        @include fire(30px, 30px, 32px, -32px);
+
+        @media (width >= 992px) {
+          @include fire(40px, 40px, 42px, -44px);
+        }
       }
 
       @media (width >= 768px) {

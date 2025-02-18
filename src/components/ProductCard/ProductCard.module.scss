@@ -22,17 +22,10 @@
 
   & > img {
     width: 100%;
-    height: 174px;
+    height: clamp(10.875rem, 7.469rem + 13.867vw, 14.125rem);
 
-    @media (width >= 768px) {
-      height: 226px;
-    }
-
-    @media (width >= 835px) {
-      height: 271px;
-    }
-
-    @media (width >= 992px) {
+    @media (width >= 834px) {
+      height: clamp(14.125rem, 8.848rem + 10.112vw, 16.938rem);
     }
   }
 
@@ -93,6 +86,10 @@
           }
 
           @media (width >= 768px) {
+            gap: 0;
+          }
+
+          @media (width >= 1024px) {
             gap: 12px;
           }
         }
@@ -192,7 +189,7 @@
         }
       }
 
-      @media (width >= 835px) {
+      @media (width >= 768px) {
         gap: 16px;
       }
     }
@@ -211,14 +208,26 @@
           .title-wrapper {
             gap: 4px;
 
-            @media (width >= 834px) {
+            @media (width >= 768px) {
+              gap: 0;
+            }
+
+            @media (width >= 1024px) {
               gap: 9px;
             }
           }
+
+          @media (width >= 768px) {
+            gap: 0;
+          }
+
+          @media (width >= 1024px) {
+            gap: 2px;
+          }
         }
 
-        @media (width >= 834px) {
-          gap: 8px;
+        @media (width >= 768px) {
+          gap: 7px;
         }
       }
     }
@@ -330,7 +339,7 @@
       }
     }
 
-    @media (width >= 834px) {
+    @media (width >= 1024px) {
       top: 11px;
       left: 8px;
     }
@@ -338,12 +347,11 @@
 
   &__slider {
     width: 100%;
-    // width: 149px;
     max-width: 240px;
+    height: clamp(20.125rem, 16.785rem + 13.6vw, 23.313rem);
 
     @media (width >= 393px) {
       width: clamp(9.313rem, -0.888rem + 41.53vw, 14.063rem);
-      // min-width: 149px;
       max-width: none;
     }
 
@@ -352,28 +360,27 @@
     }
 
     @media (width >= 834px) {
-      gap: 20px;
+      gap: 10px;
       width: clamp(13.375rem, 2.95rem + 20vw, 15.75rem); //214
-      // min-width: 200px;
-      height: 456px;
+      height: 383px;
     }
 
     @media (width >= 1024px) {
+      gap: 20px;
       width: clamp(12.5rem, 7.5rem + 7.813vw, 13.75rem); //200 220
     }
   }
 
-  @media (width >= 576px) {
-    // max-width: clamp(9.375rem, 0.445rem + 24.806vw, 13.375rem);
+  @media (width >= 834px) {
+    height: clamp(23.938rem, 15.376rem + 16.404vw, 28.5rem);
   }
 
-  @media (width >= 768px) {
-    height: 383px;
+  @media (width >= 992px) {
+    gap: 16px;
   }
 
-  @media (width >= 835px) {
+  @media (width >= 1024px) {
     gap: 20px;
-    height: 456px;
     padding: 11.2px 8px;
   }
 }
