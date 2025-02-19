@@ -268,6 +268,28 @@
     padding: 12.5px 32px;
   }
 
+  &--subscription {
+    padding: 6.5px 14px;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #fbfafa;
+    letter-spacing: 0.033em;
+
+    @media (width >= 480px) {
+      padding: 10px 30.5px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    @media (width >= 1024px) {
+      padding: 11px 36.5px;
+      font-size: 22px;
+      line-height: 27px;
+    }
+  }
+
   &--l {
     padding: 12px 48px;
   }

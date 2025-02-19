@@ -15,6 +15,7 @@ export enum Sizes {
   IconS = 'icon-s',
   UserS = 'user-s',
   Section = 'section',
+  Subscription = 'subscription',
 }
 
 export enum Variant {

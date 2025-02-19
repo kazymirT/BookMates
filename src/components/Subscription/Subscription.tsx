@@ -57,7 +57,7 @@ const Subscription: FC<SubscriptionProps> = ({ variant }) => {
           >
             <Button
               type="submit"
-              size={Sizes.Medium}
+              size={Sizes.Subscription}
               variant={Variant.Basic}
               text={t('home.subscribe.button')}
               disabled={!isValid || isSubmitting}
