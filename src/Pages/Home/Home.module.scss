@@ -2,9 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 57px;
-  padding-bottom: 90px;
+  padding-bottom: 38px;
+
+  @media (width >= 768px) {
+    padding-bottom: 82px;
+  }
 
   @media (width >= 992px) {
     gap: 90px;
+    padding-bottom: 90px;
   }
 }

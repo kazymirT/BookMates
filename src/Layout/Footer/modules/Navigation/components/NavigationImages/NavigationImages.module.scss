@@ -1,7 +1,7 @@
 @import '@/styles';
 
 .btns {
-  display: flex;
+  display: none;
   gap: 11px;
   align-items: center;
 
@@ -10,11 +10,11 @@
 
   li {
     &:nth-child(1) {
-      max-width: 123px;
+      width: 123px;
     }
 
     &:nth-child(2) {
-      max-width: 115px;
+      width: 115px;
     }
 
     img {
@@ -24,9 +24,13 @@
     @media (width >= 992px) {
       &:nth-child(1),
       &:nth-child(2) {
-        max-width: 160px;
+        width: 160px;
       }
     }
+  }
+
+  @media (width >= 768px) {
+    display: flex;
   }
 
   @media (width >= 992px) {
