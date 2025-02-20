@@ -5,12 +5,10 @@
 
   overflow: hidden;
 
-  aspect-ratio: 0.705;
+  aspect-ratio: 0.76;
   width: 100%;
   min-width: 135x;
-  // max-width: 135px;
   max-width: 233px;
-  // max-height: 330px;
 
   border-radius: 8px;
 
@@ -120,10 +118,14 @@
   // @media (min-width: 393px) {
   //   max-width: 147px;
   // }
-  // @media (width >= 768px) {
-  //   max-width: 212px;
-  // }
+  @media (width >= 576px) {
+    aspect-ratio: 0.74;
+    max-width: 264px;
+  }
 
+  @media (width >= 992px) {
+    aspect-ratio: 0.705;
+  }
   // @media (width >= 1024px) {
   //   max-width: 233px;
   // }

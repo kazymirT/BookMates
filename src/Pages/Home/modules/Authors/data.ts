@@ -8,4 +8,6 @@ export const authors = [
   { id: 2, title: 'Махо Мольфіно', img: authorImg2 },
   { id: 3, title: 'Джим Коллінз', img: authorImg3 },
   { id: 4, title: 'Девід Ален', img: authorImg4 },
+  { id: 5, title: 'Алекс Т. Сміт', img: authorImg1 },
+  { id: 6, title: 'Махо Мольфіно', img: authorImg2 },
 ];

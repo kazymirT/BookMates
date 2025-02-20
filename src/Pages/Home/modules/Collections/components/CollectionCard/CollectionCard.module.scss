@@ -6,7 +6,7 @@
   aspect-ratio: 1/1;
   width: 100%;
   min-width: 135px;
-  max-width: 334px;
+  max-width: 264px;
   height: auto;
 
   font-size: 0;
@@ -61,10 +61,10 @@
     }
   }
 
-  @media (width >= 768px) {
-    min-width: 135px;
-    max-width: 221px;
-  }
+  // @media (width >= 768px) {
+  //   min-width: 135px;
+  //   max-width: 221px;
+  // }
 
   @media (width >= 1024px) {
     aspect-ratio: 1.1;
