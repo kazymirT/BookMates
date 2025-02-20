@@ -8,10 +8,15 @@
     flex-direction: column;
     gap: 24px;
 
-    padding: 20px;
+    padding: 5px;
 
     background: $accent-white;
     border-radius: 8px;
+
+    @media (width >= 393px) {
+      gap: 28px;
+      padding: 20px;
+    }
 
     @media (width >= 768px) {
       gap: 28px;
