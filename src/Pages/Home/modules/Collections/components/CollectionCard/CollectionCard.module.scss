@@ -3,22 +3,15 @@
 .card {
   position: relative;
 
+  aspect-ratio: 1/1;
   width: 100%;
-  max-width: 147px;
-  height: 147px;
+  min-width: 135px;
+  max-width: 334px;
+  height: auto;
+
+  font-size: 0;
 
   border-radius: 8px;
-
-  &:hover {
-    div {
-      height: 147px;
-      transition: all 0.3s ease-in-out;
-
-      @media (width >= 768px) {
-        height: 200px;
-      }
-    }
-  }
 
   img {
     width: 100%;
@@ -50,13 +43,30 @@
       letter-spacing: 0.01em;
 
       @media (width >= 768px) {
+        font-size: 14px;
+      }
+
+      @media (width >= 992px) {
         font-size: 16px;
       }
     }
   }
 
+  @media (hover: hover) {
+    &:hover {
+      div {
+        height: 100%;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+
   @media (width >= 768px) {
+    min-width: 135px;
     max-width: 221px;
-    height: 200px;
+  }
+
+  @media (width >= 1024px) {
+    aspect-ratio: 1.1;
   }
 }

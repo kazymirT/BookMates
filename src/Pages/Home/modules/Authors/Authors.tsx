@@ -24,11 +24,13 @@ const Authors = () => {
           title={t('home.authors.title')}
         />
         <SectionContent variant="authors">
-          {authors &&
-            !isSkeleton &&
-            authors.map(({ id, img, title }) => (
-              <AuthorsCard id={id} img={img} title={title} key={id} />
-            ))}
+          {authors && !isSkeleton && (
+            <div>
+              {authors.map(({ id, img, title }) => (
+                <AuthorsCard id={id} img={img} title={title} key={id} />
+              ))}
+            </div>
+          )}
           {isSkeleton && <SkeletonAuthorCard cards={CARD_OF_AUTHORS} />}
           <ButtonLink
             type="button"

@@ -24,11 +24,13 @@ const Collections = () => {
           title={t('home.book-collections.title')}
         />
         <SectionContent variant="category">
-          {!isSkeleton &&
-            collections &&
-            collections.map(({ id, img, title }) => (
-              <CollectionCard id={id} img={img} title={title} key={id} />
-            ))}
+          {!isSkeleton && collections && (
+            <div>
+              {collections.map(({ id, img, title }) => (
+                <CollectionCard id={id} img={img} title={title} key={id} />
+              ))}
+            </div>
+          )}
           {isSkeleton && <SkeletonCollectionCard cards={CARD_OF_COLLECTIONS} />}
           <ButtonLink
             type="button"
