@@ -9,21 +9,60 @@
   margin: 0 auto;
 
   &__category {
-    gap: 45px;
+    gap: 19px;
+    justify-content: center;
+
+    & > a:has(button):last-child {
+      display: block;
+
+      @media (width >= 768px) {
+        display: none;
+      }
+    }
+
+    @media (width >= 992px) {
+      gap: clamp(0.938rem, -2.569rem + 6.726vw, 2.813rem);
+    }
   }
 
   &__authors {
-    gap: 29px;
+    gap: 19px;
+    justify-content: center;
+
+    & > a:has(button):last-child {
+      display: block;
+
+      @media (width >= 768px) {
+        display: none;
+      }
+    }
+
+    @media (width >= 768px) {
+      gap: 29px;
+    }
   }
 
   &__product {
     position: relative;
     z-index: 10;
 
-    gap: 0;
+    gap: 24px;
+    justify-content: center;
 
     max-width: 1040px;
 
     border-radius: 8px;
+
+    & > a {
+      display: block;
+
+      @media (width >= 768px) {
+        display: none;
+      }
+    }
+  }
+
+  & > a button {
+    font-size: 15px;
   }
 }

@@ -7,6 +7,8 @@ import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import SkeletonAuthorCard from '@/components/Skeleton/SkeletonAuthorCard';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
+import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { useAppSelector } from '@/redux/hooks';
 import { isLoading } from '@/redux/slices/skeletonSlice';
 
@@ -28,6 +30,13 @@ const Authors = () => {
               <AuthorsCard id={id} img={img} title={title} key={id} />
             ))}
           {isSkeleton && <SkeletonAuthorCard cards={CARD_OF_AUTHORS} />}
+          <ButtonLink
+            type="button"
+            size={Sizes.Section}
+            text={t('home.authors.button')}
+            url="/authors"
+            variant={Variant.Primary}
+          />
         </SectionContent>
       </>
     </Section>

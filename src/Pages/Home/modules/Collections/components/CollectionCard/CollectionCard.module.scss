@@ -4,15 +4,19 @@
   position: relative;
 
   width: 100%;
-  max-width: 221px;
-  height: 200px;
+  max-width: 147px;
+  height: 147px;
 
   border-radius: 8px;
 
   &:hover {
     div {
-      height: 200px;
+      height: 147px;
       transition: all 0.3s ease-in-out;
+
+      @media (width >= 768px) {
+        height: 200px;
+      }
     }
   }
 
@@ -38,12 +42,21 @@
 
     h4 {
       font-family: $font4;
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 400;
       line-height: 1.19;
       color: $accent-white;
       text-align: center;
       letter-spacing: 0.01em;
+
+      @media (width >= 768px) {
+        font-size: 16px;
+      }
     }
+  }
+
+  @media (width >= 768px) {
+    max-width: 221px;
+    height: 200px;
   }
 }

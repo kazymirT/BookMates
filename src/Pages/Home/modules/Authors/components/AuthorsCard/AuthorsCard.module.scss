@@ -2,8 +2,12 @@
 
 .card {
   position: relative;
+
   overflow: hidden;
+
+  max-width: 147px;
   max-height: 330px;
+
   border-radius: 8px;
 
   &:hover {
@@ -13,13 +17,16 @@
     }
 
     .content {
-      transform: translateY(-39px);
       background-color: rgb(0 0 0 / 60%);
 
       button {
         background: $accent-white;
         border-color: $accent-white;
         transition: all 0.5s ease-in-out;
+      }
+
+      @media (width >= 992px) {
+        transform: translateY(-39px);
       }
     }
   }
@@ -34,7 +41,7 @@
 
     object-fit: cover;
     object-position: 50% 50%;
-    background-color: rgb(0 0 0 / 0%);
+    background-color: rgb(0 0 0 / 6%);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: auto;
@@ -45,37 +52,74 @@
 
   .content {
     position: absolute;
-    bottom: -39px;
+    bottom: 0;
     left: 0;
 
     display: flex;
     flex-direction: column;
     gap: 16px;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
 
     width: 100%;
-    height: 83px;
+    height: 100%;
+    padding-bottom: 25px;
 
-    background: linear-gradient(0deg, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 100%);
+    background-color: rgb(0 0 0 / 60%);
 
     transition: all 0.5s ease-in-out;
 
     h4 {
       font-family: $font-family;
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 500;
       line-height: 1.2;
       color: $accent-white;
       text-align: center;
       letter-spacing: 0.05em;
+
+      @media (width >= 768) {
+        font-size: 16px;
+      }
+
+      @media (width >= 768px) {
+        font-size: 20px;
+      }
     }
 
     button {
+      display: block;
       align-self: center;
+
       background: transparent;
       border-color: transparent;
+
       transition: all 0.5s ease-in-out;
+
+      @media (width <= 992px) {
+        display: none;
+        padding: 2px 8px;
+        font-size: 12px;
+      }
     }
+
+    @media (width >= 992px) {
+      bottom: -39px;
+
+      justify-content: flex-start;
+
+      height: 83px;
+      padding-bottom: 0;
+
+      background: linear-gradient(0deg, rgb(0 0 0) 0%, rgb(0 0 0 / 0%) 100%);
+    }
+  }
+
+  @media (width >= 768px) {
+    max-width: 212px;
+  }
+
+  @media (width >= 1024px) {
+    max-width: 233px;
   }
 }
