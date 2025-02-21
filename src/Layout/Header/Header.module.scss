@@ -3,14 +3,21 @@
 .header {
   position: sticky;
   z-index: 20;
-  top: -96px;
-
+  top: 0;
   background: $accent-white;
-  border-radius: 0 0 20px 20px;
 
   .header-inner {
     position: relative;
     display: flex;
     flex-direction: column;
+  }
+
+  @media (width >= 768px) {
+    top: -70px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  @media (width >= 992px) {
+    top: -96px;
   }
 }

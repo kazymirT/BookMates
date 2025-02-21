@@ -52,12 +52,16 @@
 
     h4 {
       font-family: $font-family;
-      font-size: 14px;
+      font-size: clamp(0.875rem, 0.338rem + 2.186vw, 1.125rem);
       font-weight: 500;
       line-height: 1.2;
       color: $accent-white;
       text-align: center;
       letter-spacing: 0.05em;
+
+      @media (width >= 576px) {
+        font-size: 14px;
+      }
 
       @media (width >= 768) {
         font-size: 16px;
@@ -115,9 +119,7 @@
       }
     }
   }
-  // @media (min-width: 393px) {
-  //   max-width: 147px;
-  // }
+
   @media (width >= 576px) {
     aspect-ratio: 0.74;
     max-width: 264px;
@@ -126,7 +128,4 @@
   @media (width >= 992px) {
     aspect-ratio: 0.705;
   }
-  // @media (width >= 1024px) {
-  //   max-width: 233px;
-  // }
 }
