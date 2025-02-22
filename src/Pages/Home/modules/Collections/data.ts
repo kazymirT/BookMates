@@ -13,11 +13,4 @@ export const collections = [
   { id: 9, title: 'Українська проза', img: categoryImg3, books: 4 },
   { id: 2, title: 'Романи про кохання', img: categoryImg1, books: 10 },
   { id: 1, title: 'Біографічні книги ', img: categoryImg2, books: 12 },
-  {
-    id: 4,
-    title: 'Твори для дітей',
-    img: categoryImg4,
-    books: 6,
-  },
-  { id: 3, title: 'Українська проза', img: categoryImg3, books: 4 },
 ];
