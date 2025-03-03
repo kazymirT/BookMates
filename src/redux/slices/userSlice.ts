@@ -4,20 +4,23 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 export type User = {
-  id: string;
-  role: 'ROLE_ADMIN' | 'ROLE_PERSONAL';
+  id: number;
+  role: 'user' | 'admin';
   firstName: string;
   lastName: string;
   email: string;
+  image: null | string;
+  isLoggedIn: boolean;
+  isVerifyEmail: boolean;
 };
 
 type UserState = {
   user: User | null;
-  token: string | null;
+  accessToken: string | null;
 };
 
 const initialState: UserState = {
-  token: null,
+  accessToken: null,
   user: null,
 };
 
@@ -25,18 +28,18 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   selectors: {
-    token: (state) => state.token,
+    token: (state) => state.accessToken,
     userId: (state) => state.user?.id,
   },
   reducers: {
     login: (state, action: PayloadAction<UserState>) => {
-      const { user, token } = action.payload;
+      const { user, accessToken } = action.payload;
       state.user = user;
-      state.token = token;
+      state.accessToken = accessToken;
     },
     logout: (state) => {
       state.user = null;
-      state.token = null;
+      state.accessToken = null;
     },
   },
 });
