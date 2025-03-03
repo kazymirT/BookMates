@@ -39,6 +39,9 @@ const RegisterFormLazy = lazy(
 );
 const LoginFormLazy = lazy(() => import('../Forms/LoginForm/LoginForm'));
 const ResetPasswordLazy = lazy(() => import('./ResetPassword/ResetPassword'));
+const RegisterSuccessLazy = lazy(
+  () => import('./RegisterSuccess/RegisterSuccess')
+);
 
 const Modal = () => {
   const openedModalType = useAppSelector(modalType);
@@ -88,6 +91,8 @@ const Modal = () => {
           <SubscriptionErrorLazy />
         ) : openedModalType === 'edit-collection' ? (
           <EditCollectionLazy />
+        ) : openedModalType === 'register-success' ? (
+          <RegisterSuccessLazy />
         ) : null}
       </Suspense>
     </Portal>

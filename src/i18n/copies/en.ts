@@ -203,6 +203,11 @@ export const english = {
     description:
       'Thank you for your request. We are already working on it, and you will receive an answer soon. Bookmate team.',
   },
+  'register-success': {
+    title: 'Sign Up',
+    description:
+      'Thank you for registering! We have sent a confirmation link to your email address.',
+  },
   'book-card': 'Buy Now',
   price: '{{price}} $',
   profile: {
