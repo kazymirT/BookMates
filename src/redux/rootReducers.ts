@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { baseApi } from './services/baseApi';
+import { baseNewApi } from './services/baseNewApi';
 import { novaApi } from './services/novaApi';
 import { adminSlice } from './slices/adminSlice';
 import cartNotificationSlice from './slices/cartNotificationSlice';
@@ -18,6 +19,7 @@ import userSlice from './slices/userSlice';
 export const rootReducer = combineReducers({
   [novaApi.reducerPath]: novaApi.reducer,
   [baseApi.reducerPath]: baseApi.reducer,
+  [baseNewApi.reducerPath]: baseNewApi.reducer,
   queryParams: queryParamsSlice.reducer,
   admin: adminSlice.reducer,
   modal: modalSlice,

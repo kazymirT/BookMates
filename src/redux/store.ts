@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 
 import { rootReducer } from './rootReducers';
 import { baseApi } from './services/baseApi';
+import { baseNewApi } from './services/baseNewApi';
 import { novaApi } from './services/novaApi';
 
 const persistConfig = {
@@ -31,7 +32,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(novaApi.middleware, baseApi.middleware),
+    }).concat(novaApi.middleware, baseApi.middleware, baseNewApi.middleware),
 });
 
 export const persister = persistStore(store);
