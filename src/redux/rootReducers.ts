@@ -5,6 +5,7 @@ import { baseNewApi } from './services/baseNewApi';
 import { novaApi } from './services/novaApi';
 import { adminSlice } from './slices/adminSlice';
 import cartNotificationSlice from './slices/cartNotificationSlice';
+import errorSlice from './slices/errorSlice';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
 import { overlaySlice } from './slices/overlay';
@@ -32,4 +33,5 @@ export const rootReducer = combineReducers({
   shoppingCart: shoppingCartSlice,
   shoppingCartUi: shoppingCartUiSlice,
   skeleton: skeletonSlice,
+  error: errorSlice,
 });

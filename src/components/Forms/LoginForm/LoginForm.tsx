@@ -1,5 +1,4 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -9,16 +8,18 @@ import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
-import { useFormActions } from '@/hooks/useFormActions';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useLoginMutation } from '@/redux/services/authNewApi';
+import { errorState, setLoginError } from '@/redux/slices/errorSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { LoginValues, getLoginSchema } from '@/utils/validateSchema';
 
 const LoginForm = () => {
   const { t } = useTranslation();
-  const [isServerError, setIsServerError] = useState<boolean>(false);
-  const { loginUser } = useFormActions();
+  const { login: loginError } = useAppSelector(errorState);
   const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+  const isServerError = loginError !== null;
 
   const {
     register,
@@ -34,10 +35,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: LoginValues) => {
-    const error = await loginUser(data);
-    if (error) {
-      setIsServerError(true);
-    }
+    await login(data);
   };
 
   const handleRegister = () =>
@@ -45,7 +43,7 @@ const LoginForm = () => {
   const handleResetPassword = () =>
     dispatch(toggleModal({ openedModalType: 'reset-password' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
-  const hideServerError = () => isServerError && setIsServerError(false);
+  const hideServerError = () => isServerError && dispatch(setLoginError(null));
 
   return (
     <section className={styles['form-container']}>
