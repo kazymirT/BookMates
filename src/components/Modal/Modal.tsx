@@ -42,6 +42,7 @@ const ResetPasswordLazy = lazy(() => import('./ResetPassword/ResetPassword'));
 const RegisterSuccessLazy = lazy(
   () => import('./RegisterSuccess/RegisterSuccess')
 );
+const DeviceCodeLazy = lazy(() => import('../Forms/DeviceCode/DeviceCode'));
 
 const Modal = () => {
   const openedModalType = useAppSelector(modalType);
@@ -93,6 +94,8 @@ const Modal = () => {
           <EditCollectionLazy />
         ) : openedModalType === 'register-success' ? (
           <RegisterSuccessLazy />
+        ) : openedModalType === 'device-code' ? (
+          <DeviceCodeLazy />
         ) : null}
       </Suspense>
     </Portal>
