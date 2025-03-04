@@ -29,7 +29,9 @@ const baseQueryWithReAuth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
   // const user = (api.getState() as RootState).user.user;
-
+  if (result.error) {
+    console.log(result.error, 'перехоплювач глобальний');
+  }
   // if (result?.error?.status === 401 && user) {
   //   const refreshResult = await baseQuery('refresh', api, extraOptions);
 

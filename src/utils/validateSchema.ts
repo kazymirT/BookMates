@@ -36,6 +36,9 @@ const getEmail = (t: TFunction<'translation', undefined>) => {
     .max(30, { message: t?.('forms-error.email.max') })
     .email({ message: t?.('forms-error.email.email') });
 };
+const getCode = (t: TFunction<'translation', undefined>) => {
+  return z.string().regex(/^[a-zA-Z0-9]{4}$/, t?.('forms-error.new-device'));
+};
 const getPassword = (t: TFunction<'translation', undefined>) => {
   return z
     .string()
@@ -75,6 +78,13 @@ export const getLoginSchema = (t: TFunction<'translation', undefined>) => {
   });
 };
 export type LoginValues = z.infer<ReturnType<typeof getLoginSchema>>;
+
+export const getNewDeviceSchema = (t: TFunction<'translation', undefined>) => {
+  return z.object({
+    newDeviceCode: getCode(t),
+  });
+};
+export type NewDeviceValues = z.infer<ReturnType<typeof getNewDeviceSchema>>;
 
 export const getResetPasswordSchema = (
   t: TFunction<'translation', undefined>

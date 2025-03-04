@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { type LoginValues, type RegisterValues } from '../utils/validateSchema';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useLoginMutation, useRegisterMutation } from '@/redux/services/auth';
+import {
+  useLoginMutation,
+  useRegisterMutation,
+} from '@/redux/services/authNewApi';
 import { Error } from '@/redux/services/services.types';
 import { redirectPath, toggleModal } from '@/redux/slices/modalSlice';
 
@@ -23,15 +26,7 @@ export const useFormActions = () => {
   };
 
   const loginUser = async (data: LoginValues) => {
-    try {
-      await login(data).unwrap();
-      path && navigate(path);
-    } catch (error) {
-      const { originalStatus } = error as Error;
-      if (originalStatus === 401) {
-        return true;
-      }
-    }
+    await login(data);
   };
   const registerUser = async ({
     email,

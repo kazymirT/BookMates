@@ -30,6 +30,7 @@ const Collection = lazy(() => import('../Pages/Collection/Collection'));
 import HistoryWrapper from './HistoryWrapper';
 import PrivateRoutes from './PrivateRoutes';
 import Layout from '@/Layout/Layout/Layout';
+import VerifyEmail from '@/Pages/VerifyEmail/VerifyEmail';
 import { ROUTE_PATH } from '@/utils/constants';
 
 const route = createBrowserRouter(
@@ -43,6 +44,7 @@ const route = createBrowserRouter(
       errorElement={<ErrorPage />}
     >
       <Route path={ROUTE_PATH.HOME} element={<Home />} />
+      <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
       <Route path={'/collection/:collectionId?'} element={<Collection />} />
       <Route path={'/product/:productId?'} element={<Product />} />

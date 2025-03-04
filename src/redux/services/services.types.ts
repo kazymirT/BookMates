@@ -28,8 +28,31 @@ export interface AddBook {
   quantity: number;
 }
 
-export interface AuthResponse {
-  token: string;
+export interface RegisterResponse {
+  email: string;
+  name: string;
+  image: null | string;
+  id: number;
+  role: 'user' | 'admin';
+  isLoggedIn: boolean;
+  isVerifyEmail: boolean;
+}
+
+export interface VerifyEmailResponse {
+  accessToken: string;
+}
+export interface LoginResponse {
+  loggedInUser: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: 'user' | 'admin';
+    image: null | string;
+    isLoggedIn: boolean;
+    isVerifyEmail: boolean;
+  };
+  accessToken: string;
 }
 
 export interface UserResponse {
@@ -41,10 +64,12 @@ export interface UserResponse {
 
 export interface TokenDecode {
   email: string;
-  exp: number;
+  role: 'user' | 'admin';
+  sub: number;
+  sessionId: number;
+  deviceId: string;
   iat: number;
-  id: string;
-  roles: 'ROLE_PERSONAL'[] | 'ROLE_ADMIN'[];
+  exp: number;
 }
 
 export interface Error {
