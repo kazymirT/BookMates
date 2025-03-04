@@ -1,15 +1,21 @@
-import { baseApi } from './baseApi';
+import { baseNewApi } from './baseNewApi';
 import { UserResponse } from './services.types';
 
-export const userApi = baseApi.injectEndpoints({
+export const userApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
-    getUser: builder.query<UserResponse, string>({
+    deleteUser: builder.mutation<UserResponse, number>({
       query: (id) => ({
-        url: `open/user/${id}`,
+        url: `v1/user/${id}`,
+        method: 'DELETE',
+      }), //no working
+    }),
+    meUser: builder.mutation<UserResponse, { user: string }>({
+      query: () => ({
+        url: `v1/user/me`,
       }),
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useDeleteUserMutation, useMeUserMutation } = userApi;
