@@ -2,8 +2,8 @@ import { FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
-import { AuthResponse } from './services.types';
-import { login, logout } from '../slices/userSlice';
+// import { AuthResponse } from './services.types';
+// import { login, logout } from '../slices/userSlice';
 import { RootState } from '../store';
 
 const baseURLApi = import.meta.env.VITE_API_BASE_URL;
@@ -13,7 +13,7 @@ const baseQuery = fetchBaseQuery({
 
   // credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).user.token;
+    const token = (getState() as RootState).user.accessToken;
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
     }
@@ -27,22 +27,22 @@ const baseQueryWithReAuth: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  let result = await baseQuery(args, api, extraOptions);
-  const user = (api.getState() as RootState).user.user;
+  const result = await baseQuery(args, api, extraOptions);
+  // const user = (api.getState() as RootState).user.user;
 
-  if (result?.error?.status === 401 && user) {
-    const refreshResult = await baseQuery('refresh', api, extraOptions);
+  // if (result?.error?.status === 401 && user) {
+  //   const refreshResult = await baseQuery('refresh', api, extraOptions);
 
-    if (refreshResult?.data) {
-      const { token } = refreshResult.data as AuthResponse;
+  //   if (refreshResult?.data) {
+  //     const { token } = refreshResult.data as AuthResponse;
 
-      api.dispatch(login({ token, user }));
+  //     api.dispatch(login({ token, user }));
 
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      api.dispatch(logout());
-    }
-  }
+  //     result = await baseQuery(args, api, extraOptions);
+  //   } else {
+  //     api.dispatch(logout());
+  //   }
+  // }
   return result;
 };
 
