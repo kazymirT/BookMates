@@ -74,6 +74,7 @@ const LoginForm = () => {
             type="password"
             serverError={isServerError}
             onFocus={hideServerError}
+            autoComplete="current-password"
             errorMessage={errors.password?.message}
           />
           {isServerError && (

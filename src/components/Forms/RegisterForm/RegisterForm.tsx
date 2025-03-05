@@ -108,6 +108,7 @@ const RegisterForm = () => {
             {...formRegister('password')}
             placeholder={t('register.password')}
             type="password"
+            autoComplete="new-password"
             errorMessage={errors.password?.message}
           />
           <p className={styles['password-hint']}>
