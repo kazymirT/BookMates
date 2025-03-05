@@ -35,34 +35,36 @@ import { ROUTE_PATH } from '@/utils/constants';
 
 const route = createBrowserRouter(
   createRoutesFromElements(
-    <Route
-      element={
-        <HistoryWrapper>
-          <Layout />
-        </HistoryWrapper>
-      }
-      errorElement={<ErrorPage />}
-    >
-      <Route path={ROUTE_PATH.HOME} element={<Home />} />
+    <Route>
       <Route path="/verify-email" element={<VerifyEmail />} />
-      <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
-      <Route path={'/collection/:collectionId?'} element={<Collection />} />
-      <Route path={'/product/:productId?'} element={<Product />} />
-      <Route path={'/author/:authorId'} element={<Author />} />
-      <Route path={'/authors/'} element={<Authors />} />
-      <Route path={'/order'} element={<Order />} />
-      <Route element={<PrivateRoutes />}>
-        <Route path={'/user/:userId?'} element={<User />} />
-      </Route>
-      <Route path={'/delivery'} element={<Delivery />} />
-      <Route path={'/collections'} element={<Collections />} />
-      <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
       <Route
-        path={ROUTE_PATH.NOTAUTHENTICATED}
-        element={<NotAuthenticated />}
-      />
-      <Route path={ROUTE_PATH.NOTAUTHORIZED} element={<NotAuthorized />} />
-      <Route path={'/admin/:adminId?'} element={<Admin />} />
+        element={
+          <HistoryWrapper>
+            <Layout />
+          </HistoryWrapper>
+        }
+        errorElement={<ErrorPage />}
+      >
+        <Route path={ROUTE_PATH.HOME} element={<Home />} />
+        <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
+        <Route path={'/collection/:collectionId?'} element={<Collection />} />
+        <Route path={'/product/:productId?'} element={<Product />} />
+        <Route path={'/author/:authorId'} element={<Author />} />
+        <Route path={'/authors/'} element={<Authors />} />
+        <Route path={'/order'} element={<Order />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path={'/user/:userId?'} element={<User />} />
+        </Route>
+        <Route path={'/delivery'} element={<Delivery />} />
+        <Route path={'/collections'} element={<Collections />} />
+        <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
+        <Route
+          path={ROUTE_PATH.NOTAUTHENTICATED}
+          element={<NotAuthenticated />}
+        />
+        <Route path={ROUTE_PATH.NOTAUTHORIZED} element={<NotAuthorized />} />
+        <Route path={'/admin/:adminId?'} element={<Admin />} />
+      </Route>
     </Route>
   )
 );

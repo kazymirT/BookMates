@@ -11,20 +11,16 @@ const VerifyEmail = () => {
 
   useEffect(() => {
     const verify = async () => {
-      try {
-        if (token) {
-          await verifyEmail({
-            code: token,
-          }).unwrap();
-        }
+      if (token) {
+        await verifyEmail({
+          code: token,
+        });
         navigate('/');
-      } catch (error) {
-        console.log(error);
       }
     };
     verify();
-  }, []);
-  return <div></div>;
+  }, [navigate, token, verifyEmail]);
+  return <div>Verifying email...</div>;
 };
 
 export default VerifyEmail;
