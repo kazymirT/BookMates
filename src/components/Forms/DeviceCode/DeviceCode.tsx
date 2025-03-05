@@ -7,17 +7,17 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
-import { useAppDispatch } from '@/redux/hooks';
-import { useLoginWithCodeMutation } from '@/redux/services/authNewApi';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useLoginMutation } from '@/redux/services/authNewApi';
 import { toggleModal } from '@/redux/slices/modalSlice';
-// import { clearPendingLoginData, userData } from '@/redux/slices/userSlice';
+import { clearPendingLoginData, userData } from '@/redux/slices/userSlice';
 import { getNewDeviceSchema, NewDeviceValues } from '@/utils/validateSchema';
 
 const DeviceCode = () => {
   const { t } = useTranslation();
-  // const user = useAppSelector(userData);
+  const user = useAppSelector(userData);
   const dispatch = useAppDispatch();
-  const [loginWithCode] = useLoginWithCodeMutation();
+  const [login] = useLoginMutation();
   const {
     register,
     handleSubmit,
@@ -28,18 +28,17 @@ const DeviceCode = () => {
   });
   const onSubmit = async (data: NewDeviceValues) => {
     const { newDeviceCode } = data;
-    const email = '046y6tedqm@mailpwr.com';
-    const password = '1Qqqqqqq';
-    await loginWithCode({ email, password, newDeviceCode });
-    // if (user && user.pendingLoginData) {
-    //   const {
-    //     pendingLoginData: { email, password },
-    //   } = user;
-    //   dispatch(clearPendingLoginData());
-    // }
+    if (user && user.pendingLoginData) {
+      const {
+        pendingLoginData: { email, password },
+      } = user;
+      await login({ email, password, newDeviceCode });
+      dispatch(clearPendingLoginData());
+    }
   };
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
+
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>

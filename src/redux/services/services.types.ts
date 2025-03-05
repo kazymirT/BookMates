@@ -1,6 +1,18 @@
 export interface Login {
   email: string;
   password: string;
+  newDeviceCode?: string;
+}
+
+export interface ErrorResponse {
+  error: {
+    data: {
+      message: string;
+      error: string;
+      statusCode: number;
+    };
+    status: number;
+  };
 }
 
 export interface Register {
