@@ -19,21 +19,27 @@ export const Burger: FC<IconProps> = ({
       data-testid={dataTestid}
     >
       <path
-        d="M0.1 2H29"
+        d="M1.5 2.5H29"
         stroke="#006F7E"
-        strokeWidth="2.5"
+        strokeWidth="3"
         strokeLinecap="round"
       />
       <path
-        d="M12 10H29"
+        d="M14 8.5L29 8.5"
         stroke="#006F7E"
-        strokeWidth="2.5"
+        strokeWidth="3"
         strokeLinecap="round"
       />
       <path
-        d="M0.1 17H29"
+        d="M8 14.5L29 14.5"
         stroke="#006F7E"
-        strokeWidth="2.5"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <path
+        d="M1.5 20.5H29"
+        stroke="#006F7E"
+        strokeWidth="3"
         strokeLinecap="round"
       />
     </svg>

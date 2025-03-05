@@ -12,8 +12,9 @@
     gap: 11px;
 
     width: 100%;
-    height: clamp(7.625rem, 1.944rem + 23.129vw, 14rem);
-    padding: 14px 18px;
+    // height: clamp(7.625rem, 1.944rem + 23.129vw, 14rem);
+    height: clamp(8.5rem, 3.599rem + 19.955vw, 14rem);
+    padding: 16px 20px;
 
     border-radius: 8px;
 
@@ -47,15 +48,15 @@
       flex-direction: column;
       gap: 8px;
 
-      max-width: clamp(11.25rem, 2.08rem + 37.333vw, 20rem);
+      max-width: clamp(12.2rem, 2.08rem + 37.333vw, 20rem);
 
       h3 {
         font-family: $font-family;
-        font-size: clamp(0.75rem, 0.16rem + 2.4vw, 1.313rem);
+        font-size: clamp(0.8125rem, 0.16rem + 2.4vw, 1.313rem);
         font-weight: 700;
         line-height: 168%;
         color: $button-default;
-        letter-spacing: 0;
+        letter-spacing: 0.01em;
 
         @media (width >= 768px) {
           letter-spacing: 0.02em;
@@ -68,11 +69,11 @@
 
       p {
         font-family: $font-family;
-        font-size: clamp(0.375rem, 0.047rem + 1.333vw, 0.688rem);
+        font-size: clamp(0.4375rem, 0.047rem + 1.333vw, 0.688rem);
         font-weight: 600;
         line-height: 138%;
         color: $button-default;
-        letter-spacing: 0.01em;
+        letter-spacing: -0.03em;
 
         @media (width >= 992px) {
           font-size: clamp(0.688rem, -0.389rem + 1.736vw, 1rem); //11 16
@@ -95,10 +96,10 @@
 
       align-self: flex-start;
 
-      padding: 3.5px 14px;
+      padding: 5px 13px;
 
       font-family: $font-family;
-      font-size: clamp(0.375rem, -0.018rem + 1.6vw, 0.75rem);
+      font-size: clamp(0.475rem, -0.018rem + 1.6vw, 0.75rem);
       font-weight: 500;
       color: $grey-500;
       letter-spacing: 0.05em;
@@ -137,13 +138,8 @@
     }
   }
 
-  @media (width >= 393px) {
-    padding: 0 10px;
-  }
-
   @media (width >= 768px) {
     max-width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
     height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem);
-    padding: 0;
   }
 }

@@ -31,7 +31,7 @@
       overflow: visible;
       width: 100%;
       margin: 0 auto;
-      padding: 13px 0 26px;
+      padding: 22px 0 26px;
 
       @media (width >= 768px) {
         padding: 21px 0 60px;
@@ -159,11 +159,11 @@
       .slick-list {
         overflow: visible;
         width: 100%;
-        margin-inline: 10px;
+        // margin-inline: 10px;
 
         .slick-track {
           display: flex;
-          gap: 25px;
+          gap: 0;
           width: 100%;
 
           .slick-slide {
@@ -172,6 +172,10 @@
             @media (width >= 768px) {
               max-width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
             }
+          }
+
+          @media (width >= 768px) {
+            gap: 25px;
           }
         }
 
