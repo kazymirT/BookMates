@@ -1,25 +1,31 @@
 import { useTranslation } from 'react-i18next';
 
 import styles from '../../Forms/Form.module.scss';
-import Succes from '@/components/StatusScreen/Succes/Succes';
-import { Icon } from '@/components/ui-components/Icons';
+import { Button } from '@/components/ui-components/Button/Button';
+import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { useAppDispatch } from '@/redux/hooks';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const RegisterSuccess = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
+  const handleCloseModal = () =>
+    dispatch(toggleModal({ openedModalType: null }));
+
   return (
-    <section className={styles['form-container']}>
+    <section
+      className={`${styles['form-container']} ${styles['form-container__register']}`}
+    >
       <div className={styles['title-container']}>
         <h2>{t('register-success.title')}</h2>
-        <button type="button" className={styles.close} onClick={handleClose}>
-          <Icon.Close />
-        </button>
       </div>
-      <Succes loop={true} />
       <p className={styles.success}>{t('register-success.description')}</p>
+      <Button
+        variant={Variant.Basic}
+        size={Sizes.Full}
+        text={t('register-success.button')}
+        onClick={handleCloseModal}
+      />
     </section>
   );
 };

@@ -204,9 +204,17 @@ export const english = {
       'Thank you for your request. We are already working on it, and you will receive an answer soon. Bookmate team.',
   },
   'register-success': {
-    title: 'Sign Up',
+    title: 'Підтвердити реєстрацію',
+    button: 'Зрозуміло',
     description:
-      'Thank you for registering! We have sent a confirmation link to your email address.',
+      'Для завершення реєстрації ми надіслали вам лист на вашу електроно пошту.',
+  },
+  'device-code': {
+    button: 'Підтвердити',
+    link: 'Відправити повторно',
+    description:
+      'Ми відправили вам код на вашу електрону пошту, для входу у ваш особистий кабінет із нового пристрою.',
+    placeholder: 'code',
   },
   'book-card': 'Buy Now',
   price: '{{price}} $',
@@ -234,6 +242,7 @@ export const english = {
       max: 'The maximum number of characters is 30',
       email: 'Email format is incorrect',
     },
+    'new-device': 'Код невірний',
     required: 'This field is required',
     phone: 'Please enter a valid phone number',
     'email-confirm': 'The email address does not match',
