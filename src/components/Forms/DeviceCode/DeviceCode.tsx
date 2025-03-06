@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
-import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useLoginMutation } from '@/redux/services/authNewApi';
@@ -24,6 +23,7 @@ const DeviceCode = () => {
     formState: { isValid, errors, isSubmitting },
   } = useForm<NewDeviceValues>({
     resolver: zodResolver(getNewDeviceSchema(t)),
+    defaultValues: { newDeviceCode: '' },
     mode: 'onTouched',
   });
   const onSubmit = async (data: NewDeviceValues) => {
@@ -34,36 +34,36 @@ const DeviceCode = () => {
       } = user;
       await login({ email, password, newDeviceCode });
       dispatch(clearPendingLoginData());
+    } else {
+      dispatch(toggleModal({ openedModalType: null }));
     }
   };
-
-  const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
-
+  const handleRepeatSendCode = () => {
+    console.log('send repeat code');
+  };
   return (
-    <section className={styles['form-container']}>
-      <div className={styles['title-container']}>
-        <button
-          className={styles.close}
-          onClick={handleClose}
-          aria-label="close modal"
-        >
-          <Icon.Close />
-        </button>
-        <h2>Код нового пристрою</h2>
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          {...register('newDeviceCode')}
-          placeholder="####"
-          type="text"
-          autoFocus
-          errorMessage={errors.newDeviceCode?.message}
-        />
+    <section
+      className={`${styles['form-container']} ${styles['form-container__device-code']}`}
+    >
+      <p className={styles.description}>{t('device-code.description')}</p>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div className={styles.wrapper}>
+          <Input
+            {...register('newDeviceCode')}
+            placeholder={t('device-code.placeholder')}
+            type="text"
+            sizeSpan="s"
+            errorMessage={errors.newDeviceCode?.message}
+          />
+          <button onClick={handleRepeatSendCode}>
+            {t('device-code.link')}
+          </button>
+        </div>
         <Button
           type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
-          text="Підтвердити"
+          text={t('device-code.button')}
           disabled={!isValid || isSubmitting}
         />
       </form>

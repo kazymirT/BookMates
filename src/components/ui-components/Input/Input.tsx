@@ -27,6 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       requiredMessage,
       onFocus,
       onBlur,
+      sizeSpan,
       ...rest
     },
     ref
@@ -90,6 +91,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       [styles['span-active']]: isFocus,
       [styles['span-inactive']]: !isFocus,
       [styles['span-animation']]: isAnimation,
+      [styles[`span__${sizeSpan}`]]: sizeSpan,
     });
 
     const inputPasswordClass = classNames(styles.button, {
