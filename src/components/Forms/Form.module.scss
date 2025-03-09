@@ -1,20 +1,17 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
-@use '@/styles/mixin.scss';
-
 @import '@/styles';
 
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 24px;
 
   box-sizing: border-box;
   width: 100%;
-  min-width: 38.875rem;
-  padding: 2em;
+  min-width: 320px;
+  max-width: 320px;
+  padding: 32px 20px;
 
-  background-color: colors.$accent-white;
+  background-color: $accent-white;
   border-radius: 8px;
   box-shadow: 2px 3px 37px 0 rgb(0 0 0 / 25%);
 
@@ -22,13 +19,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 
     h2 {
-      @include mixin.font-styles(fonts.$font-family, 1.5rem, 700, 1.21, colors.$grey-500, 0.07em);
+      @include font-styles($font-family, 1.5rem, 700, 1.21, $grey-500, 0.07em);
     }
 
     .close {
       @include flex-center;
+
+      padding: 0;
 
       &:hover {
         @include icon-state($icon-hover);
@@ -43,12 +43,12 @@
   form {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 16px;
 
     .input-container {
       display: flex;
       flex-direction: column;
-      gap: 0.75em;
+      gap: 10px;
 
       .email-container {
         display: flex;
@@ -64,57 +64,75 @@
         p {
           font-size: 0.75rem;
           line-height: 1.25;
-          color: colors.$accent-red;
+          color: $accent-red;
           letter-spacing: 0.03em;
         }
 
         button {
-          @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+          @include hover-active_color($brown-300, $brown-400);
 
           padding: 0;
 
           font-size: 0.75em;
           font-weight: 600;
           line-height: 1.25;
-          color: colors.$grey-500;
+          color: $grey-500;
           letter-spacing: 0.02em;
         }
 
         .remember {
-          @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+          @include hover-active_color($brown-300, $brown-400);
 
           font-weight: 600;
-          color: colors.$grey-500;
+          color: $grey-500;
         }
       }
 
       .password-hint {
-        @include mixin.font-styles(fonts.$font-family, 0.75rem, 400, 1.167);
+        @include font-styles($font-family, 0.75rem, 400, 1.167);
+      }
+
+      @media (width >= 768px) {
+        gap: 12px;
       }
     }
 
     .reset-password {
-      @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.21, colors.$grey-500, 0.06em);
+      @include font-styles($font-family, 1rem, 500, 1.21, $grey-500, 0.06em);
 
-      @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+      @include hover-active_color($brown-300, $brown-400);
 
       align-self: self-start;
+
+      padding: 0;
+
+      text-decoration: underline;
+      text-underline-offset: 3px;
+
       transition: all 0.3s;
+    }
+
+    @media (width >= 768px) {
+      gap: 24px;
     }
   }
 
   .register {
-    @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.06);
+    @include font-styles($font-family, 1rem, 500, 1.06);
 
-    @include mixin.hover-active_color(colors.$brown-300, colors.$brown-400);
+    @include hover-active_color($brown-300, $brown-400);
 
     align-self: center;
+
     text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
     transition: all 0.3s;
   }
 
   .terms {
-    @include mixin.font-styles(fonts.$font-family, 0.75rem, 400, 1.2, colors.$grey-500, 0);
+    @include font-styles($font-family, 0.75rem, 400, 1.2, $grey-500, 0);
 
     max-width: 32.875rem;
 
@@ -125,7 +143,7 @@
   }
 
   .success {
-    @include mixin.font-styles(fonts.$font-family, 1rem, 500, 1.21);
+    @include font-styles($font-family, 1rem, 500, 1.21);
 
     max-width: 34.875rem;
   }
@@ -143,8 +161,24 @@
     }
 
     p {
-      @include mixin.font-styles(fonts.$font-family, 1rem, 400, 1.188, colors.$grey-500, 0.04em);
+      @include font-styles($font-family, 1rem, 400, 1.188, $grey-500, 0.04em);
     }
+  }
+
+  @media (width >= 393px) {
+    min-width: 393px;
+    max-width: 393px;
+  }
+
+  @media (width >= 576px) {
+    min-width: 500px;
+    max-width: 500px;
+    padding: 32px;
+  }
+
+  @media (width >= 768px) {
+    min-width: 622px;
+    max-width: 622px;
   }
 }
 
@@ -160,37 +194,37 @@
 
   font-size: 1rem;
   line-height: 1.188rem;
-  color: colors.$grey-300;
+  color: $grey-300;
   letter-spacing: 0.01em;
 
   background-color: transparent;
-  border: 1px solid colors.$grey-100;
+  border: 1px solid $grey-100;
   border-radius: 0.25rem;
 
   &:active {
-    border-color: colors.$brown-300;
+    border-color: $brown-300;
   }
 
   &:valid {
-    color: colors.$accent-success;
-    border-color: colors.$accent-success;
+    color: $accent-success;
+    border-color: $accent-success;
   }
 
   &:hover {
-    border-color: colors.$grey-200;
+    border-color: $grey-200;
   }
 
   &.textarea-error {
-    color: colors.$accent-red;
-    border-color: colors.$accent-red;
+    color: $accent-red;
+    border-color: $accent-red;
 
     &::placeholder {
-      color: colors.$accent-red;
+      color: $accent-red;
     }
 
     & + p {
       font-size: 0.75em;
-      color: colors.$accent-red;
+      color: $accent-red;
       letter-spacing: 0.01em;
     }
   }
@@ -202,6 +236,6 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.188rem;
-  color: colors.$grey-500;
+  color: $grey-500;
   letter-spacing: 0.03em;
 }
