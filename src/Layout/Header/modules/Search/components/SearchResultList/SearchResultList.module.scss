@@ -25,5 +25,9 @@
     gap: 0;
 
     height: 100%;
+
+    & > a:nth-child(3)::after {
+      content: none;
+    }
   }
 }
