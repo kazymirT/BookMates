@@ -3,7 +3,7 @@
 .results {
   position: absolute;
   z-index: 10;
-  top: 78px;
+  top: 45px;
   left: 0;
 
   display: flex;
@@ -39,5 +39,13 @@
 
   & button {
     margin-bottom: 32px;
+  }
+
+  @media (width >= 768px) {
+    top: 144px;
+  }
+
+  @media (width >= 992px) {
+    top: 78px;
   }
 }
