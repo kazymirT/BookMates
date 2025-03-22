@@ -5,13 +5,13 @@ export const userApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
     deleteUser: builder.mutation<UserResponse, number>({
       query: (id) => ({
-        url: `v1/user/${id}`,
+        url: `/user/${id}`,
         method: 'DELETE',
-      }), //no working
+      }), // TODO: Перевірити чи працює
     }),
     meUser: builder.mutation<UserResponse, { user: string }>({
       query: () => ({
-        url: `v1/user/me`,
+        url: `/user/me`,
       }),
     }),
   }),
@@ -19,3 +19,4 @@ export const userApi = baseNewApi.injectEndpoints({
 });
 
 export const { useDeleteUserMutation, useMeUserMutation } = userApi;
+// HACK: dsdsdsdsd

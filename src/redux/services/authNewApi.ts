@@ -16,7 +16,7 @@ export const authApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, Login>({
       query: (body) => ({
-        url: 'v1/auth/login',
+        url: '/auth/login',
         method: 'POST',
         body,
       }),
@@ -48,14 +48,13 @@ export const authApi = baseNewApi.injectEndpoints({
               })
             );
             dispatch(toggleModal({ openedModalType: 'device-code' }));
-            console.log('config device');
           }
         }
       },
     }),
     register: builder.mutation<RegisterResponse, Register>({
       query: (body) => ({
-        url: 'v1/auth/register',
+        url: '/auth/register',
         method: 'POST',
         body,
       }),
@@ -81,7 +80,7 @@ export const authApi = baseNewApi.injectEndpoints({
     }),
     verifyEmail: builder.mutation<VerifyEmailResponse, { code: string }>({
       query: (body) => ({
-        url: 'v1/auth/verify-email',
+        url: '/auth/verify-email',
         method: 'PATCH',
         body,
       }),
