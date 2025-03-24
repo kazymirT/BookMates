@@ -5,14 +5,16 @@ import Collections from './modules/Collections/Collections';
 import Newness from './modules/Newness/Newness';
 import Sale from './modules/Sale/Sale';
 import Subscription from '../../components/Subscription/Subscription';
+import { useGetBooksForMainQuery } from '@/redux/services/booksNew';
 
 const Home = () => {
+  const { data } = useGetBooksForMainQuery({ lang: 'ua' });
   return (
     <>
       <Banner />
       <div className={styles.home}>
-        <Newness />
-        <Sale />
+        <Newness books={data?.news} />
+        <Sale books={data?.sale} />
         <Collections />
         <Authors />
         <Subscription variant="home" />
