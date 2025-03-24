@@ -128,19 +128,6 @@ export type BookById = {
   discountPrice: number;
 };
 
-export type BooksData = {
-  id: number;
-  title: string;
-  year: number;
-  price: number;
-  totalQuantity: number;
-  authors: string[];
-  imageUrl: string;
-  expected: boolean;
-  discount: number;
-  discountPrice: number;
-};
-
 export type BooksListResponse = {
   totalPages: number;
   totalElements: number;
@@ -222,4 +209,71 @@ export interface AllAttributes {
   authors: Attributes[];
   categories: Attributes[];
   years: Attributes[];
+}
+
+// new api types
+
+export type BooksData = {
+  id: number;
+  title: string;
+  year: number;
+  price: number;
+  totalQuantity: number;
+  authors: string[];
+  imageUrl: string;
+  expected: boolean;
+  discount: number;
+  discountPrice: number;
+};
+export interface BooksMainPage {
+  news: Book[];
+  sale: Book[];
+}
+
+export interface BookByIdNew {
+  id: number;
+  image: string;
+  titleUA: string;
+  authorUA: string;
+  published: string;
+  coverUA: string;
+  pages: number;
+  price: number;
+  languagesUA: string[];
+  descriptionUA: string;
+  inStock: number;
+  discount: number;
+  isNew: boolean;
+  categories: string[];
+  discountPrice: number;
+}
+export interface Book {
+  id: number;
+  titleUA: string;
+  image: string;
+  authorUA: string;
+  price: number;
+  discount: number | null;
+  discountPrice?: number;
+  isNew?: boolean;
+}
+export interface BooksResponse {
+  data: Book[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface BooksArgsNew {
+  lang: 'ua' | 'en';
+  years?: string[];
+  languages?: string[];
+  minPrice?: string;
+  maxPrice?: string;
+  sortPrice?: 'DESC' | 'ASC';
+  isNew?: boolean;
+  alphabetical?: boolean;
+  limit?: string;
+  page?: string;
 }
