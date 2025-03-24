@@ -24,7 +24,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
     <ul className={styles.pagination}>
       <PaginationArrow
         direction="prev"
-        isDisabled={currentPage === 0}
+        isDisabled={currentPage === 1}
         onClick={() => handlePageClick(currentPage)}
         aria="prev page"
         testid={PREV_BUTTON_ID}
@@ -33,14 +33,14 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
         <PaginationButton
           key={page}
           page={page}
-          isActive={currentPage + 1 === page}
+          isActive={currentPage === page}
           onClick={() => handlePageClick(page)}
         />
       ))}
       <PaginationArrow
         direction="next"
-        isDisabled={currentPage + 1 === totalPages}
-        onClick={() => handlePageClick(currentPage + 2)}
+        isDisabled={currentPage === totalPages}
+        onClick={() => handlePageClick(currentPage + 1)}
         aria="next page"
         testid={NEXT_BUTTON_ID}
       />
