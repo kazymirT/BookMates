@@ -96,6 +96,7 @@ export const english = {
     'number-of-pages': 'Number of pages:',
     characteristics: 'Characteristics:',
     available: 'The product is available',
+    inaccessible: 'The product is inaccessible',
   },
   order: {
     title: 'Make an order',

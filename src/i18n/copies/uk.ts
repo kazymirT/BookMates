@@ -97,6 +97,7 @@ export const ukraine = {
     'btn-basket': 'До кошика',
     'btn-in-basket': 'В кошику',
     available: 'Товар у наявності',
+    inaccessible: 'Товар не у наявності',
   },
   order: {
     title: 'Оформити замовлення',
