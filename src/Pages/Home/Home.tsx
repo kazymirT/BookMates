@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import styles from './Home.module.scss';
 import Authors from './modules/Authors/Authors';
 import Banner from './modules/Banner/Banner';
@@ -8,7 +10,9 @@ import Subscription from '../../components/Subscription/Subscription';
 import { useGetBooksForMainQuery } from '@/redux/services/booksNew';
 
 const Home = () => {
-  const { data } = useGetBooksForMainQuery({ lang: 'ua' });
+  const { i18n } = useTranslation();
+  const lang = i18n.language === 'en' ? 'en' : 'ua';
+  const { data } = useGetBooksForMainQuery({ lang });
   return (
     <>
       <Banner />

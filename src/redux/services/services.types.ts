@@ -233,14 +233,14 @@ export interface BooksMainPage {
 export interface BookByIdNew {
   id: number;
   image: string;
-  titleUA: string;
-  authorUA: string;
+  title: string;
+  author: string;
   published: string;
-  coverUA: string;
+  cover: string;
   pages: number;
   price: number;
-  languagesUA: string[];
-  descriptionUA: string;
+  languages: string[];
+  description: string;
   inStock: number;
   discount: number;
   isNew: boolean;
@@ -249,9 +249,9 @@ export interface BookByIdNew {
 }
 export interface Book {
   id: number;
-  titleUA: string;
+  title: string;
   image: string;
-  authorUA: string;
+  author: string;
   price: number;
   discount: number | null;
   discountPrice?: number;

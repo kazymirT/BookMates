@@ -12,21 +12,28 @@ import SkeletonProductPage from '@/components/Skeleton/SkeletonProductPage';
 import Slider from '@/components/Slider/Slider';
 import Subscription from '@/components/Subscription/Subscription';
 import { PRODUCT_OF_SLIDER } from '@/constants/slider';
-import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
+import {
+  useGetBookByIdQuery,
+  useGetBooksQuery,
+} from '@/redux/services/booksNew';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {
-  const { t } = useTranslation();
-  const { productId } = useParams();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === 'en' ? 'en' : 'ua';
   const { data: books, isLoading: isLoadingSlide } = useGetBooksQuery({
-    size: `${PRODUCT_OF_SLIDER}`,
+    limit: `${PRODUCT_OF_SLIDER}`,
+    lang,
   });
-  const { data: book, isLoading } = useGetBookByIdQuery(productId ?? skipToken);
+  const { productId } = useParams();
+  const { data: book, isLoading } = useGetBookByIdQuery(
+    productId ? { id: productId, lang: lang } : skipToken
+  );
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
     book && {
-      name: book.categories[0].name,
-      to: `/catalog?categories=${book.categories[0].id}&page=1`,
+      name: book.categories[0],
+      to: `/catalog?categories=${book.categories[0]}&page=1`,
     }
   );
   return (
@@ -38,7 +45,7 @@ const Product = () => {
             <section className={styles['details-product']}>
               <div className={styles['img-box']}>
                 <img
-                  src={book.imageUrl}
+                  src={book.image}
                   alt={book && book.title}
                   width={270}
                   height={406}
@@ -53,8 +60,8 @@ const Product = () => {
             <h3 className={styles.title}>{t('product.offers')}</h3>
             <Slider sliderCL="slider-section" arrows>
               {books &&
-                books.content.map((item) => (
-                  <ProductCard key={item.id} data={item} variant="slider" />
+                books.data.map((book) => (
+                  <ProductCard key={book.id} data={book} variant="slider" />
                 ))}
               {isLoadingSlide &&
                 Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
