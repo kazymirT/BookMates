@@ -12,10 +12,7 @@ import SkeletonProductPage from '@/components/Skeleton/SkeletonProductPage';
 import Slider from '@/components/Slider/Slider';
 import Subscription from '@/components/Subscription/Subscription';
 import { PRODUCT_OF_SLIDER } from '@/constants/slider';
-import {
-  useGetBookByIdQuery,
-  useGetBooksQuery,
-} from '@/redux/services/booksNew';
+import { useGetBookByIdQuery, useGetBooksQuery } from '@/redux/services/books';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Product = () => {

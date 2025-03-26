@@ -7,7 +7,7 @@ import Collections from './modules/Collections/Collections';
 import Newness from './modules/Newness/Newness';
 import Sale from './modules/Sale/Sale';
 import Subscription from '../../components/Subscription/Subscription';
-import { useGetBooksForMainQuery } from '@/redux/services/booksNew';
+import { useGetBooksForMainQuery } from '@/redux/services/books';
 
 const Home = () => {
   const { i18n } = useTranslation();
