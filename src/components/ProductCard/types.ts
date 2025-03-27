@@ -1,6 +1,6 @@
-import { BooksData } from '@/redux/services/services.types';
+import { Book } from '@/redux/services/services.types';
 
 export interface ProductCardProps {
-  data: BooksData;
+  data: Book;
   variant: 'catalog' | 'slider';
 }
