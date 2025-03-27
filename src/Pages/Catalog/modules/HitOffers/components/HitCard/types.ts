@@ -1,5 +1,5 @@
-import { BooksData } from '@/redux/services/services.types';
+import { Book } from '@/redux/services/services.types';
 
 export interface HitCardProps {
-  data: BooksData;
+  data: Book;
 }
