@@ -12,7 +12,6 @@
     gap: 11px;
 
     width: 100%;
-    // height: clamp(7.625rem, 1.944rem + 23.129vw, 14rem);
     height: clamp(8.5rem, 3.599rem + 19.955vw, 14rem);
     padding: 16px 20px;
 
@@ -35,8 +34,8 @@
       }
 
       @media (width >= 1280px) {
-        width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem); //648 - 981
-        height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem); // 224 - 344
+        width: clamp(40.5rem, 1.582rem + 74.664vw, 61.313rem);
+        height: clamp(14rem, -0.025rem + 26.906vw, 21.5rem);
       }
     }
 
@@ -63,7 +62,7 @@
         }
 
         @media (width >= 992px) {
-          font-size: clamp(1.313rem, -1.056rem + 3.819vw, 2rem); //21 - 32
+          font-size: clamp(1.313rem, -1.056rem + 3.819vw, 2rem);
         }
       }
 
@@ -76,7 +75,7 @@
         letter-spacing: -0.03em;
 
         @media (width >= 992px) {
-          font-size: clamp(0.688rem, -0.389rem + 1.736vw, 1rem); //11 16
+          font-size: clamp(0.688rem, -0.389rem + 1.736vw, 1rem);
         }
       }
 
@@ -86,7 +85,7 @@
 
       @media (width >= 992px) {
         gap: 22px;
-        max-width: clamp(20rem, -12.507rem + 52.431vw, 29.438rem); //320 / 471
+        max-width: clamp(20rem, -12.507rem + 52.431vw, 29.438rem);
       }
     }
 

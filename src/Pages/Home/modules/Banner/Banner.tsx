@@ -4,11 +4,9 @@ import { BANNER_DATA } from './data';
 import Slide from './Slide/Slide';
 import SkeletonBannerSlide from '@/components/Skeleton/SkeletonBannerSlide';
 import Slider from '@/components/Slider/Slider';
-import { useAppSelector } from '@/redux/hooks';
-import { isLoading } from '@/redux/slices/skeletonSlice';
 
 const Banner = () => {
-  const isSkeleton = useAppSelector(isLoading);
+  const isSkeleton = false;
   return (
     <div className={styles.banner}>
       <Slider
