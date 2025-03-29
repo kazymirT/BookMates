@@ -20,19 +20,21 @@
 
       width: 100%;
 
-      & > a:nth-child(4) {
+      & > a:nth-child(4),
+      div:nth-child(4) {
         display: none;
 
         @media (width >= 992px) {
-          display: block;
+          display: flex;
         }
       }
 
-      & > a:nth-child(3) {
+      & > a:nth-child(3),
+      div:nth-child(3) {
         display: none;
 
         @media (width >= 576px) {
-          display: block;
+          display: flex;
         }
       }
 

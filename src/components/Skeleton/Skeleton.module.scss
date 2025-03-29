@@ -117,12 +117,24 @@
   flex-direction: column;
   justify-content: end;
 
-  width: 221px;
-  height: 200px;
+  aspect-ratio: 1/1;
+  width: 100%;
+  min-width: 135px;
+  max-width: 264px;
+  height: auto;
   padding: 10px;
 
   background-color: $background-skeleton;
   border-radius: 8px;
+
+  & > div {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (width >= 1024px) {
+    aspect-ratio: 1.1;
+  }
 }
 
 .category {
