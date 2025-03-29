@@ -104,12 +104,23 @@
   flex-direction: column;
   justify-content: end;
 
-  width: 233px;
-  height: 330px;
+  aspect-ratio: 0.76;
+  width: 100%;
+  min-width: 135x;
+  max-width: 233px;
   padding: 20px;
 
   background-color: $background-skeleton;
   border-radius: 8px;
+
+  @media (width >= 576px) {
+    aspect-ratio: 0.74;
+    max-width: 264px;
+  }
+
+  @media (width >= 992px) {
+    aspect-ratio: 0.705;
+  }
 }
 
 .collection {
