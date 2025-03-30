@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 20px;
 
-  height: 456px;
+  height: 322px;
   padding: 11.2px 8px;
 
   background-color: $background-skeleton;
@@ -18,7 +18,27 @@
   }
 
   &__slider {
-    width: 220px;
+    width: 100%;
+    width: clamp(8.75rem, -1.113rem + 49.315vw, 11rem);
+    height: clamp(20.125rem, 16.785rem + 13.6vw, 23.313rem);
+
+    @media (width >= 393px) {
+      width: clamp(9.313rem, -0.888rem + 41.53vw, 14.063rem);
+      max-width: none;
+    }
+
+    @media (width >= 576px) {
+      width: clamp(9.375rem, 0.445rem + 24.806vw, 13.375rem);
+    }
+
+    @media (width >= 834px) {
+      width: clamp(13.375rem, 2.95rem + 20vw, 15.75rem);
+      height: 383px;
+    }
+
+    @media (width >= 1024px) {
+      width: clamp(12.5rem, 7.5rem + 7.813vw, 13.75rem);
+    }
   }
 
   .wrapper {
@@ -44,6 +64,10 @@
         }
       }
     }
+  }
+
+  @media (width >= 834px) {
+    height: clamp(23.938rem, 15.376rem + 16.404vw, 28.5rem);
   }
 }
 
