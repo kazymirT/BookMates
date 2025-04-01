@@ -1,5 +1,4 @@
-import { BookById } from '@/redux/services/services.types';
-import { Attributes } from '@/redux/services/services.types';
+import { Attributes, BookById } from '@/redux/services/services.types';
 
 export interface ProductDetailsItemProps {
   link?: string;

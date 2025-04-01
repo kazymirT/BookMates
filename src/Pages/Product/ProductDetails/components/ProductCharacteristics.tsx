@@ -12,7 +12,7 @@ const ProductCharacteristics: FC<ProductCharacteristicsProps> = ({ book }) => {
       <ProductDetailsItem
         name={t('product.years')}
         link="/catalog?years="
-        options={book.year}
+        options={[{ id: Number(book.published), name: book.published }]}
       />
       <ProductDetailsItem
         name={t('product.language')}
@@ -21,11 +21,11 @@ const ProductCharacteristics: FC<ProductCharacteristicsProps> = ({ book }) => {
       />
       <ProductDetailsItem
         name={t('product.cover')}
-        options={[{ id: 1, name: 'Тверда' }]}
+        options={[{ id: 1, name: book.cover }]}
       />
       <ProductDetailsItem
         name={t('product.number-of-pages')}
-        options={[{ id: 1, name: `288` }]}
+        options={[{ id: 1, name: String(book.pages) }]}
       />
       <ProductDetailsItem
         name={t('product.categories')}

@@ -24,13 +24,13 @@ const Product = () => {
   });
   const { productId } = useParams();
   const { data: book, isLoading } = useGetBookByIdQuery(
-    productId ? { id: productId, lang: lang } : skipToken
+    productId ? { id: productId, lang } : skipToken
   );
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
     book && {
-      name: book.categories[0],
-      to: `/catalog?categories=${book.categories[0]}&page=1`,
+      name: book.categories[0].name,
+      to: `/catalog?categories=${book.categories[0].id}&page=1`,
     }
   );
   return (
