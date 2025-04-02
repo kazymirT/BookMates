@@ -2,8 +2,7 @@ import { FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
-// import { AuthResponse } from './services.types';
-// import { login, logout } from '../slices/userSlice';
+import { login, logout } from '../slices/userSlice';
 import { RootState } from '../store';
 
 const baseURLApi = import.meta.env.VITE_API_BASE_NEW_URL;
@@ -21,30 +20,39 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
+export type RefreshResponse = {
+  accessToken: string;
+};
 
 const baseQueryWithReAuth: BaseQueryFn<
   string | FetchArgs,
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  const result = await baseQuery(args, api, extraOptions);
-  // const user = (api.getState() as RootState).user.user;
+  let result = await baseQuery(args, api, extraOptions);
+  const user = (api.getState() as RootState).user.user;
   if (result.error) {
     console.log(result.error, 'перехоплювач глобальний');
   }
-  // if (result?.error?.status === 401 && user) {
-  //   const refreshResult = await baseQuery('refresh', api, extraOptions);
+  if (result?.error?.status === 401 && user) {
+    const refreshResult = await baseQuery(
+      {
+        url: '/auth/refresh-token',
+        method: 'POST',
+      },
+      api,
+      extraOptions
+    );
+    if (refreshResult?.data) {
+      const { accessToken } = refreshResult.data as RefreshResponse;
 
-  //   if (refreshResult?.data) {
-  //     const { token } = refreshResult.data as AuthResponse;
+      api.dispatch(login({ accessToken, user }));
 
-  //     api.dispatch(login({ token, user }));
-
-  //     result = await baseQuery(args, api, extraOptions);
-  //   } else {
-  //     api.dispatch(logout());
-  //   }
-  // }
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      api.dispatch(logout());
+    }
+  }
   return result;
 };
 
