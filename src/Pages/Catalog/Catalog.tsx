@@ -11,16 +11,17 @@ import { queryAllData } from '@/redux/slices/queryParams';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Catalog = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isEnglish = i18n.language === 'en';
   const {
     filter: { categories },
   } = useAppSelector(queryAllData);
 
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.catalog'),
-    categories && categories.length > 0 && categories[0].name
+    categories && categories.length > 0
       ? {
-          name: categories[0].name,
+          name: isEnglish ? categories[0].nameEN : categories[0].nameUA,
           to: `/`,
         }
       : undefined

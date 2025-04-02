@@ -5,19 +5,26 @@ import styles from './BookCategory.module.scss';
 import { MAX_CATEGORY_LENGTH } from './constants';
 import SkeletonCategory from '@/components/Skeleton/SkeletonCategories';
 import { useAppDispatch } from '@/redux/hooks';
-import { useGetAllAttributesQuery } from '@/redux/services/attributes';
+import {
+  MetaAttributes,
+  useGetAllAttributesMetaQuery,
+} from '@/redux/services/meta';
 import { addFilterItem } from '@/redux/slices/queryParams';
 
 const BookCategory = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
-  const { data: category, isSuccess, isLoading } = useGetAllAttributesQuery();
+  const {
+    data: category,
+    isSuccess,
+    isLoading,
+  } = useGetAllAttributesMetaQuery();
 
-  const setCategory = (id: number, name: string) => {
+  const setCategory = (item: MetaAttributes) => {
     dispatch(
       addFilterItem({
         filterName: 'categories',
-        attributes: { id, name },
+        attributes: item,
         isClean: true,
       })
     );
@@ -32,16 +39,16 @@ const BookCategory = () => {
       <h3 className={styles.title}>{t('catalog.title-two')}</h3>
       <div className={styles.content}>
         {isSuccess &&
-          category.categories
+          category.cats
             .slice(0, MAX_CATEGORY_LENGTH)
-            .map(({ id, name }) => (
+            .map(({ id, nameEN, nameUA }) => (
               <button
                 type="button"
-                onClick={() => setCategory(id, name)}
+                onClick={() => setCategory({ id, nameEN, nameUA })}
                 key={id}
                 className={linkClass(id)}
               >
-                {name}
+                {i18n.language === 'en' ? nameEN : nameUA}
               </button>
             ))}
         {isLoading && <SkeletonCategory />}

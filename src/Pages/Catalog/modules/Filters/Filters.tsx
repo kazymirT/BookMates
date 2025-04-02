@@ -1,11 +1,9 @@
-import { FC } from 'react';
-
 import FilterContent from './components/FilterContent/FilterContent';
 import styles from './Filters.module.scss';
-import { useGetAllAttributesQuery } from '@/redux/services/attributes';
+import { useGetAllAttributesMetaQuery } from '@/redux/services/meta';
 
-const Filters: FC = () => {
-  const { data: attributes, isSuccess } = useGetAllAttributesQuery();
+const Filters = () => {
+  const { data: attributes, isSuccess } = useGetAllAttributesMetaQuery();
 
   return (
     <div className={styles.filters}>
