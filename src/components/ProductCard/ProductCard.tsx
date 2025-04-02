@@ -18,14 +18,13 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
   const isFlyBook = useAppSelector(isFly);
   const { flyToCart } = useFlyToCart();
 
-  const { title, discount, discountPrice, id, image, price, author } = data;
+  const { title, discount, discountPrice, id, image, price, authors } = data;
   const imgRef = useRef<HTMLImageElement | null>(null);
-
   const addItemToCart = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(
       addGoods({
-        authors: author.split(' '),
+        authors: authors.map(({ name }) => name),
         discount: discount || 0,
         discountPrice: discountPrice || price,
         id,
@@ -63,7 +62,9 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
           <div className={styles.content}>
             <div className={styles['title-wrapper']}>
               <h3 className={styles.title}>{title}</h3>
-              <h3 className={styles.author}>{author}</h3>
+              <h3 className={styles.author}>
+                {authors.map(({ name }) => name).join(', ')}
+              </h3>
             </div>
             <div className={styles.price}>
               {discount ? (
