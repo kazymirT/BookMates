@@ -5,7 +5,6 @@ import {
   BooksMainPage,
   BooksResponse,
 } from './services.types';
-// &sortPrice=ASC&new=true&alphabetical=true&
 export const booksApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
     getBooks: builder.query<BooksResponse, BooksArgsNew>({

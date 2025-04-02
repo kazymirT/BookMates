@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import { MetaAttributes } from '../services/meta';
 import { RootState } from '../store';
 import {
   deleteSearchParams,
@@ -9,12 +10,10 @@ import {
 
 const params = new URLSearchParams(window.location.search);
 
-type Attributes = { id: number; name: string };
-
 export type FilterType = {
-  years: Attributes[];
-  categories: Attributes[];
-  language: Attributes[];
+  categories: MetaAttributes[];
+  language: MetaAttributes[];
+  years: MetaAttributes[];
 };
 
 export type QueryParamsState = {
@@ -71,7 +70,7 @@ export const queryParamsSlice = createSlice({
       state,
       action: PayloadAction<{
         filterName: keyof FilterType;
-        attributes: { id: number; name: string };
+        attributes: MetaAttributes;
         isClean?: boolean;
       }>
     ) => {
@@ -81,10 +80,7 @@ export const queryParamsSlice = createSlice({
       if (isClean) {
         state.filter[filterName] = [attributes];
       } else {
-        if (
-          filterArray &&
-          !filterArray.some((attr) => attr.id === attributes.id)
-        ) {
+        if (filterArray && !filterArray.some((attr) => attr === attributes)) {
           filterArray.push(attributes);
         }
       }
@@ -99,7 +95,7 @@ export const queryParamsSlice = createSlice({
       state,
       action: PayloadAction<{
         filterName: keyof FilterType;
-        attributes: { id: number; name: string };
+        attributes: MetaAttributes;
       }>
     ) => {
       const { filterName, attributes } = action.payload;
