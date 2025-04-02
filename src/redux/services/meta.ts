@@ -23,6 +23,11 @@ export const AttributesApi = baseNewApi.injectEndpoints({
       query: () => 'meta/langs-categories-years',
       transformResponse: (response: MetaResponse) => ({
         ...response,
+        cats: response.cats.map(({ id, nameEN, nameUA }) => ({
+          id,
+          nameEN: nameEN.charAt(0).toLocaleUpperCase() + nameEN.slice(1),
+          nameUA: nameUA.charAt(0).toLocaleUpperCase() + nameUA.slice(1),
+        })),
         years: response.years.map((year) => ({
           id: Number(year),
           nameEN: year,

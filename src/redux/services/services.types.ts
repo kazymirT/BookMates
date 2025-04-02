@@ -112,21 +112,21 @@ export type BookByIdResponse = {
   discountPrice: number;
 };
 
-export type BookById = {
-  id: number;
-  title: string;
-  description: string;
-  year: Attributes[];
-  price: number;
-  totalQuantity: number;
-  languages: Attributes[];
-  authors: Attributes[];
-  categories: Attributes[];
-  imageUrl: string;
-  expected: true;
-  discount: number;
-  discountPrice: number;
-};
+// export type BookById = {
+//   id: number;
+//   title: string;
+//   description: string;
+//   year: Attributes[];
+//   price: number;
+//   totalQuantity: number;
+//   languages: Attributes[];
+//   authors: Attributes[];
+//   categories: Attributes[];
+//   imageUrl: string;
+//   expected: true;
+//   discount: number;
+//   discountPrice: number;
+// };
 
 export type BooksListResponse = {
   totalPages: number;
@@ -213,13 +213,18 @@ export interface AllAttributes {
 
 // new api types
 
+export interface Attributes {
+  id: number;
+  name: string;
+}
+
 export type BooksData = {
   id: number;
   title: string;
   year: number;
   price: number;
   totalQuantity: number;
-  authors: string[];
+  authors: Attributes[];
   imageUrl: string;
   expected: boolean;
   discount: number;
@@ -230,28 +235,28 @@ export interface BooksMainPage {
   sale: Book[];
 }
 
-export interface BookByIdNew {
+export interface BookById {
   id: number;
   image: string;
   title: string;
-  author: string;
+  description: string;
   published: string;
   cover: string;
   pages: number;
   price: number;
-  languages: string[];
-  description: string;
   inStock: number;
   discount: number;
   isNew: boolean;
-  categories: string[];
   discountPrice: number;
+  authors: Attributes[];
+  categories: Attributes[];
+  languages: Attributes[];
 }
 export interface Book {
   id: number;
   title: string;
   image: string;
-  author: string;
+  authors: Attributes[];
   price: number;
   discount: number | null;
   discountPrice?: number;
@@ -267,8 +272,8 @@ export interface BooksResponse {
 
 export interface BooksArgsNew {
   lang: 'ua' | 'en';
-  years?: string[];
-  languages?: string[];
+  years?: number[];
+  languages?: number[];
   minPrice?: string;
   maxPrice?: string;
   sortPrice?: 'DESC' | 'ASC';
@@ -276,4 +281,5 @@ export interface BooksArgsNew {
   alphabetical?: boolean;
   limit?: string;
   page?: string;
+  categoryId?: number[];
 }

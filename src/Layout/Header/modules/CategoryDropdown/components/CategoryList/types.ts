@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import { MetaAttributes } from '@/redux/services/meta';
+
 export interface CategoryListProps {
-  children: (id: number, name: string) => ReactNode;
+  children: (category: MetaAttributes) => ReactNode;
 }
