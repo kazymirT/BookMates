@@ -12,10 +12,10 @@ import {
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
 import { useProductControlLogic } from '@/hooks/useProductControlLogic';
-import { BookByIdNew } from '@/redux/services/services.types';
+import { BookById } from '@/redux/services/services.types';
 
 interface ProductControlProps {
-  book: BookByIdNew;
+  book: BookById;
 }
 
 const ProductControl: FC<ProductControlProps> = ({ book }) => {

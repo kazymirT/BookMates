@@ -10,13 +10,13 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { setBookId } from '@/redux/slices/adminSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { SORT_OPTIONS } from '@/utils/constants';
 
 const Books = () => {
   const dispatch = useAppDispatch();
   const { data: books } = useGetBooksQuery({
-    size: '99',
-    sort: [SORT_OPTIONS['Новинки']],
+    limit: '99',
+    isNew: true,
+    lang: 'ua',
   });
   const handleOnClick = (id: number) => {
     dispatch(setBookId(id));
@@ -49,14 +49,14 @@ const Books = () => {
           </tr>
         </thead>
         <tbody>
-          {books?.content.length &&
-            books.content.map((book) => (
+          {books?.total &&
+            books.data.map((book) => (
               <tr key={book.id} onClick={() => handleOnClick(book.id)}>
                 <td>
                   <span>{book.id}</span>
                 </td>
                 <td className={styles.img}>
-                  <img src={book.imageUrl} alt="" width={72} height={85} />
+                  <img src={book.image} alt="" width={72} height={85} />
                 </td>
                 <td className={styles.td}>
                   <p className={styles.title}>{book.title}</p>
@@ -68,10 +68,10 @@ const Books = () => {
                   <p className={styles.price}>{book.price}</p>
                 </td>
                 <td className={styles.td}>
-                  <p className={styles.years}>{book.year}</p>
+                  {/* <p className={styles.years}>{book.}</p> */}
                 </td>
                 <td className={styles.td}>
-                  <p className={styles.years}>{book.totalQuantity}</p>
+                  {/* <p className={styles.years}>{book.totalQuantity}</p> */}
                 </td>
               </tr>
             ))}

@@ -30,10 +30,10 @@ const EditBookForm: FC<EditBookProps> = ({
     defaultValues: {
       title: book.title,
       description: book.description,
-      year: String(book.year[0].name),
+      year: '2025',
       price: String(book.price),
-      totalQuantity: String(book.totalQuantity),
-      isExpected: book.expected,
+      totalQuantity: '100',
+      isExpected: true,
       authorNames: book.authors.map((author) => author.name),
       languageNames: book.languages.map((language) => language.name),
       categoryNames: book.categories.map((category) => category.name),

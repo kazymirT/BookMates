@@ -5,15 +5,16 @@ import styles from './HitCard.module.scss';
 import { HitCardProps } from './types';
 
 const HitCard: FC<HitCardProps> = ({
-  data: { author, title, id, image, discount, discountPrice, price },
+  data: { authors, title, id, image, discount, discountPrice, price },
 }) => {
+  const authorsString = authors.map((author) => author.name).join(', ');
   return (
     <Link to={`/product/${id}`} className={styles.card}>
       <img src={image} alt={title} width={129} height={160} />
       <div className={styles.wrapper}>
         <h3>{title}</h3>
         <div className={styles.content}>
-          <h4>{author}</h4>
+          <h4>{authorsString}</h4>
           <div className={styles.price}>
             <p className={styles['normal-price']}>
               <span className={styles.price}>{price} грн</span>
