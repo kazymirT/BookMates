@@ -1,33 +1,33 @@
-import { Position, Sizes, Variant } from '@ui_components/Button/constants';
-import { Icon } from '@ui_components/Icons';
+// import { Position, Sizes, Variant } from '@ui_components/Button/constants';
+// import { Icon } from '@ui_components/Icons';
 import { type FC } from 'react';
 
 import styles from './SearchResult.module.scss';
 import { type SearchResultProps } from './types';
-import SearchLoading from '../SearchLoading/SearchLoading';
-import SearchNoResults from '../SearchNoResults/SearchNoResults';
-import SearchOffers from '../SearchOffers/SearchOffers';
-import SearchResultItem from '../SearchResultItem/SearchResultItem';
-import SearchResultList from '../SearchResultList/SearchResultList';
-import { Button } from '@/components/ui-components/Button/Button';
-import { useGetBooksQuery } from '@/redux/services/books';
-import { SORT_OPTIONS } from '@/utils/constants';
+// import SearchLoading from '../SearchLoading/SearchLoading';
+// import SearchNoResults from '../SearchNoResults/SearchNoResults';
+// import SearchOffers from '../SearchOffers/SearchOffers';
+// import SearchResultItem from '../SearchResultItem/SearchResultItem';
+// import SearchResultList from '../SearchResultList/SearchResultList';
+// import { Button } from '@/components/ui-components/Button/Button';
+// import { useGetBooksQuery } from '@/redux/services/books';
+// import { SORT_OPTIONS } from '@/utils/constants';
 
 const SearchResult: FC<SearchResultProps> = ({
   value,
   isOpen,
-  onClickSearch,
+  // onClickSearch,
   t,
 }) => {
-  const {
-    data: books,
-    isLoading,
-    isSuccess,
-    isFetching,
-  } = useGetBooksQuery(
-    { size: '3', search: value, sort: [SORT_OPTIONS['Дорожчі']] },
-    { skip: value.length < 3 }
-  );
+  // const {
+  //   data: books,
+  //   isLoading,
+  //   isSuccess,
+  //   isFetching,
+  // } = useGetBooksQuery(
+  //   { limit: '3', search: value, sort: [SORT_OPTIONS['Дорожчі']] },
+  //   { skip: value.length < 3 }
+  // );
   return (
     isOpen && (
       <div className={styles.results}>
@@ -35,11 +35,11 @@ const SearchResult: FC<SearchResultProps> = ({
           <p className={styles.search}>
             {t('header.search.search', { value })}
           </p>
-          {isSuccess && books?.content.length ? (
+          {/* {isSuccess && books?.total ? (
             <>
               <SearchOffers />
               <SearchResultList>
-                {books.content.map((book) => (
+                {books.data.map((book) => (
                   <SearchResultItem
                     {...book}
                     onClickItem={onClickSearch}
@@ -51,9 +51,9 @@ const SearchResult: FC<SearchResultProps> = ({
           ) : (
             <SearchNoResults />
           )}
-          {isLoading && isFetching && <SearchLoading />}
+          {isLoading && isFetching && <SearchLoading />} */}
         </div>
-        {!!books?.content.length && (
+        {/* {!!books?.total && (
           <Button
             type="button"
             icon={<Icon.Arrow />}
@@ -63,7 +63,7 @@ const SearchResult: FC<SearchResultProps> = ({
             onClick={onClickSearch}
             variant={Variant.Basic}
           />
-        )}
+        )} */}
       </div>
     )
   );

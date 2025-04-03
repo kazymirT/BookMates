@@ -2,21 +2,22 @@ import { FC } from 'react';
 
 import styles from './AuthorBook.module.scss';
 import { AuthorBookProps } from './types';
-import HitCard from '@/Pages/Catalog/modules/HitOffers/components/HitCard/HitCard';
-import { useGetBooksQuery } from '@/redux/services/books';
+// import HitCard from '@/Pages/Catalog/modules/HitOffers/components/HitCard/HitCard';
+// import { useGetBooksQuery } from '@/redux/services/books';
 
 const AuthorBook: FC<AuthorBookProps> = ({ authorName }) => {
-  const { data: books } = useGetBooksQuery({ authors: [authorName] });
+  console.log(authorName);
+  // const { data: books } = useGetBooksQuery({ authors: [authorName] });
   return (
     <section className={styles.books}>
       <h3>Книги автора</h3>
-      {books && (
+      {/* {books && (
         <div>
           {books.content.map((book) => (
             <HitCard key={book.id} data={book} />
           ))}
         </div>
-      )}
+      )} */}
     </section>
   );
 };

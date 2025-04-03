@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './Author.module.scss';
 import { author } from './data';
-import AuthorBook from './modules/AuthorBook/AuthorBook';
+// import AuthorBook from './modules/AuthorBook/AuthorBook';
 import AuthorDescriptions from './modules/AuthorDescriptions/AuthorDescriptions';
 import Subscription from '../../components/Subscription/Subscription';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
@@ -27,7 +27,7 @@ const Author = () => {
             img={author.img}
             descriptions={author.descriptions}
           />
-          <AuthorBook authorName={author.name} />
+          {/* <AuthorBook authorName={author.name} /> */}
           <Subscription variant="author" />
         </div>
       </div>
