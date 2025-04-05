@@ -10,7 +10,15 @@ import { toggleShowBurgerMenu } from '@/redux/slices/burgerMenuSlice';
 
 const BurgerActions = () => {
   const dispatch = useAppDispatch();
-  const toggleOpen = () => dispatch(toggleShowBurgerMenu(true));
+  const toggleOpen = () => {
+    dispatch(toggleShowBurgerMenu(true));
+    navigator.vibrate([500, 250, 500, 250, 100]);
+    if (navigator.vibrate) {
+      navigator.vibrate(300);
+    } else {
+      alert('Vibration not supported on this device.');
+    }
+  };
   return (
     <Button
       type="button"
