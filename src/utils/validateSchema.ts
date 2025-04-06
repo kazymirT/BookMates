@@ -96,6 +96,23 @@ export const getResetPasswordSchema = (
 export type ResetPasswordValues = z.infer<
   ReturnType<typeof getResetPasswordSchema>
 >;
+export const getNewPasswordSchema = (
+  t: TFunction<'translation', undefined>
+) => {
+  return z
+    .object({
+      code: getCode(t),
+      password: getPassword(t),
+      confirmPassword: getPassword(t),
+    })
+    .refine((data) => data.confirmPassword === data.password, {
+      path: ['email'],
+      message: t?.('forms-error.password-confirm'),
+    });
+};
+export type NewPasswordValues = z.infer<
+  ReturnType<typeof getNewPasswordSchema>
+>;
 export const getRegisterSchema = (t: TFunction<'translation', undefined>) => {
   return z
     .object({
