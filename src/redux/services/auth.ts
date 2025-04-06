@@ -9,6 +9,7 @@ import {
 } from './services.types';
 import {
   setDeviceCodeError,
+  setIsDeviceCode,
   setLoginError,
   setNewPasswordError,
   setRegisterError,
@@ -16,11 +17,8 @@ import {
 } from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
 import { toggleStatus } from '../slices/statusSlice';
-import {
-  clearPendingLoginData,
-  login,
-  setPendingLoginData,
-} from '../slices/userSlice';
+import { login } from '../slices/userSlice';
+import { RootState } from '../store';
 
 export interface NewPassword {
   code: string;
@@ -39,10 +37,9 @@ export const authApi = baseNewApi.injectEndpoints({
         method: 'POST',
         body,
       }),
-      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled, getState }) {
         dispatch(toggleStatus('loading'));
         try {
-          dispatch(clearPendingLoginData());
           const { data } = (await queryFulfilled) as { data: LoginResponse };
           dispatch(
             login({ accessToken: data.accessToken, user: data.loggedInUser })
@@ -61,17 +58,11 @@ export const authApi = baseNewApi.injectEndpoints({
             dispatch(setLoginError({ code: status, message }));
           }
           if (status === 400) {
-            dispatch(
-              setPendingLoginData({
-                email: arg.email,
-                password: arg.password,
-              })
-            );
-            const isDeviceCode = message === 'You must confirm your device';
+            const isDeviceCode = (getState() as RootState).error.isDeviceCode;
             if (isDeviceCode) {
-              dispatch(toggleModal({ openedModalType: 'device-code' }));
-            } else {
               dispatch(setDeviceCodeError({ code: status, message }));
+            } else {
+              dispatch(setIsDeviceCode(true));
             }
           }
         }

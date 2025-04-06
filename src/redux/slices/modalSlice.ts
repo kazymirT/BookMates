@@ -24,7 +24,6 @@ export type ModalState = {
     | 'subscription-success'
     | 'subscription-error'
     | 'register-success'
-    | 'device-code'
     | 'new-password'
     | null;
   redirect: string;

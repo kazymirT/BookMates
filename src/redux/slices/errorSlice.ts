@@ -10,6 +10,7 @@ export type ErrorState = {
   resetPassword: { code: number; message: string } | null;
   newPassword: { code: number; message: string } | null;
   deviceCode: { code: number; message: string } | null;
+  isDeviceCode: boolean;
 };
 
 const initialState: ErrorState = {
@@ -19,6 +20,7 @@ const initialState: ErrorState = {
   resetPassword: null,
   newPassword: null,
   deviceCode: null,
+  isDeviceCode: false,
 };
 
 type ActionPayload = {
@@ -48,6 +50,9 @@ export const ErrorSlice = createSlice({
     setDeviceCodeError: (state, action: PayloadAction<ActionPayload>) => {
       state.deviceCode = action.payload;
     },
+    setIsDeviceCode: (state, action: PayloadAction<boolean>) => {
+      state.isDeviceCode = action.payload;
+    },
   },
 });
 
@@ -58,6 +63,7 @@ export const {
   setVerifyEmailError,
   setNewPasswordError,
   setDeviceCodeError,
+  setIsDeviceCode,
 } = ErrorSlice.actions;
 export const errorState = (state: RootState) => state.error;
 export default ErrorSlice.reducer;
