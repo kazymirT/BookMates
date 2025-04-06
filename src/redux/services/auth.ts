@@ -1,81 +1,128 @@
-// import { jwtDecode } from 'jwt-decode';
+import { baseNewApi } from './baseNewApi';
+import {
+  Login,
+  Register,
+  RegisterResponse,
+  LoginResponse,
+  VerifyEmailResponse,
+  ErrorResponse,
+} from './services.types';
+import { setLoginError, setRegisterError } from '../slices/errorSlice';
+import { toggleModal } from '../slices/modalSlice';
+import { toggleStatus } from '../slices/statusSlice';
+import { login, setPendingLoginData } from '../slices/userSlice';
 
-// import { baseApi } from './baseApi';
-// import {
-//   AuthResponse,
-//   TokenDecode,
-//   Error,
-//   Login,
-//   Register,
-// } from './services.types';
-// import { userApi } from './user';
-// import { toggleModal } from '../slices/modalSlice';
-// import { toggleStatus } from '../slices/statusSlice';
-// import { login } from '../slices/userSlice';
-// import { AppDispatch } from '../store';
+export interface NewPassword {
+  code: string;
+  newPassword: string;
+}
 
-// export const authApi = baseApi.injectEndpoints({
-//   endpoints: (builder) => ({
-//     login: builder.mutation<AuthResponse, Login>({
-//       query: (body) => ({
-//         url: 'open/auth/login',
-//         method: 'POST',
-//         body,
-//       }),
-//       async onQueryStarted(_, { dispatch, queryFulfilled }) {
-//         dispatch(toggleStatus('loading'));
-//         try {
-//           const { data } = (await queryFulfilled) as { data: AuthResponse };
-//           handleAuthSuccess(data, dispatch);
-//           dispatch(toggleStatus('succes'));
-//         } catch (error) {
-//           dispatch(toggleStatus('idle'));
-//           handleAuthError(error as Error);
-//         }
-//       },
-//     }),
-//     register: builder.mutation<AuthResponse, Register>({
-//       query: (body) => ({
-//         url: 'open/auth/register',
-//         method: 'POST',
-//         body,
-//       }),
-//       async onQueryStarted(_, { dispatch, queryFulfilled }) {
-//         dispatch(toggleStatus('loading'));
-//         try {
-//           const { data } = (await queryFulfilled) as { data: AuthResponse };
-//           handleAuthSuccess(data, dispatch);
-//           dispatch(toggleStatus('succes'));
-//         } catch (error) {
-//           dispatch(toggleStatus('idle'));
-//           handleAuthError(error as Error);
-//         }
-//       },
-//     }),
-//   }),
-//   overrideExisting: false,
-// });
+export interface ForgetPassword {
+  email: string;
+}
 
-// const handleAuthSuccess = async (data: AuthResponse, dispatch: AppDispatch) => {
-//   const { id, roles } = jwtDecode(data.token) as TokenDecode;
-//   const user = (await dispatch(userApi.endpoints.getUser.initiate(id))).data;
-//   user &&
-//     dispatch(
-//       login({
-//         token: data.token,
-//         user: {
-//           id,
-//           role: roles[0],
-//           firstName: user.firstName,
-//           lastName: user.lastName,
-//           email: user.email,
-//         },
-//       })
-//     );
-//   dispatch(toggleModal({ openedModalType: null }));
-// };
+export const authApi = baseNewApi.injectEndpoints({
+  endpoints: (builder) => ({
+    login: builder.mutation<LoginResponse, Login>({
+      query: (body) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body,
+      }),
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          const { data } = (await queryFulfilled) as { data: LoginResponse };
+          dispatch(
+            login({ accessToken: data.accessToken, user: data.loggedInUser })
+          );
+          dispatch(toggleModal({ openedModalType: null }));
+          dispatch(toggleStatus('succes'));
+        } catch (error) {
+          dispatch(toggleStatus('idle'));
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 401) {
+            dispatch(setLoginError({ code: status, message }));
+          }
+          if (status === 400) {
+            dispatch(
+              setPendingLoginData({
+                email: arg.email,
+                password: arg.password,
+              })
+            );
+            dispatch(toggleModal({ openedModalType: 'device-code' }));
+          }
+        }
+      },
+    }),
+    register: builder.mutation<RegisterResponse, Register>({
+      query: (body) => ({
+        url: '/auth/register',
+        method: 'POST',
+        body,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+          dispatch(toggleStatus('idle'));
+          dispatch(toggleModal({ openedModalType: 'register-success' }));
+        } catch (error) {
+          dispatch(toggleStatus('idle'));
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 409) {
+            dispatch(setRegisterError({ code: status, message }));
+          }
+        }
+      },
+    }),
+    verifyEmail: builder.mutation<VerifyEmailResponse, { code: string }>({
+      query: (body) => ({
+        url: '/auth/verify-email',
+        method: 'PATCH',
+        body,
+      }),
+    }),
+    forgetPassword: builder.mutation<string, ForgetPassword>({
+      query: (body) => ({
+        url: '/forget-password',
+        method: 'PATCH',
+        body,
+      }),
+    }),
+    setNewPassword: builder.mutation<string, NewPassword>({
+      query: (body) => ({
+        url: '/set-new-password',
+        method: 'PATCH',
+        body,
+      }),
+    }),
+    logout: builder.mutation<string, undefined>({
+      query: () => ({
+        url: '/logout',
+        method: 'PATCH',
+      }),
+    }),
+  }),
+  overrideExisting: false,
+});
 
-// // eslint-disable-next-line no-console
-// const handleAuthError = ({ data }: Error) => console.error(data);
-
-// export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useVerifyEmailMutation,
+  useForgetPasswordMutation,
+  useLogoutMutation,
+  useSetNewPasswordMutation,
+} = authApi;
