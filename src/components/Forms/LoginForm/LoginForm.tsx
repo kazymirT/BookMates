@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -44,7 +45,11 @@ const LoginForm = () => {
     dispatch(toggleModal({ openedModalType: 'reset-password' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const hideServerError = () => isServerError && dispatch(setLoginError(null));
-
+  useEffect(() => {
+    return () => {
+      dispatch(setLoginError(null));
+    };
+  }, [dispatch]);
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
