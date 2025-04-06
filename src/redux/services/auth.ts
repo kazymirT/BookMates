@@ -7,10 +7,20 @@ import {
   VerifyEmailResponse,
   ErrorResponse,
 } from './services.types';
-import { setLoginError, setRegisterError } from '../slices/errorSlice';
+import {
+  setDeviceCodeError,
+  setLoginError,
+  setNewPasswordError,
+  setRegisterError,
+  setResetPasswordError,
+} from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
 import { toggleStatus } from '../slices/statusSlice';
-import { login, setPendingLoginData } from '../slices/userSlice';
+import {
+  clearPendingLoginData,
+  login,
+  setPendingLoginData,
+} from '../slices/userSlice';
 
 export interface NewPassword {
   code: string;
@@ -32,6 +42,7 @@ export const authApi = baseNewApi.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         dispatch(toggleStatus('loading'));
         try {
+          dispatch(clearPendingLoginData());
           const { data } = (await queryFulfilled) as { data: LoginResponse };
           dispatch(
             login({ accessToken: data.accessToken, user: data.loggedInUser })
@@ -56,7 +67,12 @@ export const authApi = baseNewApi.injectEndpoints({
                 password: arg.password,
               })
             );
-            dispatch(toggleModal({ openedModalType: 'device-code' }));
+            const isDeviceCode = message === 'You must confirm your device';
+            if (isDeviceCode) {
+              dispatch(toggleModal({ openedModalType: 'device-code' }));
+            } else {
+              dispatch(setDeviceCodeError({ code: status, message }));
+            }
           }
         }
       },
@@ -96,21 +112,69 @@ export const authApi = baseNewApi.injectEndpoints({
     }),
     forgetPassword: builder.mutation<string, ForgetPassword>({
       query: (body) => ({
-        url: '/forget-password',
+        url: '/auth/forget-password',
         method: 'PATCH',
         body,
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+          dispatch(toggleModal({ openedModalType: 'new-password' }));
+        } catch (error) {
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 404) {
+            dispatch(
+              setResetPasswordError({
+                code: status,
+                message,
+              })
+            );
+          }
+        } finally {
+          dispatch(toggleStatus('idle'));
+        }
+      },
     }),
     setNewPassword: builder.mutation<string, NewPassword>({
       query: (body) => ({
-        url: '/set-new-password',
+        url: '/auth/set-new-password',
         method: 'PATCH',
         body,
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+          dispatch(toggleModal({ openedModalType: 'login' }));
+        } catch (error) {
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 400) {
+            dispatch(
+              setNewPasswordError({
+                code: status,
+                message,
+              })
+            );
+          }
+        } finally {
+          dispatch(toggleStatus('idle'));
+        }
+      },
     }),
     logout: builder.mutation<string, undefined>({
       query: () => ({
-        url: '/logout',
+        url: '/auth/logout',
         method: 'PATCH',
       }),
     }),
