@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useVerifyEmailMutation } from '@/redux/services/authNewApi';
+import { useVerifyEmailMutation } from '@/redux/services/auth';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();

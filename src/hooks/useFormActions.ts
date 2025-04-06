@@ -2,10 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { type LoginValues, type RegisterValues } from '../utils/validateSchema';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import {
-  useLoginMutation,
-  useRegisterMutation,
-} from '@/redux/services/authNewApi';
+import { useLoginMutation, useRegisterMutation } from '@/redux/services/auth';
 import { Error } from '@/redux/services/services.types';
 import { redirectPath, toggleModal } from '@/redux/slices/modalSlice';
 

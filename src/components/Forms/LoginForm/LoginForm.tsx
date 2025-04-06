@@ -9,7 +9,7 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useLoginMutation } from '@/redux/services/authNewApi';
+import { useLoginMutation } from '@/redux/services/auth';
 import { errorState, setLoginError } from '@/redux/slices/errorSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { LoginValues, getLoginSchema } from '@/utils/validateSchema';

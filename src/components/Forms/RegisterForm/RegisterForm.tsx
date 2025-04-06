@@ -14,7 +14,7 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useRegisterMutation } from '@/redux/services/authNewApi';
+import { useRegisterMutation } from '@/redux/services/auth';
 import { errorState, setRegisterError } from '@/redux/slices/errorSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 

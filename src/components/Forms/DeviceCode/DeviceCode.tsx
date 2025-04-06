@@ -7,7 +7,7 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import Input from '@/components/ui-components/Input/Input';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useLoginMutation } from '@/redux/services/authNewApi';
+import { useLoginMutation } from '@/redux/services/auth';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { clearPendingLoginData, userData } from '@/redux/slices/userSlice';
 import { getNewDeviceSchema, NewDeviceValues } from '@/utils/validateSchema';
