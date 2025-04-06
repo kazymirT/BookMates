@@ -26,7 +26,7 @@ export const booksApi = baseNewApi.injectEndpoints({
     }),
     getBooksForMain: builder.query<BooksMainPage, { lang: string }>({
       query: ({ lang }) => ({
-        url: `/book/main-page?lang=${lang}`,
+        url: `/book/main-page-data?lang=${lang}`,
       }),
     }),
     getBookById: builder.query<BookById, { id: string; lang: string }>({
