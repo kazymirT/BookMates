@@ -106,7 +106,7 @@ export const getNewPasswordSchema = (
       confirmPassword: getPassword(t),
     })
     .refine((data) => data.confirmPassword === data.password, {
-      path: ['email'],
+      path: ['confirmPassword'],
       message: t?.('forms-error.password-confirm'),
     });
 };

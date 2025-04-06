@@ -8,6 +8,8 @@ export type ErrorState = {
   register: { code: number; message: string } | null;
   verifyEmail: { code: number; message: string } | null;
   resetPassword: { code: number; message: string } | null;
+  newPassword: { code: number; message: string } | null;
+  deviceCode: { code: number; message: string } | null;
 };
 
 const initialState: ErrorState = {
@@ -15,6 +17,8 @@ const initialState: ErrorState = {
   login: null,
   register: null,
   resetPassword: null,
+  newPassword: null,
+  deviceCode: null,
 };
 
 type ActionPayload = {
@@ -38,6 +42,12 @@ export const ErrorSlice = createSlice({
     setResetPasswordError: (state, action: PayloadAction<ActionPayload>) => {
       state.resetPassword = action.payload;
     },
+    setNewPasswordError: (state, action: PayloadAction<ActionPayload>) => {
+      state.newPassword = action.payload;
+    },
+    setDeviceCodeError: (state, action: PayloadAction<ActionPayload>) => {
+      state.deviceCode = action.payload;
+    },
   },
 });
 
@@ -46,6 +56,8 @@ export const {
   setRegisterError,
   setResetPasswordError,
   setVerifyEmailError,
+  setNewPasswordError,
+  setDeviceCodeError,
 } = ErrorSlice.actions;
 export const errorState = (state: RootState) => state.error;
 export default ErrorSlice.reducer;

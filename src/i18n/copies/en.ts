@@ -180,8 +180,22 @@ export const english = {
     description:
       'Forgot your password? Enter your email address to reset your password.',
     email: 'Email',
+    error: 'User with this email not found',
     'btn-in': 'Reset Password',
     'btn-login': 'I remembered my password',
+  },
+  'new-password': {
+    title: 'New password',
+    description:
+      "We've sent a verification code to your email. Enter it along with your new password to regain access.",
+    placeholder: {
+      code: 'Code',
+      password: 'New password',
+      'confirm-password': 'Confirm new password',
+    },
+    button: 'Reset Password',
+    error: '',
+    btnResendCode: 'Resend code',
   },
   support: {
     title: 'Support',
@@ -211,11 +225,12 @@ export const english = {
       'Для завершення реєстрації ми надіслали вам лист на вашу електроно пошту.',
   },
   'device-code': {
-    button: 'Підтвердити',
-    link: 'Відправити повторно',
+    button: 'Confirm',
+    link: 'Resend code',
     description:
-      'Ми відправили вам код на вашу електрону пошту, для входу у ваш особистий кабінет із нового пристрою.',
-    placeholder: 'code',
+      'We’ve sent a code to your email to verify login from a new device.',
+    placeholder: 'Code',
+    error: 'Invalid code. Please try again or request a new one.',
   },
   'book-card': 'Buy Now',
   price: '{{price}} $',
@@ -238,6 +253,7 @@ export const english = {
     user: 'user',
   },
   'forms-error': {
+    'password-confirm': 'The password does not match',
     email: {
       required: 'This field is required',
       max: 'The maximum number of characters is 30',
