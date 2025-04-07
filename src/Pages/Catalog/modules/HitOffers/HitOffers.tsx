@@ -7,7 +7,7 @@ import styles from './HitOffers.module.scss';
 import SectionTitle from '@/components/SectionTitle/SectionTitle';
 import SkeletonProductSlideCard from '@/components/Skeleton/SkeletonProductSlideCard';
 import Slider from '@/components/Slider/Slider';
-import { useGetBooksForMainQuery } from '@/redux/services/books';
+import { useGetBooksForMainQuery } from '@/redux/services/main';
 
 const HitOffers = () => {
   const { t, i18n } = useTranslation();
