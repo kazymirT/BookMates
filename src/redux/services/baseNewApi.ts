@@ -2,7 +2,8 @@ import { FetchArgs, FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
-import { login, logout } from '../slices/userSlice';
+import { authApi } from './auth';
+import { login } from '../slices/userSlice';
 import { RootState } from '../store';
 
 const baseURLApi = import.meta.env.VITE_API_BASE_NEW_URL;
@@ -50,7 +51,7 @@ const baseQueryWithReAuth: BaseQueryFn<
 
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(logout());
+      api.dispatch(authApi.endpoints.logout.initiate());
     }
   }
   return result;

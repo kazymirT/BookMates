@@ -17,7 +17,7 @@ import {
 } from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
 import { toggleStatus } from '../slices/statusSlice';
-import { login } from '../slices/userSlice';
+import { login, logout } from '../slices/userSlice';
 import { RootState } from '../store';
 
 export interface NewPassword {
@@ -58,7 +58,7 @@ export const authApi = baseNewApi.injectEndpoints({
             dispatch(setLoginError({ code: status, message }));
           }
           if (status === 400) {
-            const isDeviceCode = (getState() as RootState).error.isDeviceCode;
+            const isDeviceCode = (getState() as RootState)?.error.isDeviceCode;
             if (isDeviceCode) {
               dispatch(setDeviceCodeError({ code: status, message }));
             } else {
@@ -163,11 +163,19 @@ export const authApi = baseNewApi.injectEndpoints({
         }
       },
     }),
-    logout: builder.mutation<string, undefined>({
+    logout: builder.mutation<string, void>({
       query: () => ({
         url: '/auth/logout',
         method: 'PATCH',
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(logout());
+        } catch (error) {
+          console.log('error server or token');
+        }
+      },
     }),
   }),
   overrideExisting: false,
