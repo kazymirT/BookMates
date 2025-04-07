@@ -1,5 +1,5 @@
 import authorImg from '@/assets/rep/authors/01.png';
-export const author = {
+export const authorData = {
   name: 'Алекс Т. Сміт',
   img: authorImg,
   id: 1,

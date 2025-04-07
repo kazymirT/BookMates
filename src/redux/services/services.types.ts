@@ -269,6 +269,7 @@ export interface Book {
   discountPrice?: number;
   isNew?: boolean;
 }
+
 export interface BooksResponse {
   data: Book[];
   total: number;

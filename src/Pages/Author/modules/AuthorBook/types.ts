@@ -1,3 +1,5 @@
+import { Book } from '@/redux/services/services.types';
+
 export interface AuthorBookProps {
-  authorName: string;
+  books: Book[];
 }

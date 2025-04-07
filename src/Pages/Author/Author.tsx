@@ -1,33 +1,47 @@
+import { skipToken } from '@reduxjs/toolkit/query';
 import { useTranslation } from 'react-i18next';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import styles from './Author.module.scss';
-import { author } from './data';
-// import AuthorBook from './modules/AuthorBook/AuthorBook';
+import { authorData } from './data';
+import AuthorBook from './modules/AuthorBook/AuthorBook';
 import AuthorDescriptions from './modules/AuthorDescriptions/AuthorDescriptions';
 import Subscription from '../../components/Subscription/Subscription';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
+import { useGetAuthorByIdQuery } from '@/redux/services/author';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
 
 const Author = () => {
-  // const { authorId } = useParams() as unknown as { authorId: number };
-  const { t } = useTranslation();
+  const { authorId } = useParams() as unknown as { authorId: number };
+  const { t, i18n } = useTranslation();
 
-  const breadcrumbs = createBreadcrumbs(t('breadcrumbs.authors'), {
-    name: author.name,
-    to: `/authors/${author.id}`,
-  });
+  const lang = i18n.language === 'en' ? 'en' : 'ua';
+
+  const { data: author, isSuccess } = useGetAuthorByIdQuery(
+    authorId ? { id: authorId, lang } : skipToken
+  );
+  const breadcrumbs = createBreadcrumbs(
+    t('breadcrumbs.authors'),
+    author && {
+      name: author.name,
+      to: `/authors/${author.id}`,
+    }
+  );
   return (
     <section className={styles.author}>
       <div className="container">
         <div className={styles['author-inner']}>
           <Breadcrumbs options={breadcrumbs} />
-          <h2 className={styles.name}>{author.name}</h2>
-          <AuthorDescriptions
-            img={author.img}
-            descriptions={author.descriptions}
-          />
-          {/* <AuthorBook authorName={author.name} /> */}
+          {isSuccess && (
+            <>
+              <h2 className={styles.name}>{author.name}</h2>
+              <AuthorDescriptions
+                img={authorData.img}
+                descriptions={authorData.descriptions}
+              />
+              <AuthorBook books={author.books} />
+            </>
+          )}
           <Subscription variant="author" />
         </div>
       </div>
