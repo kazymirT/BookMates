@@ -230,9 +230,16 @@ export type BooksData = {
   discount: number;
   discountPrice: number;
 };
+
+export interface AuthorMain {
+  id: number;
+  name: string;
+  image: string | null;
+}
 export interface BooksMainPage {
   news: Book[];
   sale: Book[];
+  authors: AuthorMain[];
 }
 
 export interface BookById {

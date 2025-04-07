@@ -7,7 +7,7 @@ import Collections from './modules/Collections/Collections';
 import Newness from './modules/Newness/Newness';
 import Sale from './modules/Sale/Sale';
 import Subscription from '../../components/Subscription/Subscription';
-import { useGetBooksForMainQuery } from '@/redux/services/books';
+import { useGetBooksForMainQuery } from '@/redux/services/main';
 
 const Home = () => {
   const { i18n } = useTranslation();
@@ -20,7 +20,7 @@ const Home = () => {
         <Newness books={data?.news} />
         <Sale books={data?.sale} />
         <Collections />
-        <Authors />
+        <Authors authors={data?.authors} />
         <Subscription variant="home" />
       </div>
     </>
