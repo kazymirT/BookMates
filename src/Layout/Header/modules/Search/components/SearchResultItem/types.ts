@@ -1,9 +1,6 @@
-import { BooksData } from '@/redux/services/services.types';
+import { Book } from '@/redux/services/services.types';
 
-export interface SearchResultItemProps
-  extends Pick<
-    BooksData,
-    'id' | 'title' | 'imageUrl' | 'price' | 'discount' | 'discountPrice'
-  > {
+export interface SearchResultItemProps {
+  book: Omit<Book, 'authors' | 'isNew'>;
   onClickItem: () => void;
 }
