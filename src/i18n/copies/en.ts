@@ -62,6 +62,9 @@ export const english = {
       error: 'Thank you, but you are already subscribed and we are very happy!',
     },
   },
+  search: {
+    'search-query': 'Search',
+  },
   catalog: {
     title: 'Catalog',
     'hot-offers': 'Hot offers',
@@ -244,6 +247,7 @@ export const english = {
     },
   },
   breadcrumbs: {
+    search: 'search',
     home: 'Home',
     catalog: 'catalog',
     order: 'make an order',

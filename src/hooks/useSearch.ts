@@ -33,7 +33,7 @@ export const useSearch = () => {
 
   const handleOnSearch = () => {
     dispatch(setSearch(value));
-    navigate(`/catalog/?search=${value}`);
+    navigate(`/search/?search=${value}`);
     handleOnClose();
     clearValue();
   };

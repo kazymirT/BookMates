@@ -290,4 +290,9 @@ export interface BooksArgsNew {
   limit?: string;
   page?: string;
   categoryId?: number[];
+  searchQuery?: string;
+}
+
+export interface SearchBooks {
+  books: Omit<Book, 'isNew' | 'authors'>[];
 }

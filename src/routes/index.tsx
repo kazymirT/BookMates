@@ -26,6 +26,7 @@ const User = lazy(() => import('../Pages/User/User'));
 const Authors = lazy(() => import('../Pages/Authors/Authors'));
 const Collections = lazy(() => import('../Pages/Collections/Collections'));
 const Collection = lazy(() => import('../Pages/Collection/Collection'));
+const Search = lazy(() => import('../Pages/Search/Search'));
 
 import HistoryWrapper from './HistoryWrapper';
 import PrivateRoutes from './PrivateRoutes';
@@ -52,6 +53,7 @@ const route = createBrowserRouter(
         <Route path={'/author/:authorId'} element={<Author />} />
         <Route path={'/authors/'} element={<Authors />} />
         <Route path={'/order'} element={<Order />} />
+        <Route path={'/search'} element={<Search />} />
         <Route element={<PrivateRoutes />}>
           <Route path={'/user/:userId?'} element={<User />} />
         </Route>

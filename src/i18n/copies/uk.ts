@@ -62,6 +62,9 @@ export const ukraine = {
       error: 'Дякуємо, проте ви вже підписані і ми дуже раді!',
     },
   },
+  search: {
+    'search-query': 'Пошук',
+  },
   catalog: {
     title: 'Каталог',
     'title-two': 'Каталог книг',
@@ -244,6 +247,7 @@ export const ukraine = {
     },
   },
   breadcrumbs: {
+    search: 'пошук',
     home: 'Головна',
     catalog: 'каталог',
     order: 'Оформити замовлення',

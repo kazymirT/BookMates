@@ -28,6 +28,14 @@ export const BASE_CRUMBS: Record<
     name: 'Book Collections',
     to: '/collections',
   },
+  пошук: {
+    name: 'Пошук',
+    to: '/collections',
+  },
+  search: {
+    name: 'Search',
+    to: '/collections',
+  },
   authors: {
     name: 'Authors',
     to: '/authors',
