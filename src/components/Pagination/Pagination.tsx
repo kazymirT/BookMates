@@ -25,7 +25,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
       <PaginationArrow
         direction="prev"
         isDisabled={currentPage === 1}
-        onClick={() => handlePageClick(currentPage)}
+        onClick={() => handlePageClick(currentPage - 1)}
         aria="prev page"
         testid={PREV_BUTTON_ID}
       />
