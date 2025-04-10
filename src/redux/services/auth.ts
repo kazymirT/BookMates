@@ -13,6 +13,7 @@ import {
   setLoginError,
   setNewPasswordError,
   setRegisterError,
+  setResendCodeError,
   setResetPasswordError,
 } from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
@@ -27,6 +28,11 @@ export interface NewPassword {
 
 export interface ForgetPassword {
   email: string;
+}
+
+export interface ResendCode {
+  email: string;
+  condition: 'verify_email' | 'reset_password' | 'verify_device';
 }
 
 export const authApi = baseNewApi.injectEndpoints({
@@ -174,6 +180,33 @@ export const authApi = baseNewApi.injectEndpoints({
           dispatch(logout());
         } catch (error) {
           console.log('error server or token');
+        }
+      },
+    }),
+    resendCode: builder.mutation<string, ResendCode>({
+      query: (body) => ({
+        url: '/auth/resend-code',
+        method: 'PATCH',
+        body,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          dispatch(toggleStatus('idle'));
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 409) {
+            dispatch(setResendCodeError({ code: status, message }));
+          }
+          if (status === 404) {
+            dispatch(setResendCodeError({ code: status, message }));
+          }
         }
       },
     }),

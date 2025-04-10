@@ -37,7 +37,7 @@ const getEmail = (t: TFunction<'translation', undefined>) => {
     .email({ message: t?.('forms-error.email.email') });
 };
 const getCode = (t: TFunction<'translation', undefined>) => {
-  return z.string().regex(/^[a-zA-Z0-9]{4}$/, t?.('forms-error.new-device'));
+  return z.string().regex(/^[a-zA-Z0-9]{8}$/, t?.('forms-error.new-device'));
 };
 const getPassword = (t: TFunction<'translation', undefined>) => {
   return z
