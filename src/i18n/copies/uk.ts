@@ -158,6 +158,8 @@ export const ukraine = {
     email: 'Електронна пошта',
     password: 'Пароль',
     wrong: `Ваша Електронна пошта або пароль невірні. Будь ласка, спробуйте ще раз або`,
+    'is-not-confirm-email': 'Тут має бути текст помилки',
+    'btn-reset-confirm-email': 'resend confirm email',
     'btn-reset-password': 'змініть пароль.',
     'reset-password': 'Забув пароль',
     'btn-in': 'Увійти',
@@ -189,6 +191,8 @@ export const ukraine = {
   },
   'new-password': {
     title: 'Новий пароль',
+    'code-error': 'Ви ввели невірний код',
+    'btn-resend-code': 'Відправити код знову',
     description:
       'Ми надіслали код підтвердження на вашу електронну пошту. Введіть його та новий пароль, щоб отримати новий доступ.',
     placeholder: {

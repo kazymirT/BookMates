@@ -61,6 +61,12 @@ const baseQueryWithReAuth: BaseQueryFn<
       api.dispatch(logout());
     }
   }
+  if (result?.error?.status === 400) {
+    const errorData = result.error.data as { message: string };
+    if (errorData.message === 'Session is closed!') {
+      api.dispatch(logout());
+    }
+  }
   return result;
 };
 

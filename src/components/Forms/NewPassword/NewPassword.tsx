@@ -9,7 +9,10 @@ import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useSetNewPasswordMutation } from '@/redux/services/auth';
+import {
+  useResendCodeMutation,
+  useSetNewPasswordMutation,
+} from '@/redux/services/auth';
 import { errorState, setNewPasswordError } from '@/redux/slices/errorSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import {
@@ -20,24 +23,37 @@ import {
 const NewPassword = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { newPassword } = useAppSelector(errorState);
+  const { newPassword, resendResetPassword } = useAppSelector(errorState);
   const [setNewPassword] = useSetNewPasswordMutation();
+  const [resendCode] = useResendCodeMutation();
+
   const {
     register,
     handleSubmit,
     resetField,
-    formState: { isValid, errors, isSubmitting },
+    formState: { isValid, errors },
   } = useForm<NewPasswordValues>({
     resolver: zodResolver(getNewPasswordSchema(t)),
     defaultValues: {},
     mode: 'onTouched',
   });
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
-  const sendResendCode = () => {
-    console.log('send resend code');
-    resetField('code', { defaultValue: '' });
-    dispatch(setNewPasswordError(null));
+  const sendResendCode = async () => {
+    if (resendResetPassword) {
+      await resendCode({
+        condition: 'reset_password',
+        email: resendResetPassword,
+      });
+      resetField('code', {
+        defaultValue: '',
+        keepDirty: true,
+        keepError: false,
+        keepTouched: false,
+      });
+      dispatch(setNewPasswordError(null));
+    }
   };
+  const handleResetError = () => dispatch(setNewPasswordError(null));
   const onSubmit = async ({ code, password }: NewPasswordValues) => {
     setNewPassword({ code, newPassword: password });
   };
@@ -61,13 +77,24 @@ const NewPassword = () => {
       <p className={styles.success}>{t('new-password.description')}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles['input-container']}>
-          <Input
-            {...register('code')}
-            placeholder={t('new-password.placeholder.code')}
-            type="text"
-            serverError={!!newPassword}
-            errorMessage={errors.code?.message}
-          />
+          <div className={styles['email-container']}>
+            <Input
+              {...register('code')}
+              placeholder={t('new-password.placeholder.code')}
+              type="text"
+              onFocus={handleResetError}
+              serverError={!!newPassword}
+              errorMessage={errors.code?.message}
+            />
+            {!!newPassword && (
+              <div className={styles.error}>
+                <p>{t('new-password.code-error')}</p>{' '}
+                <button type="button" onClick={sendResendCode}>
+                  {t('new-password.btn-resend-code')}
+                </button>
+              </div>
+            )}
+          </div>
           <Input
             {...register('password')}
             placeholder={t('new-password.placeholder.password')}
@@ -82,21 +109,13 @@ const NewPassword = () => {
             autoComplete="current-password"
             errorMessage={errors.confirmPassword?.message}
           />
-          {!!newPassword && (
-            <div className={styles.error}>
-              <p>{t('new-password.error')}</p>
-              <button type="button" onClick={sendResendCode}>
-                {t('new-password.btnResendCode')}
-              </button>
-            </div>
-          )}
         </div>
         <Button
           type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text={t('new-password.button')}
-          disabled={!isValid || isSubmitting}
+          disabled={!isValid || !!newPassword}
         />
       </form>
     </section>

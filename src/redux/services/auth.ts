@@ -14,6 +14,7 @@ import {
   setNewPasswordError,
   setRegisterError,
   setResendCodeError,
+  setResendResetPassword,
   setResetPasswordError,
 } from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
@@ -61,7 +62,28 @@ export const authApi = baseNewApi.injectEndpoints({
             },
           } = error as ErrorResponse;
           if (status === 401) {
-            dispatch(setLoginError({ code: status, message }));
+            if (message === 'You must confirm email!') {
+              dispatch(
+                setLoginError({
+                  type: 'isEmailConfirmed',
+                  error: { code: status, message },
+                })
+              );
+            } else if (message === 'User not found') {
+              dispatch(
+                setLoginError({
+                  type: 'isUserFound',
+                  error: { code: status, message },
+                })
+              );
+            } else {
+              dispatch(
+                setLoginError({
+                  type: 'isUnauthorized',
+                  error: { code: status, message },
+                })
+              );
+            }
           }
           if (status === 400) {
             const isDeviceCode = (getState() as RootState)?.error.isDeviceCode;
@@ -113,10 +135,11 @@ export const authApi = baseNewApi.injectEndpoints({
         method: 'PATCH',
         body,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+      async onQueryStarted(api, { dispatch, queryFulfilled }) {
         dispatch(toggleStatus('loading'));
         try {
           await queryFulfilled;
+          dispatch(setResendResetPassword(api.email));
           dispatch(toggleModal({ openedModalType: 'new-password' }));
         } catch (error) {
           const {
@@ -194,7 +217,6 @@ export const authApi = baseNewApi.injectEndpoints({
         try {
           await queryFulfilled;
         } catch (error) {
-          dispatch(toggleStatus('idle'));
           const {
             error: {
               status,
@@ -207,6 +229,8 @@ export const authApi = baseNewApi.injectEndpoints({
           if (status === 404) {
             dispatch(setResendCodeError({ code: status, message }));
           }
+        } finally {
+          dispatch(toggleStatus('idle'));
         }
       },
     }),
@@ -221,4 +245,5 @@ export const {
   useForgetPasswordMutation,
   useLogoutMutation,
   useSetNewPasswordMutation,
+  useResendCodeMutation,
 } = authApi;

@@ -157,6 +157,8 @@ export const english = {
     email: 'Email',
     password: 'Password',
     wrong: `Your email or password is incorrect. Please try again or`,
+    'is-not-confirm-email': 'Тут має бути текст помилки',
+    'btn-reset-confirm-email': 'resend confirm email',
     'btn-reset-password': 'change password.',
     'reset-password': 'I forgot my password',
     'btn-in': 'Sign In',
@@ -189,6 +191,8 @@ export const english = {
   },
   'new-password': {
     title: 'New password',
+    'code-error': 'Ви ввели невірний код',
+    'btn-resend-code': 'Відправити код знову',
     description:
       "We've sent a verification code to your email. Enter it along with your new password to regain access.",
     placeholder: {

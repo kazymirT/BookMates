@@ -10,9 +10,10 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useLoginMutation } from '@/redux/services/auth';
+import { useLoginMutation, useResendCodeMutation } from '@/redux/services/auth';
 import {
   errorState,
+  setAllLoginError,
   setDeviceCodeError,
   setIsDeviceCode,
   setLoginError,
@@ -28,13 +29,15 @@ import {
 const LoginForm = () => {
   const { t } = useTranslation();
   const {
-    login: loginError,
+    login: { isEmailConfirmed, isUnauthorized, isUserFound },
     deviceCode,
     isDeviceCode,
   } = useAppSelector(errorState);
+  const [resendCode] = useResendCodeMutation();
+  console.log(!!isUnauthorized);
+  const isServerError = !!isUnauthorized || !!isUserFound;
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
-  const isServerError = loginError !== null;
   const {
     register,
     getValues,
@@ -67,22 +70,33 @@ const LoginForm = () => {
   const handleResetPassword = () =>
     dispatch(toggleModal({ openedModalType: 'reset-password' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
-  const hideServerError = () => isServerError && dispatch(setLoginError(null));
+  const hideServerError = () =>
+    (isServerError || !isEmailConfirmed) && dispatch(setAllLoginError());
 
   const onSubmitCode = async ({ newDeviceCode }: NewDeviceValues) => {
     const email = getValues('email');
     const password = getValues('password');
     await login({ email, password, newDeviceCode });
   };
-  const handleRepeatSendCode = () => {
-    console.log('send repeat code');
-    setDeviceError();
-    resetField('newDeviceCode', { defaultValue: '' });
+  const handleRepeatSendCode = async () => {
+    const email = getValues('email');
+    if (email) {
+      await resendCode({ condition: 'verify_device', email });
+      setDeviceError();
+      resetField('newDeviceCode', { defaultValue: '' });
+    }
   };
   const setDeviceError = () => dispatch(setDeviceCodeError(null));
+  const handleResetEmailConfirm = () => {
+    const email = getValues('email');
+    if (email) {
+      dispatch(setLoginError({ type: 'isEmailConfirmed', error: null }));
+      resendCode({ condition: 'verify_email', email });
+    }
+  };
   useEffect(() => {
     return () => {
-      dispatch(setLoginError(null));
+      dispatch(setAllLoginError());
       dispatch(setIsDeviceCode(false));
     };
   }, [dispatch]);
@@ -173,6 +187,18 @@ const LoginForm = () => {
                   </button>
                 </div>
               )}
+              {isEmailConfirmed && (
+                <div className={styles.error}>
+                  <p>{t('login.is-not-confirm-email')}</p>
+                  <button
+                    type="button"
+                    onClick={handleResetEmailConfirm}
+                    className={styles.remember}
+                  >
+                    {t('login.btn-reset-confirm-email')}
+                  </button>
+                </div>
+              )}
             </div>
             {!isServerError && (
               <button
@@ -188,7 +214,9 @@ const LoginForm = () => {
               size={Sizes.Full}
               variant={Variant.Basic}
               text={t('login.btn-in')}
-              disabled={!isValid || isLoading || isServerError}
+              disabled={
+                !isValid || isLoading || isServerError || !!isEmailConfirmed
+              }
             />
           </form>
           <button

@@ -3,26 +3,40 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store';
 
+export type Error = { code: number; message: string } | null;
+
+export type LoginError = {
+  isEmailConfirmed: Error;
+  isUserFound: Error;
+  isUnauthorized: Error;
+};
+
 export type ErrorState = {
-  login: { code: number; message: string } | null;
-  register: { code: number; message: string } | null;
-  verifyEmail: { code: number; message: string } | null;
-  resetPassword: { code: number; message: string } | null;
-  newPassword: { code: number; message: string } | null;
-  deviceCode: { code: number; message: string } | null;
+  login: LoginError;
+  register: Error;
+  verifyEmail: Error;
+  resetPassword: Error;
+  newPassword: Error;
+  deviceCode: Error;
   isDeviceCode: boolean;
-  resendCode: { code: number; message: string } | null;
+  resendCode: Error;
+  resendResetPassword: string | null;
 };
 
 const initialState: ErrorState = {
   verifyEmail: null,
-  login: null,
+  login: {
+    isEmailConfirmed: null,
+    isUnauthorized: null,
+    isUserFound: null,
+  },
   register: null,
   resetPassword: null,
   newPassword: null,
   deviceCode: null,
   isDeviceCode: false,
   resendCode: null,
+  resendResetPassword: null,
 };
 
 type ActionPayload = {
@@ -34,8 +48,17 @@ export const ErrorSlice = createSlice({
   name: 'error',
   initialState,
   reducers: {
-    setLoginError: (state, action: PayloadAction<ActionPayload>) => {
-      state.login = action.payload;
+    setLoginError: (
+      state,
+      action: PayloadAction<{ type: keyof LoginError; error: Error }>
+    ) => {
+      const { error, type } = action.payload;
+      state.login[type] = error;
+    },
+    setAllLoginError: (state) => {
+      state.login.isEmailConfirmed = null;
+      state.login.isUnauthorized = null;
+      state.login.isUserFound = null;
     },
     setRegisterError: (state, action: PayloadAction<ActionPayload>) => {
       state.register = action.payload;
@@ -58,6 +81,9 @@ export const ErrorSlice = createSlice({
     setIsDeviceCode: (state, action: PayloadAction<boolean>) => {
       state.isDeviceCode = action.payload;
     },
+    setResendResetPassword: (state, action: PayloadAction<string | null>) => {
+      state.resendResetPassword = action.payload;
+    },
   },
 });
 
@@ -70,6 +96,8 @@ export const {
   setDeviceCodeError,
   setIsDeviceCode,
   setResendCodeError,
+  setAllLoginError,
+  setResendResetPassword,
 } = ErrorSlice.actions;
 export const errorState = (state: RootState) => state.error;
 export default ErrorSlice.reducer;

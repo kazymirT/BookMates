@@ -1,13 +1,22 @@
 import { baseNewApi } from './baseNewApi';
 import { UserResponse } from './services.types';
+import { logout } from '../slices/userSlice';
 
 export const userApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
-    deleteUser: builder.mutation<UserResponse, number>({
-      query: (id) => ({
-        url: `/user/${id}`,
+    deleteUser: builder.mutation<UserResponse, void>({
+      query: () => ({
+        url: `/user/me`,
         method: 'DELETE',
-      }), // TODO: Перевірити чи працює
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(logout());
+        } catch (error) {
+          console.log('error delete user');
+        }
+      },
     }),
     meUser: builder.mutation<UserResponse, { user: string }>({
       query: () => ({
@@ -19,4 +28,3 @@ export const userApi = baseNewApi.injectEndpoints({
 });
 
 export const { useDeleteUserMutation, useMeUserMutation } = userApi;
-// HACK: dsdsdsdsd

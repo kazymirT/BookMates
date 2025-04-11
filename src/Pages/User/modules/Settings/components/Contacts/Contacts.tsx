@@ -22,13 +22,7 @@ const Contacts = () => {
   const [meUser] = useMeUserMutation();
 
   const handleDelete = async () => {
-    try {
-      if (user && user.id) {
-        await deleteUser(user.id).unwrap();
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    await deleteUser();
   };
   const handleMyUser = async () => {
     try {
