@@ -164,11 +164,11 @@ export const SORT_OPTIONS_STATE: Record<string, string> = {
   'By name A-Z': 'title-asc',
 };
 export const SORT_OPTIONS_URL_UA: Record<string, string> = {
-  'id-asc': 'За популярністю', // new false
-  'price-asc': 'Дешевші', // sortPrice false
-  'price-desc': 'Дорожчі', // sortPrice true
-  'id-desc': 'Новинки', //new true
-  'title-asc': 'За назвою', //alphabetical
+  'id-asc': 'За популярністю', // popularity
+  'price-asc': 'Дешевші', // lowPrice
+  'price-desc': 'Дорожчі', // highPrice
+  'id-desc': 'Новинки', // newBooks
+  'title-asc': 'За назвою', // alphabetical
 };
 export const SORT_OPTIONS_URL_EN: Record<string, string> = {
   'id-asc': 'By Rating',
@@ -176,6 +176,14 @@ export const SORT_OPTIONS_URL_EN: Record<string, string> = {
   'price-desc': 'Price High to Low',
   'id-desc': 'Newest First',
   'title-asc': 'By name A-Z',
+};
+
+export const SORT_OPTIONS_QUERY: Record<string, string> = {
+  'id-asc': 'popularity', // popularity
+  'price-asc': 'lowPrice', // lowPrice
+  'price-desc': 'highPrice', // highPrice
+  'id-desc': 'newBooks', // newBooks
+  'title-asc': 'alphabetical', // alphabetical
 };
 export const SORT_OPTIONS_URL: Record<string, Record<string, string>> = {
   ua: SORT_OPTIONS_URL_UA,

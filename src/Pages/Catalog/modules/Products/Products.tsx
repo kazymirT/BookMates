@@ -9,6 +9,7 @@ import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetBooksQuery } from '@/redux/services/books';
 import { queryAllData } from '@/redux/slices/queryParams';
+import { SORT_OPTIONS_QUERY } from '@/utils/constants';
 
 export const PRODUCT_OF_PAGE = 16;
 
@@ -36,9 +37,7 @@ const Products = () => {
     categoryId: categories.map((category) => category.id),
     maxPrice: price[1],
     minPrice: price[0],
-    isNew: sort === 'id-desc' ? true : false,
-    alphabetical: sort === 'title-asc' ? true : false,
-    sortPrice: sort === 'price-desc' ? 'DESC' : 'ASC',
+    sortOptions: SORT_OPTIONS_QUERY[sort],
   });
 
   const booksClassName = classNames(styles.books, {

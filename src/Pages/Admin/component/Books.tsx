@@ -15,7 +15,7 @@ const Books = () => {
   const dispatch = useAppDispatch();
   const { data: books } = useGetBooksQuery({
     limit: '99',
-    isNew: true,
+    sortOptions: 'newBooks',
     lang: 'ua',
   });
   const handleOnClick = (id: number) => {

@@ -15,15 +15,13 @@ export const booksApi = baseNewApi.injectEndpoints({
         languages = [],
         minPrice = null,
         maxPrice = null,
-        sortPrice = 'ASC',
-        isNew = false,
-        alphabetical = false,
+        sortOptions,
         limit = 16,
         page = 1,
         categoryId,
         searchQuery,
       }) => ({
-        url: `book?lang=${lang}&page=${page}&limit=${limit}&categoryId=${categoryId}&years=${years.join(',')}&languageIds=${languages.join(',')}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortPrice=${sortPrice}&new=${isNew}&alphabetical=${alphabetical}${searchQuery ? `&searchQuery=${searchQuery}` : ''}`,
+        url: `book?lang=${lang}&page=${page}&limit=${limit}&categoryId=${categoryId}&years=${years.join(',')}&languageIds=${languages.join(',')}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortOptions=${sortOptions}${searchQuery ? `&searchQuery=${searchQuery}` : ''}`,
       }),
     }),
     getBookById: builder.query<BookById, { id: string; lang: string }>({

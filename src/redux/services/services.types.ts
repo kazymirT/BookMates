@@ -284,9 +284,7 @@ export interface BooksArgsNew {
   languages?: number[];
   minPrice?: string;
   maxPrice?: string;
-  sortPrice?: 'DESC' | 'ASC';
-  isNew?: boolean;
-  alphabetical?: boolean;
+  sortOptions?: string;
   limit?: string;
   page?: string;
   categoryId?: number[];
