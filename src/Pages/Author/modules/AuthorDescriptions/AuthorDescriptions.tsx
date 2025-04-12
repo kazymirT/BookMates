@@ -1,17 +1,14 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import styles from './AuthorDescriptions.module.scss';
 import { AuthorDescriptionsProps } from './types';
-import { formatTextWithLists } from '@/utils/formatTextWithLists';
-import { formatTextWithSpans } from '@/utils/formatTextWithSpans';
+import BookSeries from '../../components/BookSeries/BookSeries';
 
 const AuthorDescriptions: FC<AuthorDescriptionsProps> = ({
   img,
-  descriptions,
+  bio,
+  booksSeries,
 }) => {
-  const text = formatTextWithSpans(descriptions.description);
-  const lists = formatTextWithLists(descriptions.books);
   return (
     <div className={styles.content}>
       <img
@@ -23,39 +20,18 @@ const AuthorDescriptions: FC<AuthorDescriptionsProps> = ({
       />
       <div className={styles.descriptions}>
         <div className={styles.top}>
-          {text &&
-            text.map((description, index) => (
+          {bio &&
+            bio.slice(0, -1).map((description, index) => (
               <p key={index} className={styles.description}>
                 {description}
               </p>
             ))}
         </div>
-        <p className={styles.description}>
-          {formatTextWithSpans(descriptions.title)}
-        </p>
+        <p className={styles.description}>{bio[bio.length - 1]}</p>
         <div className={styles.bottom}>
-          {lists &&
-            lists.map((list, index) => (
-              <div key={index} className={styles.list}>
-                <h4>{list[0].text}</h4>
-                <ul>
-                  {list.map(
-                    ({ text, id }, index) =>
-                      index !== 0 && (
-                        <li key={index}>
-                          {id ? (
-                            <Link key={index} to={`/product/${id}`}>
-                              {text}
-                            </Link>
-                          ) : (
-                            text
-                          )}
-                        </li>
-                      )
-                  )}
-                </ul>
-              </div>
-            ))}
+          {booksSeries.map((series) => (
+            <BookSeries series={series} key={series.seriesName} />
+          ))}
         </div>
       </div>
     </div>

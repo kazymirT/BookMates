@@ -8,16 +8,29 @@ export interface AuthorsByIdArgs {
   lang: Lang;
 }
 
-export interface AuthorById {
-  id: number;
-  name: string;
-  books: Book[];
-}
-
 export interface AuthorList {
   id: number;
   name: string;
   bookCount: number;
+}
+
+export interface AuthorById {
+  id: number;
+  name: string;
+  bio: string[];
+  allBooks: BookSeries[];
+  books: Omit<Book, 'authors'>[];
+}
+
+export interface BookSeries {
+  seriesName: string;
+  books: {
+    id: number;
+    title: string;
+    linkedBook: {
+      id: number;
+    } | null;
+  }[];
 }
 
 export const authorApi = baseNewApi.injectEndpoints({

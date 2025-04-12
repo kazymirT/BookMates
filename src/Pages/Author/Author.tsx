@@ -17,9 +17,12 @@ const Author = () => {
 
   const lang = i18n.language === 'en' ? 'en' : 'ua';
 
-  const { data: author, isSuccess } = useGetAuthorByIdQuery(
-    authorId ? { id: authorId, lang } : skipToken
-  );
+  const {
+    data: author,
+    isSuccess,
+    isFetching,
+    isLoading,
+  } = useGetAuthorByIdQuery(authorId ? { id: authorId, lang } : skipToken);
   const breadcrumbs = createBreadcrumbs(
     t('breadcrumbs.authors'),
     author && {
@@ -37,11 +40,17 @@ const Author = () => {
               <h2 className={styles.name}>{author.name}</h2>
               <AuthorDescriptions
                 img={authorData.img}
-                descriptions={authorData.descriptions}
+                bio={author.bio}
+                booksSeries={author.allBooks}
               />
-              <AuthorBook books={author.books} />
+              <AuthorBook
+                books={author.books}
+                authorName={author.name}
+                id={author.id}
+              />
             </>
           )}
+          {(isLoading || isFetching) && <p>Loading...</p>}
           <Subscription variant="author" />
         </div>
       </div>
