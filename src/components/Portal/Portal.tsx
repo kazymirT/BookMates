@@ -60,7 +60,7 @@ const Portal = ({
           <div
             ref={nodeRef}
             className={wrapperClName}
-            onClick={handleCloseModal}
+            onMouseDown={handleCloseModal}
             data-testid={PORTAL_TEST_ID}
           >
             {children}
