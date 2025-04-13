@@ -30,11 +30,11 @@ const baseQueryWithReAuth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
-  const user = (api.getState() as RootState).user.user;
+  const { accessToken, user } = (api.getState() as RootState).user;
   if (result.error) {
     console.log(result.error, 'перехоплювач глобальний');
   }
-  if (result?.error?.status === 401 && user) {
+  if (result?.error?.status === 401 && accessToken) {
     const refreshResult = await baseQuery(
       {
         url: '/auth/refresh-token',
