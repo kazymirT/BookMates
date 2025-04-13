@@ -1,10 +1,10 @@
 import { baseNewApi } from './baseNewApi';
-import { UserResponse } from './services.types';
+import { User } from './services.types';
 import { logout } from '../slices/userSlice';
 
 export const userApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
-    deleteUser: builder.mutation<UserResponse, void>({
+    deleteUser: builder.mutation<User, void>({
       query: () => ({
         url: `/user/me`,
         method: 'DELETE',
@@ -18,7 +18,7 @@ export const userApi = baseNewApi.injectEndpoints({
         }
       },
     }),
-    meUser: builder.mutation<UserResponse, { user: string }>({
+    meUser: builder.mutation<User, void>({
       query: () => ({
         url: `/user/me`,
       }),

@@ -2,7 +2,7 @@ import { cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Profile from '../Profile';
-import { User } from '@/redux/slices/userSlice';
+import { User } from '@/redux/services/services.types';
 import { renderWithProviders } from '@/test/test-utils';
 
 describe('Profile Component', () => {

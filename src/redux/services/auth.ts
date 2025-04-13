@@ -7,6 +7,7 @@ import {
   VerifyEmailResponse,
   ErrorResponse,
 } from './services.types';
+import { userApi } from './user';
 import {
   setDeviceCodeError,
   setIsDeviceCode,
@@ -19,7 +20,7 @@ import {
 } from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
 import { toggleStatus } from '../slices/statusSlice';
-import { login, logout } from '../slices/userSlice';
+import { login, logout, setToken } from '../slices/userSlice';
 import { RootState } from '../store';
 
 export interface NewPassword {
@@ -128,6 +129,24 @@ export const authApi = baseNewApi.injectEndpoints({
         method: 'PATCH',
         body,
       }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { accessToken },
+          } = await queryFulfilled;
+          dispatch(setToken(accessToken));
+          try {
+            const user = await dispatch(
+              userApi.endpoints.meUser.initiate()
+            ).unwrap();
+            dispatch(login({ accessToken, user }));
+          } catch (error) {
+            console.log('Failed to fetch user:', error);
+          }
+        } catch (error) {
+          console.log('Помилка verify email');
+        }
+      },
     }),
     forgetPassword: builder.mutation<string, ForgetPassword>({
       query: (body) => ({

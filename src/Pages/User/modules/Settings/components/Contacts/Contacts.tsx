@@ -26,7 +26,7 @@ const Contacts = () => {
   };
   const handleMyUser = async () => {
     try {
-      const data = await meUser({ user: 'dsdd' }).unwrap();
+      const data = await meUser().unwrap();
       console.log(data);
     } catch (error) {
       console.log(error);

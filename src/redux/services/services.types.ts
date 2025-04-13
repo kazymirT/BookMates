@@ -54,26 +54,20 @@ export interface VerifyEmailResponse {
   accessToken: string;
 }
 export interface LoginResponse {
-  loggedInUser: {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: 'user' | 'admin';
-    image: null | string;
-    isLoggedIn: boolean;
-    isVerifyEmail: boolean;
-  };
+  loggedInUser: User;
   accessToken: string;
 }
 
-export interface UserResponse {
-  id: string;
+export type User = {
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
-}
-
+  role: 'user' | 'admin';
+  image: null | string;
+  isLoggedIn: boolean;
+  isVerifyEmail: boolean;
+};
 export interface TokenDecode {
   email: string;
   role: 'user' | 'admin';

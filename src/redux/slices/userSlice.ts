@@ -1,18 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import { User } from '../services/services.types';
 import { RootState } from '../store';
-
-export type User = {
-  id: number;
-  role: 'user' | 'admin';
-  firstName: string;
-  lastName: string;
-  email: string;
-  image: null | string;
-  isLoggedIn: boolean;
-  isVerifyEmail: boolean;
-};
 
 type UserState = {
   user: User | null;
@@ -55,11 +45,19 @@ export const userSlice = createSlice({
     clearPendingLoginData(state) {
       state.pendingLoginData = null;
     },
+    setToken: (state, action: PayloadAction<string | null>) => {
+      state.accessToken = action.payload;
+    },
   },
 });
 
-export const { login, logout, clearPendingLoginData, setPendingLoginData } =
-  userSlice.actions;
+export const {
+  login,
+  logout,
+  clearPendingLoginData,
+  setPendingLoginData,
+  setToken,
+} = userSlice.actions;
 export const { userId } = userSlice.selectors;
 export const userData = (state: RootState) => state.user;
 export default userSlice.reducer;
