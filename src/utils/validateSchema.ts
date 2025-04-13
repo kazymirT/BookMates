@@ -33,7 +33,7 @@ const getEmail = (t: TFunction<'translation', undefined>) => {
   return z
     .string()
     .min(1, { message: t?.('forms-error.email.required') })
-    .max(30, { message: t?.('forms-error.email.max') })
+    .max(50, { message: t?.('forms-error.email.max') })
     .email({ message: t?.('forms-error.email.email') });
 };
 const getCode = (t: TFunction<'translation', undefined>) => {
@@ -52,7 +52,7 @@ const getPassword = (t: TFunction<'translation', undefined>) => {
     })
     .regex(/^(?=.*[0-9])/, { message: t?.('forms-error.password.number') })
     .min(8, { message: t?.('forms-error.password.min') })
-    .max(12, { message: t?.('forms-error.password.max') });
+    .max(30, { message: t?.('forms-error.password.max') });
 };
 const getFirstName = (t: TFunction<'translation', undefined>) => {
   return z
