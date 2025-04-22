@@ -19,7 +19,7 @@ const Home = () => {
       <div className={styles.home}>
         <Newness books={data?.news} />
         <Sale books={data?.sale} />
-        <Collections />
+        <Collections collections={data?.collections} />
         <Authors authors={data?.authors} />
         <Subscription variant="home" />
       </div>

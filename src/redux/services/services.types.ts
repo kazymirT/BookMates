@@ -230,10 +230,12 @@ export interface AuthorMain {
   name: string;
   image: string | null;
 }
+export type CollectionMain = AuthorMain;
 export interface BooksMainPage {
   news: Book[];
   sale: Book[];
   authors: AuthorMain[];
+  collections: CollectionMain[];
 }
 
 export interface BookById {
