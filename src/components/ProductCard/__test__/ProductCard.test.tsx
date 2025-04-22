@@ -12,6 +12,8 @@ export const mockBook: Book = {
   image: 'тестова картинка',
   price: 100,
   discount: 10,
+  orderCount: 10,
+  isNew: true,
   discountPrice: 90,
 };
 
