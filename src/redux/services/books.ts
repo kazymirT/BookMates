@@ -19,9 +19,10 @@ export const booksApi = baseNewApi.injectEndpoints({
         limit = 16,
         page = 1,
         categoryId,
+        collectionId,
         searchQuery,
       }) => ({
-        url: `book?lang=${lang}&page=${page}&limit=${limit}&categoryId=${categoryId}&years=${years.join(',')}&languageIds=${languages.join(',')}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortOptions=${sortOptions}${searchQuery ? `&searchQuery=${searchQuery}` : ''}`,
+        url: `book?lang=${lang}&page=${page}&limit=${limit}&categoryId=${categoryId}&collectionId=${collectionId}&years=${years.join(',')}&languageIds=${languages.join(',')}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortOptions=${sortOptions}${searchQuery ? `&searchQuery=${searchQuery}` : ''}`,
       }),
     }),
     getBookById: builder.query<BookById, { id: string; lang: string }>({

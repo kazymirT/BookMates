@@ -257,13 +257,14 @@ export interface BookById {
 }
 export interface Book {
   id: number;
-  title: string;
   image: string;
-  authors: Attributes[];
+  title: string;
   price: number;
   discount: number | null;
-  discountPrice?: number;
   isNew?: boolean;
+  orderCount: number;
+  authors: Attributes[];
+  discountPrice?: number;
 }
 
 export interface BooksResponse {
@@ -284,6 +285,7 @@ export interface BooksArgsNew {
   limit?: string;
   page?: string;
   categoryId?: number[];
+  collectionId?: string;
   searchQuery?: string;
 }
 

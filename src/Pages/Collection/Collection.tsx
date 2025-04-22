@@ -1,3 +1,4 @@
+import { skipToken } from '@reduxjs/toolkit/query';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -6,16 +7,19 @@ import styles from './Collection.module.scss';
 import Filters from '../Catalog/modules/Filters/Filters';
 import Products from '../Catalog/modules/Products/Products';
 import Breadcrumbs from '@/components/Breadcrumbs/BreadCrumbs';
+import { useGetCollectionByIdQuery } from '@/redux/services/collections';
 import { createBreadcrumbs } from '@/utils/createBreadcrumbs';
-import { COLLECTION } from '@/utils/fake';
 
 const Collection = () => {
   const { collectionId } = useParams<{ collectionId: string }>();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language === 'en' ? 'en' : 'ua';
 
-  const { t } = useTranslation();
-
+  const { data: collection, isSuccess } = useGetCollectionByIdQuery(
+    collectionId ? { collectionId, lang } : skipToken
+  );
   const breadcrumbs = createBreadcrumbs(t('breadcrumbs.collections'), {
-    name: collectionId ? COLLECTION[collectionId].title : '',
+    name: isSuccess ? 'Назва колекції' : '',
     to: '/',
   });
 
@@ -24,14 +28,9 @@ const Collection = () => {
       <div className="container">
         <div className={styles['collection-wrapper']}>
           <Breadcrumbs options={breadcrumbs} />
-          {collectionId && (
-            <CategoryIntro
-              descriptions={COLLECTION[collectionId].description}
-              title={COLLECTION[collectionId].title}
-            />
-          )}
+          {isSuccess && <CategoryIntro {...collection.collection} />}
           <Filters />
-          <Products />
+          <Products collectionId={collectionId} />
         </div>
       </div>
     </section>

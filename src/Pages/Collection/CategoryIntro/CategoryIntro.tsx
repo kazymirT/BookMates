@@ -1,17 +1,19 @@
 import { FC } from 'react';
 
 import styles from './CategoryIntro.module.scss';
-import { CategoryIntroProps } from './types';
-import { formatTextWithSpans } from '@/utils/formatTextWithSpans';
+import { CollectionInfo } from '@/redux/services/collections';
 
-const CategoryIntro: FC<CategoryIntroProps> = ({ descriptions, title }) => {
-  const text = formatTextWithSpans(descriptions);
+const CategoryIntro: FC<CollectionInfo> = ({
+  descriptionOne,
+  descriptionTwo,
+  name,
+}) => {
   return (
     <section className={styles.intro}>
-      <h3>{title}</h3>
+      <h3>{name ?? 'Назва колекії'}</h3>
       <div className={styles.description}>
-        {text &&
-          text.map((description, index) => <p key={index}>{description}</p>)}
+        <p>{descriptionOne}</p>
+        <p>{descriptionTwo}</p>
       </div>
     </section>
   );

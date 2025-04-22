@@ -1,8 +1,9 @@
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './Products.module.scss';
+import { ProductsProps } from './types';
 import Pagination from '@/components/Pagination/Pagination';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import SkeletonProductCard from '@/components/Skeleton/SkeletonProductCard';
@@ -13,7 +14,7 @@ import { SORT_OPTIONS_QUERY } from '@/utils/constants';
 
 export const PRODUCT_OF_PAGE = 16;
 
-const Products = () => {
+const Products: FC<ProductsProps> = ({ collectionId }) => {
   const { t, i18n } = useTranslation();
   const {
     page,
@@ -35,6 +36,7 @@ const Products = () => {
     years: years.map((lan) => lan.id),
     languages: language.map((lan) => lan.id),
     categoryId: categories.map((category) => category.id),
+    collectionId,
     maxPrice: price[1],
     minPrice: price[0],
     sortOptions: SORT_OPTIONS_QUERY[sort],
