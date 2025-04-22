@@ -31,6 +31,7 @@ const Search = lazy(() => import('../Pages/Search/Search'));
 import HistoryWrapper from './HistoryWrapper';
 import PrivateRoutes from './PrivateRoutes';
 import Layout from '@/Layout/Layout/Layout';
+import Unsubscribe from '@/Pages/Unsubscribe/Unsubscribe';
 import VerifyEmail from '@/Pages/VerifyEmail/VerifyEmail';
 import { ROUTE_PATH } from '@/utils/constants';
 
@@ -38,6 +39,7 @@ const route = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route path="/unsubscribe-news" element={<Unsubscribe />} />
       <Route
         element={
           <HistoryWrapper>

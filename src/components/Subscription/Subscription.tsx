@@ -9,8 +9,7 @@ import { SubscriptionProps } from './types';
 import InputWithButton from '../ui-components/InputWithButton/InputWithButton';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
-import { useAppDispatch } from '@/redux/hooks';
-import { toggleModal } from '@/redux/slices/modalSlice';
+import { useSubscribeMutation } from '@/redux/services/subscriber';
 import {
   getResetPasswordSchema,
   ResetPasswordValues,
@@ -18,12 +17,12 @@ import {
 
 const Subscription: FC<SubscriptionProps> = ({ variant }) => {
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
+  const [subscribe, { isLoading }] = useSubscribeMutation();
   const {
     register,
     reset,
     handleSubmit,
-    formState: { isValid, errors, isSubmitting },
+    formState: { isValid, errors },
   } = useForm<ResetPasswordValues>({
     defaultValues: {
       email: '',
@@ -32,9 +31,7 @@ const Subscription: FC<SubscriptionProps> = ({ variant }) => {
     mode: 'onTouched',
   });
   const onSubmit = async (data: ResetPasswordValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    dispatch(toggleModal({ openedModalType: 'subscription-success' }));
+    subscribe(data);
     reset();
   };
   const subscribeCN = classNames(styles.subscription, {
@@ -60,7 +57,7 @@ const Subscription: FC<SubscriptionProps> = ({ variant }) => {
               size={Sizes.Medium}
               variant={Variant.Basic}
               text={t('home.subscribe.button')}
-              disabled={!isValid || isSubmitting}
+              disabled={!isValid || isLoading}
             />
           </InputWithButton>
         </form>
