@@ -6,7 +6,7 @@ import { CollectionList } from '@/redux/services/collections';
 
 const CollectionsCard: FC<CollectionList> = ({
   id,
-  booksCount,
+  bookCount,
   image,
   name,
 }) => {
@@ -16,7 +16,7 @@ const CollectionsCard: FC<CollectionList> = ({
       <div className={styles.wrapper}>
         <h3>{name}</h3>
         <p>
-          <span>{booksCount ?? 0}</span>
+          <span>{bookCount}</span>
           <span>книг</span>
         </p>
       </div>

@@ -10,7 +10,7 @@ const CategoryIntro: FC<CollectionInfo> = ({
 }) => {
   return (
     <section className={styles.intro}>
-      <h3>{name ?? 'Назва колекії'}</h3>
+      <h3>{name}</h3>
       <div className={styles.description}>
         <p>{descriptionOne}</p>
         <p>{descriptionTwo}</p>

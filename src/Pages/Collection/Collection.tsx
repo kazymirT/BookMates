@@ -19,7 +19,7 @@ const Collection = () => {
     collectionId ? { collectionId, lang } : skipToken
   );
   const breadcrumbs = createBreadcrumbs(t('breadcrumbs.collections'), {
-    name: isSuccess ? 'Назва колекції' : '',
+    name: isSuccess ? collection.collection.name : '',
     to: '/',
   });
 

@@ -9,7 +9,7 @@ export interface CollectionByIdArgs {
 }
 
 export interface CollectionList extends CollectionMain {
-  booksCount: number;
+  bookCount: number;
 }
 
 export interface CollectionInfo {
