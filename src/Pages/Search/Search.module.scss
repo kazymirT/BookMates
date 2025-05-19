@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .search {
   .search__inner {
@@ -29,9 +29,9 @@
       gap: 40px;
 
       padding: 34px 28px;
+      border-radius: 8px;
 
       background: $accent-white;
-      border-radius: 8px;
 
       .books {
         display: flex;

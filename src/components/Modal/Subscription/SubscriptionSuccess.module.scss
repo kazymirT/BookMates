@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .success {
   display: flex;
@@ -8,9 +8,9 @@
   width: 100%;
   max-width: 622px;
   padding: 70px 32px;
+  border-radius: 12px;
 
   background: $accent-white;
-  border-radius: 12px;
 
   h2 {
     font-family: $third-family;
@@ -42,9 +42,9 @@
   width: 100%;
   max-width: 622px;
   padding: 60px 69px 60px 68px;
+  border-radius: 12px;
 
   background: $accent-white;
-  border-radius: 12px;
 
   p {
     font-size: 20px;

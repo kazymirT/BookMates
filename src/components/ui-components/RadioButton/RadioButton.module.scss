@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .radio-group__button {
   cursor: pointer;

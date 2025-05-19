@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .content {
   display: flex;
@@ -132,7 +132,6 @@
     justify-content: center;
 
     max-width: 1040px;
-
     border-radius: 8px;
 
     & > a {

@@ -1,5 +1,4 @@
-@use '@/styles/colors.scss';
-@use '@/styles/fonts.scss';
+@use '@/styles' as *;
 
 .form-item {
   display: flex;
@@ -10,9 +9,9 @@
   width: 100%;
   max-width: 767px;
   padding: 16px 16px 24px;
-
-  background-color: colors.$accent-white;
   border-radius: 0.5rem;
+
+  background-color: $accent-white;
 
   .title {
     display: flex;
@@ -21,22 +20,22 @@
 
     .circle {
       padding: 12.5px 18.7px;
+      border-radius: 50%;
 
       font-size: 1rem;
       font-weight: 500;
       line-height: 1.19;
-      color: colors.$grey-300;
+      color: $grey-300;
       letter-spacing: 0.01em;
 
-      background: colors.$button-hover-secondary;
-      border-radius: 50%;
+      background: $button-hover-secondary;
     }
 
     h3 {
-      font-family: fonts.$font-family;
+      font-family: $font-family;
       font-size: 1.5rem;
       font-weight: 500;
-      color: colors.$grey-300;
+      color: $grey-300;
       letter-spacing: 0.04em;
     }
   }

@@ -1,5 +1,5 @@
-@use './fonts.scss';
-@use './colors.scss';
+@use './fonts';
+@use './colors';
 
 @mixin hover-active_color($hover, $active) {
   &:hover {
@@ -13,8 +13,8 @@
 
 @mixin scrollBar($width, $borderRadius, $scrollBac, $trackBac, $thumbBac) {
   ::-webkit-scrollbar-track {
-    background-color: $trackBac;
     border-radius: $borderRadius;
+    background-color: $trackBac;
   }
 
   ::-webkit-scrollbar {
@@ -25,17 +25,17 @@
 
   ::-webkit-scrollbar-thumb {
     cursor: pointer;
-    background-color: $thumbBac;
     border-radius: $borderRadius;
+    background-color: $thumbBac;
   }
 }
 
 @mixin font-styles(
-  $font-family: fonts.$font-family,
+  $font-family: $font-family,
   $font-size: 1rem,
   $font-weight: 400,
   $line-height: 1.21,
-  $color: colors.$grey-500,
+  $color: $grey-500,
   $letter-spacing: 0.03em
 ) {
   font-family: $font-family;
@@ -106,11 +106,10 @@
   width: 44px;
   height: 44px;
   padding: 0.625rem;
-
-  font-size: 0;
-
   border: 1px solid $button-default;
   border-radius: 50%;
+
+  font-size: 0;
 
   transition: border-color 0.3s;
 }

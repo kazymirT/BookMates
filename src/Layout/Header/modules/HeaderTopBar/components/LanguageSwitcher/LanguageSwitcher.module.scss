@@ -1,7 +1,6 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .radioGroup {
-
   @include flex-center;
 
   gap: 16px;

@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .box {
   display: flex;
@@ -25,6 +25,8 @@
     .input {
       width: 100%;
       padding: 0.64rem 1rem;
+      border: 1px solid $grey-100;
+      border-radius: 0.25rem;
 
       font-family: $font-family;
       font-size: 1rem;
@@ -32,15 +34,13 @@
       color: $grey-300;
       letter-spacing: 0.01em;
 
-      border: 1px solid $grey-100;
-      border-radius: 0.25rem;
       outline: 1px solid transparent;
 
       transition: all 0.3s;
 
       &:disabled {
-        background-color: $grey-100;
         border-color: transparent;
+        background-color: $grey-100;
       }
 
       &:hover:not(:disabled) {
@@ -60,8 +60,8 @@
       }
 
       &.input-valid {
-        color: $accent-success;
         border: 1px solid $accent-success;
+        color: $accent-success;
 
         & + .span {
           color: $accent-success;
@@ -73,8 +73,8 @@
       }
 
       &.input-error {
-        color: $accent-red;
         border-color: $accent-red;
+        color: $accent-red;
 
         & + .span {
           color: $accent-red;

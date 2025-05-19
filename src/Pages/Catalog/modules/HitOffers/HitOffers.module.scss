@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .hit {
   display: flex;
@@ -6,9 +6,9 @@
   gap: 52px;
 
   padding: 21px 20px 49px;
+  border-radius: 8px;
 
   background: $accent-white;
-  border-radius: 8px;
 
   &__skeleton {
     gap: 26px;

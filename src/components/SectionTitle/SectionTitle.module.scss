@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 @mixin fire($width, $height, $ml, $left) {
   position: relative;

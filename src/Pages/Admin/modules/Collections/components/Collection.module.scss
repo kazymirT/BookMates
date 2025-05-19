@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .form-container {
   position: relative;
@@ -11,9 +11,9 @@
   width: 100%;
   min-width: 622px;
   padding: 28px 32px;
+  border-radius: 12px;
 
   background-color: $accent-white;
-  border-radius: 12px;
   box-shadow: 2px 3px 37px 0 rgb(0 0 0 / 25%);
 
   &__add-book {

@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .form {
   overflow: hidden;
@@ -8,10 +8,10 @@
 
   width: fit-content;
   padding: 15px;
-
-  background-color: $accent-white;
   border: 0.5px solid rgb(0 0 0 / 30%);
   border-radius: 8px;
+
+  background-color: $accent-white;
 
   transition: all 0.3s;
 
@@ -35,10 +35,10 @@
 
       width: 18px;
       height: 18px;
-
-      appearance: none;
       border: 2px solid $button-default;
       border-radius: 50%;
+
+      appearance: none;
 
       transition: all 0.3s ease-in;
 
@@ -54,9 +54,9 @@
 
           width: 10px;
           height: 10px;
+          border-radius: 50%;
 
           background-color: $button-default;
-          border-radius: 50%;
         }
       }
     }
@@ -67,9 +67,9 @@
 
     padding: 0;
     padding-left: 15px;
+    border: none;
 
     background-color: transparent;
-    border: none;
 
     label input {
       border: 1px solid black;

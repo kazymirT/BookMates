@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .card {
   position: relative;
@@ -9,7 +9,6 @@
   width: 100%;
   min-width: 135x;
   max-width: 233px;
-
   border-radius: 8px;
 
   img {
@@ -77,8 +76,9 @@
       display: block;
       align-self: center;
 
-      background: transparent;
       border-color: transparent;
+
+      background: transparent;
 
       transition: all 0.5s ease-in-out;
 
@@ -113,8 +113,8 @@
         background-color: rgb(0 0 0 / 60%);
 
         button {
-          background: $accent-white;
           border-color: $accent-white;
+          background: $accent-white;
           transition: all 0.5s ease-in-out;
         }
       }

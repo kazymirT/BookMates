@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .collection {
   @include scrollBar(5px, 5px, $background-color, $grey-100, $grey-200);
@@ -12,8 +12,8 @@
   th,
   tr,
   td {
-    text-align: center;
     border: 2px solid $grey-100;
+    text-align: center;
   }
 
   thead,

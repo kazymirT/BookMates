@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .popup {
   @include flex-center;
@@ -20,9 +20,9 @@
 
     width: fit-content;
     padding: 32px 72px;
+    border-radius: 12px;
 
     background: $accent-white;
-    border-radius: 12px;
   }
 
   h3 {

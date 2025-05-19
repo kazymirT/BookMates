@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .list {
   display: flex;
@@ -9,11 +9,11 @@
   width: fit-content;
   max-width: 250px;
   padding: 32px;
+  border-radius: 8px;
 
   color: $quartz;
 
   background-color: $accent-white;
-  border-radius: 8px;
 
   li {
     cursor: pointer;

@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .lists {
   overflow: hidden;
@@ -8,10 +8,10 @@
 
   width: 282px;
   padding: 15px;
-
-  background-color: $accent-white;
   border: 0.5px solid rgb(0 0 0 / 30%);
   border-radius: 8px;
+
+  background-color: $accent-white;
 
   transition: all 0.3s;
 

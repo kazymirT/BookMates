@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 @mixin btn-position($top, $rot, $right: null, $left: null) {
   top: $top;
@@ -17,11 +17,11 @@
   width: 44px;
   height: 44px;
   padding: 0.625rem;
+  border-radius: 50%;
 
   font-size: 0;
 
   background: $accent-white;
-  border-radius: 50%;
 
   transition: border-color 0.3s;
 

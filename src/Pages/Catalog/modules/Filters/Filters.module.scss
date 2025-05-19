@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .filters {
   position: sticky;
@@ -9,7 +9,7 @@
 
   height: fit-content;
   padding: 20px;
+  border-radius: 8px;
 
   background-color: $accent-white;
-  border-radius: 8px;
 }

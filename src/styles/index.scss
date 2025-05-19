@@ -1,17 +1,13 @@
-@use './normalize.scss';
-@use './reset.scss';
-@use './colors.scss';
-@use './fonts.scss';
-@use './mixin.scss';
-/* stylelint-disable */
-@import 'colors';
-@import 'fonts';
-@import 'mixin';
-/* stylelint-enable */
+@forward './normalize';
+@forward './reset';
+@forward './colors';
+@forward './fonts';
+@forward './mixin';
 
 :root {
   scrollbar-width: none;
-  font-family: 'Inter', sans-serif;
+
+  font-family: Inter, sans-serif;
   font-size: 16px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -46,15 +42,16 @@ input {
 .container {
   box-sizing: border-box;
   width: 100%;
+  max-width: 393px;
   margin: 0 auto;
   padding: 0 10px;
-  max-width: 393px;
 
-  @media (min-width: 393px) {
-    padding: 0 20px;
+  @media (width >= 393px) {
     max-width: 768px;
+    padding: 0 20px;
   }
-  @media (min-width: 768px) {
+
+  @media (width >= 768px) {
     max-width: 1280px;
     padding: 0 40px;
   }

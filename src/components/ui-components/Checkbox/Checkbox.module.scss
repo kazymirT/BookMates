@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .checkbox-container {
   display: flex;
@@ -7,8 +7,8 @@
 
   .input {
     cursor: pointer;
-    appearance: none;
     border-radius: 0.15em;
+    appearance: none;
     outline: none;
   }
 
@@ -26,8 +26,8 @@
     .input {
       width: 16px;
       height: 16px;
-      background-color: rgba($button-default, 0.55);
       border-radius: 2px;
+      background-color: rgba($button-default, 0.55);
 
       &:checked {
         position: relative;
@@ -119,10 +119,10 @@
 
       width: 18px;
       height: 18px;
-
-      appearance: none;
       border: 1px solid black;
       border-radius: 50% !important;
+
+      appearance: none;
 
       transition: all 0.3s ease-in;
 
@@ -138,9 +138,9 @@
 
           width: 10px;
           height: 10px;
+          border-radius: 50%;
 
           background-color: $button-default;
-          border-radius: 50%;
         }
       }
     }

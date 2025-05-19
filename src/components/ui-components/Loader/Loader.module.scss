@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 /* stylelint-disable */
 .wrapper {
   $i: 2;

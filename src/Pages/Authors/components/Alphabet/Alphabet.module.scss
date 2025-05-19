@@ -1,11 +1,11 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .alphabet {
   display: flex;
   justify-content: space-between;
 
   padding: 20px 23px;
+  border-radius: 8px;
 
   background: $accent-white;
-  border-radius: 8px;
 }

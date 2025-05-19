@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .category {
   display: flex;
@@ -24,6 +24,8 @@
 
     .link {
       padding: 16px 35px;
+      border: 0.5px solid $grey-300;
+      border-radius: 8px;
 
       font-family: $font-family;
       font-size: 16px;
@@ -33,21 +35,18 @@
       text-align: center;
       letter-spacing: 0.01em;
 
-      border: 0.5px solid $grey-300;
-      border-radius: 8px;
-
       transition: all 0.3s ease-in-out;
 
       &:hover {
+        border-color: $button-default;
         color: $accent-white;
         background: $button-default;
-        border-color: $button-default;
       }
 
       &.active {
+        border-color: $button-default;
         color: $accent-white;
         background: $button-default;
-        border-color: $button-default;
       }
     }
   }

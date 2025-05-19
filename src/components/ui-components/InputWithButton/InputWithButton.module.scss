@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .box {
   position: relative;
@@ -10,14 +10,15 @@
   width: 100%;
   max-width: 570px;
   padding: 12px;
-
-  background: rgb(255 255 255 / 1%);
-  backdrop-filter: blur(80px);
   border: 1px solid #71798a;
   border-radius: 8px;
 
+  background: rgb(255 255 255 / 1%);
+  backdrop-filter: blur(80px);
+
   input {
     padding: 0 24px 0 12px;
+    border: none;
 
     font-family: $font7;
     font-size: 22px;
@@ -26,7 +27,6 @@
     color: $icon-active;
 
     background: transparent;
-    border: none;
     outline: none;
 
     &::placeholder {

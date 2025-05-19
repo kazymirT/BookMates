@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .input-box {
   position: relative;
@@ -21,6 +21,7 @@
 
       width: 70px;
       padding: 9px 16px;
+      border-radius: 0.25rem;
 
       font-family: $font-family;
       font-size: 1rem;
@@ -28,7 +29,6 @@
       color: transparent;
       letter-spacing: 0.01em;
 
-      border-radius: 0.25rem;
       outline: 1px solid transparent;
 
       transition: all 0.3s;

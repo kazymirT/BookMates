@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .delivery_inner {
   display: flex;

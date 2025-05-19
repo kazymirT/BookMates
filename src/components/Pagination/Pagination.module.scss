@@ -1,5 +1,5 @@
 /* stylelint-disable */
-@import '@/styles';
+@use '@/styles' as *;
 /* stylelint-enable */
 
 @mixin next-previous($rotate) {
@@ -31,14 +31,17 @@
 
     &:has(button:disabled) {
       border-color: $button-disabled;
+
       button {
         @include icon-state($button-disabled);
       }
     }
   }
+
   .active {
     border-color: $button-active;
   }
+
   li.next {
     @include next-previous(-90deg);
 

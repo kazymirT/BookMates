@@ -1,8 +1,4 @@
-@use '@/styles/fonts.scss';
-@use '@/styles/colors.scss';
-@use '@/styles/mixin.scss';
-
-@import '@/styles';
+@use '@/styles' as *;
 
 .wrapper {
   position: relative;
@@ -11,16 +7,16 @@
   gap: 8px;
 
   .required {
-    font-family: fonts.$font-family;
+    font-family: $font-family;
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.19;
-    color: colors.$grey-300;
+    color: $grey-300;
     letter-spacing: 0.04em;
 
     &::after {
       content: '*';
-      color: colors.$accent-red;
+      color: $accent-red;
     }
   }
 
@@ -28,43 +24,42 @@
     position: static;
 
     padding: 10.28px 16px;
-
-    border: 1px solid colors.$grey-100;
+    border: 1px solid $grey-100;
     border-radius: 4px;
 
     transition: all 0.3s;
 
     &:hover {
       cursor: pointer;
-      border-color: colors.$grey-200;
+      border-color: $grey-200;
 
       .menu-list {
-        border-color: colors.$grey-200;
+        border-color: $grey-200;
       }
     }
 
     &__error {
-      border-color: colors.$accent-red;
+      border-color: $accent-red;
 
       & div.menu-list {
-        border-color: colors.$accent-red;
+        border-color: $accent-red;
       }
 
       &:hover {
-        border-color: colors.$accent-red;
+        border-color: $accent-red;
 
         & div.menu-list {
-          border-color: colors.$accent-red;
+          border-color: $accent-red;
         }
       }
 
       & .placeholder {
-        color: colors.$accent-red;
+        color: $accent-red;
       }
     }
 
     &__disabled {
-      background-color: colors.$button-disabled;
+      background-color: $button-disabled;
     }
   }
 
@@ -101,7 +96,7 @@
   }
 
   .menu {
-    @include mixin.scrollBar(10px, 5px, colors.$background-color, colors.$background-color, colors.$grey-100);
+    @include mixin.scrollBar(10px, 5px, $background-color, $background-color, $grey-100);
 
     position: absolute;
     z-index: 5;
@@ -110,23 +105,23 @@
 
     width: 100%;
 
-    background-color: colors.$accent-white;
+    background-color: $accent-white;
 
     .menu-list {
       display: flex;
       flex-direction: column;
 
       padding: 10px 12px;
-
-      background-color: colors.$accent-white;
-      border: 1px solid colors.$grey-100;
+      border: 1px solid $grey-100;
       border-top: none;
       border-radius: 0 0 4px 4px;
+
+      background-color: $accent-white;
 
       transition: all 0.3s;
 
       &:hover {
-        border-color: colors.$grey-200;
+        border-color: $grey-200;
       }
 
       .option {
@@ -136,12 +131,12 @@
         transition: all 0.3s;
 
         &:hover {
-          background-color: colors.$brown-100;
+          background-color: $brown-100;
         }
 
         &:active {
-          color: colors.$accent-white;
-          background-color: colors.$brown-200;
+          color: $accent-white;
+          background-color: $brown-200;
         }
       }
     }
@@ -153,7 +148,7 @@
     left: 0;
 
     font-size: 0.75rem;
-    color: colors.$accent-red;
+    color: $accent-red;
     letter-spacing: 0.01em;
 
     animation: errorShow 0.3s;

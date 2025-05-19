@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .wrapper {
   width: 100%;
@@ -14,7 +14,6 @@
     width: 100%;
     height: clamp(8.5rem, 3.599rem + 19.955vw, 14rem);
     padding: 16px 20px;
-
     border-radius: 8px;
 
     img {
@@ -96,6 +95,7 @@
       align-self: flex-start;
 
       padding: 5px 13px;
+      border-radius: 4px;
 
       font-family: $font-family;
       font-size: clamp(0.475rem, -0.018rem + 1.6vw, 0.75rem);
@@ -104,7 +104,6 @@
       letter-spacing: 0.05em;
 
       background: $accent-white;
-      border-radius: 4px;
 
       @media (width >= 768px) {
         padding: 6px 22px;

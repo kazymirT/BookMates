@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .profile {
   display: flex;
@@ -19,7 +19,6 @@
   gap: 0.75em;
 
   padding: 1em 1em 0.75em;
-
   border-bottom: 2px solid $isabelline;
 
   &-info {
@@ -55,8 +54,8 @@
     @include flex-center;
     @include icon-state($accent-white);
 
-    background-color: $brown-200;
     border-radius: 50%;
+    background-color: $brown-200;
   }
 }
 

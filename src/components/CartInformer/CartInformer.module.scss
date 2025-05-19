@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .cartInformer {
   user-select: none;
@@ -9,9 +9,10 @@
   right: 0;
   transform: translateX(100%);
 
+  border-radius: 8px 0 0 8px;
+
   background: rgb(0 0 0 / 90%);
   backdrop-filter: saturate(180%) blur(20px);
-  border-radius: 8px 0 0 8px;
   box-shadow: 0 0 0 1px rgb(255 255 255 / 10%);
 
   transition: -webkit-transform 0.5s;
@@ -59,13 +60,13 @@
 
         width: 20px;
         height: 20px;
+        border-radius: 50%;
 
         font-size: 12px;
         font-weight: 700;
         color: $accent-white;
 
         background: #ff4500;
-        border-radius: 50%;
       }
     }
 

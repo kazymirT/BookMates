@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .wrapper {
   display: flex;
@@ -8,9 +8,9 @@
   width: 100%;
   max-width: 350px;
   padding: 20px 8px 20px 12px;
+  border-radius: 8px;
 
   background-color: $button-hover-secondary;
-  border-radius: 8px;
 
   .img-box {
     overflow: hidden;

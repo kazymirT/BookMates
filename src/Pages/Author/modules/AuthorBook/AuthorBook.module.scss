@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .books {
   display: flex;
@@ -6,9 +6,9 @@
   gap: 53px;
 
   padding: 22px 20px 50px;
+  border-radius: 8px;
 
   background: $accent-white;
-  border-radius: 8px;
 
   h3 {
     font-family: $third-family;

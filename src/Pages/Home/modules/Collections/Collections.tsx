@@ -30,14 +30,14 @@ const Collections: FC<CollectionsProps> = ({ collections }) => {
             ) : (
               <SkeletonCollectionCard cards={CARD_OF_COLLECTIONS} />
             )}
-            <ButtonLink
-              type="button"
-              size={Sizes.Section}
-              text={t('home.book-collections.button')}
-              url="/collections"
-              variant={Variant.Primary}
-            />
           </div>
+          <ButtonLink
+            type="button"
+            size={Sizes.Section}
+            text={t('home.book-collections.button')}
+            url="/collections"
+            variant={Variant.Primary}
+          />
         </SectionContent>
       </>
     </Section>

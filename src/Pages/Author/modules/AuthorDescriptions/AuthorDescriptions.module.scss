@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .content {
   display: grid;
@@ -6,8 +6,8 @@
   gap: 26px;
 
   .avatar {
-    object-fit: cover;
     border-radius: 8px;
+    object-fit: cover;
   }
 
   .descriptions {
@@ -22,9 +22,9 @@
 
       margin-bottom: 21px;
       padding: 20px;
+      border-radius: 8px;
 
       background: $accent-white;
-      border-radius: 8px;
     }
   }
 

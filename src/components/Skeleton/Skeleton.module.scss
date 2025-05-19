@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 .card {
   display: flex;
@@ -7,9 +7,9 @@
 
   height: 322px;
   padding: 11.2px 8px;
+  border-radius: 8px;
 
   background-color: $background-skeleton;
-  border-radius: 8px;
 
   &__catalog {
     width: 100%;
@@ -79,9 +79,9 @@
   width: 100%;
   height: clamp(8.5rem, 3.599rem + 19.955vw, 14rem);
   padding: 20px;
+  border-radius: 8px;
 
   background-color: $background-skeleton;
-  border-radius: 8px;
 
   .text {
     display: flex;
@@ -133,9 +133,9 @@
   min-width: 135x;
   max-width: 233px;
   padding: 20px;
+  border-radius: 8px;
 
   background-color: $background-skeleton;
-  border-radius: 8px;
 
   @media (width >= 576px) {
     aspect-ratio: 0.74;
@@ -158,9 +158,9 @@
   max-width: 264px;
   height: auto;
   padding: 10px;
+  border-radius: 8px;
 
   background-color: $background-skeleton;
-  border-radius: 8px;
 
   & > div {
     width: 100%;
@@ -173,8 +173,8 @@
 }
 
 .category {
-  background-color: $background-skeleton;
   border-radius: 8px;
+  background-color: $background-skeleton;
 
   &__catalog {
     width: 282px;
@@ -198,9 +198,9 @@
   width: 370px;
   height: 172px;
   padding: 6px;
+  border-radius: 8px;
 
   background-color: $background-skeleton;
-  border-radius: 8px;
 
   .wrapper {
     display: flex;
@@ -231,9 +231,9 @@
   width: 588px;
   height: 174px;
   padding: 6px;
+  border-radius: 8px;
 
   background-color: $background-skeleton;
-  border-radius: 8px;
 
   .wrapper {
     display: flex;

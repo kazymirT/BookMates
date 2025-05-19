@@ -1,4 +1,4 @@
-@import '@/styles';
+@use '@/styles' as *;
 
 div.discount {
   display: flex;
@@ -6,8 +6,8 @@ div.discount {
 
   .normal-price {
     padding: 0;
-    text-decoration: line-through;
     border-bottom: none;
+    text-decoration: line-through;
   }
 
   .discount-price {
