@@ -61,7 +61,7 @@
     gap: 6px;
     align-items: center;
 
-    width: 211px;
+    width: 100%;
     padding: 9px 10px;
 
     font-family: $font-family;
@@ -70,6 +70,7 @@
     line-height: 1.205;
     color: $icon-active;
     text-align: center;
+    white-space: nowrap;
 
     border: 0.5px solid $button-default;
     border-radius: 8px;
@@ -77,7 +78,7 @@
 
   &--card {
     width: 100%;
-    padding: 12px 32px;
+    padding: 6.5px 32px;
 
     font-family: $third-family;
     font-size: 16px;
@@ -88,6 +89,10 @@
 
     background: $button-default;
     border-radius: 8px;
+
+    @media (width >= 768px) {
+      padding: 12px 32px;
+    }
   }
 
   &--basic {
@@ -140,10 +145,10 @@
   }
 
   &--user {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 29px;
 
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 24px;
     color: $black;
@@ -153,6 +158,18 @@
 
     &:focus {
       color: #c42700;
+    }
+
+    @media (width >= 768px) {
+      width: 40px;
+      height: 40px;
+      font-size: 14px;
+    }
+
+    @media (width >= 992px) {
+      width: 50px;
+      height: 50px;
+      font-size: 16px;
     }
   }
 
@@ -189,11 +206,19 @@
     padding: 0;
 
     font-family: $font-family;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.1;
     color: $link-color;
     text-align: center;
+
+    @media (width >= 992px) {
+      font-size: 18px;
+    }
+
+    @media (width >= 1200px) {
+      font-size: 22px;
+    }
   }
 
   &--accent {
@@ -230,6 +255,12 @@
     padding: 15px;
   }
 
+  &--section {
+    padding: 8px 14px;
+    line-height: 26px;
+    letter-spacing: 0.055em;
+  }
+
   &--s {
     padding: 12.5px 23px;
   }
@@ -240,6 +271,28 @@
 
   &--m {
     padding: 12.5px 32px;
+  }
+
+  &--subscription {
+    padding: 6.5px 14px;
+
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    color: #fbfafa;
+    letter-spacing: 0.033em;
+
+    @media (width >= 480px) {
+      padding: 10px 30.5px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    @media (width >= 1024px) {
+      padding: 11px 36.5px;
+      font-size: 22px;
+      line-height: 27px;
+    }
   }
 
   &--l {

@@ -6,12 +6,21 @@
   &-inner {
     display: flex;
     flex-direction: column;
-    gap: 38px;
-    padding: 32px 0;
+    gap: 8px;
+    padding: 24px 0 6px;
+
+    @media (width >= 768px) {
+      gap: 38px;
+      padding: 19px 0 6px;
+    }
+
+    @media (width >= 992px) {
+      padding: 32px 0;
+    }
 
     @media (width >= 1200px) {
       gap: 18px;
-      padding: 20px 40px;
+      padding: 20px 40px 17px;
     }
   }
 }

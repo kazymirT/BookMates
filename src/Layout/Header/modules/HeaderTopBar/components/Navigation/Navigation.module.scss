@@ -2,8 +2,12 @@
 
 @mixin flex {
   display: flex;
-  gap: 77px;
+  gap: 16px;
   align-items: baseline;
+
+  @media (width >= 992px) {
+    gap: clamp(1rem, -17.183rem + 29.327vw, 4.813rem);
+  }
 }
 
 .navigation {
@@ -17,12 +21,20 @@
 
       a {
         font-family: $font-family;
-        font-size: 22px;
+        font-size: 16px;
         font-weight: 400;
         line-height: 1.4;
         color: $link-color;
         text-align: center;
         letter-spacing: 0.04em;
+
+        @media (width >= 992px) {
+          font-size: 18px;
+        }
+
+        @media (width >= 1200px) {
+          font-size: 22px;
+        }
       }
     }
   }

@@ -1,6 +1,7 @@
 import { Account } from './Account';
 import { Arrow } from './Arrow';
 import { Arrow_1 } from './Arrow_1';
+import { Burger } from './Burger';
 import { Cart } from './Cart';
 import { CartNew } from './CartNew';
 import { Close } from './Close';
@@ -34,4 +35,5 @@ export const IconInstance: IconInstance = {
   Remove,
   Drop,
   CartNew,
+  Burger,
 };

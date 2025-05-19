@@ -7,7 +7,7 @@ const Slide: FC<SlideProps> = ({
   slide: { button, description, img, title },
 }) => {
   return (
-    <div className={styles['slider-container']}>
+    <div className={styles.wrapper}>
       <div className={styles.slider}>
         <img
           src={img}

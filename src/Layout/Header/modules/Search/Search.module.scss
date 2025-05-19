@@ -5,5 +5,12 @@
 
   position: relative;
   width: 100%;
-  max-width: 566px;
+
+  @media (width >= 576px) {
+    max-width: 411px;
+  }
+
+  @media (width >= 992px) {
+    max-width: 566px;
+  }
 }

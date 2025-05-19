@@ -6,7 +6,7 @@
   position: relative;
 
   font-family: $font-family;
-  color: $grey-500;
+  color: #afacac;
   text-align: center;
   letter-spacing: 0.01em;
 
@@ -27,15 +27,23 @@
 
   &--checked {
     cursor: default;
-    color: #707070;
+    color: #fffafa;
 
     .radio-button__label {
       cursor: default;
+    }
+
+    @media (width >= 768px) {
+      color: #707070;
     }
   }
 
   &--disabled {
     color: #707070;
+  }
+
+  @media (width >= 768px) {
+    color: $grey-500;
   }
 }
 

@@ -11,6 +11,7 @@
   position: absolute;
   z-index: 2;
 
+  display: none;
   align-self: flex-end;
 
   width: 44px;
@@ -60,5 +61,9 @@
     &__product {
       @include btn-position(-15%, 90deg, 60px);
     }
+  }
+
+  @media (width >= 992px) {
+    display: block;
   }
 }

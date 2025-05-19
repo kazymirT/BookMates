@@ -1,10 +1,27 @@
 @import '@/styles';
 
 .list {
+  position: relative;
+
   display: flex;
   gap: 16px;
+
   padding: 8px 32px;
+
   transition: all 0.3s;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 32px;
+
+    width: calc(100% - 64px);
+    height: 1px;
+
+    background-color: $grey-100;
+  }
 
   &:hover,
   &:focus {

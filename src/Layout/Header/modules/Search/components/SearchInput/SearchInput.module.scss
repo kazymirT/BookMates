@@ -7,9 +7,18 @@
   button.btn {
     @include flex-center;
 
-    width: 60px;
-    height: 36px;
+    width: 48px;
+    height: 26px;
     background: $button-default;
     border-radius: 8px;
+
+    @media (width >= 768px) {
+      width: 60px;
+      height: 32px;
+    }
+
+    @media (width >= 992px) {
+      height: 36px;
+    }
   }
 }

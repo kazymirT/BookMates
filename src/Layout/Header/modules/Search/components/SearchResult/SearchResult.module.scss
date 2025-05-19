@@ -3,14 +3,16 @@
 .results {
   position: absolute;
   z-index: 10;
-  top: 78px;
+  top: 45px;
   left: 0;
 
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   width: 100%;
+  max-height: calc(100dvh - 130px);
   padding: 0;
 
   background-color: $accent-white;
@@ -39,5 +41,13 @@
 
   & button {
     margin-bottom: 32px;
+  }
+
+  @media (width >= 768px) {
+    top: 144px;
+  }
+
+  @media (width >= 992px) {
+    top: 78px;
   }
 }

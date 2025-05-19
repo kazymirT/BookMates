@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import styles from './SectionTitle.module.scss';
-import { SectionTitleProps } from './types';
+import type { SectionTitleProps } from './types';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 
@@ -23,7 +23,7 @@ const SectionTitle: FC<SectionTitleProps> = ({
       {btnText && btnLink && (
         <ButtonLink
           type="button"
-          size={Sizes.Large}
+          size={Sizes.Section}
           text={btnText}
           url={btnLink}
           variant={Variant.Primary}

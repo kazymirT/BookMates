@@ -5,13 +5,13 @@
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 
   width: 100%;
-  min-width: 220px;
-  max-width: 256px;
-  height: 456px;
-  padding: 11.2px 8px;
+  // min-width: 220px;
+  // max-width: 256px;
+  height: 322px;
+  padding: 8px 6px 5px;
 
   font-size: 0;
 
@@ -22,6 +22,11 @@
 
   & > img {
     width: 100%;
+    height: clamp(10.875rem, 7.469rem + 13.867vw, 14.125rem);
+
+    @media (width >= 834px) {
+      height: clamp(14.125rem, 8.848rem + 10.112vw, 16.938rem);
+    }
   }
 
   .transparent {
@@ -30,7 +35,7 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 28px;
 
       .content {
         display: flex;
@@ -40,24 +45,32 @@
         .title-wrapper {
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 4px;
 
           .title {
             font-family: $font-family;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
             line-height: 1.188;
             color: $grey-500;
             letter-spacing: 0.01em;
+
+            @media (width >= 834px) {
+              font-size: 16px;
+            }
           }
 
           .author {
             font-family: $font-family;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             line-height: 150%;
             color: $grey-300;
             letter-spacing: 0.01em;
+
+            @media (width >= 834px) {
+              font-size: 12px;
+            }
           }
 
           h3 {
@@ -71,6 +84,14 @@
 
             transition: all 0.3s;
           }
+
+          @media (width >= 768px) {
+            gap: 0;
+          }
+
+          @media (width >= 1024px) {
+            gap: 12px;
+          }
         }
 
         .price {
@@ -82,7 +103,7 @@
             display: inline-block;
 
             font-family: $font-family;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 600;
             line-height: 1.2;
             color: $grey-500;
@@ -91,6 +112,10 @@
             &::after {
               content: 'грн';
               margin-left: 3px;
+            }
+
+            @media (width >= 834px) {
+              font-size: 20px;
             }
           }
 
@@ -105,7 +130,7 @@
 
               .price {
                 font-family: $font-family;
-                font-size: 12px;
+                font-size: 11px;
                 font-weight: 400;
                 line-height: 1.25;
                 color: $grey-400;
@@ -116,26 +141,36 @@
                   content: 'грн';
                   margin-left: 3px;
                 }
+
+                @media (width >= 834px) {
+                  font-size: 12px;
+                }
               }
 
               .discount {
-                padding: 0 2px;
+                padding: 1px 4px;
 
                 font-family: $font-family;
-                font-size: 12px;
+                font-size: 10px;
                 font-weight: 400;
-                line-height: 1.25;
+                line-height: 12px;
                 color: $accent-white;
                 letter-spacing: 0.01em;
 
                 background: #c42700;
                 border-radius: 4px;
+
+                @media (width >= 834px) {
+                  padding: 0 2px;
+                  font-size: 12px;
+                  line-height: 1.25;
+                }
               }
             }
 
             .price {
               font-family: $font-family;
-              font-size: 20px;
+              font-size: 16px;
               font-weight: 600;
               line-height: 1.2;
               color: #c25200;
@@ -145,60 +180,94 @@
                 content: 'грн';
                 margin-left: 3px;
               }
+
+              @media (width >= 834px) {
+                font-size: 20px;
+              }
             }
           }
         }
+      }
+
+      @media (width >= 768px) {
+        gap: 16px;
       }
     }
   }
 
   &__discount {
-    gap: 16px;
+    gap: 10px;
 
     .transparent {
       .wrapper {
-        gap: 8px;
+        gap: 16px;
 
         .content {
-          gap: 6px;
+          gap: 2px;
 
           .title-wrapper {
-            gap: 9px;
+            gap: 4px;
+
+            @media (width >= 768px) {
+              gap: 0;
+            }
+
+            @media (width >= 1024px) {
+              gap: 9px;
+            }
+          }
+
+          @media (width >= 768px) {
+            gap: 0;
+          }
+
+          @media (width >= 1024px) {
+            gap: 2px;
           }
         }
+
+        @media (width >= 768px) {
+          gap: 7px;
+        }
       }
+    }
+
+    @media (width >= 834px) {
+      gap: 16px;
     }
   }
 
   &__overlay {
-    &:hover {
-      .transparent {
-        .wrapper {
-          position: absolute;
-          z-index: 5;
-          top: 0;
-          left: -8px;
+    @media (hover: hover) {
+      &:hover {
+        .transparent {
+          .wrapper {
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            left: -8px;
 
-          gap: 16px;
+            gap: 16px;
 
-          width: calc(100% + 16px);
-          padding: 0 8px 11.2px;
+            width: calc(100% + 16px);
+            padding: 0 8px 11.2px;
 
-          background: $accent-white;
-          border-top: transparent;
-          border-radius: 8px;
+            background: $accent-white;
+            border-top: transparent;
+            border-radius: 8px;
 
-          &__shadow {
-            box-shadow: 0 20px 16px 0 rgb(0 0 0 / 25%);
-          }
+            &__shadow {
+              box-shadow: 0 20px 16px 0 rgb(0 0 0 / 25%);
+            }
 
-          .content {
-            gap: 8.5px;
+            .content {
+              gap: 8.5px;
 
-            .title-wrapper {
-              h3 {
-                white-space: normal;
-                transition: all 0.3s;
+              .title-wrapper {
+                h3 {
+                  white-space: normal;
+                  transition: all 0.3s;
+                }
               }
             }
           }
@@ -208,36 +277,38 @@
   }
 
   &.card__discount.card__overlay {
-    &:hover {
-      .transparent {
-        .wrapper {
-          position: absolute;
-          z-index: 5;
-          top: 0;
-          left: -8px;
+    @media (hover: hover) {
+      &:hover {
+        .transparent {
+          .wrapper {
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            left: -8px;
 
-          gap: 8px;
+            gap: 8px;
 
-          width: calc(100% + 16px);
-          padding: 0 8px 11.2px;
+            width: calc(100% + 16px);
+            padding: 0 8px 11.2px;
 
-          background: $accent-white;
-          border-top: transparent;
-          border-radius: 8px;
+            background: $accent-white;
+            border-top: transparent;
+            border-radius: 8px;
 
-          .content {
-            gap: 6px;
-            width: 100%;
+            .content {
+              gap: 6px;
+              width: 100%;
 
-            .title-wrapper {
-              h3 {
-                white-space: normal;
-                transition: all 0.3s;
+              .title-wrapper {
+                h3 {
+                  white-space: normal;
+                  transition: all 0.3s;
+                }
               }
-            }
 
-            .discount-price {
-              gap: 2.5px;
+              .discount-price {
+                gap: 2.5px;
+              }
             }
           }
         }
@@ -247,8 +318,8 @@
 
   .sticker {
     position: absolute;
-    top: 11px;
-    left: 8px;
+    top: 8px;
+    left: 6px;
 
     display: flex;
     gap: 4px;
@@ -260,14 +331,60 @@
 
     span {
       font-family: $font-family;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: 400;
+      line-height: 13px;
       color: $accent-white;
       letter-spacing: 0.01em;
+
+      @media (width >= 834px) {
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+
+    @media (width >= 1024px) {
+      top: 11px;
+      left: 8px;
     }
   }
 
   &__slider {
-    width: 220px;
+    width: 100%;
+    width: clamp(8.75rem, -1.113rem + 49.315vw, 11rem);
+    height: clamp(20.125rem, 16.785rem + 13.6vw, 23.313rem);
+
+    @media (width >= 393px) {
+      width: clamp(9.313rem, -0.888rem + 41.53vw, 14.063rem);
+      max-width: none;
+    }
+
+    @media (width >= 576px) {
+      width: clamp(9.375rem, 0.445rem + 24.806vw, 13.375rem);
+    }
+
+    @media (width >= 834px) {
+      gap: 10px;
+      width: clamp(13.375rem, 2.95rem + 20vw, 15.75rem); //214
+      height: 383px;
+    }
+
+    @media (width >= 1024px) {
+      gap: 20px;
+      width: clamp(12.5rem, 7.5rem + 7.813vw, 13.75rem); //200 220
+    }
+  }
+
+  @media (width >= 834px) {
+    height: clamp(23.938rem, 15.376rem + 16.404vw, 28.5rem);
+  }
+
+  @media (width >= 992px) {
+    gap: 16px;
+  }
+
+  @media (width >= 1024px) {
+    gap: 20px;
+    padding: 11.2px 8px;
   }
 }
