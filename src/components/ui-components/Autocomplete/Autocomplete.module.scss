@@ -96,7 +96,7 @@
   }
 
   .menu {
-    @include mixin.scrollBar(10px, 5px, $background-color, $background-color, $grey-100);
+    @include scrollBar(10px, 5px, $background-color, $background-color, $grey-100);
 
     position: absolute;
     z-index: 5;

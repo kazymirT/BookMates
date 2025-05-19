@@ -28,9 +28,11 @@ const DropDown = ({
   useClickOutside(dropDownRef, handleClose);
 
   useEffect(() => {
-    isOverflow && isOpen
-      ? dispatch(incrementOverlay())
-      : dispatch(decrementOverlay());
+    if (isOverflow && isOpen) {
+      dispatch(incrementOverlay());
+    } else {
+      dispatch(decrementOverlay());
+    }
   }, [dispatch, isOpen, isOverflow]);
 
   const containerClName = classNames(styles['dropdown-container'], {

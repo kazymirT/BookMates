@@ -1,6 +1,4 @@
-/* stylelint-disable */
 @use '@/styles' as *;
-/* stylelint-enable */
 
 @mixin next-previous($rotate) {
   @include flex-center;
@@ -26,8 +24,8 @@
   align-self: center;
 
   li {
-    border-radius: 50%;
     border: 1px solid transparent;
+    border-radius: 50%;
 
     &:has(button:disabled) {
       border-color: $button-disabled;
