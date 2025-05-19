@@ -1,23 +1,25 @@
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import styles from './AllCollections.module.scss';
-import { category } from './data';
 import CollectionsCard from '../../components/CollectionsCard/CollectionsCard';
 import SkeletonCollectionsCard from '@/components/Skeleton/SkeletonCollectionsCard';
-import { useAppSelector } from '@/redux/hooks';
-import { isLoading } from '@/redux/slices/skeletonSlice';
+import { useGetAllCollectionsQuery } from '@/redux/services/collections';
 
 const AllCollections = () => {
-  const isSkeleton = useAppSelector(isLoading);
+  const { i18n } = useTranslation();
+  const lang = i18n.language === 'en' ? 'en' : 'ua';
+  const { data: collection, isSuccess } = useGetAllCollectionsQuery(lang);
   const collectionsCN = classNames(styles.collections, {
-    [styles['collections__skeleton']]: isSkeleton,
+    [styles['collections__skeleton']]: !isSuccess,
   });
   return (
     <div className={collectionsCN}>
-      {!isSkeleton &&
-        category &&
-        category.map((item) => <CollectionsCard key={item.id} {...item} />)}
-      {isSkeleton && <SkeletonCollectionsCard />}
+      {isSuccess ? (
+        collection.map((item) => <CollectionsCard key={item.id} {...item} />)
+      ) : (
+        <SkeletonCollectionsCard />
+      )}
     </div>
   );
 };

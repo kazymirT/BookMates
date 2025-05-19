@@ -39,7 +39,10 @@ const RegisterFormLazy = lazy(
 );
 const LoginFormLazy = lazy(() => import('../Forms/LoginForm/LoginForm'));
 const ResetPasswordLazy = lazy(() => import('./ResetPassword/ResetPassword'));
-
+const RegisterSuccessLazy = lazy(
+  () => import('./RegisterSuccess/RegisterSuccess')
+);
+const NewPasswordLazy = lazy(() => import('../Forms/NewPassword/NewPassword'));
 const Modal = () => {
   const openedModalType = useAppSelector(modalType);
   const dispatch = useAppDispatch();
@@ -88,6 +91,10 @@ const Modal = () => {
           <SubscriptionErrorLazy />
         ) : openedModalType === 'edit-collection' ? (
           <EditCollectionLazy />
+        ) : openedModalType === 'register-success' ? (
+          <RegisterSuccessLazy />
+        ) : openedModalType === 'new-password' ? (
+          <NewPasswordLazy />
         ) : null}
       </Suspense>
     </Portal>

@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -14,18 +14,20 @@ import styles from '../Form.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
-import { useFormActions } from '@/hooks/useFormActions';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useRegisterMutation } from '@/redux/services/auth';
+import { errorState, setRegisterError } from '@/redux/slices/errorSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
 
 const RegisterForm = () => {
   const { t } = useTranslation();
-  const [isServerError, setIsServerError] = useState<boolean>(false);
-  const { registerUser } = useFormActions();
+  const { register: registerError } = useAppSelector(errorState);
   const dispatch = useAppDispatch();
+  const [register] = useRegisterMutation();
+  const isRegisterError = registerError !== null;
 
   const {
-    register,
+    register: formRegister,
     handleSubmit,
     formState: { isValid, errors, isSubmitting },
   } = useForm<RegisterValues>({
@@ -42,17 +44,20 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (formData: RegisterValues) => {
-    const error = await registerUser(formData);
-    if (error) {
-      setIsServerError(true);
-    }
+    await register(formData);
   };
 
   const handleLogin = () => dispatch(toggleModal({ openedModalType: 'login' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
-  const hideServerError = () => isServerError && setIsServerError(false);
+  const hideServerError = () =>
+    registerError && dispatch(setRegisterError(null));
   const handleResetPassword = () =>
     dispatch(toggleModal({ openedModalType: 'reset-password' }));
+  useEffect(() => {
+    return () => {
+      dispatch(setRegisterError(null));
+    };
+  }, [dispatch]);
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
@@ -70,27 +75,27 @@ const RegisterForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className={styles['input-container']}>
           <Input
-            {...register('firstName')}
+            {...formRegister('firstName')}
             placeholder={t('register.first-name')}
             type="text"
             errorMessage={errors.firstName?.message}
           />
           <Input
-            {...register('lastName')}
+            {...formRegister('lastName')}
             placeholder={t('register.last-name')}
             type="text"
             errorMessage={errors.lastName?.message}
           />
           <div className={styles['email-container']}>
             <Input
-              {...register('email')}
+              {...formRegister('email')}
               placeholder={t('register.email')}
               type="email"
-              serverError={isServerError}
+              serverError={isRegisterError}
               onFocus={hideServerError}
               errorMessage={errors.email?.message}
             />
-            {isServerError && (
+            {isRegisterError && (
               <div className={styles.error}>
                 <p>{t('register.email-error')}</p>{' '}
                 <button type="button" onClick={handleResetPassword}>
@@ -100,22 +105,23 @@ const RegisterForm = () => {
             )}
           </div>
           <Input
-            {...register('confirmEmail')}
+            {...formRegister('confirmEmail')}
             placeholder={t('register.confirm-email')}
             type="email"
             errorMessage={errors.confirmEmail?.message}
           />
           <Input
-            {...register('password')}
+            {...formRegister('password')}
             placeholder={t('register.password')}
             type="password"
+            autoComplete="new-password"
             errorMessage={errors.password?.message}
           />
           <p className={styles['password-hint']}>
             {t('register.support-text')}
           </p>
         </div>
-        <Checkbox {...register('accept')} type="checkbox" variant="primary">
+        <Checkbox {...formRegister('accept')} type="checkbox" variant="primary">
           <p className={styles.terms}>{t('register.checkbox')}</p>
         </Checkbox>
         <Button
@@ -123,7 +129,7 @@ const RegisterForm = () => {
           size={Sizes.Full}
           variant={Variant.Basic}
           text={t('register.btn-in')}
-          disabled={!isValid || isServerError || isSubmitting}
+          disabled={!isValid || isRegisterError || isSubmitting}
         />
       </form>
       <button className={styles.register} type="button" onClick={handleLogin}>

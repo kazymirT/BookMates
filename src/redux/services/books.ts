@@ -1,41 +1,43 @@
-import { baseApi } from './baseApi';
+import { baseNewApi } from './baseNewApi';
 import {
   BookById,
-  BookByIdResponse,
-  BooksArgs,
-  BooksListResponse,
+  BooksArgsNew,
+  BooksResponse,
+  SearchBooks,
 } from './services.types';
 
-export const booksApi = baseApi.injectEndpoints({
+export const booksApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
-    getBooks: builder.query<BooksListResponse, BooksArgs>({
+    getBooks: builder.query<BooksResponse, BooksArgsNew>({
       query: ({
-        page = 1,
-        size = 9,
-        sort = [''],
-        search = '',
-        price = [],
-        language = [],
-        categories = [],
+        lang = 'ua',
         years = [],
-        authors = [],
+        languages = [],
+        minPrice = null,
+        maxPrice = null,
+        sortOptions,
+        limit = 16,
+        page = 1,
+        categoryId,
+        collectionId,
+        searchQuery,
       }) => ({
-        url: `/open/book/list?page=${page}&size=${size}&sort=${sort}&title=${search}&price=${price.join(',')}&language=${language.join(',')}&year=${years.join(',')}&category=${categories.join(',')}&author=${authors.join(',')}`,
+        url: `book?lang=${lang}&page=${page}&limit=${limit}&categoryId=${categoryId}&collectionId=${collectionId}&years=${years.join(',')}&languageIds=${languages.join(',')}&minPrice=${minPrice}&maxPrice=${maxPrice}&sortOptions=${sortOptions}${searchQuery ? `&searchQuery=${searchQuery}` : ''}`,
       }),
-      providesTags: ['Books'],
     }),
-    getBookById: builder.query<BookById, string>({
-      query: (id) => ({
-        url: `/open/book/${id}`,
+    getBookById: builder.query<BookById, { id: string; lang: string }>({
+      query: ({ id, lang }) => ({
+        url: `/book/${id}?lang=${lang}`,
       }),
-      providesTags: ['Books'],
-      transformResponse: (response: BookByIdResponse) => ({
-        ...response,
-        year: [{ id: response.year, name: String(response.year) }],
+    }),
+    getSearch: builder.query<SearchBooks, { query: string; lang: string }>({
+      query: ({ query, lang }) => ({
+        url: `/book/search?query=${query}&lang=${lang}`,
       }),
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetBooksQuery, useGetBookByIdQuery } = booksApi;
+export const { useGetBooksQuery, useGetBookByIdQuery, useGetSearchQuery } =
+  booksApi;

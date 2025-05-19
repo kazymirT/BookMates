@@ -1,54 +1,255 @@
-import { jwtDecode } from 'jwt-decode';
-
-import { baseApi } from './baseApi';
+import { baseNewApi } from './baseNewApi';
 import {
-  AuthResponse,
-  TokenDecode,
-  Error,
   Login,
   Register,
+  RegisterResponse,
+  LoginResponse,
+  VerifyEmailResponse,
+  ErrorResponse,
 } from './services.types';
 import { userApi } from './user';
+import {
+  setDeviceCodeError,
+  setIsDeviceCode,
+  setLoginError,
+  setNewPasswordError,
+  setRegisterError,
+  setResendCodeError,
+  setResendResetPassword,
+  setResetPasswordError,
+} from '../slices/errorSlice';
 import { toggleModal } from '../slices/modalSlice';
 import { toggleStatus } from '../slices/statusSlice';
-import { login } from '../slices/userSlice';
-import { AppDispatch } from '../store';
+import { login, logout, setToken } from '../slices/userSlice';
+import { RootState } from '../store';
 
-export const authApi = baseApi.injectEndpoints({
+export interface NewPassword {
+  code: string;
+  newPassword: string;
+}
+
+export interface ForgetPassword {
+  email: string;
+}
+
+export interface ResendCode {
+  email: string;
+  condition: 'verify_email' | 'reset_password' | 'verify_device';
+}
+
+export const authApi = baseNewApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<AuthResponse, Login>({
+    login: builder.mutation<LoginResponse, Login>({
       query: (body) => ({
-        url: 'open/auth/login',
+        url: '/auth/login',
         method: 'POST',
         body,
       }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_, { dispatch, queryFulfilled, getState }) {
         dispatch(toggleStatus('loading'));
         try {
-          const { data } = (await queryFulfilled) as { data: AuthResponse };
-          handleAuthSuccess(data, dispatch);
+          const { data } = (await queryFulfilled) as { data: LoginResponse };
+          dispatch(
+            login({ accessToken: data.accessToken, user: data.loggedInUser })
+          );
+          dispatch(toggleModal({ openedModalType: null }));
           dispatch(toggleStatus('succes'));
         } catch (error) {
           dispatch(toggleStatus('idle'));
-          handleAuthError(error as Error);
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 401) {
+            if (message === 'You must confirm email!') {
+              dispatch(
+                setLoginError({
+                  type: 'isEmailConfirmed',
+                  error: { code: status, message },
+                })
+              );
+            } else if (message === 'User not found') {
+              dispatch(
+                setLoginError({
+                  type: 'isUserFound',
+                  error: { code: status, message },
+                })
+              );
+            } else {
+              dispatch(
+                setLoginError({
+                  type: 'isUnauthorized',
+                  error: { code: status, message },
+                })
+              );
+            }
+          }
+          if (status === 400) {
+            const isDeviceCode = (getState() as RootState)?.error.isDeviceCode;
+            if (isDeviceCode) {
+              dispatch(setDeviceCodeError({ code: status, message }));
+            } else {
+              dispatch(setIsDeviceCode(true));
+            }
+          }
         }
       },
     }),
-    register: builder.mutation<AuthResponse, Register>({
+    register: builder.mutation<RegisterResponse, Register>({
       query: (body) => ({
-        url: 'open/auth/register',
+        url: '/auth/register',
         method: 'POST',
         body,
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         dispatch(toggleStatus('loading'));
         try {
-          const { data } = (await queryFulfilled) as { data: AuthResponse };
-          handleAuthSuccess(data, dispatch);
-          dispatch(toggleStatus('succes'));
+          await queryFulfilled;
+          dispatch(toggleStatus('idle'));
+          dispatch(toggleModal({ openedModalType: 'register-success' }));
         } catch (error) {
           dispatch(toggleStatus('idle'));
-          handleAuthError(error as Error);
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 409) {
+            dispatch(setRegisterError({ code: status, message }));
+          }
+        }
+      },
+    }),
+    verifyEmail: builder.mutation<VerifyEmailResponse, { code: string }>({
+      query: (body) => ({
+        url: '/auth/verify-email',
+        method: 'PATCH',
+        body,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const {
+            data: { accessToken },
+          } = await queryFulfilled;
+          dispatch(setToken(accessToken));
+          try {
+            const user = await dispatch(
+              userApi.endpoints.meUser.initiate()
+            ).unwrap();
+            dispatch(login({ accessToken, user }));
+          } catch (error) {
+            console.log('Failed to fetch user:', error);
+          }
+        } catch (error) {
+          console.log('Помилка verify email');
+        }
+      },
+    }),
+    forgetPassword: builder.mutation<string, ForgetPassword>({
+      query: (body) => ({
+        url: '/auth/forget-password',
+        method: 'PATCH',
+        body,
+      }),
+      async onQueryStarted(api, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+          dispatch(setResendResetPassword(api.email));
+          dispatch(toggleModal({ openedModalType: 'new-password' }));
+        } catch (error) {
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 404) {
+            dispatch(
+              setResetPasswordError({
+                code: status,
+                message,
+              })
+            );
+          }
+        } finally {
+          dispatch(toggleStatus('idle'));
+        }
+      },
+    }),
+    setNewPassword: builder.mutation<string, NewPassword>({
+      query: (body) => ({
+        url: '/auth/set-new-password',
+        method: 'PATCH',
+        body,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+          dispatch(toggleModal({ openedModalType: 'login' }));
+        } catch (error) {
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 400) {
+            dispatch(
+              setNewPasswordError({
+                code: status,
+                message,
+              })
+            );
+          }
+        } finally {
+          dispatch(toggleStatus('idle'));
+        }
+      },
+    }),
+    logout: builder.mutation<string, void>({
+      query: () => ({
+        url: '/auth/logout',
+        method: 'PATCH',
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          dispatch(logout());
+        } catch (error) {
+          console.log('error server or token');
+        }
+      },
+    }),
+    resendCode: builder.mutation<string, ResendCode>({
+      query: (body) => ({
+        url: '/auth/resend-code',
+        method: 'PATCH',
+        body,
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        dispatch(toggleStatus('loading'));
+        try {
+          await queryFulfilled;
+        } catch (error) {
+          const {
+            error: {
+              status,
+              data: { message },
+            },
+          } = error as ErrorResponse;
+          if (status === 409) {
+            dispatch(setResendCodeError({ code: status, message }));
+          }
+          if (status === 404) {
+            dispatch(setResendCodeError({ code: status, message }));
+          }
+        } finally {
+          dispatch(toggleStatus('idle'));
         }
       },
     }),
@@ -56,26 +257,12 @@ export const authApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-const handleAuthSuccess = async (data: AuthResponse, dispatch: AppDispatch) => {
-  const { id, roles } = jwtDecode(data.token) as TokenDecode;
-  const user = (await dispatch(userApi.endpoints.getUser.initiate(id))).data;
-  user &&
-    dispatch(
-      login({
-        token: data.token,
-        user: {
-          id,
-          role: roles[0],
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-        },
-      })
-    );
-  dispatch(toggleModal({ openedModalType: null }));
-};
-
-// eslint-disable-next-line no-console
-const handleAuthError = ({ data }: Error) => console.error(data);
-
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useVerifyEmailMutation,
+  useForgetPasswordMutation,
+  useLogoutMutation,
+  useSetNewPasswordMutation,
+  useResendCodeMutation,
+} = authApi;

@@ -15,7 +15,7 @@ export const useProductControlLogic = (book: BookById) => {
           id: book.id,
           price: book.price,
           authors: book.authors.map((author) => author.name),
-          img: book.imageUrl,
+          img: book.image,
           title: book.title,
           discount: book.discount,
           discountPrice: book.discountPrice,

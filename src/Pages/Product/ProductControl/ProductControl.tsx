@@ -13,6 +13,7 @@ import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { Icon } from '@/components/ui-components/Icons';
 import { useProductControlLogic } from '@/hooks/useProductControlLogic';
 import { BookById } from '@/redux/services/services.types';
+
 interface ProductControlProps {
   book: BookById;
 }
@@ -31,7 +32,11 @@ const ProductControl: FC<ProductControlProps> = ({ book }) => {
           variant="product"
           discountPrice={book.discount ? book.discountPrice : undefined}
         />
-        <span className={styles.is}>{t('product.available')}</span>
+        {book.inStock > 1 ? (
+          <span className={styles.is}>{t('product.available')}</span>
+        ) : (
+          <span className={styles.is}>{t('product.inaccessible')}</span>
+        )}
       </div>
       <div className={styles.btns}>
         <ButtonLink

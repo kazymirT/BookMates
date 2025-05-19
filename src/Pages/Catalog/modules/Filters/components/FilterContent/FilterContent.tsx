@@ -8,13 +8,14 @@ import Sort from '../Sort/Sort';
 import Title from '../Title/Title';
 import DropDown from '@/components/ui-components/Dropdown/DropDown';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { type AllAttributes } from '@/redux/services/services.types';
+import { Attributes } from '@/redux/services/meta';
 import { clearFilters, initializeState } from '@/redux/slices/queryParams';
 import { queryAllData } from '@/redux/slices/queryParams';
 import { initializeQueryState } from '@/utils/initializeQueryState';
 import { updateFilterParams } from '@/utils/updateFilterParams';
+
 interface FilterContentProps {
-  attributes: AllAttributes;
+  attributes: Attributes;
 }
 
 const FilterContent: FC<FilterContentProps> = ({ attributes }) => {

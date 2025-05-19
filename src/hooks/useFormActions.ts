@@ -23,15 +23,7 @@ export const useFormActions = () => {
   };
 
   const loginUser = async (data: LoginValues) => {
-    try {
-      await login(data).unwrap();
-      path && navigate(path);
-    } catch (error) {
-      const { originalStatus } = error as Error;
-      if (originalStatus === 401) {
-        return true;
-      }
-    }
+    await login(data);
   };
   const registerUser = async ({
     email,

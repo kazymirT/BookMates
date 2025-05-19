@@ -5,6 +5,6 @@ import { userData } from '@/redux/slices/userSlice';
 
 const PrivateRoutes = () => {
   const { user } = useAppSelector(userData);
-  return user?.role === 'ROLE_PERSONAL' ? <Outlet /> : <Navigate to="/" />;
+  return user?.role === 'user' ? <Outlet /> : <Navigate to="/" />;
 };
 export default PrivateRoutes;

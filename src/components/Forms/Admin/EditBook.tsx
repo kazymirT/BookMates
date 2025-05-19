@@ -19,7 +19,7 @@ const EditBook = () => {
   const id = useAppSelector(bookId);
 
   const [deleteBookById] = useDeleteBookByIdMutation();
-  const { data: book } = useGetBookByIdQuery(`${id}`);
+  const { data: book } = useGetBookByIdQuery({ id: String(id), lang: 'en' });
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
   const handleOpenPopup = () => setIsPopupOpen(true);
@@ -66,7 +66,7 @@ const EditBook = () => {
             book={book}
             handleOpenPopup={handleOpenPopup}
           />
-          <PicturesEdit id={id} img={book.imageUrl} name="book" />
+          <PicturesEdit id={id} img={book.image} name="book" />
         </>
       )}
     </section>

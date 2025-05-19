@@ -1,0 +1,38 @@
+@import '@/styles';
+
+.series {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  h4 {
+    font-weight: 600;
+    letter-spacing: 0.035em;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 24px;
+
+    li {
+      line-height: 1;
+      letter-spacing: 0.045em;
+      list-style-type: disc;
+
+      &::after {
+        content: '»';
+      }
+
+      &::before {
+        content: '«';
+      }
+
+      a {
+        text-decoration: solid underline $brown-400 2px;
+        text-underline-offset: 2px;
+      }
+    }
+  }
+}

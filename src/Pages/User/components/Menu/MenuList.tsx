@@ -4,13 +4,12 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './MenuList.module.scss';
 import { MENU_LINKS } from '../../data';
-import { useAppDispatch } from '@/redux/hooks';
-import { logout } from '@/redux/slices/userSlice';
+import { useLogoutMutation } from '@/redux/services/auth';
 
 const MenuList = () => {
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const handleLogout = () => dispatch(logout());
+  const [logout] = useLogoutMutation();
+  const handleLogout = () => logout();
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(styles.navItem, { [styles.active]: isActive });
   return (

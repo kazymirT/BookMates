@@ -1,10 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { baseApi } from './services/baseApi';
+import { baseNewApi } from './services/baseNewApi';
 import { novaApi } from './services/novaApi';
 import { adminSlice } from './slices/adminSlice';
 import burgerMenuSlice from './slices/burgerMenuSlice';
 import cartNotificationSlice from './slices/cartNotificationSlice';
+import errorSlice from './slices/errorSlice';
 import locationHistorySlice from './slices/locationHistorySlice';
 import modalSlice from './slices/modalSlice';
 import { overlaySlice } from './slices/overlay';
@@ -19,6 +21,7 @@ import userSlice from './slices/userSlice';
 export const rootReducer = combineReducers({
   [novaApi.reducerPath]: novaApi.reducer,
   [baseApi.reducerPath]: baseApi.reducer,
+  [baseNewApi.reducerPath]: baseNewApi.reducer,
   queryParams: queryParamsSlice.reducer,
   admin: adminSlice.reducer,
   modal: modalSlice,
@@ -32,4 +35,5 @@ export const rootReducer = combineReducers({
   shoppingCartUi: shoppingCartUiSlice,
   skeleton: skeletonSlice,
   burgerMenu: burgerMenuSlice,
+  error: errorSlice,
 });

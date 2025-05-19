@@ -1,18 +1,18 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import styles from './Admin.module.scss';
-import AttributesPage from './component/AttributesPage';
-import Books from './component/Books';
-import Client from './component/Client';
-import ClientNotAuthorized from './component/ClientNotAuthorized';
-import OrderA from './component/Order';
+// import AttributesPage from './component/AttributesPage';
+// import Books from './component/Books';
+// import Client from './component/Client';
+// import ClientNotAuthorized from './component/ClientNotAuthorized';
+// import OrderA from './component/Order';
 import 'react-toastify/dist/ReactToastify.css';
 import { ADMIN_LIST } from './constants';
-import Collections from './modules/Collections/Collections';
+// import Collections from './modules/Collections/Collections';
 
 const Admin = () => {
-  const { adminId } = useParams();
+  // const { adminId } = useParams();
   return (
     <div className={styles.admin}>
       <ToastContainer />
@@ -35,7 +35,7 @@ const Admin = () => {
                 ))}
             </ul>
           </aside>
-          <main>
+          {/* <main>
             {adminId === 'categories' ? (
               <AttributesPage
                 buttonName="Додати категорію"
@@ -63,9 +63,10 @@ const Admin = () => {
             ) : adminId === 'collections' ? (
               <Collections />
             ) : (
-              <Books />
+              <p>Books</p>
+              // <Books />
             )}
-          </main>
+          </main> */}
         </div>
       </div>
     </div>

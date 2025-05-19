@@ -35,8 +35,8 @@ const CategoryDropdown = () => {
       options={(toggleOpen) => (
         <Suspense>
           <CategoryListLazy>
-            {(id, name) => (
-              <CategoryItem id={id} name={name} onClose={toggleOpen} />
+            {(category) => (
+              <CategoryItem category={category} onClose={toggleOpen} />
             )}
           </CategoryListLazy>
         </Suspense>

@@ -6,4 +6,5 @@ export interface InputProps extends ComponentPropsWithoutRef<'input'> {
   noValidate?: boolean;
   requiredMessage?: boolean;
   onFocus?: () => void;
+  sizeSpan?: 's';
 }

@@ -10,10 +10,9 @@ import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
 import Select from '@/components/ui-components/Select/Select';
-import { useFormActions } from '@/hooks/useFormActions';
 import { useAppDispatch } from '@/redux/hooks';
+import { useSendFeedbackMutation } from '@/redux/services/feedback';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { toggleStatus } from '@/redux/slices/statusSlice';
 import { TOPIC_WITH_LANGUAGES } from '@/utils/constants';
 import { FeedbackValues, getFeedbackSchema } from '@/utils/validateSchema';
 
@@ -35,17 +34,10 @@ const FeedBackForm = () => {
   });
 
   const dispatch = useAppDispatch();
-  const { sendFeedback } = useFormActions();
-
+  const [sendFeedback] = useSendFeedbackMutation();
   const onSubmit: SubmitHandler<FeedbackValues> = async (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    dispatch(toggleStatus('loading'));
-    const response = await sendFeedback();
-    if (response) {
-      dispatch(toggleStatus('idle'));
-      dispatch(toggleModal({ openedModalType: 'feedback-success' }));
-    }
+    const { email, topic, question } = data;
+    sendFeedback({ email, topic, text: question });
   };
 
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));

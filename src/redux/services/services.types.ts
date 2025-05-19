@@ -1,6 +1,18 @@
 export interface Login {
   email: string;
   password: string;
+  newDeviceCode?: string;
+}
+
+export interface ErrorResponse {
+  error: {
+    data: {
+      message: string;
+      error: string;
+      statusCode: number;
+    };
+    status: number;
+  };
 }
 
 export interface Register {
@@ -28,23 +40,42 @@ export interface AddBook {
   quantity: number;
 }
 
-export interface AuthResponse {
-  token: string;
+export interface RegisterResponse {
+  email: string;
+  name: string;
+  image: null | string;
+  id: number;
+  role: 'user' | 'admin';
+  isLoggedIn: boolean;
+  isVerifyEmail: boolean;
 }
 
-export interface UserResponse {
-  id: string;
+export interface VerifyEmailResponse {
+  accessToken: string;
+}
+export interface LoginResponse {
+  loggedInUser: User;
+  accessToken: string;
+}
+
+export type User = {
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
-}
-
+  role: 'user' | 'admin';
+  image: null | string;
+  isLoggedIn: boolean;
+  isVerifyEmail: boolean;
+};
 export interface TokenDecode {
   email: string;
-  exp: number;
+  role: 'user' | 'admin';
+  sub: number;
+  sessionId: number;
+  deviceId: string;
   iat: number;
-  id: string;
-  roles: 'ROLE_PERSONAL'[] | 'ROLE_ADMIN'[];
+  exp: number;
 }
 
 export interface Error {
@@ -75,34 +106,21 @@ export type BookByIdResponse = {
   discountPrice: number;
 };
 
-export type BookById = {
-  id: number;
-  title: string;
-  description: string;
-  year: Attributes[];
-  price: number;
-  totalQuantity: number;
-  languages: Attributes[];
-  authors: Attributes[];
-  categories: Attributes[];
-  imageUrl: string;
-  expected: true;
-  discount: number;
-  discountPrice: number;
-};
-
-export type BooksData = {
-  id: number;
-  title: string;
-  year: number;
-  price: number;
-  totalQuantity: number;
-  authors: string[];
-  imageUrl: string;
-  expected: boolean;
-  discount: number;
-  discountPrice: number;
-};
+// export type BookById = {
+//   id: number;
+//   title: string;
+//   description: string;
+//   year: Attributes[];
+//   price: number;
+//   totalQuantity: number;
+//   languages: Attributes[];
+//   authors: Attributes[];
+//   categories: Attributes[];
+//   imageUrl: string;
+//   expected: true;
+//   discount: number;
+//   discountPrice: number;
+// };
 
 export type BooksListResponse = {
   totalPages: number;
@@ -185,4 +203,92 @@ export interface AllAttributes {
   authors: Attributes[];
   categories: Attributes[];
   years: Attributes[];
+}
+
+// new api types
+
+export interface Attributes {
+  id: number;
+  name: string;
+}
+
+export type BooksData = {
+  id: number;
+  title: string;
+  year: number;
+  price: number;
+  totalQuantity: number;
+  authors: Attributes[];
+  imageUrl: string;
+  expected: boolean;
+  discount: number;
+  discountPrice: number;
+};
+
+export interface AuthorMain {
+  id: number;
+  name: string;
+  image: string | null;
+}
+export type CollectionMain = AuthorMain;
+export interface BooksMainPage {
+  news: Book[];
+  sale: Book[];
+  authors: AuthorMain[];
+  collections: CollectionMain[];
+}
+
+export interface BookById {
+  id: number;
+  image: string;
+  title: string;
+  description: string;
+  published: string;
+  cover: string;
+  pages: number;
+  price: number;
+  inStock: number;
+  discount: number;
+  isNew: boolean;
+  discountPrice: number;
+  authors: Attributes[];
+  categories: Attributes[];
+  languages: Attributes[];
+}
+export interface Book {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  discount: number | null;
+  isNew?: boolean;
+  orderCount: number;
+  authors: Attributes[];
+  discountPrice?: number;
+}
+
+export interface BooksResponse {
+  data: Book[];
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface BooksArgsNew {
+  lang: 'ua' | 'en';
+  years?: number[];
+  languages?: number[];
+  minPrice?: string;
+  maxPrice?: string;
+  sortOptions?: string;
+  limit?: string;
+  page?: string;
+  categoryId?: number[];
+  collectionId?: string;
+  searchQuery?: string;
+}
+
+export interface SearchBooks {
+  books: Omit<Book, 'isNew' | 'authors'>[];
 }

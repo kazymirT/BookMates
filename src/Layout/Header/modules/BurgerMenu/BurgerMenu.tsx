@@ -12,7 +12,7 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useGetAllAttributesQuery } from '@/redux/services/attributes';
+import { useGetAllAttributesMetaQuery } from '@/redux/services/meta';
 import {
   isOpenBurgerMenu,
   toggleShowBurgerMenu,
@@ -29,7 +29,7 @@ const BurgerMenu = () => {
     setShow(false);
     handleCloseProfile();
   };
-  const { data, isSuccess } = useGetAllAttributesQuery();
+  const { data, isSuccess } = useGetAllAttributesMetaQuery();
   return (
     <Portal isOpen={isOpen} placeContent="right" onClickOutside={closeProfile}>
       <CSSTransition
@@ -59,11 +59,10 @@ const BurgerMenu = () => {
             <nav>
               <ul className={styles.categories}>
                 {isSuccess &&
-                  data.categories.slice(0, 10).map(({ id, name }) => (
-                    <li key={id}>
+                  data.cats.slice(0, 10).map((category) => (
+                    <li key={category.id}>
                       <CategoryItem
-                        id={id}
-                        name={name}
+                        category={category}
                         onClose={handleCloseProfile}
                       />
                     </li>

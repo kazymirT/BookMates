@@ -18,20 +18,19 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
   const isFlyBook = useAppSelector(isFly);
   const { flyToCart } = useFlyToCart();
 
-  const { authors, discount, discountPrice, id, imageUrl, price, title } = data;
+  const { title, discount, discountPrice, id, image, price, authors } = data;
   const imgRef = useRef<HTMLImageElement | null>(null);
-
   const addItemToCart = (event: React.MouseEvent) => {
     event.preventDefault();
     dispatch(
       addGoods({
-        authors,
-        discount,
-        discountPrice,
+        authors: authors.map(({ name }) => name),
+        discount: discount || 0,
+        discountPrice: discountPrice || price,
         id,
-        img: imageUrl,
+        img: image,
         price,
-        title,
+        title: title,
       })
     );
     if (imgRef.current) {
@@ -49,9 +48,9 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
   });
   //23
   return (
-    <Link to={`/product/${id}`} className={cardClassNames} data-src={imageUrl}>
+    <Link to={`/product/${id}`} className={cardClassNames} data-src={image}>
       <img
-        src={imageUrl}
+        src={image}
         alt={title}
         ref={imgRef}
         width={204}
@@ -63,7 +62,9 @@ const ProductCard: FC<ProductCardProps> = ({ data, variant }) => {
           <div className={styles.content}>
             <div className={styles['title-wrapper']}>
               <h3 className={styles.title}>{title}</h3>
-              <h3 className={styles.author}>{authors.join(', ')}</h3>
+              <h3 className={styles.author}>
+                {authors.map(({ name }) => name).join(', ')}
+              </h3>
             </div>
             <div className={styles.price}>
               {discount ? (

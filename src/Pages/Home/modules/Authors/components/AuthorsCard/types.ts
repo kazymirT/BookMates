@@ -1,5 +1,5 @@
 export interface AuthorCardProps {
   id: number;
-  img: string;
+  img: string | null;
   title: string;
 }

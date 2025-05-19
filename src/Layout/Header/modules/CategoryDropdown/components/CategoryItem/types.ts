@@ -1,5 +1,6 @@
+import { MetaAttributes } from '@/redux/services/meta';
+
 export interface CategoryItemProps {
-  id: number;
-  name: string;
+  category: MetaAttributes;
   onClose: () => void;
 }

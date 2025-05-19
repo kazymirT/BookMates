@@ -2,16 +2,19 @@ import { cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Profile from '../Profile';
-import { User } from '@/redux/slices/userSlice';
+import { User } from '@/redux/services/services.types';
 import { renderWithProviders } from '@/test/test-utils';
 
 describe('Profile Component', () => {
   const mockUser: User = {
     email: 'test@gmail.com',
     firstName: 'Test name',
-    id: '1',
+    id: 1,
     lastName: 'test name',
-    role: 'ROLE_PERSONAL',
+    role: 'user',
+    image: null,
+    isLoggedIn: true,
+    isVerifyEmail: true,
   };
 
   afterEach(() => {
@@ -23,7 +26,8 @@ describe('Profile Component', () => {
       preloadedState: {
         user: {
           user: mockUser,
-          token: '',
+          accessToken: '',
+          pendingLoginData: null,
         },
         profile: { isOpen: true },
       },
@@ -49,7 +53,8 @@ describe('Profile Component', () => {
         preloadedState: {
           user: {
             user: mockUser,
-            token: '',
+            accessToken: '',
+            pendingLoginData: null,
           },
           profile: { isOpen: true },
         },
@@ -76,7 +81,8 @@ describe('Profile Component', () => {
       preloadedState: {
         user: {
           user: mockUser,
-          token: '',
+          accessToken: '',
+          pendingLoginData: null,
         },
         profile: { isOpen: true },
       },
@@ -104,7 +110,8 @@ describe('Profile Component', () => {
       preloadedState: {
         user: {
           user: mockUser,
-          token: '',
+          accessToken: '',
+          pendingLoginData: null,
         },
         profile: { isOpen: true },
       },

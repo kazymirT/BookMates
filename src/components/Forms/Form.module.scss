@@ -15,6 +15,86 @@
   border-radius: 8px;
   box-shadow: 2px 3px 37px 0 rgb(0 0 0 / 25%);
 
+  &__register {
+    gap: 20px;
+    justify-content: center;
+    padding: 50px 32px;
+    border-radius: 12px;
+
+    div.title-container {
+      justify-content: center;
+      margin-bottom: 6px;
+
+      h2 {
+        font-size: 32px;
+        line-height: 51px;
+        text-align: center;
+        letter-spacing: 0;
+      }
+    }
+
+    p.success {
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+
+  &__device-code {
+    gap: 20px;
+    justify-content: center;
+    padding: 50px 32px;
+    border-radius: 12px;
+
+    p.description {
+      width: 100%;
+      max-width: 551px;
+
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0.042em;
+    }
+
+    form.form {
+      div.wrapper {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 10px;
+
+        div {
+          max-width: 133px;
+
+          input {
+            padding: 10.2px 16px;
+          }
+
+          span {
+            &:nth-child(3) {
+              position: absolute;
+              bottom: -19px;
+              left: -2px;
+              width: 100%;
+            }
+          }
+        }
+
+        button {
+          position: absolute;
+          right: 40px;
+
+          font-size: 12px;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+  }
+
   .title-container {
     display: flex;
     align-items: center;
@@ -238,4 +318,9 @@
   line-height: 1.188rem;
   color: $grey-500;
   letter-spacing: 0.03em;
+}
+
+.error {
+  font-size: 14px;
+  color: $accent-red;
 }

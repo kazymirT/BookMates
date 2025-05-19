@@ -1,18 +1,23 @@
-import { AllAttributes } from '@/redux/services/services.types';
+import { Attributes, MetaAttributes } from '@/redux/services/meta';
 import { FilterType } from '@/redux/slices/queryParams';
 
-const setChecked = (arr: { id: number; name: string }[]) =>
+const setChecked = (arr: MetaAttributes[]) =>
   arr.map((a) => ({ ...a, checked: false }));
 
 const getUpdatedFilter = (
-  filters: { id: number; name: string }[],
-  filterItems: { id: number; name: string; checked: boolean }[]
+  filters: MetaAttributes[],
+  filterItems: {
+    id: number;
+    nameEN: string;
+    nameUA: string;
+    checked: boolean;
+  }[]
 ) => {
   if (!filters) return { updatedItems: filterItems, count: 0 };
 
   let count = 0;
   const updatedItems = filterItems.map((item) => {
-    const isChecked = filters.some((filter) => filter.name === item.name);
+    const isChecked = filters.some((filter) => filter.id === item.id);
     if (isChecked) count++;
     return { ...item, checked: isChecked };
   });
@@ -23,20 +28,20 @@ const getUpdatedFilter = (
 export const updateFilterParams = (
   filter: FilterType,
   price: string[],
-  attributes: AllAttributes
+  attributes: Attributes
 ) => {
   const { categories, language, years } = filter;
 
   const { updatedItems: newLanguage, count: languageCount } = getUpdatedFilter(
     language,
-    setChecked(attributes.languages)
+    setChecked(attributes.langs)
   );
   const { updatedItems: newYears, count: yearsCount } = getUpdatedFilter(
     years,
     setChecked(attributes.years)
   );
   const { updatedItems: newCategories, count: categoriesCount } =
-    getUpdatedFilter(categories, setChecked(attributes.categories));
+    getUpdatedFilter(categories, setChecked(attributes.cats));
 
   const newPrice = price.join('')
     ? [Number(price[0]), Number(price[1])]

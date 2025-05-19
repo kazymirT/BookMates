@@ -62,6 +62,9 @@ export const english = {
       error: 'Thank you, but you are already subscribed and we are very happy!',
     },
   },
+  search: {
+    'search-query': 'Search',
+  },
   catalog: {
     title: 'Catalog',
     'hot-offers': 'Hot offers',
@@ -96,6 +99,7 @@ export const english = {
     'number-of-pages': 'Number of pages:',
     characteristics: 'Characteristics:',
     available: 'The product is available',
+    inaccessible: 'The product is inaccessible',
   },
   order: {
     title: 'Make an order',
@@ -153,6 +157,8 @@ export const english = {
     email: 'Email',
     password: 'Password',
     wrong: `Your email or password is incorrect. Please try again or`,
+    'is-not-confirm-email': 'Please verify your email before logging in',
+    'btn-reset-confirm-email': 'Resend Email',
     'btn-reset-password': 'change password.',
     'reset-password': 'I forgot my password',
     'btn-in': 'Sign In',
@@ -179,8 +185,24 @@ export const english = {
     description:
       'Forgot your password? Enter your email address to reset your password.',
     email: 'Email',
+    error: 'User with this email not found',
     'btn-in': 'Reset Password',
     'btn-login': 'I remembered my password',
+  },
+  'new-password': {
+    title: 'New password',
+    'code-error': 'Ви ввели невірний код',
+    'btn-resend-code': 'Відправити код знову',
+    description:
+      "We've sent a verification code to your email. Enter it along with your new password to regain access.",
+    placeholder: {
+      code: 'Code',
+      password: 'New password',
+      'confirm-password': 'Confirm new password',
+    },
+    button: 'Reset Password',
+    error: '',
+    btnResendCode: 'Resend code',
   },
   support: {
     title: 'Support',
@@ -203,6 +225,20 @@ export const english = {
     description:
       'Thank you for your request. We are already working on it, and you will receive an answer soon. Bookmate team.',
   },
+  'register-success': {
+    title: 'Підтвердити реєстрацію',
+    button: 'Зрозуміло',
+    description:
+      'Для завершення реєстрації ми надіслали вам лист на вашу електроно пошту.',
+  },
+  'device-code': {
+    button: 'Confirm',
+    link: 'Resend code',
+    description:
+      'We’ve sent a code to your email to verify login from a new device.',
+    placeholder: 'Code',
+    error: 'Invalid code. Please try again or request a new one.',
+  },
   'book-card': 'Buy Now',
   price: '{{price}} $',
   profile: {
@@ -215,6 +251,7 @@ export const english = {
     },
   },
   breadcrumbs: {
+    search: 'search',
     home: 'Home',
     catalog: 'catalog',
     order: 'make an order',
@@ -224,11 +261,13 @@ export const english = {
     user: 'user',
   },
   'forms-error': {
+    'password-confirm': 'The password does not match',
     email: {
       required: 'This field is required',
       max: 'The maximum number of characters is 30',
       email: 'Email format is incorrect',
     },
+    'new-device': 'Код невірний',
     required: 'This field is required',
     phone: 'Please enter a valid phone number',
     'email-confirm': 'The email address does not match',

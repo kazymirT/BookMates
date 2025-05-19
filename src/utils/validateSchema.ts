@@ -33,8 +33,11 @@ const getEmail = (t: TFunction<'translation', undefined>) => {
   return z
     .string()
     .min(1, { message: t?.('forms-error.email.required') })
-    .max(30, { message: t?.('forms-error.email.max') })
+    .max(50, { message: t?.('forms-error.email.max') })
     .email({ message: t?.('forms-error.email.email') });
+};
+const getCode = (t: TFunction<'translation', undefined>) => {
+  return z.string().regex(/^[a-zA-Z0-9]{8}$/, t?.('forms-error.new-device'));
 };
 const getPassword = (t: TFunction<'translation', undefined>) => {
   return z
@@ -49,7 +52,7 @@ const getPassword = (t: TFunction<'translation', undefined>) => {
     })
     .regex(/^(?=.*[0-9])/, { message: t?.('forms-error.password.number') })
     .min(8, { message: t?.('forms-error.password.min') })
-    .max(12, { message: t?.('forms-error.password.max') });
+    .max(30, { message: t?.('forms-error.password.max') });
 };
 const getFirstName = (t: TFunction<'translation', undefined>) => {
   return z
@@ -76,6 +79,13 @@ export const getLoginSchema = (t: TFunction<'translation', undefined>) => {
 };
 export type LoginValues = z.infer<ReturnType<typeof getLoginSchema>>;
 
+export const getNewDeviceSchema = (t: TFunction<'translation', undefined>) => {
+  return z.object({
+    newDeviceCode: getCode(t),
+  });
+};
+export type NewDeviceValues = z.infer<ReturnType<typeof getNewDeviceSchema>>;
+
 export const getResetPasswordSchema = (
   t: TFunction<'translation', undefined>
 ) => {
@@ -85,6 +95,23 @@ export const getResetPasswordSchema = (
 };
 export type ResetPasswordValues = z.infer<
   ReturnType<typeof getResetPasswordSchema>
+>;
+export const getNewPasswordSchema = (
+  t: TFunction<'translation', undefined>
+) => {
+  return z
+    .object({
+      code: getCode(t),
+      password: getPassword(t),
+      confirmPassword: getPassword(t),
+    })
+    .refine((data) => data.confirmPassword === data.password, {
+      path: ['confirmPassword'],
+      message: t?.('forms-error.password-confirm'),
+    });
+};
+export type NewPasswordValues = z.infer<
+  ReturnType<typeof getNewPasswordSchema>
 >;
 export const getRegisterSchema = (t: TFunction<'translation', undefined>) => {
   return z

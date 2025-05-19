@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -8,10 +9,10 @@ import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { Icon } from '@/components/ui-components/Icons';
 import Input from '@/components/ui-components/Input/Input';
-import { useFormActions } from '@/hooks/useFormActions';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useForgetPasswordMutation } from '@/redux/services/auth';
+import { errorState, setResetPasswordError } from '@/redux/slices/errorSlice';
 import { toggleModal } from '@/redux/slices/modalSlice';
-import { toggleStatus } from '@/redux/slices/statusSlice';
 import {
   ResetPasswordValues,
   getResetPasswordSchema,
@@ -20,11 +21,12 @@ import {
 const ResetPassword = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { sendResetPassword } = useFormActions();
+  const { resetPassword } = useAppSelector(errorState);
+  const [forgetPassword, { isLoading }] = useForgetPasswordMutation();
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors, isSubmitting },
+    formState: { isValid, errors },
   } = useForm<ResetPasswordValues>({
     defaultValues: {
       email: '',
@@ -33,17 +35,17 @@ const ResetPassword = () => {
     mode: 'onTouched',
   });
   const onSubmit = async (data: ResetPasswordValues) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
-    dispatch(toggleStatus('loading'));
-    const response = await sendResetPassword();
-    if (response) {
-      dispatch(toggleStatus('succes'));
-    }
+    forgetPassword(data);
   };
+  const setServerError = () => dispatch(setResetPasswordError(null));
   const handleRegister = () =>
     dispatch(toggleModal({ openedModalType: 'login' }));
   const handleClose = () => dispatch(toggleModal({ openedModalType: null }));
+  useEffect(() => {
+    return () => {
+      dispatch(setResetPasswordError(null));
+    };
+  }, [dispatch]);
   return (
     <section className={styles['form-container']}>
       <div className={styles['title-container']}>
@@ -58,22 +60,29 @@ const ResetPassword = () => {
           <Icon.Close />
         </button>
       </div>
-      <p className={styles.success}>{t('support.description')}</p>
+      <p className={styles.success}>{t('reset-password.description')}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles['input-container']}>
           <Input
             {...register('email')}
             placeholder={t('reset-password.email')}
             type="email"
+            onFocus={setServerError}
+            serverError={!!resetPassword}
             errorMessage={errors.email?.message}
           />
+          {!!resetPassword && (
+            <div className={styles.error}>
+              <p>{t('reset-password.error')}</p>
+            </div>
+          )}
         </div>
         <Button
           type="submit"
           size={Sizes.Full}
           variant={Variant.Basic}
           text={t('reset-password.btn-in')}
-          disabled={!isValid || isSubmitting}
+          disabled={!isValid || isLoading || !!resetPassword}
         />
       </form>
       <button

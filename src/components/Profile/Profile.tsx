@@ -7,9 +7,10 @@ import styles from './Profile.module.scss';
 import Portal from '../Portal/Portal';
 import { Icon } from '../ui-components/Icons';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
+import { useLogoutMutation } from '@/redux/services/auth';
 import { toggleModal } from '@/redux/slices/modalSlice';
 import { isOpen, toggleOpenProfile } from '@/redux/slices/profileSlice';
-import { logout, userData } from '@/redux/slices/userSlice';
+import { userData } from '@/redux/slices/userSlice';
 
 const Profile = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ const Profile = () => {
   const dispatch = useAppDispatch();
   const asideRef = useRef<HTMLElement | null>(null);
   const [show, setShow] = useState(true);
-
+  const [logout] = useLogoutMutation();
   const handleCloseProfile = () => dispatch(toggleOpenProfile(false));
 
   const closeProfile = () => {
@@ -27,8 +28,8 @@ const Profile = () => {
   };
 
   const onLogout = () => {
+    logout();
     handleCloseProfile();
-    dispatch(logout());
   };
 
   const onClickSupport = () => {

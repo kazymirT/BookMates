@@ -23,6 +23,8 @@ export type ModalState = {
     | 'edit-collection'
     | 'subscription-success'
     | 'subscription-error'
+    | 'register-success'
+    | 'new-password'
     | null;
   redirect: string;
 };

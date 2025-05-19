@@ -4,6 +4,7 @@ import styles from './FilterClear.module.scss';
 import { Button } from '@/components/ui-components/Button/Button';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { MetaAttributes } from '@/redux/services/meta';
 import {
   clearFilters,
   FilterType,
@@ -14,7 +15,7 @@ import {
 } from '@/redux/slices/queryParams';
 
 const FilterClear = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     filter: { categories, language, years },
     search,
@@ -24,14 +25,14 @@ const FilterClear = () => {
 
   const handleOnClear = (
     filterName: keyof FilterType,
-    value: { id: number; name: string }
+    value: MetaAttributes
   ) => {
     dispatch(removeFilterItem({ filterName, attributes: value }));
   };
-
+  const isEnglish = i18n.language === 'en';
   const filters: {
     filterName: keyof FilterType;
-    value: { id: number; name: string };
+    value: MetaAttributes;
   }[] = [
     ...categories.map((category) => ({
       filterName: 'categories' as const,
@@ -61,14 +62,14 @@ const FilterClear = () => {
             />
           )}
           {!!filters.length &&
-            filters.map((filter) => (
+            filters.map(({ filterName, value }) => (
               <Button
-                key={filter.filterName + filter.value}
+                key={filterName + value.nameEN}
                 type="button"
                 size={Sizes.ExtraSmall}
-                text={filter.value.name}
+                text={isEnglish ? value.nameEN : value.nameUA}
                 variant={Variant.LabelX}
-                onClick={() => handleOnClear(filter.filterName, filter.value)}
+                onClick={() => handleOnClear(filterName, value)}
               />
             ))}
           {priceFilter && (

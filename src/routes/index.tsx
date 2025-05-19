@@ -26,41 +26,49 @@ const User = lazy(() => import('../Pages/User/User'));
 const Authors = lazy(() => import('../Pages/Authors/Authors'));
 const Collections = lazy(() => import('../Pages/Collections/Collections'));
 const Collection = lazy(() => import('../Pages/Collection/Collection'));
+const Search = lazy(() => import('../Pages/Search/Search'));
 
 import HistoryWrapper from './HistoryWrapper';
 import PrivateRoutes from './PrivateRoutes';
 import Layout from '@/Layout/Layout/Layout';
+import Unsubscribe from '@/Pages/Unsubscribe/Unsubscribe';
+import VerifyEmail from '@/Pages/VerifyEmail/VerifyEmail';
 import { ROUTE_PATH } from '@/utils/constants';
 
 const route = createBrowserRouter(
   createRoutesFromElements(
-    <Route
-      element={
-        <HistoryWrapper>
-          <Layout />
-        </HistoryWrapper>
-      }
-      errorElement={<ErrorPage />}
-    >
-      <Route path={ROUTE_PATH.HOME} element={<Home />} />
-      <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
-      <Route path={'/collection/:collectionId?'} element={<Collection />} />
-      <Route path={'/product/:productId?'} element={<Product />} />
-      <Route path={'/author/:authorId'} element={<Author />} />
-      <Route path={'/authors/'} element={<Authors />} />
-      <Route path={'/order'} element={<Order />} />
-      <Route element={<PrivateRoutes />}>
-        <Route path={'/user/:userId?'} element={<User />} />
-      </Route>
-      <Route path={'/delivery'} element={<Delivery />} />
-      <Route path={'/collections'} element={<Collections />} />
-      <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
+    <Route>
+      <Route path="/verify-email" element={<VerifyEmail />} />
+      <Route path="/unsubscribe-news" element={<Unsubscribe />} />
       <Route
-        path={ROUTE_PATH.NOTAUTHENTICATED}
-        element={<NotAuthenticated />}
-      />
-      <Route path={ROUTE_PATH.NOTAUTHORIZED} element={<NotAuthorized />} />
-      <Route path={'/admin/:adminId?'} element={<Admin />} />
+        element={
+          <HistoryWrapper>
+            <Layout />
+          </HistoryWrapper>
+        }
+        errorElement={<ErrorPage />}
+      >
+        <Route path={ROUTE_PATH.HOME} element={<Home />} />
+        <Route path={'/catalog/:categoryId?'} element={<Catalog />} />
+        <Route path={'/collection/:collectionId?'} element={<Collection />} />
+        <Route path={'/product/:productId?'} element={<Product />} />
+        <Route path={'/author/:authorId'} element={<Author />} />
+        <Route path={'/authors/'} element={<Authors />} />
+        <Route path={'/order'} element={<Order />} />
+        <Route path={'/search'} element={<Search />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path={'/user/:userId?'} element={<User />} />
+        </Route>
+        <Route path={'/delivery'} element={<Delivery />} />
+        <Route path={'/collections'} element={<Collections />} />
+        <Route path={ROUTE_PATH.PAGE404} element={<Page404 />} />
+        <Route
+          path={ROUTE_PATH.NOTAUTHENTICATED}
+          element={<NotAuthenticated />}
+        />
+        <Route path={ROUTE_PATH.NOTAUTHORIZED} element={<NotAuthorized />} />
+        <Route path={'/admin/:adminId?'} element={<Admin />} />
+      </Route>
     </Route>
   )
 );

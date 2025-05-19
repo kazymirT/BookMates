@@ -6,12 +6,7 @@ import { type SearchResultItemProps } from './types';
 import Price from '@/components/Price/Price';
 
 const SearchResultItem: FC<SearchResultItemProps> = ({
-  id,
-  title,
-  imageUrl,
-  price,
-  discountPrice,
-  discount,
+  book: { discount, id, image, price, title, discountPrice },
   onClickItem,
 }) => {
   return (
@@ -23,7 +18,7 @@ const SearchResultItem: FC<SearchResultItemProps> = ({
       role="option"
       tabIndex={0}
     >
-      <img src={imageUrl} alt={title} width={43} height={66} />
+      <img src={image} alt={title} width={43} height={66} />
       <div className={styles.content}>
         <h4>{title}</h4>
         <Price

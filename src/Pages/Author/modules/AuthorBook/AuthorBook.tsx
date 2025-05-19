@@ -3,17 +3,18 @@ import { FC } from 'react';
 import styles from './AuthorBook.module.scss';
 import { AuthorBookProps } from './types';
 import HitCard from '@/Pages/Catalog/modules/HitOffers/components/HitCard/HitCard';
-import { useGetBooksQuery } from '@/redux/services/books';
 
-const AuthorBook: FC<AuthorBookProps> = ({ authorName }) => {
-  const { data: books } = useGetBooksQuery({ authors: [authorName] });
+const AuthorBook: FC<AuthorBookProps> = ({ books, authorName, id }) => {
   return (
     <section className={styles.books}>
       <h3>Книги автора</h3>
       {books && (
         <div>
-          {books.content.map((book) => (
-            <HitCard key={book.id} data={book} />
+          {books.map((book) => (
+            <HitCard
+              key={book.id}
+              data={{ ...book, authors: [{ id: id, name: authorName }] }}
+            />
           ))}
         </div>
       )}

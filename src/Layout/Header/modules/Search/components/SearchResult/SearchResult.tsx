@@ -6,12 +6,10 @@ import styles from './SearchResult.module.scss';
 import { type SearchResultProps } from './types';
 import SearchLoading from '../SearchLoading/SearchLoading';
 import SearchNoResults from '../SearchNoResults/SearchNoResults';
-import SearchOffers from '../SearchOffers/SearchOffers';
 import SearchResultItem from '../SearchResultItem/SearchResultItem';
 import SearchResultList from '../SearchResultList/SearchResultList';
 import { Button } from '@/components/ui-components/Button/Button';
-import { useGetBooksQuery } from '@/redux/services/books';
-import { SORT_OPTIONS } from '@/utils/constants';
+import { useGetSearchQuery } from '@/redux/services/books';
 
 const SearchResult: FC<SearchResultProps> = ({
   value,
@@ -24,8 +22,8 @@ const SearchResult: FC<SearchResultProps> = ({
     isLoading,
     isSuccess,
     isFetching,
-  } = useGetBooksQuery(
-    { size: '3', search: value, sort: [SORT_OPTIONS['Дорожчі']] },
+  } = useGetSearchQuery(
+    { lang: 'ua', query: value },
     { skip: value.length < 3 }
   );
   return (
@@ -35,25 +33,23 @@ const SearchResult: FC<SearchResultProps> = ({
           <p className={styles.search}>
             {t('header.search.search', { value })}
           </p>
-          {isSuccess && books?.content.length ? (
+          {isSuccess && !!books?.books.length && (
             <>
-              <SearchOffers />
               <SearchResultList>
-                {books.content.map((book) => (
+                {books.books.map((book) => (
                   <SearchResultItem
-                    {...book}
+                    book={book}
                     onClickItem={onClickSearch}
                     key={book.id}
                   />
                 ))}
               </SearchResultList>
             </>
-          ) : (
-            <SearchNoResults />
           )}
-          {isLoading && isFetching && <SearchLoading />}
+          {isSuccess && !books.books.length && <SearchNoResults />}
+          {(isLoading || isFetching) && <SearchLoading />}
         </div>
-        {!!books?.content.length && (
+        {!!books?.books && (
           <Button
             type="button"
             icon={<Icon.Arrow />}

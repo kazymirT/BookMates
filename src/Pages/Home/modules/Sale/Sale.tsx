@@ -1,5 +1,7 @@
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { MainBooksProps } from './types';
 import Section from '../../components/Section/Section';
 import SectionContent from '../../components/SectionContent/SectionContent';
 import { RESPONSE_SLIDER } from '../Newness/constants';
@@ -10,13 +12,9 @@ import Slider from '@/components/Slider/Slider';
 import { Sizes, Variant } from '@/components/ui-components/Button/constants';
 import { ButtonLink } from '@/components/ui-components/ButtonLink/ButtonLink';
 import { PRODUCT_OF_SLIDER } from '@/constants/slider';
-import { useGetBooksQuery } from '@/redux/services/books';
 
-const Sale = () => {
+const Sale: FC<MainBooksProps> = ({ books }) => {
   const { t } = useTranslation();
-  const { data: books, isLoading } = useGetBooksQuery({
-    size: `${PRODUCT_OF_SLIDER}`,
-  });
 
   return (
     <Section>
@@ -28,14 +26,13 @@ const Sale = () => {
       />
       <SectionContent variant="product">
         <Slider sliderCL="slider-section" arrows responsive={RESPONSE_SLIDER}>
-          {books &&
-            books.content.map((item) => (
-              <ProductCard key={item.id} data={item} variant="slider" />
-            ))}
-          {isLoading &&
-            Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
-              <SkeletonProductCard key={i} variant="slider" />
-            ))}
+          {books
+            ? books.map((item) => (
+                <ProductCard key={item.id} data={item} variant="slider" />
+              ))
+            : Array.from({ length: PRODUCT_OF_SLIDER }).map((_, i) => (
+                <SkeletonProductCard key={i} variant="slider" />
+              ))}
         </Slider>
         <ButtonLink
           type="button"
