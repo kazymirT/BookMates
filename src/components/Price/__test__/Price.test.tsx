@@ -11,7 +11,7 @@ describe('Price Component', () => {
 
   it('renders Price with default styling for search variant', () => {
     const { getByText } = setup({ variant: 'search' });
-    const price = getByText('100 UAH');
+    const price = getByText('100 $');
 
     expect(price).toBeInTheDocument();
     expect(price).toHaveClass('price-search');
@@ -20,7 +20,7 @@ describe('Price Component', () => {
   it('renders Price with normal price for cart variant', () => {
     const normalPrice = 150;
     const { getByText } = setup({ normalPrice, variant: 'cart' });
-    const price = getByText(`${normalPrice} UAH`);
+    const price = getByText(`${normalPrice} $`);
 
     expect(price).toBeInTheDocument();
     expect(price).toHaveClass('price-cart');
@@ -36,8 +36,8 @@ describe('Price Component', () => {
     });
 
     const discountContainer = getByTestId(DISCOUNT_CONTAINER);
-    const priceN = getByText(`${normalPrice} UAH`);
-    const priceD = getByText(`${discountPrice} UAH`);
+    const priceN = getByText(`${normalPrice} $`);
+    const priceD = getByText(`${discountPrice} $`);
 
     expect(priceN).toBeInTheDocument();
     expect(priceN).toHaveClass('normal-price');

@@ -1,47 +1,33 @@
-import React, { useRef } from 'react';
+import Portal from '@components/Portal/Portal';
+import { Sizes, Variant } from '@ui_components/Button/constants';
+import { ButtonLink } from '@ui_components/ButtonLink/ButtonLink';
+import { Icon } from '@ui_components/Icons';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CSSTransition } from 'react-transition-group';
 
 import CartItem from './CartItem/CartItem';
 import styles from './ShoppingCart.module.scss';
-import Portal from '../Portal/Portal';
-import { Sizes, Variant } from '../ui-components/Button/constants';
-import { ButtonLink } from '../ui-components/ButtonLink/ButtonLink';
-import { Icon } from '../ui-components/Icons';
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { goods, removePosition } from '@/redux/slices/shoppingCartSlice';
-import { isOpen, toggleOpenCart } from '@/redux/slices/shoppingCartUiSlice';
+import { useCartVisibility } from '@/hooks/useCartVisibility';
+import { useHandleDeleteItem } from '@/hooks/useHandleDeleteItem';
+import { useTotalPrice } from '@/hooks/useTotalPrice';
+import { useAppSelector } from '@/redux/hooks';
+import { goods } from '@/redux/slices/shoppingCartSlice';
+
 const ShoppingCart = () => {
   const { t } = useTranslation();
-  const isCartOpen = useAppSelector(isOpen);
-  const asideRef = useRef<HTMLElement | null>(null);
   const cartItems = useAppSelector(goods);
-  const totalPrice = cartItems.reduce(
-    (total, item) =>
-      total +
-      (item.discount
-        ? Number(item.discountPrice) * item.quantity
-        : Number(item.price) * item.quantity),
-    0
-  );
-  const dispatch = useAppDispatch();
 
-  const [show, setShow] = React.useState(true);
+  const { isCartOpen, closeCart } = useCartVisibility();
+  const totalPrice = useTotalPrice();
+  const handleDeleteItem = useHandleDeleteItem(closeCart);
 
-  const handleCloseCart = () => dispatch(toggleOpenCart(false));
+  const asideRef = useRef<HTMLElement | null>(null);
 
-  const closeCart = () => setShow(false);
-
-  const handleDeleteItem = (id: number) => {
-    dispatch(removePosition(id));
-    if (cartItems.length === 1) {
-      closeCart();
-    }
-  };
   return (
     <Portal isOpen={isCartOpen} placeContent="right" onClickOutside={closeCart}>
       <CSSTransition
-        in={show}
+        in={isCartOpen}
         nodeRef={asideRef}
         timeout={300}
         classNames={{
@@ -51,8 +37,6 @@ const ShoppingCart = () => {
           exitDone: styles['exit-done'],
         }}
         appear
-        onExiting={handleCloseCart}
-        onExited={() => setShow(true)}
       >
         <aside className={styles.wrapper} ref={asideRef}>
           <div className={styles.head}>

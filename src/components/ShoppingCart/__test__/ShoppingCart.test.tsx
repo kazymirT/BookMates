@@ -37,7 +37,7 @@ describe('ShoppingCart Component', () => {
     expect(getByText('Cart')).toBeInTheDocument();
     expect(getByText('Total')).toBeInTheDocument();
     expect(
-      getByText(`${mockGoods[0].price * mockGoods[0].quantity} UAH`)
+      getByText(`${mockGoods[0].price * mockGoods[0].quantity} $`)
     ).toBeInTheDocument();
   });
 
@@ -60,7 +60,7 @@ describe('ShoppingCart Component', () => {
     expect(getByRole('button', { name: 'Check out' })).toBeEnabled();
     expect(
       getByText(
-        `${mockGoodsWithDiscount[0].discountPrice * mockGoods[0].quantity} UAH`
+        `${mockGoodsWithDiscount[0].discountPrice * mockGoods[0].quantity} $`
       )
     ).toBeInTheDocument();
   });
@@ -80,7 +80,7 @@ describe('ShoppingCart Component', () => {
 
     expect(getByRole('button', { name: 'Check out' })).toBeDisabled();
     expect(getByText('Your cart is empty')).toBeInTheDocument();
-    expect(getByText('0 UAH')).toBeInTheDocument();
+    expect(getByText('0 $')).toBeInTheDocument();
   });
 
   it('handles user interactions: add, subtract, delete items and close cart', async () => {
@@ -101,7 +101,7 @@ describe('ShoppingCart Component', () => {
     const btnClose = getByRole('button', { name: 'close cart' });
 
     expect(getByText(mockGoods[0].title)).toBeInTheDocument();
-    expect(getByText('300 UAH')).toBeInTheDocument();
+    expect(getByText('300 $')).toBeInTheDocument();
 
     await user.click(btnAdd);
     expect(store.getState().shoppingCart.goods[0].quantity).toBe(4);
