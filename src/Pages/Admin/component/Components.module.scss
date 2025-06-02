@@ -91,13 +91,13 @@
   }
 
   .title {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-width: 250px;
     height: 100px;
   }
 
   .authors {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-width: 150px;
     height: 108px;
   }

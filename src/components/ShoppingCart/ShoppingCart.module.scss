@@ -76,7 +76,7 @@
 .list {
   scrollbar-width: none;
 
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
