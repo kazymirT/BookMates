@@ -1,7 +1,16 @@
 import styles from './SearchLoading.module.scss';
+import Skeleton from '@/components/Skeleton/components/Skeleton/Skeleton';
 
 const SearchLoading = () => {
-  return <p className={styles.loading}>Loading...</p>;
+  return (
+    <div className={styles.loading}>
+      <Skeleton variant="button-3" />
+      <Skeleton variant="search" />
+      <Skeleton variant="search" />
+      <Skeleton variant="search" />
+      <Skeleton variant="button-b" />
+    </div>
+  );
 };
 
 export default SearchLoading;

@@ -8,6 +8,7 @@ import SearchLoading from '../SearchLoading/SearchLoading';
 import SearchNoResults from '../SearchNoResults/SearchNoResults';
 import SearchResultItem from '../SearchResultItem/SearchResultItem';
 import SearchResultList from '../SearchResultList/SearchResultList';
+import Loading from '@/components/StatusScreen/Loading/Loading';
 import { Button } from '@/components/ui-components/Button/Button';
 import { useGetSearchQuery } from '@/redux/services/books';
 
@@ -28,37 +29,44 @@ const SearchResult: FC<SearchResultProps> = ({
   );
   return (
     isOpen && (
-      <div className={styles.results}>
-        <div className={styles.content}>
-          <p className={styles.search}>
-            {t('header.search.search', { value })}
-          </p>
-          {isSuccess && !!books?.books.length && (
-            <>
-              <SearchResultList>
-                {books.books.map((book) => (
-                  <SearchResultItem
-                    book={book}
-                    onClickItem={onClickSearch}
-                    key={book.id}
-                  />
-                ))}
-              </SearchResultList>
-            </>
+      <div className={styles.wrapper}>
+        <div className={styles.results}>
+          <div className={styles.content}>
+            <p className={styles.search}>
+              {t('header.search.search', { value })}
+            </p>
+            {isSuccess && !!books?.books.length && (
+              <>
+                <SearchResultList>
+                  {books.books.map((book) => (
+                    <SearchResultItem
+                      book={book}
+                      onClickItem={onClickSearch}
+                      key={book.id}
+                    />
+                  ))}
+                </SearchResultList>
+              </>
+            )}
+            {isSuccess && !books.books.length && <SearchNoResults />}
+          </div>
+          {!!books?.books && (
+            <Button
+              type="button"
+              icon={<Icon.Arrow />}
+              iconPosition={Position.Right}
+              size={Sizes.Small}
+              text={t('header.search.show-all')}
+              onClick={onClickSearch}
+              variant={Variant.Basic}
+            />
           )}
-          {isSuccess && !books.books.length && <SearchNoResults />}
-          {(isLoading || isFetching) && <SearchLoading />}
+          {isLoading && <SearchLoading />}
         </div>
-        {!!books?.books && (
-          <Button
-            type="button"
-            icon={<Icon.Arrow />}
-            iconPosition={Position.Right}
-            size={Sizes.Small}
-            text={t('header.search.show-all')}
-            onClick={onClickSearch}
-            variant={Variant.Basic}
-          />
+        {!isLoading && isFetching && (
+          <div className={styles.fetching}>
+            <Loading />
+          </div>
         )}
       </div>
     )

@@ -119,6 +119,11 @@
     width: 221px;
     height: 162px;
   }
+
+  &__search {
+    width: 100%;
+    height: 100px;
+  }
 }
 
 @keyframes skeleton-loading {
