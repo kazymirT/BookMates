@@ -1,6 +1,6 @@
 import styles from './Banner.module.scss';
 import { SLIDE_OF_SLIDER } from './constants';
-import { BANNER_DATA } from './data';
+import { SLIDER_DATA } from './data';
 import Slide from './Slide/Slide';
 import SkeletonBannerSlide from '@/components/Skeleton/SkeletonBannerSlide';
 import Slider from '@/components/Slider/Slider';
@@ -22,8 +22,8 @@ const Banner = () => {
           ? Array.from({ length: SLIDE_OF_SLIDER }).map((_, i) => (
               <SkeletonBannerSlide key={i} />
             ))
-          : BANNER_DATA.map((banner) => (
-              <Slide slide={banner} key={banner.id} />
+          : SLIDER_DATA.map(({ id, ...props }) => (
+              <Slide key={id} {...props} />
             ))}
       </Slider>
     </div>

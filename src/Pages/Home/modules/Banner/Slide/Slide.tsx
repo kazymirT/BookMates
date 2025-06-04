@@ -1,28 +1,16 @@
 import { type FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Slide.module.scss';
 import { type SlideProps } from './types';
 
-const Slide: FC<SlideProps> = ({
-  slide: { button, description, img, title },
-}) => {
+const Slide: FC<SlideProps> = ({ alt, image, link }) => {
   return (
-    <div className={styles.wrapper}>
+    <Link to={link} className={styles.wrapper}>
       <div className={styles.slider}>
-        <img
-          src={img}
-          alt="image for slide"
-          loading="lazy"
-          width={981}
-          height={344}
-        />
-        <div className={styles.text}>
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </div>
-        <button type="button">{button}</button>
+        <img src={image} alt={alt} loading="lazy" width={981} height={344} />
       </div>
-    </div>
+    </Link>
   );
 };
 

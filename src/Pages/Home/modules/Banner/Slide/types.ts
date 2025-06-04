@@ -1,8 +1,3 @@
-export interface SlideProps {
-  slide: {
-    img: string;
-    button: string;
-    title: string;
-    description: string;
-  };
-}
+import { Slide } from '../data';
+
+export type SlideProps = Omit<Slide, 'id'>;
