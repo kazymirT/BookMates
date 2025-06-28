@@ -9,7 +9,7 @@
     @include scrollBar(8px, 8px, $background-color, $background-color, $grey-100);
 
     .list {
-      overflow-y: scroll;
+      overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 8px;
